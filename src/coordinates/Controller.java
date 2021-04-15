@@ -3,7 +3,9 @@ package coordinates;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Line;
 
 import java.awt.*;
 
@@ -12,12 +14,13 @@ public class Controller {
 
     @FXML
     public void initialize(){
-        /*
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());;
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
+        Pane pane = new Pane();
 
-         */
+        Line l1 = new Line();
+        l1.setStartX(0);
+        l1.setStartY(0);
+
+
     }
 
     public void onMouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
@@ -35,7 +38,7 @@ public class Controller {
         hoveredImage.setImage(image);
     }
 
-    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
+    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {/*
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
         AnchorPane bo = (AnchorPane) mouseEvent.getSource();
         ImageView hoveredImage = new ImageView();
@@ -43,7 +46,7 @@ public class Controller {
         //hoveredImage.fitHeightProperty();
         hoveredImage.setFitHeight(34);
         hoveredImage.setFitWidth(23);;
-/*
+
         Point p = MouseInfo.getPointerInfo().getLocation();
         System.out.println(p);
         p.y = 100;
@@ -54,6 +57,39 @@ public class Controller {
         
  */
 
+    }
+
+    public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
+        System.out.println("Test");
+
+        Point p = new Point();
+         p.x = (int) mouseEvent.getX();
+         p.y = (int) mouseEvent.getY();
+
+
+
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
+
+        ImageView hoveredImage = new ImageView();
+        Pane stackPane = (Pane) mouseEvent.getSource();
+        stackPane.getChildren().add(hoveredImage);
+        hoveredImage.setX(p.x);
+        hoveredImage.setY(p.y);
+        hoveredImage.setImage(image);
+        hoveredImage.setFitHeight(34);
+        hoveredImage.setFitWidth(23);
+
+    }
+
+    public void onMouseMenuRequested(javafx.scene.input.MouseEvent mouseEvent) {
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
+        StackPane bo = (StackPane) mouseEvent.getSource();
+        System.out.println(bo);
+        ImageView hoveredImage = new ImageView();
+        hoveredImage.setImage(image);
+        //hoveredImage.fitHeightProperty();
+        hoveredImage.setFitHeight(34);
+        hoveredImage.setFitWidth(23);;
     }
 
 }

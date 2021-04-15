@@ -18,10 +18,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="image1" fitHeight="50.0" fitWidth="150.0" onMouseClicked="#onMouseEntered" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExcited" GridPane.rowIndex="1">
-         <image>
-            <Image url="@white.png" />
-         </image></ImageView>
+      <ImageView fitHeight="50.0" fitWidth="150.0" onMouseClicked="#onMouseEntered" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExcited" GridPane.rowIndex="1">
+      </ImageView>
       <ImageView fitHeight="50.0" fitWidth="150.0" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExcited" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <image>
             <Image url="@white.png" />
