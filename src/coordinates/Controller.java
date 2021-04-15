@@ -11,16 +11,20 @@ import java.awt.*;
 
 public class Controller {
 
+    @FXML ImageView previewImage;
 
-    @FXML
-    public void initialize(){
+
+    public void blabla(){
         Pane pane = new Pane();
 
         Line l1 = new Line();
         l1.setStartX(0);
         l1.setStartY(0);
 
+    }
 
+    @FXML
+    public void initialize(){
     }
 
     public void onMouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
@@ -32,30 +36,30 @@ public class Controller {
         hoveredImage.setFitWidth(23);
     }
 
-    public void onMouseExcited(javafx.scene.input.MouseEvent mouseEvent) {
-        ImageView hoveredImage = (ImageView) mouseEvent.getSource();
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/white.png").toExternalForm());
-        hoveredImage.setImage(image);
-    }
+    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
 
-    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {/*
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
-        AnchorPane bo = (AnchorPane) mouseEvent.getSource();
-        ImageView hoveredImage = new ImageView();
-        hoveredImage.setImage(image);
-        //hoveredImage.fitHeightProperty();
-        hoveredImage.setFitHeight(34);
-        hoveredImage.setFitWidth(23);;
+        System.out.println("Test");
 
-        Point p = MouseInfo.getPointerInfo().getLocation();
-        System.out.println(p);
-        p.y = 100;
-        p.x = 100;
-        hoveredImage.setImage(image);
-        hoveredImage.setX(p.x);
-        hoveredImage.setY(p.y);
-        
- */
+        Point p = new Point();
+        p.x = (int) mouseEvent.getX()-5;
+        p.y = (int) mouseEvent.getY()-29;
+
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        try {
+            Pane stackPane = (Pane) mouseEvent.getSource();
+            stackPane.getChildren().add(previewImage);
+        }catch (Exception exception){
+            System.out.println("You exactly touched a line");
+            Line stackPane = (Line) mouseEvent.getSource();
+            //stackPane.getChildren().add(hoveredImage);        // still needs to be done
+        }
+
+
+        previewImage.setX(p.x);
+        previewImage.setY(p.y);
+        previewImage.setImage(image);
+        previewImage.setFitHeight(34);
+        previewImage.setFitWidth(11);
 
     }
 
@@ -63,21 +67,27 @@ public class Controller {
         System.out.println("Test");
 
         Point p = new Point();
-         p.x = (int) mouseEvent.getX();
-         p.y = (int) mouseEvent.getY();
+         p.x = (int) mouseEvent.getX()-5;
+         p.y = (int) mouseEvent.getY()-29;
 
-
-
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
         ImageView hoveredImage = new ImageView();
-        Pane stackPane = (Pane) mouseEvent.getSource();
-        stackPane.getChildren().add(hoveredImage);
+        try {
+            Pane stackPane = (Pane) mouseEvent.getSource();
+            stackPane.getChildren().add(hoveredImage);
+        }catch (Exception exception){
+            System.out.println("You exactly touched a line");
+            Line stackPane = (Line) mouseEvent.getSource();
+            //stackPane.getChildren().add(hoveredImage);        // still needs to be done
+        }
+
+
         hoveredImage.setX(p.x);
         hoveredImage.setY(p.y);
         hoveredImage.setImage(image);
         hoveredImage.setFitHeight(34);
-        hoveredImage.setFitWidth(23);
+        hoveredImage.setFitWidth(11);
 
     }
 
