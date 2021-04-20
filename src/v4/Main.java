@@ -20,19 +20,17 @@ public class Main extends Application {
         Button b2 = new Button("Remove");
         Pane element = new Pane();
         Controller controller = new Controller();
-        Pane pane = controller.createLine(600,true);
 
-        //element.setStyle("-fx-background-color: black");
+
         GridPane mainInputPane = new GridPane();
         mainInputPane.add(b1, 0, 0);
         mainInputPane.add(b2, 1, 0);
 
-        column = 0;
-        row = 1;
-
         primaryStage.setScene(new Scene(mainInputPane, 600, 400));
         primaryStage.show();
 
+        column = 0;
+        row = 1;
 
         //mit lambda ausdruck damit man meherer sachen durchführen kann
         b1.setOnAction(e ->{
@@ -61,7 +59,7 @@ public class Main extends Application {
             }
 
             System.out.println("Remove" + column + ", " + row);
-            mainInputPane.getChildren().remove(column, row);
+            mainInputPane.getChildren().remove(new Pane());
         });
     }
 
