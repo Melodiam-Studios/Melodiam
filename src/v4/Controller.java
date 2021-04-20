@@ -80,19 +80,20 @@ public class Controller {
     }
 
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
-
         System.out.println("Test");
 
         Point p = new Point();
         p.x = (int) mouseEvent.getX()-5;
         p.y = (int) mouseEvent.getY()-29;
 
+        System.out.println(p);
 
+        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
-        Image image = new Image(getClass().getResource("resources/resources.bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        ImageView hoveredImage = new ImageView();
         try {
             Pane stackPane = (Pane) mouseEvent.getSource();
-            stackPane.getChildren().add(previewImage);
+            stackPane.getChildren().add(hoveredImage);
         }catch (Exception exception){
             System.out.println("You exactly touched a line");
             Line stackPane = (Line) mouseEvent.getSource();
@@ -100,11 +101,11 @@ public class Controller {
         }
 
 
-        previewImage.setX(p.x);
-        previewImage.setY(p.y);
-        previewImage.setImage(image);
-        previewImage.setFitHeight(34);
-        previewImage.setFitWidth(11);
+        hoveredImage.setX(p.x);
+        hoveredImage.setY(p.y);
+        hoveredImage.setImage(image);
+        hoveredImage.setFitHeight(34);
+        hoveredImage.setFitWidth(11);
 
     }
 
