@@ -17,7 +17,7 @@ public class Controller {
     public void initialize(){
     }
 
-    public Pane blabla(int line_length){
+    public Pane createLine(int line_length, boolean needSchluessel){
         Pane pane = new Pane();
 
         Line l1 = new Line();
@@ -50,19 +50,29 @@ public class Controller {
         l5.setEndX(line_length);
         l5.setEndY(50);
 
+        Line l6 = new Line();
+        l6.setStartX(line_length);
+        l6.setStartY(10);
+        l6.setEndX(line_length);
+        l6.setEndY(50);
+
         pane.getChildren().add(l1);
         pane.getChildren().add(l2);
         pane.getChildren().add(l3);
         pane.getChildren().add(l4);
         pane.getChildren().add(l5);
+        pane.getChildren().add(l6);
 
-        Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
-        ImageView notenSchlüssel = new ImageView(image);
-        pane.getChildren().add(notenSchlüssel);
-        int vio_size = 40;
-        notenSchlüssel.setFitHeight(vio_size * 1.705);
-        notenSchlüssel.setFitWidth(vio_size);
-        notenSchlüssel.setY(-5);
+        if (needSchluessel){
+            Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
+            ImageView notenSchlüssel = new ImageView(image);
+            pane.getChildren().add(notenSchlüssel);
+            int vio_size = 40;
+            notenSchlüssel.setFitHeight(vio_size * 1.705);
+            notenSchlüssel.setFitWidth(vio_size);
+            notenSchlüssel.setY(-5);
+        }
+
         pane.setOnMousePressed(this::onMousePressed);
 
         return pane;
@@ -107,7 +117,7 @@ public class Controller {
 
         System.out.println(p);
 
-        Image image = new Image(getClass().getResource("resources/resources.bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
         ImageView hoveredImage = new ImageView();
         try {

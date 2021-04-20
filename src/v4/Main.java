@@ -20,7 +20,7 @@ public class Main extends Application {
         Button b2 = new Button("Remove");
         Pane element = new Pane();
         Controller controller = new Controller();
-        Pane pane = controller.blabla(600);
+        Pane pane = controller.createLine(600, true);
 
         //element.setStyle("-fx-background-color: black");
         GridPane mainInputPane = new GridPane();
