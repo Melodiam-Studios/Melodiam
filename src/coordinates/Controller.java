@@ -63,19 +63,10 @@ public class Controller {
         notenSchlüssel.setFitHeight(vio_size * 1.705);
         notenSchlüssel.setFitWidth(vio_size);
         notenSchlüssel.setY(-5);
-        pane.setOnMouseMoved(this::onMouseMoved);
+        pane.setOnMousePressed(this::onMousePressed);
 
         return pane;
 
-    }
-
-    public void onMouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("note.png").toExternalForm());
-        ImageView hoveredImage = (ImageView) mouseEvent.getSource();
-        hoveredImage.setImage(image);
-        //hoveredImage.fitHeightProperty();
-        hoveredImage.setFitHeight(34);
-        hoveredImage.setFitWidth(23);
     }
 
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
@@ -85,6 +76,8 @@ public class Controller {
         Point p = new Point();
         p.x = (int) mouseEvent.getX()-5;
         p.y = (int) mouseEvent.getY()-29;
+
+
 
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
         try {
@@ -111,6 +104,8 @@ public class Controller {
         Point p = new Point();
          p.x = (int) mouseEvent.getX()-5;
          p.y = (int) mouseEvent.getY()-29;
+
+        System.out.println(p);
 
         javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
