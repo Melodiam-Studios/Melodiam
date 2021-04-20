@@ -56,7 +56,7 @@ public class Controller {
         pane.getChildren().add(l4);
         pane.getChildren().add(l5);
 
-        Image image = new Image(getClass().getResource("resources/resources.bilder_noten/Violinschluessel.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
         ImageView notenSchlüssel = new ImageView(image);
         pane.getChildren().add(notenSchlüssel);
         int vio_size = 40;
