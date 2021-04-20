@@ -43,17 +43,25 @@ public class Main extends Application {
             mainInputPane.addColumn(column);
             mainInputPane.addRow(row);
 
-            mainInputPane.add(pane, column,row);
+            mainInputPane.add(controller.createLine(100, true), column,row);
 
             column++;
             if (column%4 == 0){
                 row++;
+                column = 0;
             }
 
         });
 
         b2.setOnAction(e -> {
-            System.out.println("remove");
+            if (column > 0) column--;
+            if (column <= 0) {
+                row--;
+                column = 4;
+            }
+
+            System.out.println("Remove" + column + ", " + row);
+            mainInputPane.getChildren().remove(column, row);
         });
     }
 
