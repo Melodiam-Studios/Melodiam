@@ -73,7 +73,7 @@
                       <graphic>
                           <ImageView fitHeight="30.0" fitWidth="20.0">
                               <image>
-                                  <Image url="/Bilder_Noten/HalbenoteUnten.png" />
+                                  <Image url="/vL/Bilder_Noten/HalbenoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -82,7 +82,7 @@
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="18.0">
                               <image>
-                                  <Image url="/Bilder_Noten/ViertelnoteUnten.png" />
+                                  <Image url="/vL/Bilder_Noten/ViertelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -91,16 +91,16 @@
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="20.0">
                               <image>
-                                  <Image url="/Bilder_Noten/AchtelnoteUnten.png" />
+                                  <Image url="/vL/Bilder_Noten/AchtelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 0; -fx-border-color: none; -fx-border-style: none;" GridPane.columnIndex="4">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: none;" GridPane.columnIndex="4">
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="18.0" pickOnBounds="true">
                               <image>
-                                  <Image url="/Bilder_Noten/SechzehntelnoteUnten.png" />
+                                  <Image url="/vL/Bilder_Noten/SechzehntelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -108,7 +108,7 @@
                   <ButtonBar prefHeight="40.0" prefWidth="120.0" GridPane.rowIndex="1" />
                     <ImageView fitHeight="17.0" fitWidth="33.0">
                         <image>
-                            <Image url="/Bilder_Noten/Ganzenote.png" />
+                            <Image url="/vL/Bilder_Noten/Ganzenote.png" />
                         </image>
                     </ImageView>
                </children>
