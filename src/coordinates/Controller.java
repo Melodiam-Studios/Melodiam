@@ -13,16 +13,6 @@ public class Controller {
 
     @FXML ImageView previewImage;
 
-
-    public void blabla(){
-        Pane pane = new Pane();
-
-        Line l1 = new Line();
-        l1.setStartX(0);
-        l1.setStartY(0);
-
-    }
-
     @FXML
     public void initialize(){
     }
