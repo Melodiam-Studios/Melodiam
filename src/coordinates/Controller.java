@@ -56,7 +56,7 @@ public class Controller {
         pane.getChildren().add(l4);
         pane.getChildren().add(l5);
 
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/Violinschluessel.png").toExternalForm());
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("/src/resources/bilder_noten/Violinschluessel.png").toExternalForm());
         ImageView notenSchlüssel = new ImageView(image);
         pane.getChildren().add(notenSchlüssel);
         int vio_size = 40;
@@ -79,7 +79,7 @@ public class Controller {
 
 
 
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/resources.bilder_noten/ViertelnoteUnten.png").toExternalForm());
         try {
             Pane stackPane = (Pane) mouseEvent.getSource();
             stackPane.getChildren().add(previewImage);
@@ -107,7 +107,7 @@ public class Controller {
 
         System.out.println(p);
 
-        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource("resources/resources.bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
         ImageView hoveredImage = new ImageView();
         try {

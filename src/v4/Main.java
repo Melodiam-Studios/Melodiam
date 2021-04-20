@@ -1,5 +1,6 @@
 package v4;
 
+import coordinates.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,13 +27,15 @@ public class Main extends Application {
         Button b1 = new Button("Add");
         Button b2 = new Button("Remove");
         Pane element = new Pane();
-        //element.getStylesheets().add("v4/test.css");
-        element.setStyle("-fx-background-color: black");
+        Controller controller = new Controller();
+        Pane pane = controller.blabla(600);
+
+        //element.setStyle("-fx-background-color: black");
         GridPane mainInputPane = new GridPane();
         mainInputPane.add(b1, 0, 0);
         mainInputPane.add(b2, 1, 0);
 
-        column = 1;
+        column = 0;
         row = 1;
 
         primaryStage.setScene(new Scene(mainInputPane, 600, 400));
@@ -41,16 +44,20 @@ public class Main extends Application {
 
         //mit lambda ausdruck damit man meherer sachen durchführen kann
         b1.setOnAction(e ->{
+            System.out.println(column);
+            System.out.println(row);
             System.out.println("Add");
-            mainInputPane.add(element, 2, 2);
+
+            mainInputPane.addColumn(column);
+            mainInputPane.addRow(row);
+
+            mainInputPane.add(pane, column,row);
 
             column++;
             if (column%4 == 0){
                 row++;
             }
 
-            //mainInputPane.addColumn(column);
-            //mainInputPane.addRow(row);
         });
 
         b2.setOnAction(e -> {
