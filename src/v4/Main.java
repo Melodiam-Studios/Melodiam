@@ -20,7 +20,7 @@ public class Main extends Application {
         Button b2 = new Button("Remove");
         Pane element = new Pane();
         Controller controller = new Controller();
-        Pane pane = controller.blabla(600);
+        //Pane pane = controller.blabla(600);
 
         //element.setStyle("-fx-background-color: black");
         GridPane mainInputPane = new GridPane();
@@ -43,17 +43,18 @@ public class Main extends Application {
             mainInputPane.addColumn(column);
             mainInputPane.addRow(row);
 
-            mainInputPane.add(pane, column,row);
+            mainInputPane.add(new Pane(controller.blabla(100)), column,row);
 
             column++;
             if (column%4 == 0){
                 row++;
+                column = 0;
             }
 
         });
 
         b2.setOnAction(e -> {
-            System.out.println("remove");
+
         });
     }
 
