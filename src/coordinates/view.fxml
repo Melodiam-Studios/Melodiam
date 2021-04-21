@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<Pane onMouseMoved="#onMouseMoved" onMousePressed="#onMousePressed" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coordinates.Controller">
+   <children>
+      <Line endX="600.0" endY="80.0" onMousePressed="#onMousePressed" startY="80.0" />
+      <Line endX="600.0" endY="90.0" onMousePressed="#onMousePressed" startY="90.0" />
+      <Line endX="600.0" endY="100.0" onMousePressed="#onMousePressed" startY="100.0" />
+      <Line endX="600.0" endY="110.0" onMousePressed="#onMousePressed" startY="110.0" />
+      <Line endX="600.0" endY="120.0" onMousePressed="#onMousePressed" startY="120.0" />
+   </children>
+</Pane>
