@@ -1,11 +1,11 @@
-package v4;
+package v4_2;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -15,19 +15,22 @@ public class Main extends Application {
     private int column = 0;
 
     @Override
+    //versuch mit liste und visible
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("v2");
 
         Button b1 = new Button("Add");
         Button b2 = new Button("Remove");
         Pane element = new Pane();
-        final Node[] lastGP = {new GridPane()};
         Controller controller = new Controller();
 
-        //element.setStyle("-fx-background-color: black");
+        VBox root = new VBox();
         GridPane mainInputPane = new GridPane();
+
         mainInputPane.add(b1, 0, 0);
         mainInputPane.add(b2, 1, 0);
+
+        root.getChildren().add(mainInputPane);
 
         column = 0;
         row = 1;

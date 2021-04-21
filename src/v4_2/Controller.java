@@ -1,4 +1,4 @@
-package v4;
+package v4_2;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,9 +18,6 @@ import java.util.ArrayList;
 public class Controller {
 
     @FXML ImageView previewImage = new ImageView();
-    ArrayList<ArrayList<Point>> listsWithOccupied = new ArrayList<>();
-    ArrayList<ArrayList<Point>> listsWithFree = new ArrayList<>();
-
 
     @FXML
     public void initialize(){
@@ -93,17 +90,8 @@ public class Controller {
 
     }
 
-    public void objektFang(){
-        int notenInTakt = 4;    // viertelNote
-    }
-
-    public ArrayList<Point> possiblePoints(int length, int notenInTakt){
-
-
-        return null;
-    }
-
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent, Pane pane) {
+        System.out.println("Test");
 
         Point p = new Point();
         p.x = (int) mouseEvent.getX()-5;
@@ -126,33 +114,38 @@ public class Controller {
 
         previewImage.setX(p.x);
         previewImage.setY(p.y);
-
+        previewImage.setImage(image);
         previewImage.setFitHeight(34);
         previewImage.setFitWidth(11);
 
         //Setting the preserve ratio of the image view
-        //previewImage.setPreserveRatio(true);
+        previewImage.setPreserveRatio(true);
+
         //Instantiating the ColorAdjust class
         ColorAdjust colorAdjust = new ColorAdjust();
+
         //Setting the contrast value
-        colorAdjust.setContrast(-1);
+        colorAdjust.setContrast(0.2);
+
         //Setting the hue value
-        //colorAdjust.setHue(-0.05);
+        colorAdjust.setHue(-0.05);
+
         //Setting the brightness value
-        //colorAdjust.setBrightness(0.7);
+        colorAdjust.setBrightness(0.2);
+
         //Setting the saturation value
-        //colorAdjust.setSaturation(0.8);
+        colorAdjust.setSaturation(0.8);
+
         //Applying coloradjust effect to the ImageView node
         previewImage.setEffect(colorAdjust);
-        previewImage.setImage(image);
 
     }
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent, Pane pane) {
 
         Point p = new Point();
-         p.x = (int) mouseEvent.getX()-5;
-         p.y = (int) mouseEvent.getY()-29;
+        p.x = (int) mouseEvent.getX()-5;
+        p.y = (int) mouseEvent.getY()-29;
 
         System.out.println(p);
 
