@@ -20,7 +20,8 @@ public class Main extends Application {
         Button b2 = new Button("Remove");
         Pane element = new Pane();
         Controller controller = new Controller();
-        Pane pane = controller.createLine(600,true);
+        Pane startTakt = controller.createLine(100,true);
+        Pane normalTakt = controller.createLine(100,false);
 
         //element.setStyle("-fx-background-color: black");
         GridPane mainInputPane = new GridPane();
@@ -43,12 +44,17 @@ public class Main extends Application {
             mainInputPane.addColumn(column);
             mainInputPane.addRow(row);
 
-            mainInputPane.add(controller.createLine(100, true), column,row);
+            if (column == 0){
+                mainInputPane.add(controller.createLine(100,true), column,row);
+            }else{
+                mainInputPane.add(controller.createLine(100,false), column,row);
+            }
 
             column++;
             if (column%4 == 0){
                 row++;
                 column = 0;
+
             }
 
         });
