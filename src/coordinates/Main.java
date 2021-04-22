@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         Controller controller = new Controller();
-        Pane root = controller.createLine(600, true);
+        Pane root = new Pane();
         primaryStage.setTitle("Melodiam");
         primaryStage.setScene(new Scene(root, 600, 60));
         primaryStage.show();
