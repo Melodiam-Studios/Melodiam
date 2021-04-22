@@ -1,12 +1,15 @@
-package coordinates;
+package v4_2;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 
 import java.awt.*;
@@ -87,7 +90,7 @@ public class Controller {
 
     }
 
-    public void onMouseMoved(MouseEvent mouseEvent, Pane pane) {
+    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent, Pane pane) {
         System.out.println("Test");
 
         Point p = new Point();
@@ -138,7 +141,7 @@ public class Controller {
 
     }
 
-    public void onMousePressed(MouseEvent mouseEvent, Pane pane) {
+    public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent, Pane pane) {
 
         Point p = new Point();
         p.x = (int) mouseEvent.getX()-5;

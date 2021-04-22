@@ -1,17 +1,13 @@
-package v4;
+package v4_2;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-
-import java.awt.*;
 
 public class Main extends Application {
 
@@ -19,16 +15,24 @@ public class Main extends Application {
     private int column = 0;
 
     @Override
+    //versuch mit liste und visible
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("v2");
 
         Button b1 = new Button("Add");
         Button b2 = new Button("Remove");
         Pane element = new Pane();
+        Controller controller = new Controller();
+
+        VBox root = new VBox();
         GridPane mainInputPane = new GridPane();
+
         mainInputPane.add(b1, 0, 0);
         mainInputPane.add(b2, 1, 0);
-        column = 1;
+
+        root.getChildren().add(mainInputPane);
+
+        column = 0;
         row = 1;
 
         primaryStage.setScene(new Scene(mainInputPane, 600, 400));
@@ -37,15 +41,37 @@ public class Main extends Application {
 
         //mit lambda ausdruck damit man meherer sachen durchführen kann
         b1.setOnAction(e ->{
-            mainInputPane.add(element, column, row);
+            System.out.println(column);
+            System.out.println(row);
+            System.out.println("Add");
+
+            mainInputPane.addColumn(column);
+            mainInputPane.addRow(row);
+
+            if (column == 0){
+                mainInputPane.add(controller.createLine(100,true), column,row);
+            }else{
+                mainInputPane.add(controller.createLine(100,false), column,row);
+            }
 
             column++;
             if (column%4 == 0){
                 row++;
+                column = 0;
+
             }
 
-            mainInputPane.addColumn(column);
-            mainInputPane.addRow(row);
+        });
+
+        b2.setOnAction(e -> {
+            if (column > 0) column--;
+            if (column <= 0) {
+                row--;
+                column = 4;
+            }
+
+            System.out.println("Remove" + column + ", " + row);
+            mainInputPane.getChildren().remove(column, row);
         });
     }
 

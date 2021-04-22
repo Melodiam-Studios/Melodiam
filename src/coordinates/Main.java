@@ -1,12 +1,10 @@
 package coordinates;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import v4.Controller;
 
 public class Main extends Application {
 
@@ -18,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         Controller controller = new Controller();
-        Pane root = controller.blabla(600);
+        Pane root = new Pane();
         primaryStage.setTitle("Melodiam");
         primaryStage.setScene(new Scene(root, 600, 60));
         primaryStage.show();
