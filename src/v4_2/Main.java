@@ -3,9 +3,7 @@ package v4_2;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -17,6 +15,9 @@ public class Main extends Application {
     @Override
     //versuch mit liste und visible
     public void start(Stage primaryStage) throws Exception{
+        // TO Do: making size to variable
+        //      : making remove
+
         primaryStage.setTitle("v2");
 
         Button b1 = new Button("Add");
@@ -24,18 +25,15 @@ public class Main extends Application {
         Pane element = new Pane();
         Controller controller = new Controller();
 
-        VBox root = new VBox();
         GridPane mainInputPane = new GridPane();
 
         mainInputPane.add(b1, 0, 0);
         mainInputPane.add(b2, 1, 0);
 
-        root.getChildren().add(mainInputPane);
-
         column = 0;
         row = 1;
 
-        primaryStage.setScene(new Scene(mainInputPane, 600, 400));
+        primaryStage.setScene(new Scene(mainInputPane, 600  , 400));
         primaryStage.show();
 
 
@@ -49,8 +47,20 @@ public class Main extends Application {
             mainInputPane.addRow(row);
 
             if (column == 0){
+                RowConstraints rowWith = new RowConstraints(100);       //gibt den einzelnen zeilen eine fixe größe so das sie sich nicht verändern können
+                mainInputPane.getRowConstraints().add(rowWith);
+
+                ColumnConstraints columnWith = new ColumnConstraints(100);
+                mainInputPane.getColumnConstraints().add(columnWith);
+
                 mainInputPane.add(controller.createLine(100,true), column,row);
             }else{
+                RowConstraints rowWith = new RowConstraints(100);
+                mainInputPane.getRowConstraints().add(rowWith);
+
+                ColumnConstraints columnWith = new ColumnConstraints(100);
+                mainInputPane.getColumnConstraints().add(columnWith);
+
                 mainInputPane.add(controller.createLine(100,false), column,row);
             }
 
