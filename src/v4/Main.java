@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -32,6 +33,9 @@ public class Main extends Application {
         row = 1;
 
         primaryStage.setScene(new Scene(mainInputPane, 600, 400));
+        Image image =  new Image("/resources/melodiam_testicon1.png");
+        primaryStage.getIcons().add(image);
+        //primaryStage.getIcons()
         primaryStage.show();
 
 

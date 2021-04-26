@@ -3,6 +3,7 @@ package v4_2;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,7 @@ public class Main extends Application {
         row = 1;
 
         primaryStage.setScene(new Scene(mainInputPane, 600, 400));
+        primaryStage.getIcons().add(new Image("/resources/melodiam_testicon1.png"));
         primaryStage.show();
 
 
