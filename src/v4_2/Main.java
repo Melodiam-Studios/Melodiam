@@ -1,11 +1,8 @@
 package v4_2;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -19,7 +16,7 @@ public class Main extends Application {
 
     @Override
     //versuch mit liste und visible
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         // TO Do: making size to variable
         //      : add und remove in methode bringen
 
@@ -28,8 +25,9 @@ public class Main extends Application {
 
         Button b1 = new Button("Add");
         Button b2 = new Button("Remove");
-        Pane element = new Pane();
-        Controller controller = new Controller();
+        //Pane element = new Pane();
+        //Controller controller =
+        new Controller();
 
         root.add(b1, 0, 0);
         root.add(b2, 1, 0);
@@ -43,56 +41,53 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 600  , 400);
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.LEFT){
-                    if (column >= 0) column--;
-                    if (column < 0) {
-                        row--;
-                        column = 3;
-                    }
-
-                    System.out.println("Remove" + column + ", " + row);
-                    //storeLines.add(controller.createLine(100,true));
-                    storeLines.remove(storeLines.size()-1);
-                    drawPane(storeLines, mainInputPane);
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.LEFT){
+                if (column >= 0) column--;
+                if (column < 0) {
+                    row--;
+                    column = 3;
                 }
 
-                if (event.getCode() == KeyCode.RIGHT){
-                    System.out.println("Addbefor" + column + ", " + row);
+                System.out.println("Remove" + column + ", " + row);
+                //storeLines.add(controller.createLine(100,true));
+                storeLines.remove(storeLines.size()-1);
+                drawPane(storeLines, mainInputPane);
+            }
 
-                    if (column >= 4){
-                        row++;
-                        column = 0;
+            if (event.getCode() == KeyCode.RIGHT){
+                System.out.println("Addbefore" + column + ", " + row);
 
-                    }
+                if (column >= 4){
+                    row++;
+                    column = 0;
 
-                    System.out.println("Add" + column + ", " + row);
-
-                    mainInputPane.addColumn(column);
-                    mainInputPane.addRow(row);
-
-                    //gibt den einzelnen zeilen eine fixe größe so das sie sich nicht verändern können
-                    RowConstraints rowWith = new RowConstraints(100);
-                    mainInputPane.getRowConstraints().add(rowWith);
-
-                    ColumnConstraints columnWith = new ColumnConstraints(100);
-                    mainInputPane.getColumnConstraints().add(columnWith);
-
-                    if (column == 0){
-                        storeLines.add(controller.createLine(100,true));
-                        drawPane(storeLines, mainInputPane);
-
-                        //mainInputPane.add(controller.createLine(100,true), column,row);
-                    }else{
-
-                        storeLines.add(controller.createLine(100,false));
-                        drawPane(storeLines, mainInputPane);
-                        //mainInputPane.add(controller.createLine(100,false), column,row);
-                    }
-                    column++;
                 }
+
+                System.out.println("Add" + column + ", " + row);
+
+                mainInputPane.addColumn(column);
+                mainInputPane.addRow(row);
+
+                //gibt den einzelnen zeilen eine fixe größe so das sie sich nicht verändern können
+                RowConstraints rowWith = new RowConstraints(100);
+                mainInputPane.getRowConstraints().add(rowWith);
+
+                ColumnConstraints columnWith = new ColumnConstraints(100);
+                mainInputPane.getColumnConstraints().add(columnWith);
+
+                Takt takt;
+                if (column == 0){
+                    takt = new Takt(100, true);
+
+                    //mainInputPane.add(controller.createLine(100,true), column,row);
+                }else{
+                    takt = new Takt(100, false);
+                    //mainInputPane.add(controller.createLine(100,false), column,row);
+                }
+                storeLines.add(takt.getPane());
+                drawPane(storeLines, mainInputPane);
+                column++;
             }
         });
 
@@ -102,7 +97,7 @@ public class Main extends Application {
 
 
 
-        //mit lambda ausdruck damit man meherer sachen durchführen kann
+        //mit lambda ausdruck damit man mehrere sachen durchführen kann
         b1.setOnAction(e ->{
 
             if (column%4 == 0){
@@ -125,17 +120,18 @@ public class Main extends Application {
             ColumnConstraints columnWith = new ColumnConstraints(100);
             mainInputPane.getColumnConstraints().add(columnWith);
 
+            Takt takt;
             if (column == 0){
-                storeLines.add(controller.createLine(100,true));
-                drawPane(storeLines, mainInputPane);
+                takt = new Takt(100, true);
 
                 //mainInputPane.add(controller.createLine(100,true), column,row);
             }else{
 
-                storeLines.add(controller.createLine(100,false));
-                drawPane(storeLines, mainInputPane);
+                takt = new Takt(100, false);
                 //mainInputPane.add(controller.createLine(100,false), column,row);
             }
+            storeLines.add(takt.getPane());
+            drawPane(storeLines, mainInputPane);
 
             column++;
 
