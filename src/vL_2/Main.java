@@ -32,9 +32,13 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-
         GridPane mainInputPane = new GridPane();
         Controller controller = new Controller();
+
+        mainInputPane.addColumn(column);
+        mainInputPane.addRow(row);
+        Pane s = new Pane();
+        mainInputPane.add(s ,0, 0);
 
         scrollP.setContent(mainInputPane);
 
