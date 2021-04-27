@@ -1,4 +1,4 @@
-package vL.sample;
+package vL;
 
 public class Controller {
 

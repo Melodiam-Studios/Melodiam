@@ -52,8 +52,15 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" style="-fx-background-radius: 30;" text="Play">
-                     <HBox.margin>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 30;" >
+                      <graphic>
+                          <ImageView fitHeight="20.0" fitWidth="20.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/PlayButton.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
@@ -90,7 +97,7 @@
                       <graphic>
                           <ImageView fitHeight="10.0" fitWidth="15.0">
                               <image>
-                                  <Image url="/vL/Bilder_Noten/Ganzenote.png" />
+                                  <Image url="/resources/bilder_noten/Ganzenote.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -99,7 +106,7 @@
                       <graphic>
                           <ImageView fitHeight="35.0" fitWidth="20.0">
                               <image>
-                                  <Image url="/vL/Bilder_Noten/HalbenoteUnten.png" />
+                                  <Image url="/resources/bilder_noten/HalbenoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -108,7 +115,7 @@
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="10.0">
                               <image>
-                                  <Image url="/vL/Bilder_Noten/ViertelnoteUnten.png" />
+                                  <Image url="/resources/bilder_noten/ViertelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -117,7 +124,7 @@
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="30.0">
                               <image>
-                                  <Image url="/vL/Bilder_Noten/AchtelnoteUnten.png" />
+                                  <Image url="/resources/bilder_noten/AchtelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
@@ -126,7 +133,7 @@
                       <graphic>
                           <ImageView fitHeight="28.0" fitWidth="18.0" pickOnBounds="true">
                               <image>
-                                  <Image url="/vL/Bilder_Noten/SechzehntelnoteUnten.png" />
+                                  <Image url="/resources/bilder_noten/SechzehntelnoteUnten.png" />
                               </image>
                           </ImageView>
                       </graphic>
