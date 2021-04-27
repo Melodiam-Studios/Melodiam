@@ -1,0 +1,9 @@
+.button {
+    -fx-background-color: none;
+}
+.button:hover{
+    -fx-background-color: lightgrey;
+}
+.scroll-pane{
+    -fx-background-color: black;
+}
