@@ -276,6 +276,4 @@ public class Takt {
 
         img.setVisible(false);
     }
-
-
 }
