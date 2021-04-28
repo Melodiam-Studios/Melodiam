@@ -240,6 +240,4 @@ public class Takt {
         hoveredImage.setFitHeight(34);
         hoveredImage.setFitWidth(11);
     }
-
-
 }
