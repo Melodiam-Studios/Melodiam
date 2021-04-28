@@ -12,13 +12,14 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="772.0" prefWidth="1305.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="772.0" prefWidth="1305.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vL_2.Controller">
   <items>
       <MenuBar>
         <menus>
@@ -41,7 +42,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1303.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="add">
+                  <Button fx:id="button1" mnemonicParsing="false" text="add">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -77,7 +78,10 @@
                </children></HBox>
          </top>
          <center>
-            <ScrollPane fx:id="scrollP" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ScrollPane fx:id="scrollP" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <content>
+                  <AnchorPane fx:id="anchorP" prefHeight="200.0" prefWidth="200.0" />
+               </content></ScrollPane>
          </center>
          <left>
             <GridPane prefHeight="474.0" prefWidth="210.0" BorderPane.alignment="CENTER">

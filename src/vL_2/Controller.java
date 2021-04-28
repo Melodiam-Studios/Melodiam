@@ -3,6 +3,7 @@ package vL_2;
 import com.sun.javafx.geom.Point2D;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +16,6 @@ public class Controller {
 
     @FXML ImageView previewImage = new ImageView();
     int offset = -15;
-
 
     public ArrayList<Point2D> fillList(ArrayList<Point2D> listsWithPossiblePositions) {
         int notenInTakt = 4 + 1;

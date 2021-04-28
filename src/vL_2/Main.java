@@ -6,23 +6,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import v4_2.Controller;
 
+import javax.swing.plaf.ButtonUI;
 import java.util.ArrayList;
 
 
 public class Main extends Application {
 
     @FXML
-    ScrollPane scrollP;
+    AnchorPane anchorP;
+
+    @FXML
+    Button button1;
 
     private int row = 0;
     private int column = 0;
@@ -30,19 +32,36 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+
+        final Controller controller = loader.getController();
+        //controller = loader.getController();
 
         GridPane mainInputPane = new GridPane();
-        Controller controller = new Controller();
+
+        button1.getBorder();
+
+        Button b1 = new Button("Test");
 
         mainInputPane.addColumn(column);
         mainInputPane.addRow(row);
+        mainInputPane.add(b1, column, row);
         Pane s = new Pane();
         mainInputPane.add(s ,0, 0);
 
-        scrollP.setContent(mainInputPane);
+        //anchorPane.setContent(mainInputPane);
+        //anchorP.getChildren().add(mainInputPane);
+        if(anchorP == null){
+            //System.out.println("HELP");
+
+            //anchorP.getChildren();
+        }
 
         ArrayList<Pane> storeLines = new ArrayList<>();         //alle Panes werden hier gespeichert und es werden dann immer die aufgerufen die es benötigt.
+
+
 
         column = 0;
         row = 0;
