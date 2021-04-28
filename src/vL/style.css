@@ -1,9 +1,26 @@
-.button {
-    -fx-background-color: none;
-}
+
 .button:hover{
-    -fx-background-color: lightgrey;
+    -fx-background-color:#7289DA;
 }
 .scroll-pane{
     -fx-background-color: black;
+}
+.choice-box:selected{
+    -fx-background-color: red;
+}
+:selected{
+    -fx-background-color: black;
+}
+.scroll-pane{
+    -fx-background-color:#706e66;
+}
+.h-box{
+    -fx-background-color: #4e4d47;
+}
+.gridpane-buttons{
+
+}
+
+.button{
+    -fx-background-color: white; //blurple
 }
