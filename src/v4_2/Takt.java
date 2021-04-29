@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class Takt {
     int n = 0;
+    float line_length = 275;
+    float height = 115;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -24,9 +26,10 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
-    int offset = -15;
+    int notenOffset = -30;
 
-    public Takt(int line_length, boolean needSchluessel){
+    public Takt(boolean needSchluessel){
+
 
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
@@ -73,38 +76,16 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);
         pane.setOnMouseMoved(this::onMouseMoved);
-
-/*
-        ArrayList<Point2D> finalListsWithPossiblePositions1 = listsWithPossiblePositions;
-        pane.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Takt.this.onMousePressed(mouseEvent, pane, finalListsWithPossiblePositions1);
-            }
-        });
-
-        ArrayList<Point2D> finalListsWithPossiblePositions = listsWithPossiblePositions;
-        pane.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Takt.this.onMouseMoved(mouseEvent, pane, finalListsWithPossiblePositions);
-            }
-        });
-
-
- */
     }
 
     public ArrayList<Point2D> fillList(int notenInTakt) {
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
         notenInTakt += 1;
-        float length = 100;
-        float height = 115;
         float zeilen = height / 23;
-        float spalten = length / notenInTakt;
+        float spalten = (float) line_length / (float) notenInTakt;
         for (int i = 1; i <notenInTakt; i++) {
             for (int e = 0; e < 23; e++) {
-                listsWithPossiblePositions.add(new Point2D(i * spalten + offset, e * zeilen));
+                listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
             }
         }
 
@@ -163,8 +144,8 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
         //System.out.println("Before: " + p);
-        p.x = p.x +5;
-        p.y = p.y+offset;
+        p.x = p.x;
+        p.y = p.y;
         //System.out.println("After: " + p);
 
         Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
@@ -181,29 +162,18 @@ public class Takt {
         }
 
         if (n == 1)
-            p = objektFang(p, 8);
+            p = objektFang(new Point2D(p.x-10,p.y), 8);
         else
-            p = objektFang(p, 4);
+            p = objektFang(new Point2D(p.x-10,p.y), 4);
 
         previewImage.setX(p.x);
-        previewImage.setY(p.y+offset);
+        previewImage.setY(p.y+notenOffset);
 
         previewImage.setFitHeight(34);
         previewImage.setFitWidth(11);
 
-        //Setting the preserve ratio of the image view
-        //previewImage.setPreserveRatio(true);
-        //Instantiating the ColorAdjust class
         ColorAdjust colorAdjust = new ColorAdjust();
-        //Setting the contrast value
         colorAdjust.setContrast(-1);
-        //Setting the hue value
-        //colorAdjust.setHue(-0.05);
-        //Setting the brightness value
-        //colorAdjust.setBrightness(0.7);
-        //Setting the saturation value
-        //colorAdjust.setSaturation(0.8);
-        //Applying coloradjust effect to the ImageView node
         previewImage.setEffect(colorAdjust);
         previewImage.setImage(image);
 
@@ -211,15 +181,17 @@ public class Takt {
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
+        Point2D p = new Point2D();
+        p.x = (float) mouseEvent.getX();
+        p.y = (float) mouseEvent.getY();
+        System.out.println("Before: " + p);
+
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
-            Point2D p = new Point2D();
-            p.x = (float) mouseEvent.getX();
-            p.y = (float) mouseEvent.getY();
-            System.out.println("Before: " + p);
-            p.x = p.x +5;
-            p.y = p.y+offset;
+
+            p.x = p.x;
+            p.y = p.y;
             System.out.println("After: " + p);
 
             Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
@@ -233,14 +205,14 @@ public class Takt {
             }
 
             if (n == 1)
-                p = objektFang(p, 1);
+                p = objektFang(new Point2D(p.x-10,p.y), 8);
             else
-                p = objektFang(p, 4);
+                p = objektFang(new Point2D(p.x-10,p.y), 4);
 
 
 
             hoveredImage.setX(p.x);
-            hoveredImage.setY(p.y+offset);
+            hoveredImage.setY(p.y+notenOffset);
             hoveredImage.setImage(image);
             hoveredImage.setFitHeight(34);
             hoveredImage.setFitWidth(11);
@@ -270,10 +242,23 @@ public class Takt {
             if (distance <= shortestDistance) {
                 shortestDistance = distance;
                 img = imageView;
+                returnPoint = point2D;
                 //System.out.println("Shortest Distance: " + shortestDistance);
             }
         }
 
         img.setVisible(false);
+
+        for (ImageView imageView : notesAsImages) {
+            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
+
+            double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
+            if (distance == 0){
+                notesAsImages.remove(imageView);
+                break;
+            }
+
+        }
+        System.out.println(notesAsImages);
     }
 }
