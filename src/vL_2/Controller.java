@@ -14,10 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import java.util.ArrayList;
 
@@ -32,10 +29,16 @@ public class Controller {
     ScrollPane scrollP;
 
     @FXML
+    AnchorPane anchorP;
+
+    @FXML
     Button bAdd;
 
     private int row = 0;
     private int column = 0;
+    private int lenghtPane = 275;
+    private int hightPane = 200;
+
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
     private void drawPane(ArrayList<Pane> arr, GridPane root) {
@@ -81,15 +84,17 @@ public class Controller {
             RowConstraints rowWith = new RowConstraints(100);
             mainInputPane.getRowConstraints().add(rowWith);
 
-            ColumnConstraints columnWith = new ColumnConstraints(100);
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
             mainInputPane.getColumnConstraints().add(columnWith);
 
             if (column == 0){
-                storeLines.add(createLine(100,true));
+                //Takt takt = new Takt(true);
+                //storeLines.add(takt.getPane());
+                storeLines.add(createLine(lenghtPane,true));
                 drawPane(storeLines, mainInputPane);
             }else{
 
-                storeLines.add(createLine(100,false));
+                storeLines.add(createLine(lenghtPane,false));
                 drawPane(storeLines, mainInputPane);
             }
             column++;
@@ -116,14 +121,14 @@ public class Controller {
             RowConstraints rowWith = new RowConstraints(100);
             mainInputPane.getRowConstraints().add(rowWith);
 
-            ColumnConstraints columnWith = new ColumnConstraints(100);
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
             mainInputPane.getColumnConstraints().add(columnWith);
 
             if (column == 0){
-                storeLines.add(createLine(100,true));
+                storeLines.add(createLine(lenghtPane,true));
                 drawPane(storeLines, mainInputPane);
             }else{
-                storeLines.add(createLine(100,false));
+                storeLines.add(createLine(lenghtPane,false));
                 drawPane(storeLines, mainInputPane);
             }
             column++;
@@ -145,7 +150,8 @@ public class Controller {
         column = 0;
         row = 0;
 
-        scrollP.setContent(mainInputPane);
+        anchorP.getChildren().add(mainInputPane);
+        //scrollP.setContent(mainInputPane);
     }
 
     public ArrayList<Point2D> fillList(ArrayList<Point2D> listsWithPossiblePositions) {
