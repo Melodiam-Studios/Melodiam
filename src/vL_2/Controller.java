@@ -4,6 +4,7 @@ import com.sun.javafx.geom.Point2D;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -11,6 +12,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    GridPane mainInputPane;
+
     @FXML ImageView previewImage = new ImageView();
     int offset = -15;
 
@@ -28,15 +32,11 @@ public class Controller {
     ScrollPane scrollP;
 
     @FXML
-    Button b1;
+    Button bAdd;
 
     private int row = 0;
     private int column = 0;
-
-    public void buttonClickHandler(ActionEvent evt){
-        addFile();
-    }
-
+    private ArrayList<Pane> storeLines = new ArrayList<>();
 
     private void drawPane(ArrayList<Pane> arr, GridPane root) {
         int column = 0, row = 0;
@@ -54,7 +54,7 @@ public class Controller {
         }
     }
 
-    /*public void addPane(){
+    public void addPaneKeyboard(Scene scene, KeyEvent event){
 
         if (event.getCode() == KeyCode.LEFT){
             if (column >= 0) column--;
@@ -63,22 +63,16 @@ public class Controller {
                 column = 3;
             }
 
-            System.out.println("Remove" + column + ", " + row);
             //storeLines.add(controller.createLine(100,true));
             storeLines.remove(storeLines.size()-1);
             drawPane(storeLines, mainInputPane);
         }
 
         if (event.getCode() == KeyCode.RIGHT){
-            System.out.println("Addbefor" + column + ", " + row);
-
             if (column >= 4){
                 row++;
                 column = 0;
-
             }
-
-            System.out.println("Add" + column + ", " + row);
 
             mainInputPane.addColumn(column);
             mainInputPane.addRow(row);
@@ -91,38 +85,67 @@ public class Controller {
             mainInputPane.getColumnConstraints().add(columnWith);
 
             if (column == 0){
-                storeLines.add(controller.createLine(100,true));
+                storeLines.add(createLine(100,true));
                 drawPane(storeLines, mainInputPane);
-
-                //mainInputPane.add(controller.createLine(100,true), column,row);
             }else{
 
-                storeLines.add(controller.createLine(100,false));
+                storeLines.add(createLine(100,false));
                 drawPane(storeLines, mainInputPane);
-                //mainInputPane.add(controller.createLine(100,false), column,row);
             }
             column++;
         }
-    }*/
+    }
 
+    public void addRemPane(ActionEvent event){
+
+        Button btn = (Button) event.getSource();
+        String id = btn.getId();
+
+
+
+        if (id.equals("bAdd")){
+            if (column >= 4){
+                row++;
+                column = 0;
+
+            }
+
+            mainInputPane.addColumn(column);
+            mainInputPane.addRow(row);
+
+            RowConstraints rowWith = new RowConstraints(100);
+            mainInputPane.getRowConstraints().add(rowWith);
+
+            ColumnConstraints columnWith = new ColumnConstraints(100);
+            mainInputPane.getColumnConstraints().add(columnWith);
+
+            if (column == 0){
+                storeLines.add(createLine(100,true));
+                drawPane(storeLines, mainInputPane);
+            }else{
+                storeLines.add(createLine(100,false));
+                drawPane(storeLines, mainInputPane);
+            }
+            column++;
+        }
+        else if (id.equals("bRem")){
+            if (column >= 0) column--;
+            if (column < 0) {
+                row--;
+                column = 3;
+            }
+            storeLines.remove(storeLines.size()-1);
+            drawPane(storeLines, mainInputPane);
+        }
+    }
 
     public void addFile(){
-        System.out.println("test");
-        Label label = new Label();
-        GridPane mainInputPane = new GridPane();
+        mainInputPane = new GridPane();
 
-/*        mainInputPane.addColumn(column);
-        mainInputPane.addRow(row);
-        mainInputPane.add(label, column, row);
-        mainInputPane.add(label,0, 0);
-*/
         column = 0;
         row = 0;
 
-        ArrayList<Pane> storeLines = new ArrayList<>();         //alle Panes werden hier gespeichert und es werden dann immer die aufgerufen die es benötigt
-
         scrollP.setContent(mainInputPane);
-
     }
 
     public ArrayList<Point2D> fillList(ArrayList<Point2D> listsWithPossiblePositions) {

@@ -41,12 +41,12 @@
          <top>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1303.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="b1" mnemonicParsing="false" text="add" onAction="#buttonClickHandler">
+                  <Button fx:id="bAdd" mnemonicParsing="false" text="add" onAction="#addRemPane">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="remove">
+                  <Button fx:id="bRem" mnemonicParsing="false" text="remove" onAction="#addRemPane">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>

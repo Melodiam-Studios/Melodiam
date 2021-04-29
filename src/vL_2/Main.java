@@ -29,8 +29,11 @@ public class Main extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         /*FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();*/
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Parent root = loader.load();
+        Controller controller = loader.<Controller>getController();
 
 
         //final Controller controller = loader.getController();
@@ -45,13 +48,13 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
         primaryStage.show();
 
-        //controller.addFile();
+        controller.addFile();
 
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
+                controller.addPaneKeyboard(scene, event);
             }
         });
     }
