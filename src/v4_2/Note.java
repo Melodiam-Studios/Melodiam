@@ -3,6 +3,7 @@ package v4_2;
 import java.util.ArrayList;
 
 public class Note {
+    /*
     double notenwert;
     int vorzeichen;
     int notenlaenge;
@@ -28,5 +29,7 @@ public class Note {
         for (int j = 0; j < arr[i].length; j++) {
         arr[i][j] = j;
         }
+
+     */
 }
 
