@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -19,6 +20,8 @@ public class Takt {
     ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4));
     ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2));
     ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1));
+
+    ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
     int offset = -15;
@@ -112,13 +115,11 @@ public class Takt {
         return pane;
     }
 
-    public Point2D objektFang(Point2D p, int notenInTakt){
+    public Point2D objektFang(Point2D p, int notenInTakt) {
 
-        double shortestDistance = 100;
-        Point2D returnPoint = new Point2D();
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
 
-        switch (notenInTakt){
+        switch (notenInTakt) {
             case 1:
                 listsWithPossiblePositions = ganzePositions;
                 break;
@@ -136,19 +137,22 @@ public class Takt {
                 break;
         }
 
+        double shortestDistance = 100;
+        Point2D returnPoint = new Point2D();
+
         for (Point2D point2D : listsWithPossiblePositions) {
             //System.out.println("Point2D: " + point2D);
             //System.out.println("p: " + p);
-            double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - p.x), 2)  + Math.pow(Math.abs(point2D.y - p.y), 2));
+
+            double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - p.x), 2) + Math.pow(Math.abs(point2D.y - p.y), 2));
             //System.out.println("Distance" + distance);
-            if (distance <= shortestDistance){
+            if (distance <= shortestDistance) {
                 shortestDistance = distance;
                 returnPoint.x = point2D.x;
                 returnPoint.y = point2D.y;
+                //System.out.println("Shortest Distance: " + shortestDistance);
             }
-            //System.out.println("Shortest Distance: " + shortestDistance);
         }
-
         //System.out.println("Returning the point: " + p);
         return returnPoint;
     }
@@ -207,39 +211,69 @@ public class Takt {
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
+        if (mouseEvent.getButton() == MouseButton.SECONDARY)
+            onRightClick(mouseEvent);
+        else {
+            Point2D p = new Point2D();
+            p.x = (float) mouseEvent.getX();
+            p.y = (float) mouseEvent.getY();
+            System.out.println("Before: " + p);
+            p.x = p.x +5;
+            p.y = p.y+offset;
+            System.out.println("After: " + p);
+
+            Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+
+            ImageView hoveredImage = new ImageView();
+            try {
+                //Pane pane = (Pane) mouseEvent.getSource();
+                pane.getChildren().add(hoveredImage);
+            }catch (Exception exception){
+                System.out.println("You exactly touched a line");
+            }
+
+            if (n == 1)
+                p = objektFang(p, 1);
+            else
+                p = objektFang(p, 4);
+
+
+
+            hoveredImage.setX(p.x);
+            hoveredImage.setY(p.y+offset);
+            hoveredImage.setImage(image);
+            hoveredImage.setFitHeight(34);
+            hoveredImage.setFitWidth(11);
+            notesAsImages.add(hoveredImage);
+        }
+    }
+
+    public void onRightClick(javafx.scene.input.MouseEvent mouseEvent){
+        System.out.println("Right Click");
+
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
-        System.out.println("Before: " + p);
-        p.x = p.x +5;
-        p.y = p.y+offset;
-        System.out.println("After: " + p);
 
-        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+        //p = objektFang(p, )
+        double shortestDistance = 100;
+        Point2D returnPoint = new Point2D();
+        ImageView img = new ImageView();
 
-        ImageView hoveredImage = new ImageView();
-        try {
-            //Pane pane = (Pane) mouseEvent.getSource();
-            pane.getChildren().add(hoveredImage);
-        }catch (Exception exception){
-            System.out.println("You exactly touched a line");
+        for (ImageView imageView : notesAsImages) {
+            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
+            //System.out.println("Point2D: " + point2D);
+            //System.out.println("p: " + p);
+
+            double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - p.x), 2) + Math.pow(Math.abs(point2D.y - p.y), 2));
+            //System.out.println("Distance" + distance);
+            if (distance <= shortestDistance) {
+                shortestDistance = distance;
+                img = imageView;
+                //System.out.println("Shortest Distance: " + shortestDistance);
+            }
         }
 
-
-
-        if (n == 1)
-            p = objektFang(p, 1);
-        else
-            p = objektFang(p, 4);
-
-        n++;
-
-        hoveredImage.setX(p.x);
-        hoveredImage.setY(p.y+offset);
-        hoveredImage.setImage(image);
-        hoveredImage.setFitHeight(34);
-        hoveredImage.setFitWidth(11);
+        img.setVisible(false);
     }
-
-
 }
