@@ -87,13 +87,12 @@ public class Controller {
             mainInputPane.getColumnConstraints().add(columnWith);
 
             if (column == 0){
-                //Takt takt = new Takt(true);
-                //storeLines.add(takt.getPane());
-                storeLines.add(createLine(lenghtPane,true));
+                Takt takt = new Takt(true);
+                storeLines.add(takt.getPane());
                 drawPane(storeLines, mainInputPane);
             }else{
-
-                storeLines.add(createLine(lenghtPane,false));
+                Takt takt = new Takt(false);
+                storeLines.add(takt.getPane());
                 drawPane(storeLines, mainInputPane);
             }
             column++;
@@ -124,10 +123,12 @@ public class Controller {
             mainInputPane.getColumnConstraints().add(columnWith);
 
             if (column == 0){
-                storeLines.add(createLine(lenghtPane,true));
+                Takt takt = new Takt(false);
+                storeLines.add(takt.getPane());
                 drawPane(storeLines, mainInputPane);
             }else{
-                storeLines.add(createLine(lenghtPane,false));
+                Takt takt = new Takt(false);
+                storeLines.add(takt.getPane());
                 drawPane(storeLines, mainInputPane);
             }
             column++;
