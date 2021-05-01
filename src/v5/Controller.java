@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,9 +24,6 @@ public class Controller {
     int offset = -15;
 
     @FXML
-    ScrollPane scrollP;
-
-    @FXML
     AnchorPane anchorP;
 
     @FXML
@@ -38,8 +34,10 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
 
+    //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
+    //Takte werden der reihe nach dem GridPane hinzugefügt
     private void drawPane(ArrayList<Pane> arr, GridPane root) {
         int column = 0, row = 0;
 
@@ -56,102 +54,10 @@ public class Controller {
         }
     }
 
-    public void addPaneKeyboard(Scene scene, KeyEvent event){
-
-        if (event.getCode() == KeyCode.LEFT){
-            if (column >= 0) column--;
-            if (column < 0) {
-                row--;
-                column = 3;
-            }
-
-            //storeLines.add(controller.createLine(100,true));
-            storeLines.remove(storeLines.size()-1);
-            drawPane(storeLines, mainInputPane);
-        }
-
-        if (event.getCode() == KeyCode.RIGHT){
-            if (column >= 4){
-                row++;
-                column = 0;
-            }
-
-            mainInputPane.addColumn(column);
-            mainInputPane.addRow(row);
-
-            //gibt den einzelnen zeilen eine fixe größe so das sie sich nicht verändern können
-            RowConstraints rowWith = new RowConstraints(100);
-            mainInputPane.getRowConstraints().add(rowWith);
-
-            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
-            mainInputPane.getColumnConstraints().add(columnWith);
-
-            if (column == 0){
-                Takt takt = new Takt(true);
-                storeLines.add(takt.getPane());
-                drawPane(storeLines, mainInputPane);
-            }else{
-                Takt takt = new Takt(false);
-                storeLines.add(takt.getPane());
-                drawPane(storeLines, mainInputPane);
-            }
-            column++;
-        }
-    }
-
-    public void addRemPane(ActionEvent event){
-
-        Button btn = (Button) event.getSource();
-        String id = btn.getId();
-
-
-
-        if (id.equals("bAdd")){
-            if (column >= 4){
-                row++;
-                column = 0;
-
-            }
-
-            mainInputPane.addColumn(column);
-            mainInputPane.addRow(row);
-
-            RowConstraints rowWith = new RowConstraints(100);
-            mainInputPane.getRowConstraints().add(rowWith);
-
-            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
-            mainInputPane.getColumnConstraints().add(columnWith);
-
-            if (column == 0){
-                Takt takt = new Takt(false);
-                storeLines.add(takt.getPane());
-                drawPane(storeLines, mainInputPane);
-            }else{
-                Takt takt = new Takt(false);
-                storeLines.add(takt.getPane());
-                drawPane(storeLines, mainInputPane);
-            }
-            column++;
-        }
-        else if (id.equals("bRem")){
-            if (column >= 0) column--;
-            if (column < 0) {
-                row--;
-                column = 3;
-            }
-            storeLines.remove(storeLines.size()-1);
-            drawPane(storeLines, mainInputPane);
-        }
-    }
-
+    //Grid Pane hinzufügen
     public void addFile(){
         mainInputPane = new GridPane();
-
-        column = 0;
-        row = 0;
-
         anchorP.getChildren().add(mainInputPane);
-        //scrollP.setContent(mainInputPane);
     }
 
     public ArrayList<Point2D> fillList(ArrayList<Point2D> listsWithPossiblePositions) {
@@ -342,5 +248,69 @@ public class Controller {
         hoveredImage.setFitHeight(34);
         hoveredImage.setFitWidth(11);
     }
+
+    //Schaut welcher Key gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
+    public void keyPresed(Scene scene, KeyEvent event){
+        if (event.getCode() == KeyCode.LEFT && storeLines.size() > 0){
+            remPane();
+        }
+
+        if (event.getCode() == KeyCode.RIGHT){
+            addPane();
+        }
+    }
+
+    //Schaut welcher Button gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
+    public void buttonPressd(ActionEvent event){
+        Button btn = (Button) event.getSource();
+        String id = btn.getId();
+
+        if (id.equals("bAdd")){
+            addPane();
+        }
+        else if (id.equals("bRem") && storeLines.size() > 0){
+            remPane();
+        }
+    }
+
+    //Pane aus storeLines löschen
+    private void remPane() {
+        if (column >= 0) column--;
+        if (column < 0) {
+            row--;
+            column = 3;
+        }
+        storeLines.remove(storeLines.size()-1);
+        drawPane(storeLines, mainInputPane);
+    }
+
+    //neues Pane in storeLines Speicheren
+    private void addPane() {
+        if (column >= 4){
+            row++;
+            column = 0;
+        }
+
+        mainInputPane.addColumn(column);
+        mainInputPane.addRow(row);
+
+        RowConstraints rowWith = new RowConstraints(100);
+        mainInputPane.getRowConstraints().add(rowWith);
+
+        ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
+        mainInputPane.getColumnConstraints().add(columnWith);
+
+        if (column == 0){
+            Takt takt = new Takt(false);
+            storeLines.add(takt.getPane());
+            drawPane(storeLines, mainInputPane);
+        }else{
+            Takt takt = new Takt(false);
+            storeLines.add(takt.getPane());
+            drawPane(storeLines, mainInputPane);
+        }
+        column++;
+    }
+
 
 }

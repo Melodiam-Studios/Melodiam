@@ -1,21 +1,12 @@
 package v5;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
-import javax.swing.plaf.ButtonUI;
-import java.util.ArrayList;
 
 
 public class Main extends Application {
@@ -39,11 +30,11 @@ public class Main extends Application {
 
         controller.addFile();
 
-
+        //liest tastatureingabe ein
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                controller.addPaneKeyboard(scene, event);
+                controller.keyPresed(scene, event);
             }
         });
     }
