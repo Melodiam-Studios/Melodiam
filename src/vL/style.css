@@ -14,5 +14,10 @@
 }
 .button:focused{
     -fx-border-color: none;
+    -fx-focus-color: black;
+    -fx-background-insets: -1, 0, 1, 1;
 }
 
+.root{
+    -fx-background-color: lightgrey;
+}
