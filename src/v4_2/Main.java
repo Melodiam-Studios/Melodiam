@@ -78,11 +78,11 @@ public class Main extends Application {
 
                 Takt takt;
                 if (column == 0){
-                    takt = new Takt(100, true);
+                    takt = new Takt(true);
 
                     //mainInputPane.add(controller.createLine(100,true), column,row);
                 }else{
-                    takt = new Takt(100, false);
+                    takt = new Takt(false);
                     //mainInputPane.add(controller.createLine(100,false), column,row);
                 }
                 storeLines.add(takt.getPane());
@@ -122,12 +122,12 @@ public class Main extends Application {
 
             Takt takt;
             if (column == 0){
-                takt = new Takt(100, true);
+                takt = new Takt(true);
 
                 //mainInputPane.add(controller.createLine(100,true), column,row);
             }else{
 
-                takt = new Takt(100, false);
+                takt = new Takt(false);
                 //mainInputPane.add(controller.createLine(100,false), column,row);
             }
             storeLines.add(takt.getPane());
