@@ -1,26 +1,23 @@
 
-.button:hover{
-    -fx-background-color:#7289DA;
-}
-.scroll-pane{
-    -fx-background-color: black;
-}
-.choice-box:selected{
-    -fx-background-color: red;
-}
-:selected{
-    -fx-background-color: black;
-}
-.scroll-pane{
-    -fx-background-color:#706e66;
-}
-.h-box{
-    -fx-background-color: #4e4d47;
-}
-.gridpane-buttons{
+.note-buttons:hover{
+    -fx-background-color:linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%), linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-rotate: 10;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 
 }
+.note-buttons:pressed{
+    -fx-rotate: 5;
+}
+.note-buttons{
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%), linear-gradient(#dddddd 0%, #f6f6f6 50%);
 
-.button{
-    -fx-background-color: white; //blurple
+}
+.button:focused{
+    -fx-border-color: none;
+    -fx-focus-color: black;
+    -fx-background-insets: -1, 0, 1, 1;
+}
+
+.root{
+    -fx-background-color: lightgrey;
 }

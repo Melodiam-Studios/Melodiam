@@ -42,12 +42,12 @@
             <top>
                 <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1303.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="bAdd" mnemonicParsing="false" text="add" onAction="#addRemPane">
+                        <Button fx:id="bAdd" mnemonicParsing="false" text="add" onAction="#buttonPressd">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
                         </Button>
-                        <Button fx:id="bRem" mnemonicParsing="false" text="remove" onAction="#addRemPane">
+                        <Button fx:id="bRem" mnemonicParsing="false" text="remove" onAction="#buttonPressd">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
@@ -78,8 +78,8 @@
                     </children></HBox>
             </top>
             <center>
-                <ScrollPane fx:id="scrollP" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id = "anchorP" BorderPane.alignment="CENTER" />
+                <ScrollPane fx:id="scrollP" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fitToWidth="true" fitToHeight="true">
+                    <AnchorPane fx:id = "anchorP" BorderPane.alignment="CENTER"/>
                 </ScrollPane>
             </center>
             <left>
