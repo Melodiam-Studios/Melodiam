@@ -143,10 +143,6 @@ public class Takt {
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
-        //System.out.println("Before: " + p);
-        p.x = p.x;
-        p.y = p.y;
-        //System.out.println("After: " + p);
 
         Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
@@ -190,33 +186,33 @@ public class Takt {
             onRightClick(mouseEvent);
         else {
 
-            p.x = p.x;
-            p.y = p.y;
-            System.out.println("After: " + p);
+            //Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
-            Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
 
-            ImageView hoveredImage = new ImageView();
-            try {
-                //Pane pane = (Pane) mouseEvent.getSource();
-                pane.getChildren().add(hoveredImage);
-            }catch (Exception exception){
-                System.out.println("You exactly touched a line");
-            }
 
             if (n == 1)
                 p = objektFang(new Point2D(p.x-10,p.y), 8);
             else
                 p = objektFang(new Point2D(p.x-10,p.y), 4);
 
+            System.out.println("After: " + p);
+            Note note = new Note(4, (int) p.y / 5);
+            ImageView imageView = note.getImageView();
+            try {
+                //Pane pane = (Pane) mouseEvent.getSource();
+                pane.getChildren().add(imageView);
+            }catch (Exception exception){
+                System.out.println("You exactly touched a line");
+            }
 
 
-            hoveredImage.setX(p.x);
-            hoveredImage.setY(p.y+notenOffset);
-            hoveredImage.setImage(image);
-            hoveredImage.setFitHeight(34);
-            hoveredImage.setFitWidth(11);
-            notesAsImages.add(hoveredImage);
+            imageView.setX(p.x);
+            imageView.setY(p.y+notenOffset);
+            notesAsImages.add(imageView);
+
+            System.out.println(note.toString());
+
+
         }
     }
 
