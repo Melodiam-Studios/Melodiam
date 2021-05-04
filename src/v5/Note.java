@@ -31,10 +31,11 @@ public class Note {
             case 1:
                 // Ganze Note
                 img = new Image(getClass().getResource("/resources/bilder_noten/GanzeNote.png").toExternalForm());
-                offsetY = 0;
+                offsetY = 25;
                 imageView.setImage(img);
                 imageView.setFitHeight(10);
                 imageView.setFitWidth(16);
+                imageView.setY(offsetY);
                 break;
             case 2:
                 // Halbe Note
