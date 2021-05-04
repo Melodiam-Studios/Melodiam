@@ -15,6 +15,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
+    int notenInT=1;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -26,6 +27,7 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
+    Note previewNote = new Note(4, -1000000);
     int notenOffset = -30;
 
     public Takt(boolean needSchluessel){
@@ -144,12 +146,6 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
 
-        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
-
-        previewImage.setImage(image);
-
-        //ImageView hoveredImage = new ImageView();
-
         try {
             //pane = (Pane) mouseEvent.getSource();
             pane.getChildren().add(previewImage);
@@ -160,18 +156,19 @@ public class Takt {
         if (n == 1)
             p = objektFang(new Point2D(p.x-10,p.y), 8);
         else
-            p = objektFang(new Point2D(p.x-10,p.y), 4);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInT);
+
+        previewNote.setNote(notenInT,(int) (p.y / 5) + 1);
+        previewImage = previewNote.getImageView();
 
         previewImage.setX(p.x);
-        previewImage.setY(p.y+notenOffset);
-
-        previewImage.setFitHeight(34);
-        previewImage.setFitWidth(11);
+        int tempOffsetY = previewNote.getOffsetY();
+        previewImage.setY(tempOffsetY + p.y+notenOffset);
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
         previewImage.setEffect(colorAdjust);
-        previewImage.setImage(image);
+        //previewImage.setImage(image);
 
     }
 
@@ -193,10 +190,10 @@ public class Takt {
             if (n == 1)
                 p = objektFang(new Point2D(p.x-10,p.y), 8);
             else
-                p = objektFang(new Point2D(p.x-10,p.y), 4);
+                p = objektFang(new Point2D(p.x-10,p.y), notenInT);
 
             System.out.println("After: " + p);
-            Note note = new Note(4, (int) p.y / 5);
+            Note note = new Note(notenInT, (int) (p.y / 5) + 1) ;
             ImageView imageView = note.getImageView();
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
@@ -207,7 +204,7 @@ public class Takt {
 
 
             imageView.setX(p.x);
-            imageView.setY(p.y+notenOffset);
+            imageView.setY(imageView.getY() + p.y+notenOffset);
             notesAsImages.add(imageView);
 
             System.out.println(note.toString());
