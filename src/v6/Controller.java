@@ -1,19 +1,14 @@
-package v5;
+package v6;
 
-import com.sun.javafx.geom.Point2D;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Line;
+
 import java.util.ArrayList;
 
 public class Controller {
@@ -29,10 +24,44 @@ public class Controller {
     @FXML
     Button bAdd;
 
+    @FXML
+    Button bRem;
+
+    @FXML
+    Button ganzeNote;
+
+    @FXML
+    Button halbeNote;
+
+    @FXML
+    Button viertelNote;
+
+    @FXML
+    Button achtelNote;
+
+    @FXML
+    Button sechzehntelNote;
+
+    @FXML
+    Button ganzePause;
+
+    @FXML
+    Button halbePause;
+
+    @FXML
+    Button viertelPause;
+
+    @FXML
+    Button achtelPause;
+
+    @FXML
+    Button sechzehntelPause;
+
     private int row = 0;
     private int column = 0;
     private int lenghtPane = 275;
     private int hightPane = 200;
+    public int notenInTakt = 0;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -76,10 +105,10 @@ public class Controller {
         Button btn = (Button) event.getSource();
         String id = btn.getId();
 
-        if (id.equals("bAdd")){
+        if (id.equals(bAdd.getId())){
             addPane();
         }
-        else if (id.equals("bRem") && storeLines.size() > 0){
+        else if (id.equals(bRem.getId()) && storeLines.size() > 0){
             remPane();
         }
     }
@@ -121,5 +150,33 @@ public class Controller {
             drawPane(storeLines, mainInputPane);
         }
         column++;
+    }
+
+    public void onButtonNoten(ActionEvent actionEvent) {
+        Button btn = (Button) actionEvent.getSource();
+        String id = btn.getId();
+
+        if(id.equals(ganzeNote.getId())){
+            notenInTakt=1;
+        }
+        else if(id.equals(halbeNote.getId())){
+            notenInTakt=2;
+        }else if(id.equals(viertelNote)){
+            notenInTakt=4;
+        }else if(id.equals(achtelNote.getId())){
+            notenInTakt=8;
+        }else if(id.equals(sechzehntelNote.getId())){
+            notenInTakt=16;
+        }/*else(id.equals(ganzePause.getId())){
+
+        }else(id.equals(halbePause.getId())){
+
+        }else(id.equals(viertelNote.getId())){
+
+        }else(id.equals(achtelNote.getId())){
+
+        }else(id.equals(sechzehntelPause.getId()){
+
+        }*/
     }
 }
