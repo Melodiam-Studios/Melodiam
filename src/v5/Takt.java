@@ -16,7 +16,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInTakt=1;
+    int notenInTakt=80;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -180,20 +180,26 @@ public class Takt {
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
-            System.out.println("After: " + p);
+
 
             ImageView imageView;
 
             if (notenInTakt % 5 == 0){
                 // Pause
+                System.out.println("Pause");
+                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
                 Pause pause = new Pause(notenInTakt);
+                System.out.println("After: " + p);
                 imageView = pause.getImageView();
                 imageView.setX(p.x);
-                imageView.setY(imageView.getY() + p.y+notenOffset);
+                imageView.setY(imageView.getY() + 43);
+                System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
+                System.out.println(pause.toString());
             }else{
                 //Note
+                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+                System.out.println("After: " + p);
                 Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
                 imageView = note.getImageView();
                 imageView.setX(p.x);
@@ -208,12 +214,7 @@ public class Takt {
                 System.out.println("You exactly touched a line");
             }
 
-
-
             notesAsImages.add(imageView);
-
-
-
 
         }
     }
