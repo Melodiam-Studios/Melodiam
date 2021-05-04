@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="772.0" prefWidth="1305.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="v6.Controller">
+  <items>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                <MenuItem mnemonicParsing="false" text="New" />
+                <MenuItem mnemonicParsing="false" text="Import" />
+                <MenuItem mnemonicParsing="false" text="Save" />
+                <MenuItem mnemonicParsing="false" text="Quit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+
+                <MenuItem mnemonicParsing="false" text="Help?" />
+                <MenuItem mnemonicParsing="false" text="About us" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="test" />
+                    </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Theme" />
+                </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1303.0" styleClass="h-box" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="bRem" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="Takt löschen" onAction="#buttonPressd">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="bAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="Takt hinzufügen" onAction="#buttonPressd">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                  <Spinner prefHeight="30.0" prefWidth="93.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Spinner>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" text="Play">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <ChoiceBox prefHeight="30.0" prefWidth="228.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Slider prefHeight="30.0" prefWidth="140.0" />
+               </children></HBox>
+         </top>
+         <center>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane fx:id="anchorP" minHeight="0.0" minWidth="0.0" prefHeight="1360.0" prefWidth="840.0" style="-fx-background-color: grey;" />
+              </content>
+            </ScrollPane>
+         </center>
+         <left>
+            <GridPane prefHeight="474.0" prefWidth="210.0" styleClass="gridpane-buttons" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="208.66665649414062" minHeight="10.0" prefHeight="208.66665649414062" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="179.0" minHeight="0.0" prefHeight="78.66668701171875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="222.0" minHeight="0.0" prefHeight="65.33331298828125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="372.0" minHeight="10.0" prefHeight="251.33334350585938" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <Button fx:id="ganzeNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="9.0" fitWidth="18.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/Ganzenote.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="halbeNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="28.0" fitWidth="12.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/HalbenoteUnten.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="viertelNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="28.0" fitWidth="12.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/ViertelnoteUnten.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="achtelNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="28.0" fitWidth="20.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/AchtelnoteUnten.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="sechzehntelNote" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="4" GridPane.rowIndex="1" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true">
+                              <image>
+                                  <Image url="/resources/bilder_noten/SechzehntelnoteUnten.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="ganzePause" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.rowIndex="2" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="10.0" fitWidth="15.0" pickOnBounds="true">
+                              <image>
+                                  <Image url="/resources/bilder_noten/Halbe-Ganze_Pause.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="halbePause" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="10.0" fitWidth="15.0">
+                              <image>
+                                  <Image url="/resources/bilder_noten/Halbe-Ganze_Pause.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="viertelPause" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="25.0" fitWidth="17.0">
+                              <image>
+                                  <Image preserveRatio="true" url="/resources/bilder_noten/Viertelpause.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="achtelPause" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="3" GridPane.rowIndex="2" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="25.0" fitWidth="17.0">
+                              <image>
+                                  <Image preserveRatio="true" url="/resources/bilder_noten/Achtelpause.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button fx:id="sechzehntelPause" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="4" GridPane.rowIndex="2" onAction="#onButtonNoten">
+                      <graphic>
+                          <ImageView fitHeight="27.0" fitWidth="17.0">
+                              <image>
+                                  <Image preserveRatio="true" url="/resources/bilder_noten/Sechzehntelpause.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <image>
+                          <Image preserveRatio="true" url="/resources/other/melodiam_icon.png" />
+                      </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </left>
+         <bottom>
+            <SplitPane dividerPositions="0.29797979797979796" prefHeight="17.0" prefWidth="1303.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="32.0" prefWidth="910.0" />
+              </items>
+            </SplitPane>
+         </bottom>
+      </BorderPane>
+  </items>
+</SplitPane>
