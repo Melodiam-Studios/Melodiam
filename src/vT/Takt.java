@@ -1,4 +1,4 @@
-package v5;
+package vT;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
@@ -15,7 +15,6 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInT=1;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -27,7 +26,6 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
-    Note previewNote = new Note(4, -1000000);
     int notenOffset = -30;
 
     public Takt(boolean needSchluessel){
@@ -145,6 +143,16 @@ public class Takt {
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
+        //System.out.println("Before: " + p);
+        p.x = p.x;
+        p.y = p.y;
+        //System.out.println("After: " + p);
+
+        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+
+        previewImage.setImage(image);
+
+        //ImageView hoveredImage = new ImageView();
 
         try {
             //pane = (Pane) mouseEvent.getSource();
@@ -156,19 +164,18 @@ public class Takt {
         if (n == 1)
             p = objektFang(new Point2D(p.x-10,p.y), 8);
         else
-            p = objektFang(new Point2D(p.x-10,p.y), notenInT);
-
-        previewNote.setNote(notenInT,(int) (p.y / 5) + 1);
-        previewImage = previewNote.getImageView();
+            p = objektFang(new Point2D(p.x-10,p.y), 4);
 
         previewImage.setX(p.x);
-        int tempOffsetY = previewNote.getOffsetY();
-        previewImage.setY(tempOffsetY + p.y+notenOffset);
+        previewImage.setY(p.y+notenOffset);
+
+        previewImage.setFitHeight(34);
+        previewImage.setFitWidth(11);
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
         previewImage.setEffect(colorAdjust);
-        //previewImage.setImage(image);
+        previewImage.setImage(image);
 
     }
 
@@ -183,33 +190,33 @@ public class Takt {
             onRightClick(mouseEvent);
         else {
 
-            //Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
-
-
-
-            if (n == 1)
-                p = objektFang(new Point2D(p.x-10,p.y), 8);
-            else
-                p = objektFang(new Point2D(p.x-10,p.y), notenInT);
-
+            p.x = p.x;
+            p.y = p.y;
             System.out.println("After: " + p);
-            Note note = new Note(notenInT, (int) (p.y / 5) + 1) ;
-            ImageView imageView = note.getImageView();
+
+            Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
+
+            ImageView hoveredImage = new ImageView();
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
-                pane.getChildren().add(imageView);
+                pane.getChildren().add(hoveredImage);
             }catch (Exception exception){
                 System.out.println("You exactly touched a line");
             }
 
-
-            imageView.setX(p.x);
-            imageView.setY(imageView.getY() + p.y+notenOffset);
-            notesAsImages.add(imageView);
-
-            System.out.println(note.toString());
+            if (n == 1)
+                p = objektFang(new Point2D(p.x-10,p.y), 8);
+            else
+                p = objektFang(new Point2D(p.x-10,p.y), 4);
 
 
+
+            hoveredImage.setX(p.x);
+            hoveredImage.setY(p.y+notenOffset);
+            hoveredImage.setImage(image);
+            hoveredImage.setFitHeight(34);
+            hoveredImage.setFitWidth(11);
+            notesAsImages.add(hoveredImage);
         }
     }
 
