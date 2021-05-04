@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import v6.Pause;
 
 import java.util.ArrayList;
 
@@ -153,10 +154,7 @@ public class Takt {
             //System.out.println("You exactly touched a line");
         }
 
-        if (n == 1)
-            p = objektFang(new Point2D(p.x-10,p.y), 8);
-        else
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+        p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
         previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
         previewImage = previewNote.getImageView();
@@ -185,8 +183,24 @@ public class Takt {
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
             System.out.println("After: " + p);
-            Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
-            ImageView imageView = note.getImageView();
+
+            ImageView imageView;
+
+            if (notenInTakt % 5 == 0){
+                // Pause
+                Pause pause = new Pause(notenInTakt);
+                imageView = pause.getImageView();
+                imageView.setX(p.x);
+                imageView.setY(imageView.getY() + p.y+notenOffset);
+            }else{
+                //Note
+                Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
+                imageView = note.getImageView();
+                imageView.setX(p.x);
+                imageView.setY(imageView.getY() + p.y + notenOffset);
+                System.out.println(note.toString());
+            }
+
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
                 pane.getChildren().add(imageView);
@@ -195,11 +209,10 @@ public class Takt {
             }
 
 
-            imageView.setX(p.x);
-            imageView.setY(imageView.getY() + p.y+notenOffset);
+
             notesAsImages.add(imageView);
 
-            System.out.println(note.toString());
+
 
 
         }
