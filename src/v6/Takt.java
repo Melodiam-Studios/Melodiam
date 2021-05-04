@@ -2,6 +2,8 @@ package v6;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
+    int notenInTakt=1;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -27,6 +30,7 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
+    v5.Note previewNote = new v5.Note(4, -1000000);
     int notenOffset = -30;
 
     public Takt(boolean needSchluessel){
@@ -79,12 +83,12 @@ public class Takt {
         pane.setOnMouseMoved(this::onMouseMoved);
     }
 
-    public ArrayList<Point2D> fillList(int notenInTakt) {
+    public ArrayList<Point2D> fillList(int notenInT) {
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
-        notenInTakt += 1;
+        notenInT += 1;
         float zeilen = height / 23;
-        float spalten = (float) line_length / (float) notenInTakt;
-        for (int i = 1; i <notenInTakt; i++) {
+        float spalten = (float) line_length / (float) notenInT;
+        for (int i = 1; i <notenInT; i++) {
             for (int e = 0; e < 23; e++) {
                 listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
             }
@@ -97,11 +101,11 @@ public class Takt {
         return pane;
     }
 
-    public Point2D objektFang(Point2D p, int notenInTakt) {
+    public Point2D objektFang(Point2D p, int notenInT) {
 
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
 
-        switch (notenInTakt) {
+        switch (notenInT) {
             case 1:
                 listsWithPossiblePositions = ganzePositions;
                 break;
@@ -145,12 +149,6 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
 
-        Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
-
-        previewImage.setImage(image);
-
-        //ImageView hoveredImage = new ImageView();
-
         try {
             //pane = (Pane) mouseEvent.getSource();
             pane.getChildren().add(previewImage);
@@ -161,23 +159,29 @@ public class Takt {
         if (n == 1)
             p = objektFang(new Point2D(p.x-10,p.y), 8);
         else
-            p = objektFang(new Point2D(p.x-10,p.y), 4);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+
+        previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
+        previewImage = previewNote.getImageView();
 
         previewImage.setX(p.x);
-        previewImage.setY(p.y+notenOffset);
-
-        previewImage.setFitHeight(34);
-        previewImage.setFitWidth(11);
+        int tempOffsetY = previewNote.getOffsetY();
+        previewImage.setY(tempOffsetY + p.y+notenOffset);
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
         previewImage.setEffect(colorAdjust);
-        previewImage.setImage(image);
+        //previewImage.setImage(image);
 
     }
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
+        //controller von fxml importieren
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Controller controller = loader.<Controller>getController();
+
+        notenInTakt = controller.notenInTakt;
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
@@ -186,18 +190,10 @@ public class Takt {
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
-
-            //Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
-
-
-
-            if (n == 1)
-                p = objektFang(new Point2D(p.x-10,p.y), 8);
-            else
-                p = objektFang(new Point2D(p.x-10,p.y), 4);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
             System.out.println("After: " + p);
-            v5.Note note = new Note(4, (int) p.y / 5);
+            v5.Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
             ImageView imageView = note.getImageView();
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
@@ -208,7 +204,7 @@ public class Takt {
 
 
             imageView.setX(p.x);
-            imageView.setY(p.y+notenOffset);
+            imageView.setY(imageView.getY() + p.y+notenOffset);
             notesAsImages.add(imageView);
 
             System.out.println(note.toString());
@@ -257,5 +253,9 @@ public class Takt {
 
         }
         System.out.println(notesAsImages);
+    }
+
+    public void setNotenInTakt(int notenInTakt) {
+        this.notenInTakt = notenInTakt;
     }
 }

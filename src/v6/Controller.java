@@ -7,9 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.*;
-import v5.Takt;
 
 import java.util.ArrayList;
 
@@ -63,6 +61,7 @@ public class Controller {
     private int column = 0;
     private int lenghtPane = 275;
     private int hightPane = 200;
+    public int notenInTakt = 0;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -158,16 +157,17 @@ public class Controller {
         String id = btn.getId();
 
         if(id.equals(ganzeNote.getId())){
-
-        }else(id.equals(halbeNote.getId())){
-
-        }else(id.equals(viertelNote)){
-
-        }else(id.equals(achtelNote.getId())){
-
-        }else(id.equals(sechzehntelNote.getId())){
-
-        }else(id.equals(ganzePause.getId())){
+            notenInTakt=1;
+        }
+        else if(id.equals(halbeNote.getId())){
+            notenInTakt=2;
+        }else if(id.equals(viertelNote)){
+            notenInTakt=4;
+        }else if(id.equals(achtelNote.getId())){
+            notenInTakt=8;
+        }else if(id.equals(sechzehntelNote.getId())){
+            notenInTakt=16;
+        }/*else(id.equals(ganzePause.getId())){
 
         }else(id.equals(halbePause.getId())){
 
@@ -177,6 +177,6 @@ public class Controller {
 
         }else(id.equals(sechzehntelPause.getId()){
 
-        }
+        }*/
     }
 }
