@@ -15,7 +15,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInT=1;
+    int notenInTakt=1;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -80,12 +80,12 @@ public class Takt {
         pane.setOnMouseMoved(this::onMouseMoved);
     }
 
-    public ArrayList<Point2D> fillList(int notenInTakt) {
+    public ArrayList<Point2D> fillList(int notenInT) {
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
-        notenInTakt += 1;
+        notenInT += 1;
         float zeilen = height / 23;
-        float spalten = (float) line_length / (float) notenInTakt;
-        for (int i = 1; i <notenInTakt; i++) {
+        float spalten = (float) line_length / (float) notenInT;
+        for (int i = 1; i <notenInT; i++) {
             for (int e = 0; e < 23; e++) {
                 listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
             }
@@ -98,11 +98,11 @@ public class Takt {
         return pane;
     }
 
-    public Point2D objektFang(Point2D p, int notenInTakt) {
+    public Point2D objektFang(Point2D p, int notenInT) {
 
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
 
-        switch (notenInTakt) {
+        switch (notenInT) {
             case 1:
                 listsWithPossiblePositions = ganzePositions;
                 break;
@@ -156,9 +156,9 @@ public class Takt {
         if (n == 1)
             p = objektFang(new Point2D(p.x-10,p.y), 8);
         else
-            p = objektFang(new Point2D(p.x-10,p.y), notenInT);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
-        previewNote.setNote(notenInT,(int) (p.y / 5) + 1);
+        previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
         previewImage = previewNote.getImageView();
 
         previewImage.setX(p.x);
@@ -182,18 +182,10 @@ public class Takt {
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
-
-            //Image image = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
-
-
-
-            if (n == 1)
-                p = objektFang(new Point2D(p.x-10,p.y), 8);
-            else
-                p = objektFang(new Point2D(p.x-10,p.y), notenInT);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
             System.out.println("After: " + p);
-            Note note = new Note(notenInT, (int) (p.y / 5) + 1) ;
+            Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
             ImageView imageView = note.getImageView();
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
@@ -253,5 +245,9 @@ public class Takt {
 
         }
         System.out.println(notesAsImages);
+    }
+
+    public void setNotenInTakt(int notenInTakt) {
+        this.notenInTakt = notenInTakt;
     }
 }
