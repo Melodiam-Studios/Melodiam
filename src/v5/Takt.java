@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
-import v6.Pause;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInTakt=80;
+    int notenInTakt=1;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -154,7 +153,10 @@ public class Takt {
             //System.out.println("You exactly touched a line");
         }
 
-        p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+        if (n == 1)
+            p = objektFang(new Point2D(p.x-10,p.y), 8);
+        else
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
         previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
         previewImage = previewNote.getImageView();
@@ -180,33 +182,11 @@ public class Takt {
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
-
-
-            ImageView imageView;
-
-            if (notenInTakt % 5 == 0){
-                // Pause
-                System.out.println("Pause");
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
-                Pause pause = new Pause(notenInTakt);
-                System.out.println("After: " + p);
-                imageView = pause.getImageView();
-                imageView.setX(p.x);
-                imageView.setY(imageView.getY() + 43);
-                System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
-                System.out.println(pause.toString());
-            }else{
-                //Note
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
-                System.out.println("After: " + p);
-                Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
-                imageView = note.getImageView();
-                imageView.setX(p.x);
-                imageView.setY(imageView.getY() + p.y + notenOffset);
-                System.out.println(note.toString());
-            }
-
+            System.out.println("After: " + p);
+            Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
+            ImageView imageView = note.getImageView();
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
                 pane.getChildren().add(imageView);
@@ -214,7 +194,13 @@ public class Takt {
                 System.out.println("You exactly touched a line");
             }
 
+
+            imageView.setX(p.x);
+            imageView.setY(imageView.getY() + p.y+notenOffset);
             notesAsImages.add(imageView);
+
+            System.out.println(note.toString());
+
 
         }
     }

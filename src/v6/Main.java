@@ -28,7 +28,7 @@ public class Main extends Application {
 
         //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         scene.getStylesheets().add("v6/style.css");
-        primaryStage.setTitle("Melodiam");
+        primaryStage.setTitle("Melodiam v6");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();
