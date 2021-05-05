@@ -160,7 +160,7 @@ public class Controller {
             notenInTakt=1;
         }else if(id.equals(halbeNote.getId())){
             notenInTakt=2;
-        }else if(id.equals(viertelNote)){
+        }else if(id.equals(viertelNote.getId())){
             notenInTakt=4;
         }else if(id.equals(achtelNote.getId())){
             notenInTakt=8;
@@ -170,9 +170,9 @@ public class Controller {
             notenInTakt=1*5;
         }else if(id.equals(halbePause.getId())){
             notenInTakt=2*5;
-        }else if(id.equals(viertelNote.getId())){
+        }else if(id.equals(viertelPause.getId())){
             notenInTakt=4*5;
-        }else if(id.equals(achtelNote.getId())){
+        }else if(id.equals(achtelPause.getId())){
             notenInTakt=8*5;
         }else if(id.equals(sechzehntelPause.getId())){
             notenInTakt=16*5;
