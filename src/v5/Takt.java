@@ -16,7 +16,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInTakt=80;
+    int notenInTakt=10;
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -28,7 +28,8 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
-    Note previewNote = new Note(4, -1000000);
+    Note previewNote = new Note(notenInTakt, -1000000);
+    Pause previewPause = new Pause(notenInTakt);
     int notenOffset = -30;
 
     public Takt(boolean needSchluessel){
@@ -147,6 +148,37 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
 
+        if (notenInTakt % 5 == 0){
+            // Pause
+            System.out.println("Pause");
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
+            System.out.println("After: " + p);
+            previewImage = previewPause.getImageView();
+            previewImage.setX(p.x);
+            int tempOffsetY = previewPause.getOffsetY();
+            previewImage.setY(tempOffsetY + 43);
+            System.out.println("Setting the pause at x: " + previewImage.getX() + ", y: " + previewImage.getY());
+            System.out.println(previewPause.toString());
+        }else{
+            //Note
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+
+            previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
+            previewImage = previewNote.getImageView();
+
+            previewImage.setX(p.x);
+            int tempOffsetY = previewNote.getOffsetY();
+            previewImage.setY(tempOffsetY + p.y+notenOffset);/*
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+            System.out.println("After: " + p);
+            Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
+            imageView = note.getImageView();
+            imageView.setX(p.x);
+            imageView.setY(imageView.getY() + p.y + notenOffset);
+            System.out.println(note.toString());
+            */
+        }
+
         try {
             //pane = (Pane) mouseEvent.getSource();
             pane.getChildren().add(previewImage);
@@ -154,14 +186,6 @@ public class Takt {
             //System.out.println("You exactly touched a line");
         }
 
-        p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
-
-        previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
-        previewImage = previewNote.getImageView();
-
-        previewImage.setX(p.x);
-        int tempOffsetY = previewNote.getOffsetY();
-        previewImage.setY(tempOffsetY + p.y+notenOffset);
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
