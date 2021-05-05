@@ -5,6 +5,7 @@ public class Note {
     private int wert;
     private int position;
     private int vorzeichen;
+    private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
     public void setAll(int wert, int position, int vorzeichen, String bezeichnung) {

@@ -57,7 +57,7 @@
                                 <Insets right="10.0" />
                             </HBox.margin>
                         </ChoiceBox>
-                  <Button fx:id="bTrans" mnemonicParsing="false" text="OK">
+                  <Button fx:id="bTrans" mnemonicParsing="false" onAction="#buttonPressd" text="OK">
                      <HBox.margin>
                         <Insets right="40.0" />
                      </HBox.margin>

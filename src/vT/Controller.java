@@ -123,7 +123,7 @@ public class Controller {
         else if (id.equals("bRem") && storeLines.size() > 0){
             remPane();
         }
-        else if (id.equals("bTrans")){
+        else if (id.equals(bTrans.getId())){
             transponieren();
         }
     }
@@ -170,6 +170,7 @@ public class Controller {
     private void transponieren(){
         ArrayList<Note> noten = new ArrayList<>();
         Transponieren tran = new Transponieren();
+        int intervall;
 
         Note note1 = new Note();
         Note note2 = new Note();
@@ -182,7 +183,11 @@ public class Controller {
         noten.add(note3);
         noten.add(note4);
 
-        tran.hauptTrans(noten);
+        //System.out.println(intervalle.getSelectionModel().getSelectedIndex());
+        intervall = intervalle.getSelectionModel().getSelectedIndex() - 12;
+        intervall *= -1;
+
+        tran.hauptTrans(noten, intervall, 2);
     }
 
 }
