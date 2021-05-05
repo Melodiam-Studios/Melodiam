@@ -1,7 +1,5 @@
 package vT;
 
-import java.util.Scanner;
-
 public class Liste {
 
     public static String arr [][] = {
@@ -62,7 +60,7 @@ public class Liste {
         {"78", "24", "1", "fis3"},
     };
 
-    public class werteAusfuellen() {
+    public void werteAusfuellen() {
     /*
         Scanner myObj = new Scanner(System.in);
 
