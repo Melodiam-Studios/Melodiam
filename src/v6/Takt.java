@@ -2,6 +2,7 @@ package v6;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,9 @@ public class Takt {
     float line_length = 275;
     float height = 115;
     int notenInTakt=10;
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+    Controller controller = loader.getController();
 
     Pane pane = new Pane();
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
@@ -148,6 +152,9 @@ public class Takt {
     }
 
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
+
+
+        notenInTakt = Controller.notenInTakt;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();

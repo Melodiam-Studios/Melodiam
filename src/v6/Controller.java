@@ -61,7 +61,7 @@ public class Controller {
     private int column = 0;
     private int lenghtPane = 275;
     private int hightPane = 200;
-    public int notenInTakt = 0;
+    public static int notenInTakt = 0;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -158,8 +158,7 @@ public class Controller {
 
         if(id.equals(ganzeNote.getId())){
             notenInTakt=1;
-        }
-        else if(id.equals(halbeNote.getId())){
+        }else if(id.equals(halbeNote.getId())){
             notenInTakt=2;
         }else if(id.equals(viertelNote)){
             notenInTakt=4;
@@ -167,16 +166,16 @@ public class Controller {
             notenInTakt=8;
         }else if(id.equals(sechzehntelNote.getId())){
             notenInTakt=16;
-        }/*else(id.equals(ganzePause.getId())){
-
-        }else(id.equals(halbePause.getId())){
-
-        }else(id.equals(viertelNote.getId())){
-
-        }else(id.equals(achtelNote.getId())){
-
-        }else(id.equals(sechzehntelPause.getId()){
-
-        }*/
+        }else if(id.equals(ganzePause.getId())){
+            notenInTakt=1*5;
+        }else if(id.equals(halbePause.getId())){
+            notenInTakt=2*5;
+        }else if(id.equals(viertelNote.getId())){
+            notenInTakt=4*5;
+        }else if(id.equals(achtelNote.getId())){
+            notenInTakt=8*5;
+        }else if(id.equals(sechzehntelPause.getId())){
+            notenInTakt=16*5;
+        }
     }
 }
