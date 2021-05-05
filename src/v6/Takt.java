@@ -43,7 +43,6 @@ public class Takt {
 
     public Takt(boolean needSchluessel){
 
-
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
         Line l2 = new Line();
@@ -162,15 +161,15 @@ public class Takt {
 
         if (notenInTakt % 5 == 0){
             // Pause
-            System.out.println("Pause");
+            //System.out.println("Pause");
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
-            System.out.println("After: " + p);
+            //System.out.println("After: " + p);
             previewImage = previewPause.getImageView();
             previewImage.setX(p.x);
             int tempOffsetY = previewPause.getOffsetY();
             previewImage.setY(tempOffsetY + 43);
-            System.out.println("Setting the pause at x: " + previewImage.getX() + ", y: " + previewImage.getY());
-            System.out.println(previewPause.toString());
+            //System.out.println("Setting the pause at x: " + previewImage.getX() + ", y: " + previewImage.getY());
+            //System.out.println(previewPause.toString());
         }else{
             //Note
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
@@ -207,6 +206,8 @@ public class Takt {
     }
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
+
+        System.out.println("NotenInTakt: " + notenInTakt);
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();

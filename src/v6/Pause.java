@@ -16,10 +16,10 @@ public class Pause {
 
         this.pausenInTakt = pausenInTakt;
 
-        changeNote();
+        changePause();
     }
 
-    public void changeNote(){
+    public void changePause(){
 
         switch (pausenInTakt) {
             case 5:
