@@ -12,6 +12,11 @@ import v6.Pause;
 
 import java.util.ArrayList;
 
+/**
+ * Class Takt is responsable for every Takt that gets created. For every line a Takt-object gets created.
+ *
+ * @author Silas Demez
+ */
 public class Takt {
     int n = 0;
     float line_length = 275;
