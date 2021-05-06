@@ -69,14 +69,13 @@ public class Pause {
                 break;
         }
     }
-/*
-    public void setNote(int notenInTakt, int position){
-        this.notenInTakt = notenInTakt;
-        this.position = position;
-        changeNote();
+
+    public void setPause(int pausenInTakt){
+        this.pausenInTakt = pausenInTakt;
+        changePause();
     }
 
- */
+
 
     public ImageView getImageView() {
         return imageView;

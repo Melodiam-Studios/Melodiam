@@ -164,6 +164,7 @@ public class Takt {
             //System.out.println("Pause");
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
             //System.out.println("After: " + p);
+            previewPause.setPause(notenInTakt);
             previewImage = previewPause.getImageView();
             previewImage.setX(p.x);
             int tempOffsetY = previewPause.getOffsetY();
