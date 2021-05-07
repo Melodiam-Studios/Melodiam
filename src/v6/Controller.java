@@ -137,8 +137,14 @@ public class Controller {
         RowConstraints rowWith = new RowConstraints(100);
         mainInputPane.getRowConstraints().add(rowWith);
 
-        ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
-        mainInputPane.getColumnConstraints().add(columnWith);
+        if (column == 0 ){
+            ColumnConstraints columnWith = new ColumnConstraints(300);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }else {
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }
+
 
         if (column == 0){
             Takt takt = new Takt(true);
@@ -156,6 +162,7 @@ public class Controller {
         Button btn = (Button) actionEvent.getSource();
         String id = btn.getId();
 
+        //Noten und Bausen Buttons
         if(id.equals(ganzeNote.getId())){
             notenInTakt=1;
         }else if(id.equals(halbeNote.getId())){
@@ -176,6 +183,28 @@ public class Controller {
             notenInTakt=8*5;
         }else if(id.equals(sechzehntelPause.getId())){
             notenInTakt=16*5;
+        }
+
+        //vorzeichen buttons
+        //b Vorzeichen
+        if (id.equals("bVorzeichen")){
+            setVorzeichen("bV");
+        }
+        //kreuzvorzeichen
+        else if (id.equals("kVorzeichen")){
+            setVorzeichen("kV");
+        }
+        //auflösungsvorzeichen
+        else if (id.equals("aVorzeichen")){
+            setVorzeichen("aV");
+        }
+    }
+
+    private void setVorzeichen(String vz) {
+        String vorzeichen = vz;
+        //wenn auch eine note ausgewählt ist
+        if (notenInTakt == 1 || notenInTakt == 2 ||notenInTakt == 4 ||notenInTakt == 8 ||notenInTakt == 16){
+
         }
     }
 }
