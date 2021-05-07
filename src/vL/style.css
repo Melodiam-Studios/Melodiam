@@ -1,0 +1,21 @@
+
+.note-buttons:hover{
+    -fx-rotate: 5;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+
+}
+.note-buttons:pressed{
+    -fx-rotate: 2;
+}
+.note-buttons{
+}
+.button:focused{
+    -fx-background-color: grey;
+    -fx-border-color: grey;
+    -fx-focus-color: white;
+    -fx-background-insets: -1, 0, 1, 1;
+}
+
+.root{
+    -fx-background-color: white;
+}
