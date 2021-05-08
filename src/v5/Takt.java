@@ -23,6 +23,7 @@ public class Takt {
     float line_length = 275;
     float height = 115;
     int notenInTakt=10;
+    String vorzeichen = null;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
     Controller controller = loader.getController();
@@ -37,7 +38,7 @@ public class Takt {
     ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
-    Note previewNote = new Note(notenInTakt, -1000000);
+    Note previewNote = new Note(notenInTakt, -1000000, vorzeichen);
     Pause previewPause = new Pause(notenInTakt);
     int notenOffset = -30;
 
@@ -154,6 +155,7 @@ public class Takt {
 
 
         notenInTakt = Controller.notenInTakt;
+        vorzeichen = Controller.vorzeichen;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
@@ -208,6 +210,8 @@ public class Takt {
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
+        vorzeichen = Controller.vorzeichen;
+
         System.out.println("NotenInTakt: " + notenInTakt);
 
         Point2D p = new Point2D();
@@ -238,7 +242,7 @@ public class Takt {
                 //Note
                 p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
                 System.out.println("After: " + p);
-                Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
+                Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
                 imageView = note.getImageView();
                 imageView.setX(p.x);
                 imageView.setY(imageView.getY() + p.y + notenOffset);

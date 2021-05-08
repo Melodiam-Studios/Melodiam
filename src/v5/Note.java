@@ -17,13 +17,14 @@ public class Note {
     int notenInTakt;
     int position;
     int offsetY;
+    String vorzeichen = null;
 
 
-    public Note(int notenInTakt, int position) {
+    public Note(int notenInTakt, int position, String vorzeichen) {
 
         this.notenInTakt = notenInTakt;
         this.position = position;
-
+        this.vorzeichen =  vorzeichen;
         changeNote();
     }
 
@@ -38,6 +39,7 @@ public class Note {
                 imageView.setFitHeight(10);
                 imageView.setFitWidth(16);
                 imageView.setY(offsetY);
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -56,6 +58,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -75,6 +78,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -93,6 +97,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -111,8 +116,31 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
         }
+    }
+
+    private void vorzeichenSetzen() {
+        img = null;
+        if (vorzeichen.equals("bV")){
+            System.out.println("bVorzeichen");
+            img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
+        }else if (vorzeichen.equals("kV")){
+            System.out.println("k vorzeichen");
+            img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
+        }
+        /*else if (vorzeichen.equals("av")){
+            img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
+        }*/
+        offsetY = 0;
+        imageView.setImage(img);
+        imageView.setFitHeight(34);
+        imageView.setFitWidth(19);
+        System.out.println("-------------------------");
+        System.out.println("setVozeichen");
+        System.out.println("-------------------------");
+
     }
 
     public void setNote(int notenInTakt, int position){
