@@ -124,23 +124,17 @@ public class Note {
     private void vorzeichenSetzen() {
         img = null;
         if (vorzeichen.equals("bV")){
-            System.out.println("bVorzeichen");
             img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
         }else if (vorzeichen.equals("kV")){
-            System.out.println("k vorzeichen");
             img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
         }
-        /*else if (vorzeichen.equals("av")){
-            img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
-        }*/
+        else if (vorzeichen.equals("aV")){
+            img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
+        }
         offsetY = 0;
         imageView.setImage(img);
         imageView.setFitHeight(34);
         imageView.setFitWidth(19);
-        System.out.println("-------------------------");
-        System.out.println("setVozeichen");
-        System.out.println("-------------------------");
-
     }
 
     public void setNote(int notenInTakt, int position){
