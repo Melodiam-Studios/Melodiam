@@ -20,7 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Melodiam");
         JMetro jMetro=new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
-        root.getStylesheets().add("vL/style.css");
+        root.getStylesheets().add("vL/lightstyle.css");
 
 
         jMetro.setScene(scene);
