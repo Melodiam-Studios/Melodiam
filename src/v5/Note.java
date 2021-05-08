@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 
 public class Note {
 
+    // fürs b -1, fürs nazikreuz 0, fürs hashtag 1
+
     @FXML
     Image img;
 

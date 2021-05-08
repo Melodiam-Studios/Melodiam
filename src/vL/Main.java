@@ -7,9 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-import v5.Controller;
 
-import javax.swing.text.html.StyleSheet;
 import java.util.Objects;
 
 public class Main extends Application {

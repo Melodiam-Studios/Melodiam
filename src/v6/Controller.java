@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    //TO-DO: Im Takt muss ekannt werden ob eine Vorzeichen mt dem Takt zusammen kommt
+
     GridPane mainInputPane;
 
     @FXML ImageView previewImage = new ImageView();
@@ -62,6 +64,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
+    public static String vorzeichen = null;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -188,23 +191,15 @@ public class Controller {
         //vorzeichen buttons
         //b Vorzeichen
         if (id.equals("bVorzeichen")){
-            setVorzeichen("bV");
+            vorzeichen = "bv";
         }
         //kreuzvorzeichen
         else if (id.equals("kVorzeichen")){
-            setVorzeichen("kV");
+            vorzeichen = "kV";
         }
         //auflösungsvorzeichen
         else if (id.equals("aVorzeichen")){
-            setVorzeichen("aV");
-        }
-    }
-
-    private void setVorzeichen(String vz) {
-        String vorzeichen = vz;
-        //wenn auch eine note ausgewählt ist
-        if (notenInTakt == 1 || notenInTakt == 2 ||notenInTakt == 4 ||notenInTakt == 8 ||notenInTakt == 16){
-
+            vorzeichen = "aV";
         }
     }
 }
