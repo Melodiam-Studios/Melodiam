@@ -19,11 +19,14 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
+
         Controller controller = loader.<Controller>getController();
 
         Scene scene = new Scene(root, 600  , 400);
 
-        primaryStage.setTitle("Melodiam");
+        //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
+        scene.getStylesheets().add("v5/style.css");
+        primaryStage.setTitle("Melodiam v5");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();

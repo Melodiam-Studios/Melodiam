@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 
 public class Note {
 
+    // fürs b -1, fürs nazikreuz 0, fürs hashtag 1
+
     @FXML
     Image img;
 
@@ -15,13 +17,14 @@ public class Note {
     int notenInTakt;
     int position;
     int offsetY;
+    String vorzeichen = null;
 
 
-    public Note(int notenInTakt, int position) {
+    public Note(int notenInTakt, int position, String vorzeichen) {
 
         this.notenInTakt = notenInTakt;
         this.position = position;
-
+        this.vorzeichen =  vorzeichen;
         changeNote();
     }
 
@@ -36,6 +39,7 @@ public class Note {
                 imageView.setFitHeight(10);
                 imageView.setFitWidth(16);
                 imageView.setY(offsetY);
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -54,6 +58,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -73,6 +78,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -91,6 +97,7 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -109,8 +116,25 @@ public class Note {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
+                if (vorzeichen != null) vorzeichenSetzen();
                 break;
         }
+    }
+
+    private void vorzeichenSetzen() {
+        img = null;
+        if (vorzeichen.equals("bV")){
+            img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
+        }else if (vorzeichen.equals("kV")){
+            img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
+        }
+        else if (vorzeichen.equals("aV")){
+            img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
+        }
+        offsetY = 0;
+        imageView.setImage(img);
+        imageView.setFitHeight(34);
+        imageView.setFitWidth(19);
     }
 
     public void setNote(int notenInTakt, int position){
