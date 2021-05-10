@@ -1,0 +1,24 @@
+
+.toggle-button:hover,
+.note-buttons:hover{
+    -fx-rotate: 5;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+
+}
+.toggle-button:pressed,
+.note-buttons:pressed{
+    -fx-rotate: 2;
+}
+.toggle-button,
+.note-buttons{
+}
+.toggle-button:focused,.button:focused{
+    -fx-background-color: grey;
+    -fx-border-color: grey;
+    -fx-focus-color: white;
+    -fx-background-insets: -1, 0, 1, 1;
+}
+
+.root{
+    -fx-background-color: white;
+}

@@ -1,13 +1,12 @@
 package vL;
 
-/*import javafx.application.Application;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-import v5.Controller;
 
 import java.util.Objects;
 
@@ -19,9 +18,13 @@ public class Main extends Application {
         primaryStage.setTitle("Melodiam");
         JMetro jMetro=new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
+        root.getStylesheets().add("vL/lightstyle.css");
+
 
         jMetro.setScene(scene);
         primaryStage.setScene(jMetro.getScene());
+        //primaryStage.setScene(scene);
+
         primaryStage.setMaximized(true);
         primaryStage.show();
 
@@ -32,4 +35,3 @@ public class Main extends Application {
         launch(args);
     }
 }
-*/

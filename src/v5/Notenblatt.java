@@ -1,9 +1,6 @@
 package v5;
 
-import javafx.scene.shape.Line;
 import v4_2.Takt;
-
-import java.util.ArrayList;
 
 public class Notenblatt {
     /*
@@ -13,7 +10,7 @@ public class Notenblatt {
 
      */
 
-    private void addTakt(v4_2.Takt takte){
+    private void addTakt(Takt takte){
     /*
     takte.add(t1);
 

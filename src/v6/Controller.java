@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    //TO-DO: Im Takt muss ekannt werden ob eine Vorzeichen mt dem Takt zusammen kommt
+
     GridPane mainInputPane;
 
     @FXML ImageView previewImage = new ImageView();
@@ -62,6 +64,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
+    public static String vorzeichen = null;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -137,8 +140,14 @@ public class Controller {
         RowConstraints rowWith = new RowConstraints(100);
         mainInputPane.getRowConstraints().add(rowWith);
 
-        ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
-        mainInputPane.getColumnConstraints().add(columnWith);
+        if (column == 0 ){
+            ColumnConstraints columnWith = new ColumnConstraints(300);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }else {
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }
+
 
         if (column == 0){
             Takt takt = new Takt(true);
@@ -156,6 +165,7 @@ public class Controller {
         Button btn = (Button) actionEvent.getSource();
         String id = btn.getId();
 
+        //Noten und Bausen Buttons
         if(id.equals(ganzeNote.getId())){
             notenInTakt=1;
         }else if(id.equals(halbeNote.getId())){
@@ -176,6 +186,20 @@ public class Controller {
             notenInTakt=8*5;
         }else if(id.equals(sechzehntelPause.getId())){
             notenInTakt=16*5;
+        }
+
+        //vorzeichen buttons
+        //b Vorzeichen
+        if (id.equals("bVorzeichen")){
+            vorzeichen = "bv";
+        }
+        //kreuzvorzeichen
+        else if (id.equals("kVorzeichen")){
+            vorzeichen = "kV";
+        }
+        //auflösungsvorzeichen
+        else if (id.equals("aVorzeichen")){
+            vorzeichen = "aV";
         }
     }
 }
