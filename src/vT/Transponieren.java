@@ -10,22 +10,23 @@ public class Transponieren {
     @FXML
     ChoiceBox intervalle;
 
-    private ArrayList<Note> notenNeu = new ArrayList<>();
     private int intervall;
     private int neueTonleiter;
 
-    public ArrayList<Note> hauptTrans (ArrayList<Note> notenAlt, int intervall, int tonleiter){
+    public ArrayList<Note> hauptTrans (ArrayList<Note> noten, int intervall, int tonleiter){
 
         this.intervall = intervall;
 
-        bestimmeTonleiter(tonleiter);
+        tonleiter = bestimmeTonleiter(tonleiter);
+        notenTransponieren(noten, tonleiter);
 
-        return notenNeu;
+        return noten;
     }
 
-    private void bestimmeTonleiter (int tonleiter){
+    private int bestimmeTonleiter (int tonleiter){
 
-        String bezeichnungTonl;
+        String bezeichnungTonl = "";
+        int neueTonleiter = 0;
         String[][] listeTonl = {
                 {"h", "11"},
                 {"b", "10"},
@@ -57,10 +58,78 @@ public class Transponieren {
                 {"ges", "-6"},
         };
 
+        //Bezeichnung der alten Tonleiter herausfinden
         for (int i=0; i<listeVorz.length; i++){
             if (tonleiter == new Integer(listeVorz[i][1])){
-                System.out.println(listeVorz[i][0]);
+                bezeichnungTonl = listeVorz[i][0];
             }
         }
+
+        //Alte Tonleiter in der listeTonl suchen und aus dessen Wert das Intervall dazuzählen
+        for (int i=0; i<listeTonl.length; i++){
+            if (bezeichnungTonl == listeTonl[i][0]){
+                neueTonleiter = new Integer(listeTonl[i][1]);
+                neueTonleiter += intervall;
+                neueTonleiter += 12;
+                neueTonleiter = neueTonleiter % 12;
+            }
+        }
+
+        //Bezeichnung der neuen Tonleiter in listeTonl suchen
+        for (int i=0; i<listeTonl.length; i++){
+            if (neueTonleiter == new Integer(listeTonl[i][1])){
+                bezeichnungTonl = listeTonl[i][0];
+            }
+        }
+
+        //in listeVorz die dazugehörigen Vorzeichen der neuen Tonleiter herausfinden
+        for (int i=0; i<listeVorz.length; i++){
+            if (bezeichnungTonl == listeVorz[i][0]){
+                neueTonleiter = new Integer(listeVorz[i][1]);
+            }
+        }
+
+        return neueTonleiter;
+    }
+
+    private void notenTransponieren (ArrayList<Note> noten, int tonleiter){
+
+        int wert;
+        int anzeigen;
+        boolean exit;
+
+        for (Note note : noten) {
+            wert = note.getWert() + intervall;
+            anzeigen = 1;
+            exit = false;
+
+            //Falls es den Notenwert ohne Vorzeichen gibt
+            for (int i=0; i<Liste.arr.length; i++){
+                if ((wert == new Integer(Liste.arr[i][0])) && (Liste.arr[i][2] == "0")){
+                    note.setAll(wert, new Integer(Liste.arr[i][1]), 0, anzeigen, Liste.arr[i][3]);
+                    exit = true;
+                    break;
+                }
+            }
+
+            //Wenn ein Vorzeichen dazukommt
+            if (exit == false){
+                for (int i=0; i<Liste.arr.length; i++){
+                    if (wert == new Integer(Liste.arr[i][0])){
+                        if ((tonleiter >= 0) && (Liste.arr[i][2] == "1")){
+                            note.setAll(wert, new Integer(Liste.arr[i][1]), 1, anzeigen, Liste.arr[i][3]);
+                            break;
+                        }
+                        else if ((tonleiter < 0) && (Liste.arr[i][2] == "-1")){
+                            note.setAll(wert, new Integer(Liste.arr[i][1]), -1, anzeigen, Liste.arr[i][3]);
+                            break;
+                        }
+                    }
+                }
+            }
+            exit = false;
+        }
+
+        //System.out.println(noten.toString());
     }
 }
