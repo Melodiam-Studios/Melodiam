@@ -173,21 +173,23 @@ public class Controller {
         int intervall;
 
         Note note1 = new Note();
-        Note note2 = new Note();
+        /*Note note2 = new Note();
         Note note3 = new Note();
-        Note note4 = new Note();
+        Note note4 = new Note();*/
 
-        note1.setAll(60,14,0,"c");
+        note1.setAll(41,2,1, 1, "f");
         noten.add(note1);
-        noten.add(note2);
+        /*noten.add(note2);
         noten.add(note3);
-        noten.add(note4);
+        noten.add(note4);*/
 
         //System.out.println(intervalle.getSelectionModel().getSelectedIndex());
         intervall = intervalle.getSelectionModel().getSelectedIndex() - 12;
         intervall *= -1;
 
-        tran.hauptTrans(noten, intervall, 2);
+        System.out.println(noten.toString());
+        noten = tran.hauptTrans(noten, intervall, 0);
+        System.out.println(noten.toString());
     }
 
 }

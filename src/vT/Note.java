@@ -8,11 +8,20 @@ public class Note {
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
-    public void setAll(int wert, int position, int vorzeichen, String bezeichnung) {
+    public void setAll(int wert, int position, int vorzeichen, int anzeigenVorzeichen, String bezeichnung) {
         this.wert = wert;
         this.position = position;
         this.vorzeichen = vorzeichen;
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
         this.bezeichnung = bezeichnung;
+    }
+
+    public int getAnzeigenVorzeichen() {
+        return anzeigenVorzeichen;
+    }
+
+    public void setAnzeigenVorzeichen(int anzeigenVorzeichen) {
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
     }
 
     public int getWert() {
@@ -45,5 +54,16 @@ public class Note {
 
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "wert=" + wert +
+                ", position=" + position +
+                ", vorzeichen=" + vorzeichen +
+                ", anzeigenVorzeichen=" + anzeigenVorzeichen +
+                ", bezeichnung='" + bezeichnung + '\'' +
+                '}';
     }
 }
