@@ -226,6 +226,7 @@ public class Takt {
 
 
             ImageView imageView;
+            ImageView vorzeichenView = null;
 
             if (notenInTakt % 5 == 0){
                 // Pause
@@ -244,6 +245,9 @@ public class Takt {
                 System.out.println("After: " + p);
                 Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
                 imageView = note.getImageView();
+                vorzeichenView = note.getVorzeichenView();
+                vorzeichenView.setX(vorzeichenView.getX() + p.x);
+                vorzeichenView.setY(vorzeichenView.getY() + p.y + notenOffset);
                 imageView.setX(p.x);
                 imageView.setY(imageView.getY() + p.y + notenOffset);
                 System.out.println(note.toString());
@@ -252,6 +256,7 @@ public class Takt {
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
                 pane.getChildren().add(imageView);
+                pane.getChildren().add(vorzeichenView);
             }catch (Exception exception){
                 System.out.println("You exactly touched a line");
             }

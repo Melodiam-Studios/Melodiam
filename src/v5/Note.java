@@ -9,15 +9,16 @@ public class Note {
     // fürs b -1, fürs nazikreuz 0, fürs hashtag 1
 
     @FXML
-    Image img;
+    private Image img;
 
     @FXML
-    ImageView imageView = new ImageView();
+    private ImageView imageView = new ImageView();
 
-    int notenInTakt;
-    int position;
-    int offsetY;
-    String vorzeichen = null;
+    @FXML
+    private ImageView vorzeichenView = new ImageView();
+
+    private int notenInTakt, position, offsetY;
+    private String vorzeichen = null;
 
 
     public Note(int notenInTakt, int position, String vorzeichen) {
@@ -132,9 +133,9 @@ public class Note {
             img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
         }
         offsetY = 0;
-        imageView.setImage(img);
-        imageView.setFitHeight(34);
-        imageView.setFitWidth(19);
+        vorzeichenView.setImage(img);
+        vorzeichenView.setFitHeight(34);
+        vorzeichenView.setFitWidth(19);
     }
 
     public void setNote(int notenInTakt, int position){
@@ -145,6 +146,10 @@ public class Note {
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public ImageView getVorzeichenView() {
+        return vorzeichenView;
     }
 
     public int getOffsetY() {
