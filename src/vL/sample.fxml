@@ -68,7 +68,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Spinner>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" text="">
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" text="" styleClass="play-button">
                       <HBox.margin>
                           <Insets right="10.0" />
                       </HBox.margin>
@@ -86,13 +86,13 @@
 
                      </HBox.margin>
                   </ChoiceBox>
-                  <Slider prefHeight="30.0" prefWidth="140.0" />
+                  <Slider prefHeight="30.0" prefWidth="140.0" styleClass="slider"/>
                </children></HBox>
          </top>
          <center>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane fx:id="anchorP" minHeight="0.0" minWidth="0.0" prefHeight="1360.0" prefWidth="840.0" style="-fx-background-color: grey;" />
+                <AnchorPane fx:id="anchorP" minHeight="0.0" minWidth="0.0" prefHeight="1360.0" prefWidth="840.0" styleClass="sheet" />
               </content>
             </ScrollPane>
          </center>
