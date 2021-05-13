@@ -1,32 +1,25 @@
 package vT;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 
 public class Transponieren {
 
-    @FXML
-    ChoiceBox intervalle;
-
     private int intervall;
-    private int neueTonleiter;
 
-    public ArrayList<Note> hauptTrans (ArrayList<Note> noten, int intervall, int tonleiter){
+    public void hauptTrans (ArrayList<Note> noten, int intervall, int tonleiter){
 
         this.intervall = intervall;
 
         tonleiter = bestimmeTonleiter(tonleiter);
         notenTransponieren(noten, tonleiter);
 
-        return noten;
+        //return noten;
     }
 
     private int bestimmeTonleiter (int tonleiter){
 
         String bezeichnungTonl = "";
-        int neueTonleiter = 0;
+
         String[][] listeTonl = {
                 {"h", "11"},
                 {"b", "10"},
@@ -68,16 +61,16 @@ public class Transponieren {
         //Alte Tonleiter in der listeTonl suchen und aus dessen Wert das Intervall dazuzählen
         for (int i=0; i<listeTonl.length; i++){
             if (bezeichnungTonl == listeTonl[i][0]){
-                neueTonleiter = new Integer(listeTonl[i][1]);
-                neueTonleiter += intervall;
-                neueTonleiter += 12;
-                neueTonleiter = neueTonleiter % 12;
+                tonleiter = new Integer(listeTonl[i][1]);
+                tonleiter += intervall;
+                tonleiter += 12;
+                tonleiter = tonleiter % 12;
             }
         }
 
         //Bezeichnung der neuen Tonleiter in listeTonl suchen
         for (int i=0; i<listeTonl.length; i++){
-            if (neueTonleiter == new Integer(listeTonl[i][1])){
+            if (tonleiter == new Integer(listeTonl[i][1])){
                 bezeichnungTonl = listeTonl[i][0];
             }
         }
@@ -85,11 +78,12 @@ public class Transponieren {
         //in listeVorz die dazugehörigen Vorzeichen der neuen Tonleiter herausfinden
         for (int i=0; i<listeVorz.length; i++){
             if (bezeichnungTonl == listeVorz[i][0]){
-                neueTonleiter = new Integer(listeVorz[i][1]);
+                tonleiter = new Integer(listeVorz[i][1]);
             }
         }
 
-        return neueTonleiter;
+        System.out.println(bezeichnungTonl + " - " + tonleiter);
+        return tonleiter;
     }
 
     private void notenTransponieren (ArrayList<Note> noten, int tonleiter){
@@ -130,11 +124,12 @@ public class Transponieren {
             exit = false;
         }
 
+        erneuereAnzeigen(noten, tonleiter);
         //System.out.println(noten.toString());
     }
 
     // Erneuert das Attribut vorzeichenAnzeigen für jede einzelne Note
-    public void erneuereAnzeigen (ArrayList<Note> noten, int tonleiter){
+    public static void erneuereAnzeigen (ArrayList<Note> noten, int tonleiter){
 
         int wert, vorzeichen;
         int anzeigen;
