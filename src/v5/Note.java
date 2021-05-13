@@ -71,6 +71,8 @@ public class Note extends Element{
      */
     private void changeNote(){
 
+        //pane = Controller.get //
+
         /*
         switch that distinguished between the different types of notes
         ganzeNote --> 1

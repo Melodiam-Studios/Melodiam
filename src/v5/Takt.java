@@ -156,10 +156,19 @@ public class Takt {
     }
 
     /**
-     * @return return the Takt GUI to the Controller
+     * @return return the Takt GUI to the Controller or the Note
      */
     public Pane getPane() {
         return pane;
+    }
+
+    /**
+     * the pane gets set by the Note
+     *
+     * @param pane pane changed from Note
+     */
+    public void setPane(Pane pane) {
+        this.pane = pane;
     }
 
     /**
