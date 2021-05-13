@@ -132,4 +132,116 @@ public class Transponieren {
 
         //System.out.println(noten.toString());
     }
+
+    // Erneuert das Attribut vorzeichenAnzeigen für jede einzelne Note
+    public void erneuereAnzeigen (ArrayList<Note> noten, int tonleiter){
+
+        int wert, vorzeichen;
+        int anzeigen;
+
+        for (Note note : noten) {
+
+            wert = note.getWert() % 12;
+            vorzeichen = note.getVorzeichen();
+            anzeigen = 1;
+
+            if ((vorzeichen == 1) && (tonleiter > 0)) {
+                switch (tonleiter) {
+                    case 1:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        break;
+                    case 2:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        else if (wert == 1) anzeigen = 0;   //cis
+                        break;
+                    case 3:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        else if (wert == 1) anzeigen = 0;   //cis
+                        else if (wert == 8) anzeigen = 0;   //gis
+                        break;
+                    case 4:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        else if (wert == 1) anzeigen = 0;   //cis
+                        else if (wert == 8) anzeigen = 0;   //gis
+                        else if (wert == 3) anzeigen = 0;   //dis
+                        break;
+                    case 5:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        else if (wert == 1) anzeigen = 0;   //cis
+                        else if (wert == 8) anzeigen = 0;   //gis
+                        else if (wert == 3) anzeigen = 0;   //dis
+                        else if (wert == 10) anzeigen = 0;  //ais
+                        break;
+                    case 6:
+                        if (wert == 6) anzeigen = 0;        //fis
+                        else if (wert == 1) anzeigen = 0;   //cis
+                        else if (wert == 8) anzeigen = 0;   //gis
+                        else if (wert == 3) anzeigen = 0;   //dis
+                        else if (wert == 10) anzeigen = 0;  //ais
+                        else if (wert == 5) anzeigen = 0;   //eis
+                        break;
+                }
+            }
+
+            else if ((vorzeichen == -1) && (tonleiter < 0)) {
+                switch (tonleiter) {
+                    case -1:
+                        if (wert == 10) anzeigen = 0;       //b
+                        break;
+                    case -2:
+                        if (wert == 10) anzeigen = 0;       //b
+                        else if (wert == 3) anzeigen = 0;   //es
+                        break;
+                    case -3:
+                        if (wert == 10) anzeigen = 0;       //b
+                        else if (wert == 3) anzeigen = 0;   //es
+                        else if (wert == 8) anzeigen = 0;   //as
+                        break;
+                    case -4:
+                        if (wert == 10) anzeigen = 0;       //b
+                        else if (wert == 3) anzeigen = 0;   //es
+                        else if (wert == 8) anzeigen = 0;   //as
+                        else if (wert == 1) anzeigen = 0;   //des
+                        break;
+                    case -5:
+                        if (wert == 10) anzeigen = 0;       //b
+                        else if (wert == 3) anzeigen = 0;   //es
+                        else if (wert == 8) anzeigen = 0;   //as
+                        else if (wert == 1) anzeigen = 0;   //des
+                        else if (wert == 6) anzeigen = 0;   //ges
+                        break;
+                    case -6:
+                        if (wert == 10) anzeigen = 0;       //b
+                        else if (wert == 3) anzeigen = 0;   //es
+                        else if (wert == 8) anzeigen = 0;   //as
+                        else if (wert == 1) anzeigen = 0;   //des
+                        else if (wert == 6) anzeigen = 0;   //ges
+                        else if (wert == 11) anzeigen = 0;  //ces
+                        break;
+                    default: break;
+                }
+            }
+
+            else if (vorzeichen == 0){
+                switch (tonleiter){
+                    case 6: break;
+                    case 5: break;
+                    case 4: break;
+                    case 3: break;
+                    case 2: break;
+                    case 1: break;
+                    case 0: break;
+                    case -1: break;
+                    case -2: break;
+                    case -3: break;
+                    case -4: break;
+                    case -5: break;
+                    case -6: break;
+
+                }
+            }
+
+            note.setAnzeigenVorzeichen(anzeigen);
+        }
+    }
 }
