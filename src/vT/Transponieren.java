@@ -224,19 +224,72 @@ public class Transponieren {
 
             else if (vorzeichen == 0){
                 switch (tonleiter){
-                    case 6: break;
-                    case 5: break;
-                    case 4: break;
-                    case 3: break;
-                    case 2: break;
-                    case 1: break;
-                    case 0: break;
-                    case -1: break;
-                    case -2: break;
-                    case -3: break;
-                    case -4: break;
-                    case -5: break;
-                    case -6: break;
+                    case 6:
+                        if (wert == 5) anzeigen = 0;        //f
+                        else if (wert == 0) anzeigen = 0;   //c
+                        else if (wert == 7) anzeigen = 0;   //g
+                        else if (wert == 2) anzeigen = 0;   //d
+                        else if (wert == 9) anzeigen = 0;   //a
+                        else if (wert == 4) anzeigen = 0;   //e
+                        break;
+                    case 5:
+                        if (wert == 5) anzeigen = 0;        //f
+                        else if (wert == 0) anzeigen = 0;   //c
+                        else if (wert == 7) anzeigen = 0;   //g
+                        else if (wert == 2) anzeigen = 0;   //d
+                        else if (wert == 9) anzeigen = 0;   //a
+                        break;
+                    case 4:
+                        if (wert == 5) anzeigen = 0;        //f
+                        else if (wert == 0) anzeigen = 0;   //c
+                        else if (wert == 7) anzeigen = 0;   //g
+                        else if (wert == 2) anzeigen = 0;   //d
+                        break;
+                    case 3:
+                        if (wert == 5) anzeigen = 0;        //f
+                        else if (wert == 0) anzeigen = 0;   //c
+                        else if (wert == 7) anzeigen = 0;   //g
+                        break;
+                    case 2:
+                        if (wert == 5) anzeigen = 0;        //f
+                        else if (wert == 0) anzeigen = 0;   //c
+                        break;
+                    case 1:
+                        if (wert == 5) anzeigen = 0;        //f
+                        break;
+                    case -1:
+                        if (wert == 11) anzeigen = 0;       //h
+                        break;
+                    case -2:
+                        if (wert == 11) anzeigen = 0;       //h
+                        else if (wert == 4) anzeigen = 0;   //e
+                        break;
+                    case -3:
+                        if (wert == 11) anzeigen = 0;       //h
+                        else if (wert == 4) anzeigen = 0;   //e
+                        else if (wert == 9) anzeigen = 0;   //a
+                        break;
+                    case -4:
+                        if (wert == 11) anzeigen = 0;       //h
+                        else if (wert == 4) anzeigen = 0;   //e
+                        else if (wert == 9) anzeigen = 0;   //a
+                        else if (wert == 2) anzeigen = 0;   //d
+                        break;
+                    case -5:
+                        if (wert == 11) anzeigen = 0;       //h
+                        else if (wert == 4) anzeigen = 0;   //e
+                        else if (wert == 9) anzeigen = 0;   //a
+                        else if (wert == 2) anzeigen = 0;   //d
+                        else if (wert == 7) anzeigen = 0;   //g
+                        break;
+                    case -6:
+                        if (wert == 11) anzeigen = 0;       //h
+                        else if (wert == 4) anzeigen = 0;   //e
+                        else if (wert == 9) anzeigen = 0;   //a
+                        else if (wert == 2) anzeigen = 0;   //d
+                        else if (wert == 7) anzeigen = 0;   //g
+                        else if (wert == 0) anzeigen = 0;   //c
+                        break;
 
                 }
             }

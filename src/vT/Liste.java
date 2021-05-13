@@ -75,23 +75,8 @@ public class Liste {
     };
 
     public void werteAusfuellen() {
-    /*
-        Scanner myObj = new Scanner(System.in);
-
-        String eingabePosition;
-        String eingabeVorzeichen;
-
-        // Enter username and press Enter
-        System.out.println("Enter Position:");
-        eingabePosition = myObj.nextLine();
-        System.out.println("Enter Vorzeichen:");
-        eingabeVorzeichen = myObj.nextLine();
-
-        System.out.println("Position is: " + eingabePosition);
-        System.out.println("Vorzeichen is: " + eingabeVorzeichen);
-    */
-        String eingabePosition = "5";
-        String eingabeVorzeichen = "1";
+        String eingabePosition = "5";   //TEST
+        String eingabeVorzeichen = "1"; //TEST
 
         for (int i = 0; i < arr.length; i++){
             System.out.println("POSITION: " + eingabePosition + " VORZEICHEN: " +eingabeVorzeichen);
@@ -100,7 +85,5 @@ public class Liste {
                 break;
             }
         }
-
-        //System.out.println();
     }
 }
