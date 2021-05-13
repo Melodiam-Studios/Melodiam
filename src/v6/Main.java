@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 
 public class Main extends Application {
 
@@ -26,7 +28,7 @@ public class Main extends Application {
 
         //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         scene.getStylesheets().add("v6/style.css");
-        primaryStage.setTitle("Melodiam v5");
+        primaryStage.setTitle("Melodiam v6");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
         primaryStage.show();

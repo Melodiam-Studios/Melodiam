@@ -7,7 +7,6 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -15,8 +14,6 @@ import java.util.ArrayList;
 
 /**
  * Class Takt is responsable for every Takt that gets created. For every line a Takt-object gets created.
- * A takt can contain 1 ganzeNote, 2 halbeNote, 4 vierteNote, 8 achtelNote, 16 sechzehntelNote
- * it contains the handlers that catches the mouseClick and the the mouseMoved
  *
  * @author Silas Demez
  */
@@ -25,26 +22,26 @@ public class Takt {
     float line_length = 275;
     float height = 115;
     int notenInTakt=10;
-    int vorzeichen = 0;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
     Controller controller = loader.getController();
 
     Pane pane = new Pane();
-    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));
-    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8));
-    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4));
-    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2));
-    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1));
+    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16,0));
+    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8,0));
+    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4,0));
+    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2,0));
+    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1,0));
 
-    ArrayList<Element> elements = new ArrayList<>();
+    ArrayList<ImageView> notesAsImages = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
-    Note previewNote = new Note(notenInTakt, -1000000, vorzeichen);
+    Note previewNote = new Note(notenInTakt, -1000000);
     Pause previewPause = new Pause(notenInTakt);
     int notenOffset = -30;
 
     public Takt(boolean needSchluessel){
+        int offset = 0;
 
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
@@ -62,6 +59,12 @@ public class Takt {
         int i = 35;
 
         if (needSchluessel){
+            offset = 25;
+            sechzehntelPositions = new ArrayList<>(fillList(16,offset));
+            achtelPositions = new ArrayList<>(fillList(8,offset));
+            viertelPositions = new ArrayList<>(fillList(4,offset));
+            halbePositions = new ArrayList<>(fillList(2,offset));
+            ganzePositions = new ArrayList<>(fillList(1,offset));
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
             ImageView notenSchluessel = new ImageView(image);
             pane.getChildren().add(notenSchluessel);
@@ -73,15 +76,15 @@ public class Takt {
         }
 
         Line l6 = new Line();
-        l6.setStartX(line_length);
+        l6.setStartX(line_length+offset);
         l6.setStartY(i);
-        l6.setEndX(line_length);
+        l6.setEndX(line_length+offset);
         l6.setEndY(i+40);
 
         for (Line l:lines) {
             l.setStartX(0);
             l.setStartY(i);
-            l.setEndX(line_length);
+            l.setEndX(line_length+offset);
             l.setEndY(i);
             i += 10;
             pane.getChildren().add(l);
@@ -91,17 +94,16 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);
         pane.setOnMouseMoved(this::onMouseMoved);
-        pane.setOnMouseExited(this::onMouseExited);
     }
 
-    public ArrayList<Point2D> fillList(int notenInT) {
+    public ArrayList<Point2D> fillList(int notenInT, int offset) {
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
         notenInT += 1;
         float zeilen = height / 23;
         float spalten = (float) line_length / (float) notenInT;
         for (int i = 1; i <notenInT; i++) {
             for (int e = 0; e < 23; e++) {
-                listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
+                listsWithPossiblePositions.add(new Point2D(i * (spalten + offset), e * zeilen));
             }
         }
 
@@ -134,6 +136,8 @@ public class Takt {
                 break;
         }
 
+        System.out.println(listsWithPossiblePositions);
+
         double shortestDistance = 100;
         Point2D returnPoint = new Point2D();
 
@@ -154,10 +158,9 @@ public class Takt {
         return returnPoint;
     }
 
-    public void onMouseMoved(MouseEvent mouseEvent) {
+    public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
 
         notenInTakt = Controller.notenInTakt;
-        vorzeichen = Controller.vorzeichen;
 
         ImageView vorzeichenView = null;
 
@@ -191,7 +194,7 @@ public class Takt {
             previewImage = previewNote.getImageView();
 
             previewImage.setX(p.x);
-            int tempOffsetY = previewNote.getNotenOffsetY();
+            int tempOffsetY = previewNote.getOffsetY();
             previewImage.setY(tempOffsetY + p.y+notenOffset);/*
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
             System.out.println("After: " + p);
@@ -219,9 +222,7 @@ public class Takt {
 
     }
 
-    public void onMousePressed(MouseEvent mouseEvent) {
-
-        vorzeichen = Controller.vorzeichen;
+    public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
         System.out.println("NotenInTakt: " + notenInTakt);
 
@@ -237,7 +238,6 @@ public class Takt {
 
 
             ImageView imageView;
-            ImageView vorzeichenView = null;
 
             if (notenInTakt % 5 == 0){
                 // Pause
@@ -250,45 +250,30 @@ public class Takt {
                 imageView.setY(imageView.getY() + 43);
                 System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 System.out.println(pause.toString());
-                elements.add(pause);
             }else{
                 //Note
                 p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
                 System.out.println("After: " + p);
-
-                Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
-
+                Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
                 imageView = note.getImageView();
-                vorzeichenView = note.getVorzeichenView();
-
-                vorzeichenView.setX(vorzeichenView.getX() + p.x);
-                vorzeichenView.setY(vorzeichenView.getY() + p.y + notenOffset);
-
-                imageView.setX(imageView.getX() + p.x);
+                imageView.setX(p.x);
                 imageView.setY(imageView.getY() + p.y + notenOffset);
-
                 System.out.println(note.toString());
-
-                elements.add(note);
             }
 
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
                 pane.getChildren().add(imageView);
-                pane.getChildren().add(vorzeichenView);
             }catch (Exception exception){
                 System.out.println("You exactly touched a line");
             }
 
+            notesAsImages.add(imageView);
 
         }
     }
 
-    private void onMouseExited(MouseEvent mouseEvent) {
-        previewImage.setImage(null);
-    }
-
-    public void onRightClick(MouseEvent mouseEvent){
+    public void onRightClick(javafx.scene.input.MouseEvent mouseEvent){
         System.out.println("Right Click");
 
         Point2D p = new Point2D();
@@ -300,9 +285,8 @@ public class Takt {
         Point2D returnPoint = new Point2D();
         ImageView img = new ImageView();
 
-        for (Element element : elements) {
-
-            Point2D point2D = new Point2D(((float) element.imageView.getX()), ((float) element.imageView.getY()));
+        for (ImageView imageView : notesAsImages) {
+            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
             //System.out.println("Point2D: " + point2D);
             //System.out.println("p: " + p);
 
@@ -310,27 +294,25 @@ public class Takt {
             //System.out.println("Distance" + distance);
             if (distance <= shortestDistance) {
                 shortestDistance = distance;
-                img = element.imageView;
+                img = imageView;
                 returnPoint = point2D;
                 //System.out.println("Shortest Distance: " + shortestDistance);
             }
         }
 
-        //img.setVisible(false);
+        img.setVisible(false);
 
-        for (Element element : elements) {
-            Point2D point2D = new Point2D(((float) element.imageView.getX()), ((float) element.imageView.getY()));
+        for (ImageView imageView : notesAsImages) {
+            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
 
             double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
             if (distance == 0){
-                elements.remove(element);
-                element.img = null;
-                element.imageView = null;
+                notesAsImages.remove(imageView);
                 break;
             }
 
         }
-        //System.out.println(notesAsImages);
+        System.out.println(notesAsImages);
     }
 
     public void setNotenInTakt(int notenInTakt) {

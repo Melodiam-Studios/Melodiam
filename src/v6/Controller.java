@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -65,7 +64,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
-    public static int vorzeichen = 0;
+    public static String vorzeichen = null;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -162,26 +161,6 @@ public class Controller {
         column++;
     }
 
-    //erkent Vorzeichen
-    public void onButtonVorzeichen(ActionEvent actionEvent){
-        ToggleButton btn = (ToggleButton) actionEvent.getSource();
-        String id = btn.getId();
-
-        //b Vorzeichen
-        if (id.equals("bVorzeichen")){
-            vorzeichen = -1;
-        }
-        //kreuzvorzeichen
-        else if (id.equals("kVorzeichen")){
-            vorzeichen = 1;
-        }
-        //
-        else if (id.equals("aVorzeichen")){
-            vorzeichen = 0;
-        }
-    }
-
-    //erkennt Noten bzw Pasuen
     public void onButtonNoten(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String id = btn.getId();
@@ -198,15 +177,29 @@ public class Controller {
         }else if(id.equals(sechzehntelNote.getId())){
             notenInTakt=16;
         }else if(id.equals(ganzePause.getId())){
-            notenInTakt=5;
+            notenInTakt=1*5;
         }else if(id.equals(halbePause.getId())){
-            notenInTakt=10;
+            notenInTakt=2*5;
         }else if(id.equals(viertelPause.getId())){
-            notenInTakt=20;
+            notenInTakt=4*5;
         }else if(id.equals(achtelPause.getId())){
-            notenInTakt=40;
+            notenInTakt=8*5;
         }else if(id.equals(sechzehntelPause.getId())){
-            notenInTakt=80;
+            notenInTakt=16*5;
+        }
+
+        //vorzeichen buttons
+        //b Vorzeichen
+        if (id.equals("bVorzeichen")){
+            vorzeichen = "bv";
+        }
+        //kreuzvorzeichen
+        else if (id.equals("kVorzeichen")){
+            vorzeichen = "kV";
+        }
+        //auflösungsvorzeichen
+        else if (id.equals("aVorzeichen")){
+            vorzeichen = "aV";
         }
     }
 }
