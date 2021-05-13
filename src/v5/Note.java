@@ -30,21 +30,12 @@ public class Note extends Element{
      * describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      */
     private int position;
+
     /**
      * Every image of the different notes needs to be adjusted in its y coordinate.
      * With this variable the y offset gets defined
      */
     private int notenOffsetY;
-    /**
-     * Every image of the different vorzeichen needs a little x adjustment.
-     * With this variable the x offset gets defined
-     */
-    private int vorzeichenOffsetX;
-    /**
-     * Every image of the different vorzeichen needs a little y adjustment.
-     * With this variable the y offset gets defined
-     */
-    private int vorzeichenOffsetY;
     /**
      * Variable responsible for identification of vorzeichen.
      * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
@@ -184,8 +175,17 @@ public class Note extends Element{
      * It sets different images for the different vorzeichen
      */
     private void vorzeichenSetzen() {
+        /**
+         * Every image of the different vorzeichen needs a little x adjustment.
+         * With this variable the x offset gets defined
+         */
+        int vorzeichenOffsetX;
+        /**
+         * Every image of the different vorzeichen needs a little y adjustment.
+         * With this variable the y offset gets defined
+         */
+        int vorzeichenOffsetY;      // img is the image for the vorzeichen
         img = null;
-        // img is the image for the vorzeichen
         // in the switch the image gets chosen
         switch (vorzeichen) {
             case "bV":
@@ -259,8 +259,6 @@ public class Note extends Element{
                 ", notenInTakt=" + notenInTakt +
                 ", position=" + position +
                 ", notenOffsetY=" + notenOffsetY +
-                ", vorzeichenOffsetX=" + vorzeichenOffsetX +
-                ", vorzeichenOffsetY=" + vorzeichenOffsetY +
                 ", vorzeichen='" + vorzeichen + '\'' +
                 '}';
     }
