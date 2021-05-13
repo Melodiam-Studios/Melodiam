@@ -4,7 +4,7 @@ public class Note {
 
     private int wert;
     private int position;
-    private int vorzeichen;
+    private int vorzeichen;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 

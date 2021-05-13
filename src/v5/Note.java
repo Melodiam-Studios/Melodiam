@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 @SuppressWarnings("ConstantConditions")
 public class Note extends Element{
 
-    // fürs b -1, fürs nazikreuz 0, fürs hashtag 1
+    // fürs b -1, für keins 0, fürs hashtag 1
 
 
     /**
@@ -40,7 +40,12 @@ public class Note extends Element{
      * Variable responsible for identification of vorzeichen.
      * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    private String vorzeichen;
+
+    private int wert;
+    private int vorzeichen;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
+    private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
+    private String bezeichnung;
+
 
 
     /**
