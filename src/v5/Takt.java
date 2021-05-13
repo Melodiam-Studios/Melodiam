@@ -7,7 +7,6 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -25,7 +24,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInTakt=10;
+    int notenInTakt=10; // *
     int vorzeichen = 0;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
@@ -92,7 +91,6 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);
         pane.setOnMouseMoved(this::onMouseMoved);
-        pane.setOnMouseExited(this::onMouseExited);
     }
 
     public ArrayList<Point2D> fillList(int notenInT) {
@@ -275,10 +273,6 @@ public class Takt {
 
 
         }
-    }
-
-    private void onMouseExited(MouseEvent mouseEvent) {
-        previewImage.setImage(null);
     }
 
     public void onRightClick(javafx.scene.input.MouseEvent mouseEvent){
