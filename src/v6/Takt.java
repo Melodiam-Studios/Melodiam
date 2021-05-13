@@ -7,7 +7,6 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -95,10 +94,7 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);
         pane.setOnMouseMoved(this::onMouseMoved);
-        pane.setOnMouseExited(this::onMouseExited);
     }
-
-
 
     public ArrayList<Point2D> fillList(int notenInT, int offset) {
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
@@ -119,7 +115,6 @@ public class Takt {
     }
 
     public Point2D objektFang(Point2D p, int notenInT) {
-        System.out.println(p.x + ", " +p.y +", "+ pane);
 
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
 
@@ -163,12 +158,8 @@ public class Takt {
         return returnPoint;
     }
 
-    //Preview löschen wenn man aus dem Takt geht
-    private void onMouseExited(MouseEvent mouseEvent) {
-        previewImage.setImage(null);
-    }
-
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
+
 
         notenInTakt = Controller.notenInTakt;
 
