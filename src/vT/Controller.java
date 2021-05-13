@@ -168,27 +168,24 @@ public class Controller {
     }
 
     private void transponieren(){
+
         ArrayList<Note> noten = new ArrayList<>();
         Transponieren tran = new Transponieren();
         int intervall;
+        int tonleiter = 0;
 
         Note note1 = new Note();
-        /*Note note2 = new Note();
-        Note note3 = new Note();
-        Note note4 = new Note();*/
 
-        note1.setAll(41,2,1, 1, "f");
+        note1.setAll(0,2,1, 0, "");
         noten.add(note1);
-        /*noten.add(note2);
-        noten.add(note3);
-        noten.add(note4);*/
+        Liste.werteAusfuellen(noten,tonleiter);
 
         //System.out.println(intervalle.getSelectionModel().getSelectedIndex());
         intervall = intervalle.getSelectionModel().getSelectedIndex() - 12;
         intervall *= -1;
 
         System.out.println(noten.toString());
-        noten = tran.hauptTrans(noten, intervall, 0);
+        tran.hauptTrans(noten, intervall, tonleiter);
         System.out.println(noten.toString());
     }
 

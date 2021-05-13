@@ -1,5 +1,7 @@
 package vT;
 
+import java.util.ArrayList;
+
 public class Liste {
 
     public static String arr [][] = {
@@ -74,16 +76,28 @@ public class Liste {
         {"78", "24", "1", "fis3"},
     };
 
-    public void werteAusfuellen() {
-        String eingabePosition = "5";   //TEST
-        String eingabeVorzeichen = "1"; //TEST
+    public static void werteAusfuellen(ArrayList<Note> noten, int tonleiter) {
 
-        for (int i = 0; i < arr.length; i++){
-            System.out.println("POSITION: " + eingabePosition + " VORZEICHEN: " +eingabeVorzeichen);
-            if((arr[i][1] == eingabePosition) && (arr[i][2] == eingabeVorzeichen)){
-                System.out.println(arr[i][0] + " " + arr[i][3]);
-                break;
+        int position, vorzeichen, wert = 0, anzeigenVorzeichen = 0;
+        String bezeichnnung = null;
+
+        for (Note note : noten) {
+
+            position = note.getPosition();
+            vorzeichen = note.getVorzeichen();
+
+            for (int i = 0; i < arr.length; i++) {
+                if ((new Integer(arr[i][1]) == position) && (new Integer(arr[i][2]) == vorzeichen)) {
+
+                    wert = new Integer(arr[i][0]);
+                    bezeichnnung = arr[i][3];
+                    break;
+                }
             }
+
+            note.setAll(wert, position, vorzeichen, anzeigenVorzeichen, bezeichnnung);
         }
+
+        Transponieren.erneuereAnzeigen(noten, tonleiter);
     }
 }
