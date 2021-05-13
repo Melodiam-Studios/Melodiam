@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Class Takt is responsable for every Takt that gets created. For every line a Takt-object gets created.
  * A takt can contain 1 ganzeNote, 2 halbeNote, 4 vierteNote, 8 achtelNote, 16 sechzehntelNote
- * it contains the handlers that catches the mouseClick and the the mouseMove
+ * it contains the handlers that catches the mouseClick and the the mouseMoved
  *
  * @author Silas Demez
  */

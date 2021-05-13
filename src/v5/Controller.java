@@ -4,13 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import v5.Takt;
 
 import java.util.ArrayList;
 
@@ -67,7 +65,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
-    public static String vorzeichen = null;
+    public static int vorzeichen = 0;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -171,15 +169,15 @@ public class Controller {
 
         //b Vorzeichen
         if (id.equals("bVorzeichen")){
-            vorzeichen = "bV";
+            vorzeichen = -1;
         }
         //kreuzvorzeichen
         else if (id.equals("kVorzeichen")){
-            vorzeichen = "kV";
+            vorzeichen = 1;
         }
-        //auflösungsvorzeichen
+        //
         else if (id.equals("aVorzeichen")){
-            vorzeichen = "aV";
+            vorzeichen = 0;
         }
     }
 
