@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 /**
  * Class Takt is responsable for every Takt that gets created. For every line a Takt-object gets created.
+ * A takt can contain 1 ganzeNote, 2 halbeNote, 4 vierteNote, 8 achtelNote, 16 sechzehntelNote
+ * it contains the handlers that catches the mouseClick and the the mouseMove
  *
  * @author Silas Demez
  */
@@ -23,7 +25,7 @@ public class Takt {
     float line_length = 275;
     float height = 115;
     int notenInTakt=10; // *
-    String vorzeichen = null;
+    int vorzeichen = 0;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
     Controller controller = loader.getController();
