@@ -55,7 +55,7 @@ public class Note extends Element{
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    public Note(int notenInTakt, int position, String vorzeichen) {
+    public Note(int notenInTakt, int position, int vorzeichen) {
 
         this.notenInTakt = notenInTakt;
         this.position = position;
@@ -89,7 +89,7 @@ public class Note extends Element{
                 imageView.setFitWidth(16);
                 imageView.setY(notenOffsetY);
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -109,7 +109,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -130,7 +130,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -150,7 +150,7 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -170,7 +170,7 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
         }
     }
@@ -193,15 +193,15 @@ public class Note extends Element{
         img = null;
         // in the switch the image gets chosen
         switch (vorzeichen) {
-            case "bV":
+            case -1:
                 // B-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
                 break;
-            case "kV":
+            case 1:
                 // Kreuz-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
                 break;
-            case "aV":
+            case 0:
                 // Auflösungs-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
                 break;
