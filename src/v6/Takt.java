@@ -156,9 +156,10 @@ public class Takt {
 
     public void onMouseMoved(MouseEvent mouseEvent) {
 
-
         notenInTakt = Controller.notenInTakt;
         vorzeichen = Controller.vorzeichen;
+
+        ImageView vorzeichenView = null;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
@@ -180,7 +181,13 @@ public class Takt {
             //Note
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
-            previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
+            vorzeichenView = previewNote.getVorzeichenView();
+
+            vorzeichenView.setX(vorzeichenView.getX() + p.x);
+            vorzeichenView.setY(vorzeichenView.getY() + p.y + notenOffset);
+
+            previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1, vorzeichen);
+
             previewImage = previewNote.getImageView();
 
             previewImage.setX(p.x);
@@ -199,6 +206,7 @@ public class Takt {
         try {
             //pane = (Pane) mouseEvent.getSource();
             pane.getChildren().add(previewImage);
+            pane.getChildren().add(vorzeichenView);
         }catch (Exception exception){
             //System.out.println("You exactly touched a line");
         }

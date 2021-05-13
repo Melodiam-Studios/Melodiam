@@ -229,9 +229,10 @@ public class Note extends Element {
      * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      */
-    public void setNote(int notenInTakt, int position){
+    public void setNote(int notenInTakt, int position, int vorzeichen){
         this.notenInTakt = notenInTakt;
         this.position = position;
+        this.vorzeichen = vorzeichen;
         // calll the function that changes the view
         changeNote();
     }
