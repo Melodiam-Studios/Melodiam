@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 @SuppressWarnings("ConstantConditions")
 public class Note extends Element{
 
-    // fürs b -1, fürs nazikreuz 0, fürs hashtag 1
+    // fürs b -1, für keins 0, fürs hashtag 1
 
 
     /**
@@ -30,26 +30,22 @@ public class Note extends Element{
      * describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      */
     private int position;
+
     /**
      * Every image of the different notes needs to be adjusted in its y coordinate.
      * With this variable the y offset gets defined
      */
     private int notenOffsetY;
     /**
-     * Every image of the different vorzeichen needs a little x adjustment.
-     * With this variable the x offset gets defined
-     */
-    private int vorzeichenOffsetX;
-    /**
-     * Every image of the different vorzeichen needs a little y adjustment.
-     * With this variable the y offset gets defined
-     */
-    private int vorzeichenOffsetY;
-    /**
      * Variable responsible for identification of vorzeichen.
      * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    private String vorzeichen;
+
+    private int wert;
+    private int vorzeichen;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
+    private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
+    private String bezeichnung;
+
 
 
     /**
@@ -59,7 +55,7 @@ public class Note extends Element{
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    public Note(int notenInTakt, int position, String vorzeichen) {
+    public Note(int notenInTakt, int position, int vorzeichen) {
 
         this.notenInTakt = notenInTakt;
         this.position = position;
@@ -93,7 +89,7 @@ public class Note extends Element{
                 imageView.setFitWidth(16);
                 imageView.setY(notenOffsetY);
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -113,7 +109,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -134,7 +130,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -154,7 +150,7 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -174,7 +170,7 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != null) vorzeichenSetzen();
+                if (vorzeichen != 0) vorzeichenSetzen();
                 break;
         }
     }
@@ -184,19 +180,28 @@ public class Note extends Element{
      * It sets different images for the different vorzeichen
      */
     private void vorzeichenSetzen() {
+        /**
+         * Every image of the different vorzeichen needs a little x adjustment.
+         * With this variable the x offset gets defined
+         */
+        int vorzeichenOffsetX;
+        /**
+         * Every image of the different vorzeichen needs a little y adjustment.
+         * With this variable the y offset gets defined
+         */
+        int vorzeichenOffsetY;      // img is the image for the vorzeichen
         img = null;
-        // img is the image for the vorzeichen
         // in the switch the image gets chosen
         switch (vorzeichen) {
-            case "bV":
+            case -1:
                 // B-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
                 break;
-            case "kV":
+            case 1:
                 // Kreuz-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
                 break;
-            case "aV":
+            case 0:
                 // Auflösungs-Vorzeichen
                 img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
                 break;
@@ -259,8 +264,6 @@ public class Note extends Element{
                 ", notenInTakt=" + notenInTakt +
                 ", position=" + position +
                 ", notenOffsetY=" + notenOffsetY +
-                ", vorzeichenOffsetX=" + vorzeichenOffsetX +
-                ", vorzeichenOffsetY=" + vorzeichenOffsetY +
                 ", vorzeichen='" + vorzeichen + '\'' +
                 '}';
     }
