@@ -8,10 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 
 public class Main extends Application {
+
 
     private int row = 0;
     private int column = 0;
@@ -27,7 +26,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 600  , 400);
 
         //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
-        scene.getStylesheets().add("v6/style.css");
+        scene.getStylesheets().add("/v6/style.css");
         primaryStage.setTitle("Melodiam v6");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
