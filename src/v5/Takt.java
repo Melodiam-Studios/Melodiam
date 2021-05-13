@@ -22,7 +22,7 @@ public class Takt {
     int n = 0;
     float line_length = 275;
     float height = 115;
-    int notenInTakt=10;
+    int notenInTakt=10; // *
     String vorzeichen = null;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
@@ -35,7 +35,7 @@ public class Takt {
     ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2));
     ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1));
 
-    ArrayList<ImageView> notesAsImages = new ArrayList<>();
+    ArrayList<Element> elements = new ArrayList<>();
     @FXML
     ImageView previewImage = new ImageView();
     Note previewNote = new Note(notenInTakt, -1000000, vorzeichen);
@@ -181,7 +181,7 @@ public class Takt {
             previewImage = previewNote.getImageView();
 
             previewImage.setX(p.x);
-            int tempOffsetY = previewNote.getOffsetY();
+            int tempOffsetY = previewNote.getNotenOffsetY();
             previewImage.setY(tempOffsetY + p.y+notenOffset);/*
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
             System.out.println("After: " + p);
@@ -226,6 +226,7 @@ public class Takt {
 
 
             ImageView imageView;
+            ImageView vorzeichenView = null;
 
             if (notenInTakt % 5 == 0){
                 // Pause
@@ -238,25 +239,36 @@ public class Takt {
                 imageView.setY(imageView.getY() + 43);
                 System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 System.out.println(pause.toString());
+                elements.add(pause);
             }else{
                 //Note
                 p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
                 System.out.println("After: " + p);
+
                 Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
+
                 imageView = note.getImageView();
-                imageView.setX(p.x);
+                vorzeichenView = note.getVorzeichenView();
+
+                vorzeichenView.setX(vorzeichenView.getX() + p.x);
+                vorzeichenView.setY(vorzeichenView.getY() + p.y + notenOffset);
+
+                imageView.setX(imageView.getX() + p.x);
                 imageView.setY(imageView.getY() + p.y + notenOffset);
+
                 System.out.println(note.toString());
+
+                elements.add(note);
             }
 
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
                 pane.getChildren().add(imageView);
+                pane.getChildren().add(vorzeichenView);
             }catch (Exception exception){
                 System.out.println("You exactly touched a line");
             }
 
-            notesAsImages.add(imageView);
 
         }
     }
@@ -273,8 +285,9 @@ public class Takt {
         Point2D returnPoint = new Point2D();
         ImageView img = new ImageView();
 
-        for (ImageView imageView : notesAsImages) {
-            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
+        for (Element element : elements) {
+
+            Point2D point2D = new Point2D(((float) element.imageView.getX()), ((float) element.imageView.getY()));
             //System.out.println("Point2D: " + point2D);
             //System.out.println("p: " + p);
 
@@ -282,25 +295,27 @@ public class Takt {
             //System.out.println("Distance" + distance);
             if (distance <= shortestDistance) {
                 shortestDistance = distance;
-                img = imageView;
+                img = element.imageView;
                 returnPoint = point2D;
                 //System.out.println("Shortest Distance: " + shortestDistance);
             }
         }
 
-        img.setVisible(false);
+        //img.setVisible(false);
 
-        for (ImageView imageView : notesAsImages) {
-            Point2D point2D = new Point2D(((float) imageView.getX()), ((float) imageView.getY()));
+        for (Element element : elements) {
+            Point2D point2D = new Point2D(((float) element.imageView.getX()), ((float) element.imageView.getY()));
 
             double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
             if (distance == 0){
-                notesAsImages.remove(imageView);
+                elements.remove(element);
+                element.img = null;
+                element.imageView = null;
                 break;
             }
 
         }
-        System.out.println(notesAsImages);
+        //System.out.println(notesAsImages);
     }
 
     public void setNotenInTakt(int notenInTakt) {

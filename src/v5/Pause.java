@@ -1,12 +1,9 @@
 package v5;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Pause {
-    @FXML Image img;
-    @FXML ImageView imageView = new ImageView();
+public class Pause extends Element{
 
     int pausenInTakt;
     int offsetY;

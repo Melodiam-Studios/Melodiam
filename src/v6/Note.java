@@ -17,6 +17,7 @@ public class Note {
     int notenInTakt;
     int position;
     int offsetY;
+    int vorzeichen;
 
 
     public Note(int notenInTakt, int position) {
