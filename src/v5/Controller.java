@@ -21,6 +21,10 @@ public class Controller {
     @FXML ImageView previewImage = new ImageView();
     int offset = -15;
 
+    public static ArrayList<Takt> takte = new ArrayList<>();
+
+    int counter=0;
+
     @FXML
     AnchorPane anchorP;
 
@@ -151,15 +155,23 @@ public class Controller {
 
 
         if (column == 0){
-            Takt takt = new Takt(true);
+            Takt takt = new Takt(true, counter);
+            counter++;
             storeLines.add(takt.getPane());
+            takte.add(takt);
             drawPane(storeLines, mainInputPane);
         }else{
-            Takt takt = new Takt(false);
+            Takt takt = new Takt(false, counter);
+            counter++;
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
+            takte.add(takt);
         }
         column++;
+    }
+
+    public static Takt getTakt(int taktID){
+        return takte.get(taktID);
     }
 
     //erkent Vorzeichen

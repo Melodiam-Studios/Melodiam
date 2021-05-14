@@ -3,6 +3,7 @@ package v5;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 /**
  * For each element of Note a new Image of the note gets placed in the GUI.
@@ -41,6 +42,11 @@ public class Note extends Element{
      * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
 
+    private Pane pane = null;
+
+    private Takt takt = null;
+    private int taktID = 0;
+
     private int wert;
     private int vorzeichen;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
@@ -55,11 +61,14 @@ public class Note extends Element{
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    public Note(int notenInTakt, int position, int vorzeichen) {
+    public Note(int notenInTakt, int position, int vorzeichen, int taktID) {
 
         this.notenInTakt = notenInTakt;
         this.position = position;
         this.vorzeichen =  vorzeichen;
+        this.taktID = taktID;
+
+        takt = Controller.getTakt(taktID);
 
         // adjust the view of the note based on the properties that were set before
         changeNote();
@@ -70,8 +79,6 @@ public class Note extends Element{
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
     private void changeNote(){
-
-        //pane = Controller.get //
 
         /*
         switch that distinguished between the different types of notes
@@ -175,6 +182,10 @@ public class Note extends Element{
                 if (vorzeichen != 0) vorzeichenSetzen();
                 break;
         }
+
+        pane.getChildren().add(imageView);
+        pane.getChildren().add(vorzeichenView);
+        takt.setPane(pane);
     }
 
     /**

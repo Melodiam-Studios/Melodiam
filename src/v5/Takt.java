@@ -42,6 +42,8 @@ public class Takt {
      */
     int vorzeichen = 0;
 
+    int id;
+
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
 
     /**
@@ -69,7 +71,7 @@ public class Takt {
     /**
      * Note responsible for the preview of Noten
      */
-    Note previewNote = new Note(notenInTakt, -1000000, vorzeichen);
+    Note previewNote = null;
     /**
      * Pause responsible for the preview of Pausen
      */
@@ -84,7 +86,9 @@ public class Takt {
      *
      * @param needSchluessel for placing the Notenschlüssel --> needSchluessel == true --> Notenschluessel gets placed
      */
-    public Takt(boolean needSchluessel){
+    public Takt(boolean needSchluessel, int id){
+
+        this.id = id;
 
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
@@ -317,16 +321,16 @@ public class Takt {
                 p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
                 System.out.println("After: " + p);
 
-                Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
+                Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen, id);
 
-                imageView = note.getImageView();
-                vorzeichenView = note.getVorzeichenView();
+                //imageView = note.getImageView();
+                //vorzeichenView = note.getVorzeichenView();
 
-                vorzeichenView.setX(vorzeichenView.getX() + p.x);
-                vorzeichenView.setY(vorzeichenView.getY() + p.y + offsetY);
+                //vorzeichenView.setX(vorzeichenView.getX() + p.x);
+                //vorzeichenView.setY(vorzeichenView.getY() + p.y + offsetY);
 
-                imageView.setX(imageView.getX() + p.x);
-                imageView.setY(imageView.getY() + p.y + offsetY);
+                //imageView.setX(imageView.getX() + p.x);
+                //imageView.setY(imageView.getY() + p.y + offsetY);
 
                 System.out.println(note.toString());
 
@@ -335,8 +339,9 @@ public class Takt {
 
             try {
                 //Pane pane = (Pane) mouseEvent.getSource();
-                pane.getChildren().add(imageView);
-                pane.getChildren().add(vorzeichenView);
+                //pane.getChildren().add(imageView);
+                //pane.getChildren().add(vorzeichenView);
+                System.out.println("dhgfsd");
             }catch (Exception exception){
                 System.out.println("You exactly touched a line");
             }
