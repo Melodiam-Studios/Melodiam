@@ -39,7 +39,7 @@ public class Takt {
      * B.Vorzeichen --> 0
      * kein Vorzeichen --> -1
      */
-    int vorzeichen = 0;
+    int vorzeichen = 3;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
 

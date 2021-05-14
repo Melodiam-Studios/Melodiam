@@ -65,7 +65,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
-    public static int vorzeichen = 0;
+    public static int vorzeichen = 3;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
