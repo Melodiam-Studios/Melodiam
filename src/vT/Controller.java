@@ -100,6 +100,15 @@ public class Controller {
         intervalle.getSelectionModel().select("r. 1");
     }
 
+    public void addInstrumente(){
+        String interv[] = {
+                "Piano",
+                "Trumpet",
+                "Violin"};
+
+        intervalle.setItems(FXCollections.observableArrayList(interv));
+        intervalle.getSelectionModel().select("Trompete");
+    }
 
     //Schaut welcher Key gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
     public void keyPresed(Scene scene, KeyEvent event){
@@ -170,7 +179,6 @@ public class Controller {
     private void transponieren(){
 
         ArrayList<Note> noten = new ArrayList<>();
-        Transponieren tran = new Transponieren();
         int intervall;
         int tonleiter = 0;
 
@@ -185,7 +193,7 @@ public class Controller {
         intervall *= -1;
 
         System.out.println(noten.toString());
-        tran.hauptTrans(noten, intervall, tonleiter);
+        Transponieren.hauptTrans(noten, intervall, tonleiter);
         System.out.println(noten.toString());
     }
 

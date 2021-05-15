@@ -2,21 +2,35 @@ package vT;
 
 import java.util.ArrayList;
 
+/**
+ * In der Klasse Transponieren kann man die übergebenen Noten und die dazugehörige Tonleiter transponieren lassen.
+ * Dies funktioniert mithilfe des übergebenen Intervalls.
+ * Möchte man die Noten von einem Instrument zu einem anderen transponieren, so muss man das dazugehörige Intervall berechnen und dieses dann einfach übergeben.
+ * Zusätzlich gibt es hier eine Methode, welche im Stande ist zu berechnen ob ein Vorzeichen einer Note angezeign oder nicht angezeigt werden muss, oder ob ein Auflösezeichen angezeigt werden muss.
+ */
 public class Transponieren {
 
-    private int intervall;
+    /**
+     * Diese Methode ist die Hauptmethode welche zum Transponieren aufgerufen werden muss.
+     * @param noten übergibt die Noten.
+     * @param intervall ist das Intervall, um welches transponiert werden soll.
+     * @param tonleiter übergibt die aktuelle Tonleiter (z.B. 0 für C-Dur).
+     */
+    public static void hauptTrans (ArrayList<Note> noten, int intervall, int tonleiter){
 
-    public void hauptTrans (ArrayList<Note> noten, int intervall, int tonleiter){
-
-        this.intervall = intervall;
-
-        tonleiter = bestimmeTonleiter(tonleiter);
-        notenTransponieren(noten, tonleiter);
+        tonleiter = bestimmeTonleiter(tonleiter, intervall);
+        notenTransponieren(noten, tonleiter, intervall);
 
         //return noten;
     }
 
-    private int bestimmeTonleiter (int tonleiter){
+    /**
+     * Hier wird die neue Tonleiter bestimmt.
+     * @param tonleiter übergibt die alte Tonleiter.
+     * @param intervall übergibt das Intervall.
+     * @return gibt die neue Tonleiter zurück.
+     */
+    private static int bestimmeTonleiter(int tonleiter, int intervall){
 
         String bezeichnungTonl = "";
 
@@ -86,7 +100,13 @@ public class Transponieren {
         return tonleiter;
     }
 
-    private void notenTransponieren (ArrayList<Note> noten, int tonleiter){
+    /**
+     * Hier werden alle Noten transponiert
+     * @param noten übergibt die Noten.
+     * @param tonleiter übergibt die neue Tonleiter.
+     * @param intervall übergibt das Intervall.
+     */
+    private static void notenTransponieren(ArrayList<Note> noten, int tonleiter, int intervall){
 
         int wert;
         int anzeigen;
@@ -128,7 +148,12 @@ public class Transponieren {
         //System.out.println(noten.toString());
     }
 
-    // Erneuert das Attribut vorzeichenAnzeigen für jede einzelne Note
+    /**
+     * Erneuert das Attribut vorzeichenAnzeigen für jede einzelne Note.
+     * z.B. das Kreuzvorzeichen beim fis wird nicht angezeigt, wenn vorne aufgrund der Tonleiter bereits ein Vorzeichen steht.
+     * @param noten übergibt die Noten.
+     * @param tonleiter übergibt die neue Tonleiter.
+     */
     public static void erneuereAnzeigen (ArrayList<Note> noten, int tonleiter){
 
         int wert, vorzeichen;

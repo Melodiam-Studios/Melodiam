@@ -2,8 +2,15 @@ package vT;
 
 import java.util.ArrayList;
 
+/**
+ * In der Klasse Liste befindet sich die Liste arr[][] mit den ganzen möglichen Noten und eine dazugehörige statische Methode welche Noten vervollständigt.
+ */
 public class Liste {
 
+    /**
+     * Beinhaltet alle möglichen Noten, mit den jeweiligen Werten, Positionen, Vorzeichen und Bezeichnungen.
+     * z.B. {"39", "2", "-1", "es"} -> 39=Wert, 2=Position, -1=Vorzeichen, es=Bezeichnung
+     */
     public static String arr [][] = {
         {"39", "2", "-1", "es"},
         {"40", "2", "0", "e"},
@@ -76,6 +83,11 @@ public class Liste {
         {"78", "24", "1", "fis3"},
     };
 
+    /**
+     * Hier werden alle weiteren Werte einer Note ausgefüllt, vorausgesetzt, die Noten haben bereits eine Position und ein Vorzeichen.
+     * @param noten übergibt die Noten.
+     * @param tonleiter übergibt die Tonleiter, damit erneuereAnzeigen aufgerufen werden kann (berechnet ob das Vorzeichen angezeigt wird.)
+     */
     public static void werteAusfuellen(ArrayList<Note> noten, int tonleiter) {
 
         int position, vorzeichen, wert = 0, anzeigenVorzeichen = 0;
