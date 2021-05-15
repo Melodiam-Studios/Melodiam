@@ -33,6 +33,7 @@ public class Main extends Application {
         primaryStage.show();
 
         controller.addFile();
+        controller.addIntervalle();
 
         //liest tastatureingabe ein
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

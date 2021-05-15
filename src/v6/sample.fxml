@@ -80,12 +80,16 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <ChoiceBox prefHeight="30.0" prefWidth="228.0">
+                        <ChoiceBox fx:id="intervalle" prefHeight="30.0" prefWidth="228.0">
                             <HBox.margin>
                                 <Insets right="10.0" />
 
                             </HBox.margin>
                         </ChoiceBox>
+                        <Button fx:id="bTrans" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="50.0" text="OK">
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin></Button>
                         <Slider prefHeight="30.0" prefWidth="140.0" />
                     </children></HBox>
             </top>

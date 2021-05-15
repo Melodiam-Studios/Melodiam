@@ -260,6 +260,30 @@ public class Note extends Element {
         return notenOffsetY;
     }
 
+    public void setAll(int wert, int position, int vorzeichen, int anzeigenVorzeichen, String bezeichnung) {
+        this.wert = wert;
+        this.position = position;
+        this.vorzeichen = vorzeichen;
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
+        this.bezeichnung = bezeichnung;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getWert() {
+        return wert;
+    }
+
+    public int getVorzeichen() {
+        return vorzeichen;
+    }
+
+    public void setAnzeigenVorzeichen(int anzeigenVorzeichen) {
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
+    }
+
     @Override
     public String toString() {
         return "Note{" +

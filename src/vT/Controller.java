@@ -107,7 +107,7 @@ public class Controller {
                 "Violin"};
 
         intervalle.setItems(FXCollections.observableArrayList(interv));
-        intervalle.getSelectionModel().select("Trompete");
+        intervalle.getSelectionModel().select("Piano");
     }
 
     //Schaut welcher Key gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
