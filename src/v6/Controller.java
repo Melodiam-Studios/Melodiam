@@ -183,15 +183,28 @@ public class Controller {
 
         //b Vorzeichen
         if (id.equals("bVorzeichen")){
-            vorzeichen = -1;
+            if (vorzeichen == 3 || vorzeichen == 1 || vorzeichen == 0){
+                vorzeichen = -1;
+            }else{
+                vorzeichen = 3;
+            }
+
         }
         //kreuzvorzeichen
         else if (id.equals("kVorzeichen")){
-            vorzeichen = 1;
+            if (vorzeichen == 3 || vorzeichen == 0 || vorzeichen == -1){
+                vorzeichen = 1;
+            }else{
+                vorzeichen = 3;
+            }
         }
         //Auflösezeichen
         else if (id.equals("aVorzeichen")){
-            vorzeichen = 0;
+            if (vorzeichen == 3 || vorzeichen == 1 || vorzeichen == -1){
+                vorzeichen = 0;
+            }else{
+                vorzeichen = 3;
+            }
         }
     }
 
