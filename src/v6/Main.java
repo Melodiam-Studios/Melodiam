@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -22,6 +23,9 @@ public class Main extends Application {
         Parent root = loader.load();
 
         Controller controller = loader.<Controller>getController();
+
+        Image image = new Image("/resources/melodiam_icon.png");
+        primaryStage.getIcons().add(image);
 
         Scene scene = new Scene(root, 600  , 400);
 
