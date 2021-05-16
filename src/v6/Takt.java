@@ -400,8 +400,8 @@ public class Takt {
             double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
             if (distance == 0){
                 elements.remove(element);
-                element.img = null;
-                element.imageView = null;
+                // element.remove from list with notes usw.
+                pane.getChildren().remove(element.imageView);
                 break;
             }
 
