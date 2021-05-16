@@ -3,7 +3,6 @@ package v5;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 /**
  * For each element of Note a new Image of the note gets placed in the GUI.
@@ -42,7 +41,6 @@ public class Note extends Element{
      * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
 
-    private Pane pane = null;
 
     private Takt takt = null;
     private int taktID = 0;
@@ -63,6 +61,9 @@ public class Note extends Element{
      */
     public Note(int notenInTakt, int position, int vorzeichen, int taktID) {
 
+        pane.getChildren().add(imageView);
+        pane.getChildren().add(vorzeichenView);
+
         this.notenInTakt = notenInTakt;
         this.position = position;
         this.vorzeichen =  vorzeichen;
@@ -74,11 +75,25 @@ public class Note extends Element{
         changeNote();
     }
 
+    public Note(int taktID) {
+
+        pane.getChildren().add(imageView);
+        pane.getChildren().add(vorzeichenView);
+
+        this.notenInTakt = 8;
+        this.position = -100;
+        this.vorzeichen =  0;
+        this.taktID = taktID;
+    }
+
     /**
      * adjusts the view of the note based on the properties of the class {@link Note}
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
     private void changeNote(){
+
+        takt = Controller.getTakt(taktID);
+        int index = takt.pane.getChildren().indexOf(imageView);
 
         /*
         switch that distinguished between the different types of notes
@@ -183,9 +198,8 @@ public class Note extends Element{
                 break;
         }
 
-        pane.getChildren().add(imageView);
-        pane.getChildren().add(vorzeichenView);
-        takt.setPane(pane);
+
+        takt.pane.getChildren().add(index, imageView);
     }
 
     /**
@@ -245,7 +259,7 @@ public class Note extends Element{
     public void setNote(int notenInTakt, int position){
         this.notenInTakt = notenInTakt;
         this.position = position;
-        // calll the function that changes the view
+        // call the function that changes the view
         changeNote();
     }
 

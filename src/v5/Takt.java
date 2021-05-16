@@ -42,6 +42,10 @@ public class Takt {
      */
     int vorzeichen = 0;
 
+    /**
+     * id has a unique value for every takt that gets created
+     * with the help of the id the Note knows wich takt created her
+     */
     int id;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
@@ -71,7 +75,7 @@ public class Takt {
     /**
      * Note responsible for the preview of Noten
      */
-    Note previewNote = null;
+    Note previewNote = previewNote = new Note(id);
     /**
      * Pause responsible for the preview of Pausen
      */
@@ -89,6 +93,7 @@ public class Takt {
     public Takt(boolean needSchluessel, int id){
 
         this.id = id;
+        pane.getChildren().add(previewImageView);
 
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
@@ -254,11 +259,13 @@ public class Takt {
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
 
             previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1);
-            previewImageView = previewNote.getImageView();
+            //previewImageView = previewNote.getImageView();
 
-            previewImageView.setX(p.x);
-            int tempOffsetY = previewNote.getNotenOffsetY();
-            previewImageView.setY(tempOffsetY + p.y+ offsetY);/*
+            //previewImageView.setX(p.x);
+            //int tempOffsetY = previewNote.getNotenOffsetY();
+            //previewImageView.setY(tempOffsetY + p.y+ offsetY);
+            /*
+
             p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
             System.out.println("After: " + p);
             Note note = new Note(notenInTakt, (int) (p.y / 5) + 1) ;
@@ -268,14 +275,6 @@ public class Takt {
             System.out.println(note.toString());
             */
         }
-
-        try {
-            //pane = (Pane) mouseEvent.getSource();
-            pane.getChildren().add(previewImageView);
-        }catch (Exception exception){
-            //System.out.println("You exactly touched a line");
-        }
-
 
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
