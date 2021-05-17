@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * In der Klasse Liste befindet sich die Liste arr[][] mit den ganzen möglichen Noten und eine dazugehörige statische Methode welche Noten vervollständigt.
  */
 public class Liste {
+    static int n = 0;
 
     /**
      * Beinhaltet alle möglichen Noten, mit den jeweiligen Werten, Positionen, Vorzeichen und Bezeichnungen.
@@ -82,6 +83,76 @@ public class Liste {
         {"77", "24", "0", "f3"},
         {"78", "24", "1", "fis3"},
     };
+
+    public static ArrayList<Integer> positions = new ArrayList<>();/*
+    position.set()
+            {23, 2},
+            {22, 3},
+            {21, 4},
+            {20, 5},
+            {19, 6},
+            {18, 7},
+            {17, 8},
+            {16, 9},
+            {15, 10},
+            {14, 11},
+            {13, 12},
+            {12, 13},
+            {11, 14},
+            {10, 15},
+            {9, 16},
+            {8, 17},
+            {7, 18},
+            {6, 19},
+            {5, 20},
+            {4, 21},
+            {3, 22},
+            {2, 23},
+            {1, 24}
+    };
+
+*/
+    public static void createList(){
+        positions.add(-10000000);
+        positions.add(24);
+        positions.add(23);
+        positions.add(22);
+        positions.add(21);
+        positions.add(20);
+        positions.add(19);
+        positions.add(18);
+        positions.add(17);
+        positions.add(16);
+        positions.add(15);
+        positions.add(14);
+        positions.add(13);
+        positions.add(12);
+        positions.add(11);
+        positions.add(10);
+        positions.add(9);
+        positions.add(8);
+        positions.add(7);
+        positions.add(6);
+        positions.add(5);
+        positions.add(4);
+        positions.add(3);
+        positions.add(2);
+    }
+
+    public static int positionumsetzen(int position){
+
+        if( n == 0) {
+            createList();
+            n++;
+        }
+        //System.out.println("Position counting from above: " + position);
+
+        position = positions.get(position);
+
+        //System.out.println("Real position: " + position);
+
+        return position;
+    }
 
     /**
      * Hier werden alle weiteren Werte einer Note ausgefüllt, vorausgesetzt, die Noten haben bereits eine Position und ein Vorzeichen.

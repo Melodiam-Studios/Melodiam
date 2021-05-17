@@ -77,7 +77,7 @@ public class Takt {
     /**
      * Note responsible for the preview of Noten
      */
-    Note previewNote = new Note(notenInTakt, -1000000, vorzeichen);
+    Note previewNote = new Note(notenInTakt, 0, vorzeichen);
     /**
      * Pause responsible for the preview of Pausen
      */

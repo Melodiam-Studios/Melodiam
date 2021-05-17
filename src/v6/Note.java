@@ -17,7 +17,7 @@ public class Note extends Element {
 
     /**
      * Variable responsible for showing the Vorzeichen of the note.
-     * It gets set by the constructor-called function {@link Note#changeNote()} when a new note is placed
+     * It gets set by the constructor-called function {@link Note#changeNote(boolean)} when a new note is placed
      */
     @FXML
     private ImageView vorzeichenView = new ImageView();
@@ -38,7 +38,7 @@ public class Note extends Element {
     private int notenOffsetY;
     /**
      * Variable responsible for identification of vorzeichen.
-     * The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
 
     private int wert;
@@ -53,23 +53,23 @@ public class Note extends Element {
      *
      * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
-     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote()}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
     public Note(int notenInTakt, int position, int vorzeichen) {
 
         this.notenInTakt = notenInTakt;
-        this.position = position;
+        this.position = Liste.positionumsetzen(position);
         this.vorzeichen =  vorzeichen;
 
         // adjust the view of the note based on the properties that were set before
-        changeNote();
+        changeNote(false);
     }
 
     /**
      * adjusts the view of the note based on the properties of the class {@link Note}
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
-    private void changeNote(){
+    private void changeNote(boolean isTransponiert){
 
         //pane = Controller.get //
 
@@ -95,7 +95,7 @@ public class Note extends Element {
                 break;
             case 2:
                 // Halbe Note
-                if (position <= 12) {       // when position is smaller than 12 --> HalbeNoteOben
+                if (position <= 13) {       // when position is smaller than 12 --> HalbeNoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/HalbenoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -115,8 +115,7 @@ public class Note extends Element {
                 break;
             case 4:
                 // Viertel Note
-                if (position <= 12) {       // when position is smaller than 12 --> ViertelNoteOben
-                    System.out.println("Pos is smaller than 12");
+                if (position <= 13) {       // when position is smaller than 12 --> ViertelNoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -136,7 +135,7 @@ public class Note extends Element {
                 break;
             case 8:
                 // Achtel Note
-                if (position <= 12) {       // when position is smaller than 12 --> AchtelnoteOben
+                if (position <= 13) {       // when position is smaller than 12 --> AchtelnoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/AchtelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -156,7 +155,7 @@ public class Note extends Element {
                 break;
             case 16:
                 // Halbe Note
-                if (position <= 12) {       // when position is smaller than 12 --> SechzehntelnoteOben
+                if (position <= 13) {       // when position is smaller than 12 --> SechzehntelnoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/SechzehntelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -210,33 +209,77 @@ public class Note extends Element {
                 break;
             case 2:
                 vorzeichen = 0;
+                int positionTest = 0;
+                int anzeigenVorzeichenTest = 0;
                 switch (Notenblatt.getTonleiter()){
                     case -6:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
+                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
+                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
+                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
+                        else if (positionTest == 4) anzeigenVorzeichenTest = -1;    //ges
+                        else if (positionTest == 0) anzeigenVorzeichenTest = -1;
                         break;
                     case -5:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
+                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
+                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
+                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
+                        else if (positionTest == 4) anzeigenVorzeichenTest = -1;    //ges
                         break;
                     case -4:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
+                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
+                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
+                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
                         break;
                     case -3:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
+                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
+                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
                         break;
                     case -2:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
+                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
                         break;
                     case -1:
+                        if(positionTest == 6) anzeigenVorzeichenTest=-1;
                         break;
                     case 0:
                         vorzeichen = 0;
                         break;
                     case 1:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
                         break;
                     case 2:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
+                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
                         break;
                     case 3:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
+                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
+                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
                         break;
                     case 4:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
+                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
+                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
+                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
                         break;
                     case 5:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
+                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
+                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
+                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
+                        else if (positionTest == 5) anzeigenVorzeichenTest = 1;   //ais
                         break;
                     case 6:
+                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
+                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
+                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
+                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
+                        else if (positionTest == 5) anzeigenVorzeichenTest = 1;   //ais
+                        else if (positionTest == 2) anzeigenVorzeichenTest = 1;   //eis
                         break;
                 }
                 break;
@@ -266,10 +309,10 @@ public class Note extends Element {
      */
     public void setNote(int notenInTakt, int position, int vorzeichen){
         this.notenInTakt = notenInTakt;
-        this.position = position;
+        this.position = Liste.positionumsetzen(position);
         this.vorzeichen = vorzeichen;
         // calll the function that changes the view
-        changeNote();
+        changeNote(false);
     }
 
     /**
