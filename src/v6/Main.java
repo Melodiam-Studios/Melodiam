@@ -24,7 +24,7 @@ public class Main extends Application {
 
         Controller controller = loader.<Controller>getController();
 
-        Image image = new Image("/resources/melodiam_icon.png");
+        Image image = new Image("/resources/melodiam_testicon.png");
         primaryStage.getIcons().add(image);
 
         Scene scene = new Scene(root, 600  , 400);

@@ -1,24 +1,26 @@
 package v6;
 
-import v4_2.Takt;
+import java.util.ArrayList;
 
 public class Notenblatt {
-    /*
-    int vorzeichen;
-    ArrayList<Takt> takte = new ArrayList<>();
-    Takt t1 = new Takt();
 
-     */
+    private static int tonleiter = 0;
+    private static ArrayList<Note> allNotes = new ArrayList<>();
 
-    private void addTakt(Takt takte){
-    /*
-    takte.add(t1);
-
-     */
+    public static void addNote (Note note){
+        allNotes.add(note);
     }
 
-    private void removeTakt(Takt takte){/*
-    takte.remove(t1);
-    */
+    public static ArrayList<Note> getNotes (){
+        return allNotes;
+    }
+
+    public static int getTonleiter() {
+        return tonleiter;
+    }
+
+    @Override
+    public String toString() {
+        return "Noten: " + allNotes;
     }
 }

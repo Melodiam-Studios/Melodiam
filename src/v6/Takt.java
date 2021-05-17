@@ -60,6 +60,7 @@ public class Takt {
      */
     ArrayList<Element> elements = new ArrayList<>();
 
+
     /**
      * ImageView responsible for the Preview of the selected Note or Pause
      */
@@ -341,9 +342,10 @@ public class Takt {
                 imageView.setX(imageView.getX() + p.x);
                 imageView.setY(imageView.getY() + p.y + offsetY);
 
-                System.out.println(note.toString());
+                //System.out.println(note.toString());
 
                 elements.add(note);
+                Notenblatt.addNote(note);
             }
 
             try {

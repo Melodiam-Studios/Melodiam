@@ -114,6 +114,9 @@ public class Transponieren {
         boolean exit;
 
         for (Note note : noten) {
+
+            System.out.println(note.getWert());
+
             wert = note.getWert() + intervall;
             anzeigen = 1;
             exit = false;

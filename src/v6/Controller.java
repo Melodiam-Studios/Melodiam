@@ -11,9 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import vT.Liste;
-import vT.Note;
-import vT.Transponieren;
 
 import java.util.ArrayList;
 
@@ -282,17 +279,13 @@ public class Controller {
 
     private void transponieren(){
 
-        ArrayList<vT.Note> noten = new ArrayList<>();
         int intervall;
-        int tonleiter = 0;
+        int tonleiter = Notenblatt.getTonleiter();
 
-        vT.Note note1 = new Note();
+        ArrayList<Note> noten = Notenblatt.getNotes();
 
-        note1.setAll(0,2,1, 0, "");
-        noten.add(note1);
-        Liste.werteAusfuellen(noten,tonleiter);
+        Liste.werteAusfuellen(noten, tonleiter);
 
-        //System.out.println(intervalle.getSelectionModel().getSelectedIndex());
         intervall = intervalle.getSelectionModel().getSelectedIndex() - 12;
         intervall *= -1;
 

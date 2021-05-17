@@ -42,7 +42,7 @@ public class Note extends Element {
      */
 
     private int wert;
-    private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Auflöse Vorzeichen, 1 = Kreuzvorzeichen
+    private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
