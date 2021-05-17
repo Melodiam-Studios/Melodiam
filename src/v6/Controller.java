@@ -73,7 +73,7 @@ public class Controller {
     private int lenghtPane = 275;
     private int hightPane = 200;
     public static int notenInTakt = 0;
-    public static int vorzeichen = 3;
+    public static int vorzeichen = 2;
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -180,7 +180,7 @@ public class Controller {
 
         //b Vorzeichen
         if (id.equals("bVorzeichen")){
-            if (vorzeichen == 0 || vorzeichen == 1 || vorzeichen == 0){
+            if (vorzeichen == 2 || vorzeichen == 1 || vorzeichen == 0){
                 vorzeichen = -1;
             }else{
                 vorzeichen = 2;
@@ -189,7 +189,7 @@ public class Controller {
         }
         //kreuzvorzeichen
         else if (id.equals("kVorzeichen")){
-            if (vorzeichen == 0 || vorzeichen == 0 || vorzeichen == -1){
+            if (vorzeichen == 2 || vorzeichen == -1 || vorzeichen == 0){
                 vorzeichen = 1;
             }else{
                 vorzeichen = 2;
@@ -197,7 +197,7 @@ public class Controller {
         }
         //Auflösezeichen
         else if (id.equals("aVorzeichen")){
-            if (vorzeichen == 0 || vorzeichen == 1 || vorzeichen == -1){
+            if (vorzeichen == 2 || vorzeichen == 1 || vorzeichen == -1){
                 vorzeichen = 0;
             }else{
                 vorzeichen = 2;
@@ -292,5 +292,9 @@ public class Controller {
         System.out.println(noten.toString());
         Transponieren.hauptTrans(noten, intervall, tonleiter);
         System.out.println(noten.toString());
+
+        for (Note note:noten) {
+            note.setNote(note.getNotenInTakt(), note.getPosition(),note.getVorzeichen());
+        }
     }
 }

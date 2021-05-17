@@ -15,6 +15,10 @@ public class Notenblatt {
         return allNotes;
     }
 
+    public static void setTonleiter(int tonleiter) {
+        Notenblatt.tonleiter = tonleiter;
+    }
+
     public static int getTonleiter() {
         return tonleiter;
     }

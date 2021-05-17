@@ -21,6 +21,7 @@ public class Transponieren {
         tonleiter = bestimmeTonleiter(tonleiter, intervall);
         notenTransponieren(noten, tonleiter, intervall);
 
+        Notenblatt.setTonleiter(tonleiter);
         //return noten;
     }
 

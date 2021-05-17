@@ -91,7 +91,7 @@ public class Note extends Element {
                 imageView.setFitWidth(16);
                 imageView.setY(notenOffsetY);
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -111,7 +111,7 @@ public class Note extends Element {
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -132,7 +132,7 @@ public class Note extends Element {
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -152,7 +152,7 @@ public class Note extends Element {
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -172,7 +172,7 @@ public class Note extends Element {
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
         }
     }
@@ -209,6 +209,7 @@ public class Note extends Element {
                 img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
                 break;
             case 2:
+                vorzeichen = 0;
                 switch (Notenblatt.getTonleiter()){
                     case -6:
                         break;
@@ -314,6 +315,10 @@ public class Note extends Element {
 
     public void setAnzeigenVorzeichen(int anzeigenVorzeichen) {
         this.anzeigenVorzeichen = anzeigenVorzeichen;
+    }
+
+    public int getNotenInTakt() {
+        return notenInTakt;
     }
 
     @Override
