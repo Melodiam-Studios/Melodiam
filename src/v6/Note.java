@@ -1,5 +1,6 @@
 package v6;
 
+import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +18,7 @@ public class Note extends Element {
 
     /**
      * Variable responsible for showing the Vorzeichen of the note.
-     * It gets set by the constructor-called function {@link Note#changeNote(boolean)} when a new note is placed
+     * It gets set by the constructor-called function {@link Note#changeNote(int)} when a new note is placed
      */
     @FXML
     private ImageView vorzeichenView = new ImageView();
@@ -38,8 +39,10 @@ public class Note extends Element {
     private int notenOffsetY;
     /**
      * Variable responsible for identification of vorzeichen.
-     * The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * The function {@link Note#changeNote(int)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
+
+    private Point2D coordinatesOfNote;
 
     private int wert;
     private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen  2 = Nicht definiert
@@ -53,23 +56,24 @@ public class Note extends Element {
      *
      * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
-     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(int)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    public Note(int notenInTakt, int position, int vorzeichen) {
+    public Note(int notenInTakt, int position, int vorzeichen, Point2D coordinatesOfNote) {
 
         this.notenInTakt = notenInTakt;
         this.position = Liste.positionumsetzen(position);
         this.vorzeichen =  vorzeichen;
+        this.coordinatesOfNote = coordinatesOfNote;
 
         // adjust the view of the note based on the properties that were set before
-        changeNote(false);
+        changeNote(0);
     }
 
     /**
      * adjusts the view of the note based on the properties of the class {@link Note}
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
-    private void changeNote(boolean isTransponiert){
+    private void changeNote(int diffPos){
 
         //pane = Controller.get //
 
@@ -90,8 +94,6 @@ public class Note extends Element {
                 imageView.setFitHeight(10);
                 imageView.setFitWidth(16);
                 imageView.setY(notenOffsetY);
-                // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -130,8 +132,6 @@ public class Note extends Element {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
                 }
-                // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -150,8 +150,6 @@ public class Note extends Element {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
-                // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -170,9 +168,14 @@ public class Note extends Element {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
                 }
-                // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
+        }
+        // if there is a vorzeichen it gets set in the vorzeichenSetzen function
+        if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
+
+        if (diffPos != 0){
+            imageView.setX(imageView.getX() + coordinatesOfNote.x);
+            imageView.setY(imageView.getX() + coordinatesOfNote.y);
         }
     }
 
@@ -312,7 +315,15 @@ public class Note extends Element {
         this.position = Liste.positionumsetzen(position);
         this.vorzeichen = vorzeichen;
         // calll the function that changes the view
-        changeNote(false);
+        changeNote(0);
+    }
+
+    public void setNote(int position, int vorzeichen){
+        int diffPos = this.position - position;
+        this.position = position;
+        this.vorzeichen = vorzeichen;
+        // calll the function that changes the view
+        changeNote(diffPos);
     }
 
     /**

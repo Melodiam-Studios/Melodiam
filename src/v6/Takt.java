@@ -77,7 +77,7 @@ public class Takt {
     /**
      * Note responsible for the preview of Noten
      */
-    Note previewNote = new Note(notenInTakt, 0, vorzeichen);
+    Note previewNote = new Note(notenInTakt, 0, vorzeichen, new Point2D(0,0));
     /**
      * Pause responsible for the preview of Pausen
      */
@@ -330,17 +330,19 @@ public class Takt {
                 //Note
                 p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
                 System.out.println("After: " + p);
+                double temPointY = p.y;
+                p.y += offsetY;
 
-                Note note = new Note(notenInTakt,(int) (p.y / 5) + 1, vorzeichen) ;
+                Note note = new Note(notenInTakt,(int) (temPointY / 5) + 1, vorzeichen, p) ;
 
                 imageView = note.getImageView();
                 vorzeichenView = note.getVorzeichenView();
 
                 vorzeichenView.setX(vorzeichenView.getX() + p.x);
-                vorzeichenView.setY(vorzeichenView.getY() + p.y + offsetY);
+                vorzeichenView.setY(vorzeichenView.getY() + p.y);
 
                 imageView.setX(imageView.getX() + p.x);
-                imageView.setY(imageView.getY() + p.y + offsetY);
+                imageView.setY(imageView.getY() + p.y);
 
                 //System.out.println(note.toString());
 

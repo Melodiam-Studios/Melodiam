@@ -294,7 +294,7 @@ public class Controller {
         System.out.println(noten.toString());
 
         for (Note note:noten) {
-            note.setNote(note.getNotenInTakt(), note.getPosition(),note.getVorzeichen());
+            note.setNote(note.getPosition(),note.getVorzeichen());
         }
     }
 }
