@@ -73,6 +73,11 @@
 
                     </HBox.margin>
                 </ChoiceBox>
+                <Button fx:id="bTrans" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="45.0" text="OK">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Button>
                 <Slider prefHeight="30.0" prefWidth="140.0" styleClass="slider" />
             </HBox>
         </top>
