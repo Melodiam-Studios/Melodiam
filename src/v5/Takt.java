@@ -40,7 +40,7 @@ public class Takt {
      * B.Vorzeichen --> 0
      * kein Vorzeichen --> -1
      */
-    int vorzeichen = 0;
+    int vorzeichen = 3;
 
     /**
      * id has a unique value for every takt that gets created

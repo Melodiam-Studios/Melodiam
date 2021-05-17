@@ -46,7 +46,7 @@ public class Note extends Element{
     private int taktID = 0;
 
     private int wert;
-    private int vorzeichen;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
+    private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = kein Vorzeichen, 1 = Kreuzvorzeichen
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
@@ -61,9 +61,6 @@ public class Note extends Element{
      */
     public Note(int notenInTakt, int position, int vorzeichen, int taktID) {
 
-        pane.getChildren().add(imageView);
-        pane.getChildren().add(vorzeichenView);
-
         this.notenInTakt = notenInTakt;
         this.position = position;
         this.vorzeichen =  vorzeichen;
@@ -76,9 +73,6 @@ public class Note extends Element{
     }
 
     public Note(int taktID) {
-
-        pane.getChildren().add(imageView);
-        pane.getChildren().add(vorzeichenView);
 
         this.notenInTakt = 8;
         this.position = -100;
@@ -93,7 +87,6 @@ public class Note extends Element{
     private void changeNote(){
 
         takt = Controller.getTakt(taktID);
-        int index = takt.pane.getChildren().indexOf(imageView);
 
         /*
         switch that distinguished between the different types of notes
@@ -113,7 +106,7 @@ public class Note extends Element{
                 imageView.setFitWidth(16);
                 imageView.setY(notenOffsetY);
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != 0) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
                 break;
             case 2:
                 // Halbe Note
@@ -133,7 +126,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != 0) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -154,7 +147,7 @@ public class Note extends Element{
                     imageView.setFitWidth(11);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != 0) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
                 break;
             case 8:
                 // Achtel Note
@@ -174,7 +167,7 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != 0) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
                 break;
             case 16:
                 // Halbe Note
@@ -194,12 +187,9 @@ public class Note extends Element{
                     imageView.setFitWidth(19);
                 }
                 // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen != 0) vorzeichenSetzen();
+                if (vorzeichen > (-2) && vorzeichen < 2) vorzeichenSetzen();
                 break;
         }
-
-
-        takt.pane.getChildren().add(index, imageView);
     }
 
     /**
@@ -256,6 +246,20 @@ public class Note extends Element{
      * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      */
+    public void setNote(int notenInTakt, int position, int vorzeichen){
+        this.notenInTakt = notenInTakt;
+        this.position = position;
+        this.vorzeichen = vorzeichen;
+        // calll the function that changes the view
+        changeNote();
+    }
+
+    /**
+     * Function for the transponieren part of the program
+     *
+     * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
+     * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
+     */
     public void setNote(int notenInTakt, int position){
         this.notenInTakt = notenInTakt;
         this.position = position;
@@ -282,6 +286,30 @@ public class Note extends Element{
      */
     public int getNotenOffsetY() {
         return notenOffsetY;
+    }
+
+    public void setAll(int wert, int position, int vorzeichen, int anzeigenVorzeichen, String bezeichnung) {
+        this.wert = wert;
+        this.position = position;
+        this.vorzeichen = vorzeichen;
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
+        this.bezeichnung = bezeichnung;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public int getWert() {
+        return wert;
+    }
+
+    public int getVorzeichen() {
+        return vorzeichen;
+    }
+
+    public void setAnzeigenVorzeichen(int anzeigenVorzeichen) {
+        this.anzeigenVorzeichen = anzeigenVorzeichen;
     }
 
     @Override
