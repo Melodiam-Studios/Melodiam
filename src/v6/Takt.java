@@ -291,11 +291,12 @@ public class Takt {
         previewImageView.setEffect(colorAdjust);
         previewVorzeichenView.setEffect(colorAdjust);
         //previewImage.setImage(image);
-
     }
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
+        System.out.println("_________________________________________________________");
+        System.out.println(this.getPane().toString());
         vorzeichen = Controller.vorzeichen;
 
         System.out.println("NotenInTakt: " + notenInTakt);
@@ -308,7 +309,6 @@ public class Takt {
         if (mouseEvent.getButton() == MouseButton.SECONDARY)
             onRightClick(mouseEvent);
         else {
-
 
 
             ImageView imageView;

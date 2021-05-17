@@ -153,7 +153,7 @@ public class Controller {
         mainInputPane.getRowConstraints().add(rowWith);
 
         if (column == 0 ){
-            ColumnConstraints columnWith = new ColumnConstraints(300);
+            ColumnConstraints columnWith = new ColumnConstraints(275);
             mainInputPane.getColumnConstraints().add(columnWith);
         }else {
             ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
@@ -180,27 +180,27 @@ public class Controller {
 
         //b Vorzeichen
         if (id.equals("bVorzeichen")){
-            if (vorzeichen == 3 || vorzeichen == 1 || vorzeichen == 0){
+            if (vorzeichen == 0 || vorzeichen == 1 || vorzeichen == 0){
                 vorzeichen = -1;
             }else{
-                vorzeichen = 3;
+                vorzeichen = 2;
             }
 
         }
         //kreuzvorzeichen
         else if (id.equals("kVorzeichen")){
-            if (vorzeichen == 3 || vorzeichen == 0 || vorzeichen == -1){
+            if (vorzeichen == 0 || vorzeichen == 0 || vorzeichen == -1){
                 vorzeichen = 1;
             }else{
-                vorzeichen = 3;
+                vorzeichen = 2;
             }
         }
         //Auflösezeichen
         else if (id.equals("aVorzeichen")){
-            if (vorzeichen == 3 || vorzeichen == 1 || vorzeichen == -1){
+            if (vorzeichen == 0 || vorzeichen == 1 || vorzeichen == -1){
                 vorzeichen = 0;
             }else{
-                vorzeichen = 3;
+                vorzeichen = 2;
             }
         }
     }
