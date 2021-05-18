@@ -211,80 +211,6 @@ public class Note extends Element {
                 img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
                 break;
             case 2:
-                vorzeichen = 0;
-                int positionTest = 0;
-                int anzeigenVorzeichenTest = 0;
-                switch (Notenblatt.getTonleiter()){
-                    case -6:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
-                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
-                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
-                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
-                        else if (positionTest == 4) anzeigenVorzeichenTest = -1;    //ges
-                        else if (positionTest == 0) anzeigenVorzeichenTest = -1;
-                        break;
-                    case -5:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
-                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
-                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
-                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
-                        else if (positionTest == 4) anzeigenVorzeichenTest = -1;    //ges
-                        break;
-                    case -4:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
-                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
-                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
-                        else if (positionTest == 1) anzeigenVorzeichenTest = -1;    //des
-                        break;
-                    case -3:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
-                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
-                        else if (positionTest == 5) anzeigenVorzeichenTest = -1;    //as
-                        break;
-                    case -2:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;            //b
-                        else if (positionTest == 2) anzeigenVorzeichenTest = -1;    //es
-                        break;
-                    case -1:
-                        if(positionTest == 6) anzeigenVorzeichenTest=-1;
-                        break;
-                    case 0:
-                        vorzeichen = 0;
-                        break;
-                    case 1:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        break;
-                    case 2:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
-                        break;
-                    case 3:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
-                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
-                        break;
-                    case 4:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
-                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
-                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
-                        break;
-                    case 5:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
-                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
-                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
-                        else if (positionTest == 5) anzeigenVorzeichenTest = 1;   //ais
-                        break;
-                    case 6:
-                        if (positionTest == 3) anzeigenVorzeichenTest = 1;        //fis
-                        else if (positionTest == 0) anzeigenVorzeichenTest = 1;   //cis
-                        else if (positionTest == 4) anzeigenVorzeichenTest = 1;   //gis
-                        else if (positionTest == 1) anzeigenVorzeichenTest = 1;   //dis
-                        else if (positionTest == 5) anzeigenVorzeichenTest = 1;   //ais
-                        else if (positionTest == 2) anzeigenVorzeichenTest = 1;   //eis
-                        break;
-                }
                 break;
         }
 
@@ -373,6 +299,10 @@ public class Note extends Element {
 
     public int getNotenInTakt() {
         return notenInTakt;
+    }
+
+    public void setVorzeichen(int vorzeichen) {
+        this.vorzeichen = vorzeichen;
     }
 
     @Override

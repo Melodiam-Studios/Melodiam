@@ -332,8 +332,10 @@ public class Takt {
                 System.out.println("After: " + p);
                 double temPointY = p.y;
                 p.y += offsetY;
+                
+                int position = (int) (temPointY / 5) + 1;
 
-                Note note = new Note(notenInTakt,(int) (temPointY / 5) + 1, vorzeichen, p) ;
+                Note note = new Note(notenInTakt, position, vorzeichen, p) ;
 
                 imageView = note.getImageView();
                 vorzeichenView = note.getVorzeichenView();
@@ -344,6 +346,84 @@ public class Takt {
                 imageView.setX(imageView.getX() + p.x);
                 imageView.setY(imageView.getY() + p.y);
 
+                //System.out.println("Position der Note: " + this.position);
+                if (vorzeichen == 2) {
+                    vorzeichen = 0;
+
+                    switch (Notenblatt.getTonleiter()) {
+                        case -6:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            else if (position == 4) vorzeichen = -1;    //ges
+                            else if (position == 0) vorzeichen = -1;
+                            break;
+                        case -5:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            else if (position == 4) vorzeichen = -1;    //ges
+                            break;
+                        case -4:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            break;
+                        case -3:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            break;
+                        case -2:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            break;
+                        case -1:
+                            if (position == 6) vorzeichen = -1;
+                            break;
+                        case 0:
+                            vorzeichen = 0;
+                            break;
+                        case 1:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            break;
+                        case 2:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            break;
+                        case 3:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            break;
+                        case 4:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            break;
+                        case 5:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            else if (position == 5) vorzeichen = 1;   //ais
+                            break;
+                        case 6:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            else if (position == 5) vorzeichen = 1;   //ais
+                            else if (position == 2) vorzeichen = 1;   //eis
+                            break;
+                    }
+
+                    note.setVorzeichen(vorzeichen);
+                }
                 //System.out.println(note.toString());
 
                 elements.add(note);
