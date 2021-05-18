@@ -22,53 +22,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("sample.fxml")));
-        Parent root = loader.load();
-
-        JMetro jMetro=new JMetro(Style.LIGHT);
-
-        Controller controller = loader.<Controller>getController();
-
-        Image image = new Image("/resources/melodiam_testicon.png");
-        primaryStage.getIcons().add(image);
-
-        Scene scene = new Scene(root, 600  , 400);
-
-
-        jMetro.setScene(scene);
-
-
-
-        //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
-
-        //Open main Window
-        root.getStylesheets().add("v6/lightmode.css");
-        primaryStage.setTitle("Melodiam v6");
-        primaryStage.setScene(jMetro.getScene());
-        primaryStage.setMaximized(true);
-        primaryStage.show();
-
-        //Open second Window with options
-        Parent root2 = FXMLLoader.load(getClass().getResource("sample2.fxml"));
-
+        Parent root2 = FXMLLoader.load(getClass().getResource("preOptionWindowView.fxml"));
         Scene scene2 = new Scene(root2 , 600, 400);
-
-        Stage stage2 = new Stage();
-        stage2.setTitle("Second Window");
-        stage2.show();
-
-        controller.addFile();
-        controller.addIntervalle();
-        controller.addInstrumente();
-
-        //liest tastatureingabe ein
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                controller.keyPresed(scene, event);
-            }
-        });
+        primaryStage.setScene(scene2);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
