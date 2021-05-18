@@ -71,7 +71,7 @@ public class Controller {
     private int row = 0;
     private int column = 0;
     private int lenghtPane = 275;
-    private int hightPane = 200;
+    private int hightPane = 250;
     public static int notenInTakt = 0;
     public static int vorzeichen = 2;
 
@@ -149,7 +149,7 @@ public class Controller {
         mainInputPane.addColumn(column);
         mainInputPane.addRow(row);
 
-        RowConstraints rowWith = new RowConstraints(100);
+        RowConstraints rowWith = new RowConstraints(150);
         mainInputPane.getRowConstraints().add(rowWith);
 
         if (column == 0 ){
@@ -159,7 +159,6 @@ public class Controller {
             ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
             mainInputPane.getColumnConstraints().add(columnWith);
         }
-
 
         if (column == 0){
             Takt takt = new Takt(true);

@@ -291,8 +291,8 @@ public class Note extends Element {
         // set the image to the ImageView
         vorzeichenView.setImage(img);
         // set size of image
-        vorzeichenView.setFitHeight(20);
-        vorzeichenView.setFitWidth(11);
+        vorzeichenView.setFitHeight(25);
+        vorzeichenView.setFitWidth(9);
 
         // sets the x-offset of the image
         vorzeichenOffsetX = -10;
