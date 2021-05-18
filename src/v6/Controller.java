@@ -303,6 +303,8 @@ public class Controller {
                 case "Trumpet": intervalle.getSelectionModel().select("r. 4 n.u."); break;
             }
         }
+
+        Notenblatt.setInstrument(instrument);
     }
 
     private void transponieren(){
