@@ -52,11 +52,6 @@
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
-                <Spinner prefHeight="30.0" prefWidth="93.0">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Spinner>
                 <ChoiceBox fx:id="instrumente" prefHeight="30.0" prefWidth="228.0">
                     <HBox.margin>
                         <Insets right="10.0" />
@@ -74,10 +69,11 @@
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Button>
-                <Slider fx:id="tempo" max="140" min="40" prefHeight="30.0" prefWidth="140.0" styleClass="slider" value="90">
-                   <HBox.margin>
-                      <Insets right="10.0" />
-                   </HBox.margin></Slider>
+                <Spinner fx:id="tempo" prefHeight="30.0" prefWidth="93.0" editable="true" min="10" max="160" initialValue="90">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Spinner>
                 <Button fx:id="bPlay" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="35.0" styleClass="play-button">
                     <graphic>
                         <ImageView fitHeight="18.0" fitWidth="9.0">
