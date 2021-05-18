@@ -1,16 +1,19 @@
 package v6;
 
+import audio.PlayMelody;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import org.jfugue.pattern.Pattern;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,9 @@ public class Controller {
 
     @FXML
     Button bRem;
+
+    @FXML
+    Button bPlay;
 
     @FXML
     Button ganzeNote;
@@ -65,6 +71,9 @@ public class Controller {
 
     @FXML
     ChoiceBox instrumente;
+
+    @FXML
+    Slider tempo;
 
     @FXML
     Button bTrans;
@@ -126,6 +135,9 @@ public class Controller {
         else if (id.equals(bTrans.getId())){
             changeInstrum();
             transponieren();
+        }
+        else if (id.equals(bPlay.getId())){
+            playSong();
         }
     }
 
@@ -322,5 +334,21 @@ public class Controller {
         for (Note note:noten) {
             note.setNote(note.getPosition(),note.getVorzeichen());
         }
+    }
+
+    private void playSong(){
+
+        Pattern melody = new Pattern();
+        melody.setInstrument(Notenblatt.getInstrument());
+        melody.setTempo((int) tempo.getValue());
+
+        melody.add("70w 71w 62g");
+        melody.add("Rw");
+        melody.add("70w");
+
+
+        PlayMelody playMelody = new PlayMelody(melody);
+        Thread t = new Thread(playMelody,"AudioPlayback");
+        t.start();
     }
 }
