@@ -1,21 +1,29 @@
 package audio;
 
+import org.jfugue.pattern.Pattern;
 import org.jfugue.player.Player;
+import org.jfugue.theory.Note;
 
 public class Main {
-    public static void main(String[] args) {
-        Player player=new Player();
+    public static void main(String[] args) throws InterruptedException {
+        Pattern melody=new Pattern();
+        melody.setInstrument("Piano");
+        melody.setTempo(60);
+        melody.add("70w 71w 62g");
+        melody.add("Rw");
+        melody.add("70w");
 
-        //https://objectcomputing.com/resources/publications/sett/january-2008-writing-music-in-java-two-approaches
-        player.play(
-                // "Itsy, bitsy spider, climbed up the water spout."
-                "i[Electric_Bass_Finger] T60 71w 71w 70w 72w A5q. A5q A5i G5q F5i G5q A5i F5q. Rq. " +
-                        // "Down came the rain and washed the spider out."
-                        "A5q. A5q Bb5i C6q. C6q. Bb5q A5i Bb5q C6i A5q. Rq. " +
-                        // "Out came the sun and dried up all the rain, so the"
-                        "F5q. F5q G5i A5q. A5q. G5q F5i G5q A5i F5q. C5q C5i " +
-                        // "itsy, bitsy spider went up the spout again."
-                        "F5q F5i F5q G5i A5q. A5q A5i G5q F5i G5q A5i F5q. Rq.");
+
+        PlayMelody playMelody=new PlayMelody(melody);
+        Thread t=new Thread(playMelody,"AudioPlayback");
+        t.start();
+
+
+        //Thread.sleep(1000);
+        //playMelody.pauseMelody();
+        //Thread.sleep(2000);
+        //playMelody.resumeMelody();
+        //t.interrupt();
 
 
     }
