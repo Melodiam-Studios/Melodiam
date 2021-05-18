@@ -34,7 +34,6 @@ public class Main extends Application {
         Image image = new Image("/resources/melodiam_testicon.png");
         primaryStage.getIcons().add(image);
 
-
         Scene scene = new Scene(root, 600  , 400);
 
 
@@ -51,6 +50,7 @@ public class Main extends Application {
 
         controller.addFile();
         controller.addIntervalle();
+        controller.addInstrumente();
 
         //liest tastatureingabe ein
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {

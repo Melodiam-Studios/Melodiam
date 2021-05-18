@@ -67,7 +67,13 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <ChoiceBox prefHeight="30.0" prefWidth="228.0" fx:id="intervalle">
+                <ChoiceBox prefHeight="30.0" prefWidth="228.0" fx:id="instrumente">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+
+                    </HBox.margin>
+                </ChoiceBox>
+                <ChoiceBox prefHeight="30.0" prefWidth="200.0" fx:id="intervalle">
                     <HBox.margin>
                         <Insets right="10.0" />
 

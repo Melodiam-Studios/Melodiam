@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Notenblatt {
 
     private static int tonleiter = 0;
+    private static String instrument = "Piano";
     private static ArrayList<Note> allNotes = new ArrayList<>();
 
     public static void addNote (Note note){
@@ -21,6 +22,14 @@ public class Notenblatt {
 
     public static int getTonleiter() {
         return tonleiter;
+    }
+
+    public static String getInstrument() {
+        return instrument;
+    }
+
+    public static void setInstrument(String instrument) {
+        Notenblatt.instrument = instrument;
     }
 
     @Override

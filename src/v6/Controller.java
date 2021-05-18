@@ -66,6 +66,9 @@ public class Controller {
     ChoiceBox intervalle;
 
     @FXML
+    ChoiceBox instrumente;
+
+    @FXML
     Button bTrans;
 
     private int row = 0;
@@ -267,13 +270,13 @@ public class Controller {
     }
 
     public void addInstrumente(){
-        String interv[] = {
+        String instrum[] = {
                 "Piano",
                 "Trumpet",
                 "Violin"};
 
-        intervalle.setItems(FXCollections.observableArrayList(interv));
-        intervalle.getSelectionModel().select("Piano");
+        instrumente.setItems(FXCollections.observableArrayList(instrum));
+        instrumente.getSelectionModel().select("Piano");
     }
 
     private void transponieren(){
