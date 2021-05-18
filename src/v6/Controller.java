@@ -127,6 +127,7 @@ public class Controller {
             remPane();
         }
         else if (id.equals(bTrans.getId())){
+            changeInstrum();
             transponieren();
         }
     }
@@ -273,10 +274,35 @@ public class Controller {
         String instrum[] = {
                 "Piano",
                 "Trumpet",
-                "Violin"};
+                "French_Horn"};
 
         instrumente.setItems(FXCollections.observableArrayList(instrum));
         instrumente.getSelectionModel().select("Piano");
+    }
+
+    private void changeInstrum(){
+
+        String instrument = instrumente.getSelectionModel().getSelectedItem().toString();
+
+        System.out.println(instrument);
+        if (Notenblatt.getInstrument() == "Piano"){
+            switch (instrument){
+                case "Trumpet": intervalle.getSelectionModel().select("gr. 2"); break;
+                case "French_Horn": intervalle.getSelectionModel().select("r. 5"); break;
+            }
+        }
+        else if (Notenblatt.getInstrument() == "Trumpet"){
+            switch (instrument){
+                case "Piano": intervalle.getSelectionModel().select("gr. 2 n.u."); break;
+                case "French_Horn": intervalle.getSelectionModel().select("r. 4"); break;
+            }
+        }
+        else if (Notenblatt.getInstrument() == "French_Horn"){
+            switch (instrument){
+                case "Piano": intervalle.getSelectionModel().select("r. 5 n.u."); break;
+                case "Trumpet": intervalle.getSelectionModel().select("r. 4 n.u."); break;
+            }
+        }
     }
 
     private void transponieren(){
