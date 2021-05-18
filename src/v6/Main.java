@@ -26,7 +26,6 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("sample.fxml")));
         Parent root = loader.load();
 
-
         JMetro jMetro=new JMetro(Style.LIGHT);
 
         Controller controller = loader.<Controller>getController();
@@ -42,11 +41,22 @@ public class Main extends Application {
 
 
         //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
+
+        //Open main Window
         root.getStylesheets().add("v6/lightmode.css");
         primaryStage.setTitle("Melodiam v6");
         primaryStage.setScene(jMetro.getScene());
         primaryStage.setMaximized(true);
         primaryStage.show();
+
+        //Open second Window with options
+        Parent root2 = FXMLLoader.load(getClass().getResource("sample2.fxml"));
+
+        Scene scene2 = new Scene(root2 , 600, 400);
+
+        Stage stage2 = new Stage();
+        stage2.setTitle("Second Window");
+        stage2.show();
 
         controller.addFile();
         controller.addIntervalle();

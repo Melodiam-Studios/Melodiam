@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    //TO-DO: Im Takt muss ekannt werden ob eine Vorzeichen mt dem Takt zusammen kommt
-
     GridPane mainInputPane;
 
     @FXML ImageView previewImage = new ImageView();
@@ -93,7 +91,6 @@ public class Controller {
             if (column % 4 == 0) {
                 row++;
                 column = 0;
-
             }
         }
     }
@@ -235,7 +232,6 @@ public class Controller {
             notenInTakt=80;
         }
     }
-
 
     public void addIntervalle(){
         String interv[] = {
