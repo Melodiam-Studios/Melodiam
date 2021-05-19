@@ -496,4 +496,11 @@ public class Takt {
     public void setNotenInTakt(int notenInTakt) {
         this.notenInTakt = notenInTakt;
     }
+
+    @Override
+    public String toString() {
+        return "Takt{" +
+                "elements=" + elements +
+                '}';
+    }
 }

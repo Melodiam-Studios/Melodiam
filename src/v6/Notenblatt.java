@@ -13,6 +13,16 @@ public class Notenblatt {
 
     private static ArrayList<Note> allNotes = new ArrayList<>();
 
+    public static ArrayList<Takt> getTakte() {
+        return takte;
+    }
+
+    public static void addTakt(Takt takt) {
+        takte.add(takt);
+    }
+
+    private static ArrayList<Takt> takte = new ArrayList<>();
+
     public static void addNote (Note note){
         allNotes.add(note);
     }

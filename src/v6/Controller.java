@@ -174,10 +174,12 @@ public class Controller {
             Takt takt = new Takt(true);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
+            //Notenblatt.addTakt(takt);
         }else{
             Takt takt = new Takt(false);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
+            //Notenblatt.addTakt(takt);
         }
         column++;
     }
