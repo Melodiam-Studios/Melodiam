@@ -282,7 +282,7 @@ public class Controller {
                 "French_Horn"};
 
         instrumente.setItems(FXCollections.observableArrayList(instrum));
-        instrumente.getSelectionModel().select("Piano");
+        instrumente.getSelectionModel().select(Notenblatt.getInstrument());
     }
 
     private void changeInstrum(){
