@@ -343,7 +343,6 @@ public class Controller {
         melody.add("Rw");
         melody.add("70w");
 
-
         PlayMelody playMelody = new PlayMelody(melody);
         Thread t = new Thread(playMelody,"AudioPlayback");
         t.start();
