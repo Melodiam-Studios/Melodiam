@@ -156,8 +156,6 @@ public class Liste {
 
     /**
      * Hier werden alle weiteren Werte einer Note ausgefüllt, vorausgesetzt, die Noten haben bereits eine Position und ein Vorzeichen.
-     * @param noten übergibt die Noten.
-     * @param tonleiter übergibt die Tonleiter, damit erneuereAnzeigen aufgerufen werden kann (berechnet ob das Vorzeichen angezeigt wird.)
      */
     public static void werteAusfuellen() {
 

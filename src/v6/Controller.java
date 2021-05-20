@@ -362,6 +362,9 @@ public class Controller {
     }
 
     private void playSong(){
+
+        Liste.werteAusfuellen();
+
         Pattern melody = new Pattern();
         melody.setInstrument(Notenblatt.getInstrument());
         melody.setTempo((int) tempo.getValue());
