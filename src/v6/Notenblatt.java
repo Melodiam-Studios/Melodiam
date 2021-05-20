@@ -10,6 +10,7 @@ public class Notenblatt {
     private static String komponist = "Default Komponist";
     private static String notenschluessel = "Violinschlüssel";
     private static double taktart = 44;
+    private static int startTaktAnzahl = 0;
 
     //private static ArrayList<Note> allNotes = new ArrayList<>();
     private static ArrayList<Takt> takte = new ArrayList<>();
@@ -80,6 +81,13 @@ public class Notenblatt {
     }
     public static String getNotenschluessel() {
         return notenschluessel;
+    }
+
+    public static void setStartTaktAnzahl(int startTaktAnzahl) {
+        Notenblatt.startTaktAnzahl = startTaktAnzahl;
+    }
+    public static int getStartTaktAnzahl() {
+        return startTaktAnzahl;
     }
 
     @Override

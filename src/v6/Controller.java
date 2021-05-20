@@ -167,7 +167,7 @@ public class Controller {
     }
 
     //neues Pane in storeLines Speicheren
-    private void addPane() {
+    public void addPane() {
         if (column >= 4){
             row++;
             column = 0;

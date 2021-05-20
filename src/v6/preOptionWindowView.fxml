@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -25,6 +26,7 @@
             <RowConstraints maxHeight="134.0" minHeight="4.0" prefHeight="82.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="307.0" minHeight="10.0" prefHeight="192.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+            <RowConstraints />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="768.0" prefWidth="1103.0" text="Datei Name:" />
@@ -35,7 +37,7 @@
             <Label alignment="CENTER" prefHeight="340.0" prefWidth="1224.0" text="Tonleiter" GridPane.rowIndex="5" />
             <TextField fx:id="dateiName" prefHeight="33.0" prefWidth="518.0" GridPane.columnIndex="1" />
             <TextField fx:id="komponist" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="instrument" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ChoiceBox fx:id="instrument" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="taktart" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="notenSchluessel" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -119,8 +121,10 @@
                   </Button>
                </children>
             </GridPane>
-             <Button fx:id="openMainWindow" mnemonicParsing="false" onAction="#newWindow" text="CreatFile" GridPane.rowIndex="6">
+             <Label text="Takt Anzahl: " GridPane.rowIndex="6" />
+             <Button fx:id="openMainWindow" mnemonicParsing="false" onAction="#newWindow" text="CreatFile" GridPane.rowIndex="7">
              </Button>
+            <Spinner fx:id="preAnzahlTakte" GridPane.columnIndex="1" GridPane.rowIndex="6" min="0" max="100" amountToStepBy="1" editable="true"/>
          </children>
       </GridPane>
    </items>

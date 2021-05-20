@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -40,6 +41,9 @@ public class ControllerPreOptionWindow implements Initializable {
     ChoiceBox notenSchluessel;
 
     @FXML
+    Spinner preAnzahlTakte;
+
+    @FXML
     //Opens the Main Window
     private void newWindow(){
 
@@ -54,8 +58,14 @@ public class ControllerPreOptionWindow implements Initializable {
             Notenblatt.setKomponist(tmpKomponist);
         }
 
+        int tmpTaktAnzahl = (int) preAnzahlTakte.getValue();
+        System.out.println(tmpTaktAnzahl);
+        Notenblatt.setStartTaktAnzahl(tmpTaktAnzahl);
+
         String tmpInstrument = instrument.getSelectionModel().getSelectedItem().toString();
         Notenblatt.setInstrument(tmpInstrument);
+
+
 
         String tmpTaktart = taktart.getSelectionModel().getSelectedItem().toString();
         if(tmpTaktart.equals("4/4")){
@@ -98,6 +108,10 @@ public class ControllerPreOptionWindow implements Initializable {
             controller.addInstrumente();
             controller.addTonleiter();
             controller.addHeader();
+
+            for(int i = 0; i < Notenblatt.getStartTaktAnzahl(); i++){
+                controller.addPane();
+            }
 
         }catch (Exception e){
             e.printStackTrace();
