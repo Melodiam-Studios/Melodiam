@@ -372,7 +372,7 @@ public class Controller {
                     melody.add(bezeichnung);
                 }
                 else if (element.getClass() == Pause.class) {
-                    wert = ((Note) element).getWert();
+                    //wert = ((Note) element).getWert();
                     bezeichnung = "R" + "q";
                     melody.add(bezeichnung);
                 }
