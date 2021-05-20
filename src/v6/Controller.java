@@ -430,10 +430,15 @@ public class Controller {
             startTakt.getChildren().add(imageView);
         }
         int takt_size = 40;
-        imageView.setFitHeight(takt_size * 1.705);
-        imageView.setFitWidth(takt_size);
+        imageView.setFitHeight(takt_size);
+        imageView.setFitWidth(takt_size / 1.705);
         imageView.setY(35);
+
+        //change x
+
         imageView.setX(30);
+
+
 
     }
 
