@@ -32,7 +32,7 @@ public class Takt {
      * variable for knowing which type of note or pause is chosen.
      * initial value is just randomly chosen
      */
-    int notenInTakt=10;
+    int notenInTakt = 10;
     /**
      * Variable responsible for the vorzeichen distinguishing
      * Kreuzvorzeichen --> 1
@@ -80,7 +80,7 @@ public class Takt {
     /**
      * Note responsible for the preview of Noten
      */
-    Note previewNote = new Note(notenInTakt, 0, vorzeichen, new Point2D(0,0));
+    Note previewNote = new Note(notenInTakt, 0, vorzeichen, new Point2D(0, 0));
     /**
      * Pause responsible for the preview of Pausen
      */
@@ -95,7 +95,7 @@ public class Takt {
      *
      * @param needSchluessel for placing the Notenschlüssel --> needSchluessel == true --> Notenschluessel gets placed
      */
-    public Takt(boolean needSchluessel, int id){
+    public Takt(boolean needSchluessel, int id) {
 
         this.id = id;
 
@@ -114,7 +114,7 @@ public class Takt {
 
         int i = 35;     // offsetY
 
-        if (needSchluessel){        // places the Violinschluessel and resizes it
+        if (needSchluessel) {        // places the Violinschluessel and resizes it
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
             ImageView notenSchluessel = new ImageView(image);
             pane.getChildren().add(notenSchluessel);
@@ -130,10 +130,10 @@ public class Takt {
         l6.setStartX(line_length);
         l6.setStartY(i);
         l6.setEndX(line_length);
-        l6.setEndY(i+40);
+        l6.setEndY(i + 40);
 
         // lines that form the notengerüst (horizontal)
-        for (Line l:lines) {
+        for (Line l : lines) {
             l.setStartX(0);
             l.setStartY(i);
             l.setEndX(line_length);
@@ -160,7 +160,7 @@ public class Takt {
         notenInT += 1;
         float zeilen = height / 23;
         float spalten = line_length / (float) notenInT;
-        for (int i = 1; i <notenInT; i++) {
+        for (int i = 1; i < notenInT; i++) {
             for (int e = 0; e < 23; e++) {
                 listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
             }
@@ -188,7 +188,7 @@ public class Takt {
     /**
      * Function that only allows the Noten and Pausen in a specific point
      *
-     * @param p Coordinates of MousePress
+     * @param p        Coordinates of MousePress
      * @param notenInT the type of Note/Pause that is chosen
      * @return the nearest position where the Element can be placed as point
      */
@@ -220,11 +220,10 @@ public class Takt {
                 break;
         }
 
-        x = belegt * listsWithPossiblePositions.size() + ((double) 1/notenInTakt) * listsWithPossiblePositions.size();
+        x = belegt * listsWithPossiblePositions.size() + ((double) 1 / notenInTakt) * listsWithPossiblePositions.size();
 
-        System.out.println("List length: " + listsWithPossiblePositions.size());
-        System.out.println("X: " + x);
-
+        //System.out.println("List length: " + listsWithPossiblePositions.size());
+        //System.out.println("X: " + x);
 
 
         double shortestDistance = 100;
@@ -234,7 +233,7 @@ public class Takt {
         // wenn eine Note platziert geteilt durch 4 bei viertelnote
         // wenn zwei dann geteilt
         try {
-            for (int i = (int) (listsWithPossiblePositions.size()-(listsWithPossiblePositions.size()-x) - ((double) 1/notenInTakt) * listsWithPossiblePositions.size()); i<listsWithPossiblePositions.size()-(listsWithPossiblePositions.size()-x); i++) {
+            for (int i = (int) (listsWithPossiblePositions.size() - (listsWithPossiblePositions.size() - x) - ((double) 1 / notenInTakt) * listsWithPossiblePositions.size()); i < listsWithPossiblePositions.size() - (listsWithPossiblePositions.size() - x); i++) {
                 Point2D point2D = listsWithPossiblePositions.get(i);
                 double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - p.x), 2) + Math.pow(Math.abs(point2D.y - p.y), 2));
                 //System.out.println("Distance" + distance);
@@ -246,7 +245,7 @@ public class Takt {
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             returnPoint.x = 0;
             returnPoint.y = 0;
         }
@@ -267,10 +266,10 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
 
-        if (notenInTakt % 5 == 0){
+        if (notenInTakt % 5 == 0) {
             // Pause
             //System.out.println("Pause");
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
+            p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt / 5);
             //System.out.println("After: " + p);
             previewPause.setPause(notenInTakt);
             previewImageView = previewPause.getImageView();
@@ -279,10 +278,10 @@ public class Takt {
             previewImageView.setY(tempOffsetY + 43);
             //System.out.println("Setting the pause at x: " + previewImage.getX() + ", y: " + previewImage.getY());
             //System.out.println(previewPause.toString());
-        }else{
+        } else {
             //Note
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
-            if (p.x == 0 && p.y == 0){
+            p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt);
+            if (p.x == 0 && p.y == 0) {
                 previewImageView.setY(-100000);
                 previewImageView.setX(-100000);
 
@@ -290,7 +289,7 @@ public class Takt {
                 previewVorzeichenView.setY(-100000);
             }
 
-            previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1, vorzeichen);
+            previewNote.setNote(notenInTakt, (int) (p.y / 5) + 1, vorzeichen);
             previewImageView = previewNote.getImageView();
             previewVorzeichenView = previewNote.getVorzeichenView();
 
@@ -299,14 +298,14 @@ public class Takt {
 
             previewImageView.setX(p.x);
             int tempOffsetY = previewNote.getNotenOffsetY();
-            previewImageView.setY(tempOffsetY + p.y+ offsetY);
+            previewImageView.setY(tempOffsetY + p.y + offsetY);
         }
 
         try {
             //pane = (Pane) mouseEvent.getSource();
             pane.getChildren().add(previewImageView);
             pane.getChildren().add(previewVorzeichenView);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             //System.out.println("You exactly touched a line");
         }
 
@@ -341,10 +340,10 @@ public class Takt {
             ImageView imageView;
             ImageView vorzeichenView = null;
 
-            if (notenInTakt % 5 == 0){
+            if (notenInTakt % 5 == 0) {
                 // Pause
                 System.out.println("Pause");
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
+                p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt / 5);
                 Pause pause = new Pause(notenInTakt);
                 System.out.println("After: " + p);
                 imageView = pause.getImageView();
@@ -353,123 +352,132 @@ public class Takt {
                 System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 System.out.println(pause.toString());
                 elements.add(pause);
-                belegt += 1/( (double) notenInTakt/5);
-            }else{
+                belegt += 1 / ((double) notenInTakt / 5);
+            } else {
                 //Note
-                System.out.println("Belegt: " + belegt);
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
-                System.out.println("After: " + p);
-                double temPointY = p.y;
-                p.y += offsetY;
-                
-                int position = (int) (temPointY / 5) + 1;
-
-                Note note = new Note(notenInTakt, position, vorzeichen, p);
-                belegt += (1/ (double) notenInTakt);
-
-                imageView = note.getImageView();
-                vorzeichenView = note.getVorzeichenView();
-
-                vorzeichenView.setX(vorzeichenView.getX() + p.x);
-                vorzeichenView.setY(vorzeichenView.getY() + p.y);
-
-                imageView.setX(imageView.getX() + p.x);
-                imageView.setY(imageView.getY() + p.y);
-
-                //System.out.println("Position der Note: " + this.position);
-                if (vorzeichen == 2) {
-                    vorzeichen = 0;
-
-                    switch (Notenblatt.getTonleiter()) {
-                        case -6:
-                            if (position == 6) vorzeichen = -1;         //b
-                            else if (position == 2) vorzeichen = -1;    //es
-                            else if (position == 5) vorzeichen = -1;    //as
-                            else if (position == 1) vorzeichen = -1;    //des
-                            else if (position == 4) vorzeichen = -1;    //ges
-                            else if (position == 0) vorzeichen = -1;
-                            break;
-                        case -5:
-                            if (position == 6) vorzeichen = -1;         //b
-                            else if (position == 2) vorzeichen = -1;    //es
-                            else if (position == 5) vorzeichen = -1;    //as
-                            else if (position == 1) vorzeichen = -1;    //des
-                            else if (position == 4) vorzeichen = -1;    //ges
-                            break;
-                        case -4:
-                            if (position == 6) vorzeichen = -1;         //b
-                            else if (position == 2) vorzeichen = -1;    //es
-                            else if (position == 5) vorzeichen = -1;    //as
-                            else if (position == 1) vorzeichen = -1;    //des
-                            break;
-                        case -3:
-                            if (position == 6) vorzeichen = -1;         //b
-                            else if (position == 2) vorzeichen = -1;    //es
-                            else if (position == 5) vorzeichen = -1;    //as
-                            break;
-                        case -2:
-                            if (position == 6) vorzeichen = -1;         //b
-                            else if (position == 2) vorzeichen = -1;    //es
-                            break;
-                        case -1:
-                            if (position == 6) vorzeichen = -1;
-                            break;
-                        case 0:
-                            vorzeichen = 0;
-                            break;
-                        case 1:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            break;
-                        case 2:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            else if (position == 0) vorzeichen = 1;   //cis
-                            break;
-                        case 3:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            else if (position == 0) vorzeichen = 1;   //cis
-                            else if (position == 4) vorzeichen = 1;   //gis
-                            break;
-                        case 4:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            else if (position == 0) vorzeichen = 1;   //cis
-                            else if (position == 4) vorzeichen = 1;   //gis
-                            else if (position == 1) vorzeichen = 1;   //dis
-                            break;
-                        case 5:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            else if (position == 0) vorzeichen = 1;   //cis
-                            else if (position == 4) vorzeichen = 1;   //gis
-                            else if (position == 1) vorzeichen = 1;   //dis
-                            else if (position == 5) vorzeichen = 1;   //ais
-                            break;
-                        case 6:
-                            if (position == 3) vorzeichen = 1;        //fis
-                            else if (position == 0) vorzeichen = 1;   //cis
-                            else if (position == 4) vorzeichen = 1;   //gis
-                            else if (position == 1) vorzeichen = 1;   //dis
-                            else if (position == 5) vorzeichen = 1;   //ais
-                            else if (position == 2) vorzeichen = 1;   //eis
-                            break;
-                    }
-
-                    note.setVorzeichen(vorzeichen);
-                }
-                //System.out.println(note.toString());
-
-                elements.add(note);
-                //Notenblatt.addNote(note);
+                placeNote(p);
             }
-
-            try {
-                //Pane pane = (Pane) mouseEvent.getSource();
-                pane.getChildren().add(imageView);
-                pane.getChildren().add(vorzeichenView);
-            }catch (Exception exception){
-                System.out.println("You exactly touched a line");
-            }
-
-            renewStaticTakt();
         }
+    }
+
+    public void placeNote(Point2D p) {
+        ImageView imageView;
+        ImageView vorzeichenView = null;
+
+        System.out.println("Belegt: " + belegt);
+        p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt);
+        System.out.println("After: " + p);
+        double temPointY = p.y;
+        p.y += offsetY;
+
+        int position = (int) (temPointY / 5) + 1;
+
+        Note note = new Note(notenInTakt, position, vorzeichen, p);
+        belegt += (1 / (double) notenInTakt);
+
+        imageView = note.getImageView();
+        vorzeichenView = note.getVorzeichenView();
+
+        vorzeichenView.setX(vorzeichenView.getX() + p.x);
+        vorzeichenView.setY(vorzeichenView.getY() + p.y);
+
+        imageView.setX(imageView.getX() + p.x);
+        imageView.setY(imageView.getY() + p.y);
+
+        //System.out.println("Position der Note: " + this.position);
+        if (vorzeichen == 2) {
+            vorzeichen = 0;
+
+            switch (Notenblatt.getTonleiter()) {
+                case -6:
+                    if (position == 6) vorzeichen = -1;         //b
+                    else if (position == 2) vorzeichen = -1;    //es
+                    else if (position == 5) vorzeichen = -1;    //as
+                    else if (position == 1) vorzeichen = -1;    //des
+                    else if (position == 4) vorzeichen = -1;    //ges
+                    else if (position == 0) vorzeichen = -1;
+                    break;
+                case -5:
+                    if (position == 6) vorzeichen = -1;         //b
+                    else if (position == 2) vorzeichen = -1;    //es
+                    else if (position == 5) vorzeichen = -1;    //as
+                    else if (position == 1) vorzeichen = -1;    //des
+                    else if (position == 4) vorzeichen = -1;    //ges
+                    break;
+                case -4:
+                    if (position == 6) vorzeichen = -1;         //b
+                    else if (position == 2) vorzeichen = -1;    //es
+                    else if (position == 5) vorzeichen = -1;    //as
+                    else if (position == 1) vorzeichen = -1;    //des
+                    break;
+                case -3:
+                    if (position == 6) vorzeichen = -1;         //b
+                    else if (position == 2) vorzeichen = -1;    //es
+                    else if (position == 5) vorzeichen = -1;    //as
+                    break;
+                case -2:
+                    if (position == 6) vorzeichen = -1;         //b
+                    else if (position == 2) vorzeichen = -1;    //es
+                    break;
+                case -1:
+                    if (position == 6) vorzeichen = -1;
+                    break;
+                case 0:
+                    vorzeichen = 0;
+                    break;
+                case 1:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    break;
+                case 2:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    else if (position == 0) vorzeichen = 1;   //cis
+                    break;
+                case 3:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    else if (position == 0) vorzeichen = 1;   //cis
+                    else if (position == 4) vorzeichen = 1;   //gis
+                    break;
+                case 4:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    else if (position == 0) vorzeichen = 1;   //cis
+                    else if (position == 4) vorzeichen = 1;   //gis
+                    else if (position == 1) vorzeichen = 1;   //dis
+                    break;
+                case 5:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    else if (position == 0) vorzeichen = 1;   //cis
+                    else if (position == 4) vorzeichen = 1;   //gis
+                    else if (position == 1) vorzeichen = 1;   //dis
+                    else if (position == 5) vorzeichen = 1;   //ais
+                    break;
+                case 6:
+                    if (position == 3) vorzeichen = 1;        //fis
+                    else if (position == 0) vorzeichen = 1;   //cis
+                    else if (position == 4) vorzeichen = 1;   //gis
+                    else if (position == 1) vorzeichen = 1;   //dis
+                    else if (position == 5) vorzeichen = 1;   //ais
+                    else if (position == 2) vorzeichen = 1;   //eis
+                    break;
+            }
+
+            note.setVorzeichen(vorzeichen);
+        }
+        //System.out.println(note.toString());
+
+        elements.add(note);
+        //Notenblatt.addNote(note);
+
+
+        try {
+            //Pane pane = (Pane) mouseEvent.getSource();
+            pane.getChildren().add(imageView);
+            pane.getChildren().add(vorzeichenView);
+        } catch (Exception exception) {
+            System.out.println("You exactly touched a line");
+        }
+
+        renewStaticTakt();
+
     }
 
     //Preview löschen wenn man aus dem Takt geht
@@ -478,7 +486,7 @@ public class Takt {
         previewImageView.setImage(null);
     }
 
-    public void onRightClick(javafx.scene.input.MouseEvent mouseEvent){
+    public void onRightClick(javafx.scene.input.MouseEvent mouseEvent) {
         System.out.println("Right Click");
 
         Point2D p = new Point2D();
@@ -512,8 +520,8 @@ public class Takt {
             Point2D point2D = new Point2D(((float) element.imageView.getX()), ((float) element.imageView.getY()));
 
             double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
-            if (distance == 0){
-                belegt -= 1.0/notenInTakt;
+            if (distance == 0) {
+                belegt -= 1.0 / notenInTakt;
                 elements.remove(element);
                 // element.remove from list with notes usw.
                 pane.getChildren().remove(element.imageView);
@@ -527,6 +535,7 @@ public class Takt {
     public void setNotenInTakt(int notenInTakt) {
         this.notenInTakt = notenInTakt;
     }
+
     public int getId() {
         return id;
     }
@@ -534,11 +543,12 @@ public class Takt {
     public ArrayList<Element> getElements() {
         return elements;
     }
+
     public void setElements(ArrayList<Element> elements) {
         this.elements = elements;
     }
 
-    public void renewStaticTakt (){
+    public void renewStaticTakt() {
         Notenblatt.renewTakt(elements, id);
     }
 
