@@ -97,7 +97,7 @@ public class Note extends Element {
                 break;
             case 2:
                 // Halbe Note
-                if (position <= 13) {       // when position is smaller than 12 --> HalbeNoteOben
+                if (position >= 13) {       // when position is smaller than 12 --> HalbeNoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/HalbenoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -117,7 +117,7 @@ public class Note extends Element {
                 break;
             case 4:
                 // Viertel Note
-                if (position <= 13) {       // when position is smaller than 12 --> ViertelNoteOben
+                if (position >= 13) {       // when position is smaller than 12 --> ViertelNoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -135,7 +135,7 @@ public class Note extends Element {
                 break;
             case 8:
                 // Achtel Note
-                if (position <= 13) {       // when position is smaller than 12 --> AchtelnoteOben
+                if (position >= 13) {       // when position is smaller than 12 --> AchtelnoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/AchtelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
@@ -153,7 +153,7 @@ public class Note extends Element {
                 break;
             case 16:
                 // Halbe Note
-                if (position <= 13) {       // when position is smaller than 12 --> SechzehntelnoteOben
+                if (position >= 13) {       // when position is smaller than 12 --> SechzehntelnoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/SechzehntelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
