@@ -358,22 +358,42 @@ public class Controller {
         melody.setTempo((int) tempo.getValue());
 
         int wert=0;
-        String bezeichnung = "";
+        String bezeichnung = "", laenge = "";
 
-        /*melody.add("70w 71w 62g");
-        melody.add("Rw");
-        melody.add("70w");*/
+        /*Noten: mit Wert und Länge, z.B. "64q"
+        Pause: "R" und Länge, z.B. "Rq"
+
+        Noten-, Pausenlänge:
+        w = ganze
+        h = halbe
+        q = viertel
+        i = achtel
+        s = sechzehntel
+         */
 
         for (Takt takt : Notenblatt.getTakte()) {
             for (Element element : takt.getElements()) {
                 if (element.getClass() == Note.class) {
                     wert = ((Note) element).getWert();
-                    bezeichnung = new String(String.valueOf(wert)) + "q";
+                    switch (((Note) element).getNotenInTakt()) {
+                        case 1: laenge="w"; break;
+                        case 2: laenge="h"; break;
+                        case 4: laenge="q"; break;
+                        case 8: laenge="i"; break;
+                        case 16: laenge="s"; break;
+                    }
+                    bezeichnung = String.valueOf(wert) + laenge;
                     melody.add(bezeichnung);
                 }
                 else if (element.getClass() == Pause.class) {
-                    //wert = ((Note) element).getWert();
-                    bezeichnung = "R" + "q";
+                    switch (((Pause) element).getPausenInTakt()) {
+                        case 5: laenge="w"; break;
+                        case 10: laenge="h"; break;
+                        case 20: laenge="q"; break;
+                        case 40: laenge="i"; break;
+                        case 80: laenge="s"; break;
+                    }
+                    bezeichnung = "R" + laenge;
                     melody.add(bezeichnung);
                 }
             }

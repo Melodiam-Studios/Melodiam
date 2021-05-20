@@ -72,7 +72,9 @@ public class Pause extends Element {
         changePause();
     }
 
-
+    public int getPausenInTakt() {
+        return pausenInTakt;
+    }
 
     public ImageView getImageView() {
         return imageView;
