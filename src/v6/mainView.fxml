@@ -209,12 +209,12 @@
       <center>
          <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="1100.0" styleClass="sheet" text="Titel">
+               <Label fx:id="titel" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="1100.0" styleClass="sheet" text="Titel">
                   <font>
                      <Font size="33.0" />
                   </font>
                </Label>
-               <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="1100.0" styleClass="sheet" text="Komponist">
+               <Label fx:id="komponist" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="1100.0" styleClass="sheet" text="Komponist">
                   <font>
                      <Font size="18.0" />
                   </font>

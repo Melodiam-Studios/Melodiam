@@ -76,6 +76,12 @@ public class Controller {
     @FXML
     Button bTrans;
 
+    @FXML
+    Label titel;
+
+    @FXML
+    Label komponist;
+
     private int row = 0;
     private int column = 0;
     private int lenghtPane = 275;
@@ -175,15 +181,14 @@ public class Controller {
             Takt takt = new Takt(true);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
-            //Notenblatt.addTakt(takt);
+            addTaktPictur(takt.getPane());
         }else{
             Takt takt = new Takt(false);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
-            //Notenblatt.addTakt(takt);
         }
         column++;
-        addTonleiterGUI();
+        addTonleiter();
     }
 
     //erkent Vorzeichen
@@ -353,7 +358,7 @@ public class Controller {
     }
 
     //Tonleiter grafisch ändern nur am anfang und beim Transponieren
-    public void addTonleiterGUI(){
+    public void addTonleiter(){
         int i = 0;
         for (Pane p: storeLines){
             if(i%4 == 0){
@@ -404,9 +409,9 @@ public class Controller {
                 }
                 ImageView imageView = new ImageView(img);
                 tmpPane.getChildren().add(imageView);
-                int takt_size = 40;
-                imageView.setFitHeight(takt_size * 1.705);
-                imageView.setFitWidth(takt_size);
+                int tonleiter_size = 40;
+                imageView.setFitHeight(tonleiter_size * 1.705);
+                imageView.setFitWidth(tonleiter_size);
                 imageView.setY(35);
                 imageView.setX(20);
 
@@ -415,8 +420,29 @@ public class Controller {
         }
     }
 
-    //Takte statisch nur am anfang ändern
+    //Takte statisch nur am anfang setzen
+    public void addTaktPictur(Pane startTakt){
+
+        Image image = new Image(getClass().getResource("/resources/bilder_takte/44-Takt.PNG").toExternalForm());
+        ImageView imageView = new ImageView(image);
+
+        if (Notenblatt.getTaktart() == 44){
+            startTakt.getChildren().add(imageView);
+        }
+        int takt_size = 40;
+        imageView.setFitHeight(takt_size * 1.705);
+        imageView.setFitWidth(takt_size);
+        imageView.setY(35);
+        imageView.setX(30);
+
+    }
 
     //Titel angeben und Komponist
+    public void addHeader(){
+        String textTitel = Notenblatt.getDateiName();
+        String textKomponist = Notenblatt.getKomponist();
 
+        titel.setText(textTitel);
+        komponist.setText(textKomponist);
+    }
 }

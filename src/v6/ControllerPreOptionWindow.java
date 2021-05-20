@@ -43,11 +43,16 @@ public class ControllerPreOptionWindow implements Initializable {
     //Opens the Main Window
     private void newWindow(){
 
-        String tmpDateiName = dateiName.getText();
-        Notenblatt.setDateiName(tmpDateiName);
+        if (!dateiName.getText().isEmpty()){
+            System.out.println(dateiName.getText());
+            String tmpDateiName = dateiName.getText();
+            Notenblatt.setDateiName(tmpDateiName);
+        }
 
-        String tmpKomponist = komponist.getText();
-        Notenblatt.setKomponist(tmpKomponist);
+        if (!komponist.getText().isEmpty()){
+            String tmpKomponist = komponist.getText();
+            Notenblatt.setKomponist(tmpKomponist);
+        }
 
         String tmpInstrument = instrument.getSelectionModel().getSelectedItem().toString();
         Notenblatt.setInstrument(tmpInstrument);
@@ -80,8 +85,8 @@ public class ControllerPreOptionWindow implements Initializable {
             jMetro.setScene(scene);
 
             //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
-
             //Open main Window
+
             root.getStylesheets().add("v6/lightmode.css");
             primaryStage.setTitle("Melodiam v6");
             primaryStage.setScene(jMetro.getScene());
@@ -91,7 +96,8 @@ public class ControllerPreOptionWindow implements Initializable {
             controller.addFile();
             controller.addIntervalle();
             controller.addInstrumente();
-            controller.addTonleiterGUI();
+            controller.addTonleiter();
+            controller.addHeader();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -170,8 +176,8 @@ public class ControllerPreOptionWindow implements Initializable {
 
         String notenSchl[] = {
                 "Violinschlüssel"
-                //        "Bassschglüssel",
-                //        "C-Schlüssel"
+                //"Bassschglüssel",
+                //"C-Schlüssel"
         };
         notenSchluessel.setItems(FXCollections.observableArrayList(notenSchl));
         notenSchluessel.getSelectionModel().select("Violinschlüssel");

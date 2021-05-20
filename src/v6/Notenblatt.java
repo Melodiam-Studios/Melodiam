@@ -9,7 +9,7 @@ public class Notenblatt {
     private static String dateiName = "Default Datei";
     private static String komponist = "Default Komponist";
     private static String notenschluessel = "Violinschlüssel";
-    private static double taktart = 1/4;
+    private static double taktart = 44;
 
     private static ArrayList<Note> allNotes = new ArrayList<>();
 
