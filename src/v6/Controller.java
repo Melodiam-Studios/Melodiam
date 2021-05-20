@@ -404,12 +404,11 @@ public class Controller {
                 }
                 ImageView imageView = new ImageView(img);
                 tmpPane.getChildren().add(imageView);
-                System.out.println("Tonleiter hinzugefügt");
-                /*int vio_size = 40;
-            img.setFitHeight(vio_size * 1.705);
-            img.setFitWidth(vio_size);
-            img.setY(-15 + i);
-            img.setX(-10);*/
+                int takt_size = 40;
+                imageView.setFitHeight(takt_size * 1.705);
+                imageView.setFitWidth(takt_size);
+                imageView.setY(35);
+                imageView.setX(20);
 
             }
             i++;
