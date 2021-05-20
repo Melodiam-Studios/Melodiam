@@ -40,6 +40,7 @@ public class Takt {
      * kein Vorzeichen --> -1
      */
     int vorzeichen = 3;
+    int id;
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
 
@@ -92,7 +93,9 @@ public class Takt {
      *
      * @param needSchluessel for placing the Notenschlüssel --> needSchluessel == true --> Notenschluessel gets placed
      */
-    public Takt(boolean needSchluessel){
+    public Takt(boolean needSchluessel, int id){
+
+        this.id = id;
 
         ArrayList<Line> lines = new ArrayList<>();
         Line l1 = new Line();
@@ -427,7 +430,7 @@ public class Takt {
                 //System.out.println(note.toString());
 
                 elements.add(note);
-                Notenblatt.addNote(note);
+                //Notenblatt.addNote(note);
             }
 
             try {
@@ -438,7 +441,7 @@ public class Takt {
                 System.out.println("You exactly touched a line");
             }
 
-
+            renewStaticTakt();
         }
     }
 
@@ -495,6 +498,20 @@ public class Takt {
 
     public void setNotenInTakt(int notenInTakt) {
         this.notenInTakt = notenInTakt;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
+    public void setElements(ArrayList<Element> elements) {
+        this.elements = elements;
+    }
+
+    public void renewStaticTakt (){
+        Notenblatt.renewTakt(elements, id);
     }
 
     @Override

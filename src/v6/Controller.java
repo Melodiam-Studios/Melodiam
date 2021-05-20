@@ -86,6 +86,7 @@ public class Controller {
     private int column = 0;
     private int lenghtPane = 275;
     private int hightPane = 250;
+    private static int id = 0;
     public static int notenInTakt = 0;
     public static int vorzeichen = 2;
 
@@ -154,6 +155,8 @@ public class Controller {
         }
         storeLines.remove(storeLines.size()-1);
         drawPane(storeLines, mainInputPane);
+        Notenblatt.remTakt();
+        id--;
     }
 
     //neues Pane in storeLines Speicheren
@@ -178,16 +181,19 @@ public class Controller {
         }
 
         if (column == 0){
-            Takt takt = new Takt(true);
+            Takt takt = new Takt(true, id);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
             addTaktPictur(takt.getPane());
+            Notenblatt.addTakt(takt);
         }else{
-            Takt takt = new Takt(false);
+            Takt takt = new Takt(false, id);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
+            Notenblatt.addTakt(takt);
         }
         column++;
+        id++;
         addTonleiter();
     }
 
@@ -326,20 +332,23 @@ public class Controller {
         int intervall;
         int tonleiter = Notenblatt.getTonleiter();
 
-        ArrayList<Note> noten = Notenblatt.getNotes();
+        //ArrayList<Note> noten = Notenblatt.getNotes();
 
-        Liste.werteAusfuellen(noten, tonleiter);
+        Liste.werteAusfuellen();
 
         intervall = intervalle.getSelectionModel().getSelectedIndex() - 12;
         intervall *= -1;
 
-        System.out.println(noten.toString());
-        Transponieren.hauptTrans(noten, intervall, tonleiter);
-        System.out.println(noten.toString());
-
-        for (Note note:noten) {
-            note.setNote(note.getPosition(),note.getVorzeichen());
+        for (Takt takt:Notenblatt.getTakte()) {
+            System.out.println(takt.toString());
         }
+
+        Transponieren.hauptTrans(intervall);
+
+        for (Takt takt:Notenblatt.getTakte()) {
+            System.out.println(takt.toString());
+        }
+
     }
 
     private void playSong(){
@@ -352,6 +361,9 @@ public class Controller {
         melody.add("Rw");
         melody.add("70w");
 
+        for (Takt takt:Notenblatt.getTakte()) {
+            System.out.println(takt.toString());
+        }
         PlayMelody playMelody = new PlayMelody(melody);
         Thread t = new Thread(playMelody,"AudioPlayback");
         t.start();

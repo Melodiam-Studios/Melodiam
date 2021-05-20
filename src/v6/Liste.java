@@ -159,28 +159,32 @@ public class Liste {
      * @param noten übergibt die Noten.
      * @param tonleiter übergibt die Tonleiter, damit erneuereAnzeigen aufgerufen werden kann (berechnet ob das Vorzeichen angezeigt wird.)
      */
-    public static void werteAusfuellen(ArrayList<Note> noten, int tonleiter) {
+    public static void werteAusfuellen() {
 
         int position, vorzeichen, wert = 0, anzeigenVorzeichen = 0;
         String bezeichnnung = null;
 
-        for (Note note : noten) {
+        for (Takt takt : Notenblatt.getTakte()) {
+            for (Element element:takt.getElements()) {
+                if (element.getClass() == Note.class){
 
-            position = note.getPosition();
-            vorzeichen = note.getVorzeichen();
+                    position = ((Note) element).getPosition();
+                    vorzeichen = ((Note) element).getVorzeichen();
 
-            for (int i = 0; i < arr.length; i++) {
-                if ((new Integer(arr[i][1]) == position) && (new Integer(arr[i][2]) == vorzeichen)) {
+                    for (int i = 0; i < arr.length; i++) {
+                        if ((new Integer(arr[i][1]) == position) && (new Integer(arr[i][2]) == vorzeichen)) {
 
-                    wert = new Integer(arr[i][0]);
-                    bezeichnnung = arr[i][3];
-                    break;
+                            wert = new Integer(arr[i][0]);
+                            bezeichnnung = arr[i][3];
+                            break;
+                        }
+                    }
+
+                    ((Note) element).setAll(wert, position, vorzeichen, anzeigenVorzeichen, bezeichnnung);
                 }
             }
-
-            note.setAll(wert, position, vorzeichen, anzeigenVorzeichen, bezeichnnung);
         }
 
-        Transponieren.erneuereAnzeigen(noten, tonleiter);
+        Transponieren.erneuereAnzeigen();
     }
 }
