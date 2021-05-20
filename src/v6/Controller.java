@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -182,6 +183,7 @@ public class Controller {
             //Notenblatt.addTakt(takt);
         }
         column++;
+        addTonleiterGUI();
     }
 
     //erkent Vorzeichen
@@ -349,4 +351,73 @@ public class Controller {
         Thread t = new Thread(playMelody,"AudioPlayback");
         t.start();
     }
+
+    //Tonleiter grafisch ändern nur am anfang und beim Transponieren
+    public void addTonleiterGUI(){
+        int i = 0;
+        for (Pane p: storeLines){
+            if(i%4 == 0){
+                //Tonleiter hinzufügen
+                Pane tmpPane = storeLines.get(i);
+                Image img = null;
+                //Richtiges Bild wählen
+                switch (Notenblatt.getTonleiter()){
+                    case 6:
+                        img = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
+                        break;
+                    case 5:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
+                        break;
+                    case 4:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
+                        break;
+                    case 3:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
+                        break;
+                    case 2:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
+                        break;
+                    case 1:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
+                        break;
+                    case 0:
+                        img= null;
+                        break;
+                    case -1:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
+                        break;
+                    case -2:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
+                        break;
+                    case -3:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
+                        break;
+                    case -4:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
+                        break;
+                    case -5:
+                        img= new Image(getClass().getResource("/rresources/bilder_tonleiter/Des-Dur.png").toExternalForm());
+                        break;
+                    case -6:
+                        img= new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
+                        break;
+                }
+                ImageView imageView = new ImageView(img);
+                tmpPane.getChildren().add(imageView);
+                System.out.println("Tonleiter hinzugefügt");
+                /*int vio_size = 40;
+            img.setFitHeight(vio_size * 1.705);
+            img.setFitWidth(vio_size);
+            img.setY(-15 + i);
+            img.setX(-10);*/
+
+            }
+            i++;
+        }
+    }
+
+    //Takte statisch nur am anfang ändern
+
+    //Titel angeben und Komponist
+
 }

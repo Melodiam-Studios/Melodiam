@@ -79,8 +79,6 @@ public class ControllerPreOptionWindow implements Initializable {
 
             jMetro.setScene(scene);
 
-
-
             //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
 
             //Open main Window
@@ -93,7 +91,7 @@ public class ControllerPreOptionWindow implements Initializable {
             controller.addFile();
             controller.addIntervalle();
             controller.addInstrumente();
-
+            controller.addTonleiterGUI();
 
         }catch (Exception e){
             e.printStackTrace();
