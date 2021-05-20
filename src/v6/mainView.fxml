@@ -155,8 +155,8 @@
                 </Button>
                 <Button fx:id="viertelPause" mnemonicParsing="false" onAction="#onButtonNoten" prefHeight="40.0" prefWidth="40.0" styleClass="note-buttons" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="17.0">
-                            <Image preserveRatio="true" url="/resources/bilder_noten/Viertelpause.png" />
+                        <ImageView preserveRatio="true" fitHeight="25.0" fitWidth="17.0">
+                            <Image url="/resources/bilder_noten/Viertelpause.png" />
                         </ImageView>
                     </graphic>
                 </Button>
@@ -193,8 +193,8 @@
                 </ToggleButton>
                 <ToggleButton fx:id="aVorzeichen" mnemonicParsing="false" onAction="#onButtonVorzeichen" prefHeight="40.0" prefWidth="40.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="4">
                     <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="17.0">
-                            <Image preserveRatio="true" url="/resources/bilder_noten/Auflösungszeichen.png" />
+                        <ImageView preserveRatio="true" fitHeight="27.0" fitWidth="17.0">
+                            <Image url="/resources/bilder_noten/Auflösungszeichen.png" />
                         </ImageView>
                     </graphic>
                 </ToggleButton>
