@@ -41,6 +41,8 @@ public class Takt {
      */
     int vorzeichen = 3;
 
+    double belegt = 0;
+
     FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
 
     /**
@@ -185,21 +187,28 @@ public class Takt {
      *
      * @param p Coordinates of MousePress
      * @param notenInT the type of Note/Pause that is chosen
+     * @param belegt
      * @return the nearest position where the Element can be placed as point
      */
-    public Point2D objektFang(Point2D p, int notenInT) {
+    public Point2D objektFang(Point2D p, int notenInT, double belegt) {
 
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
+
+        double x = 0;
 
         switch (notenInT) {
             case 1:
                 listsWithPossiblePositions = ganzePositions;
+                // geteilt durch 1
+
                 break;
             case 2:
                 listsWithPossiblePositions = halbePositions;
+                // geteilt durch 2
                 break;
             case 4:
                 listsWithPossiblePositions = viertelPositions;
+
                 break;
             case 8:
                 listsWithPossiblePositions = achtelPositions;
@@ -209,9 +218,16 @@ public class Takt {
                 break;
         }
 
+        x = belegt * listsWithPossiblePositions.size() + ((double) 1/notenInTakt) * listsWithPossiblePositions.size();
+
+        System.out.println("List length: " + listsWithPossiblePositions.size());
+        System.out.println("X: " + x);
+
+
+
         double shortestDistance = 100;
         Point2D returnPoint = new Point2D();
-
+        /*
         for (Point2D point2D : listsWithPossiblePositions) {
             //System.out.println("Point2D: " + point2D);
             //System.out.println("p: " + p);
@@ -226,6 +242,28 @@ public class Takt {
             }
         }
         //System.out.println("Returning the point: " + p);
+
+         */
+
+        // wenn eine Note platziert geteilt durch 4 bei viertelnote
+        // wenn zwei dann geteilt
+        try {
+            for (int i = (int) (listsWithPossiblePositions.size()-(listsWithPossiblePositions.size()-x) - ((double) 1/notenInTakt) * listsWithPossiblePositions.size()); i<listsWithPossiblePositions.size()-(listsWithPossiblePositions.size()-x); i++) {
+                Point2D point2D = listsWithPossiblePositions.get(i);
+                double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - p.x), 2) + Math.pow(Math.abs(point2D.y - p.y), 2));
+                //System.out.println("Distance" + distance);
+                if (distance <= shortestDistance) {
+                    shortestDistance = distance;
+                    returnPoint.x = point2D.x;
+                    returnPoint.y = point2D.y;
+                    //System.out.println("Shortest Distance: " + shortestDistance);
+                }
+            }
+
+        }catch (Exception e){
+            returnPoint.x = 0;
+            returnPoint.y = 0;
+        }
         return returnPoint;
     }
 
@@ -244,7 +282,7 @@ public class Takt {
         if (notenInTakt % 5 == 0){
             // Pause
             //System.out.println("Pause");
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5, belegt);
             //System.out.println("After: " + p);
             previewPause.setPause(notenInTakt);
             previewImageView = previewPause.getImageView();
@@ -255,7 +293,9 @@ public class Takt {
             //System.out.println(previewPause.toString());
         }else{
             //Note
-            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+            p = objektFang(new Point2D(p.x-10,p.y), notenInTakt, belegt);
+            if (p.x == 0 && p.y == 0)
+                previewNote.setNote(notenInTakt,0,vorzeichen);
 
             previewNote.setNote(notenInTakt,(int) (p.y / 5) + 1, vorzeichen);
             previewImageView = previewNote.getImageView();
@@ -317,7 +357,7 @@ public class Takt {
             if (notenInTakt % 5 == 0){
                 // Pause
                 System.out.println("Pause");
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5);
+                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt/5, belegt);
                 Pause pause = new Pause(notenInTakt);
                 System.out.println("After: " + p);
                 imageView = pause.getImageView();
@@ -326,16 +366,19 @@ public class Takt {
                 System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 System.out.println(pause.toString());
                 elements.add(pause);
+                belegt += 1/( (double) notenInTakt/5);
             }else{
                 //Note
-                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt);
+                System.out.println("Belegt: " + belegt);
+                p = objektFang(new Point2D(p.x-10,p.y), notenInTakt, belegt);
                 System.out.println("After: " + p);
                 double temPointY = p.y;
                 p.y += offsetY;
                 
                 int position = (int) (temPointY / 5) + 1;
 
-                Note note = new Note(notenInTakt, position, vorzeichen, p) ;
+                Note note = new Note(notenInTakt, position, vorzeichen, p);
+                belegt += (1/ (double) notenInTakt);
 
                 imageView = note.getImageView();
                 vorzeichenView = note.getVorzeichenView();
