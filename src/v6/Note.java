@@ -312,7 +312,13 @@ public class Note extends Element {
                 ", notenInTakt=" + notenInTakt +
                 ", position=" + position +
                 ", notenOffsetY=" + notenOffsetY +
-                ", vorzeichen='" + vorzeichen + '\'' +
+                ", coordinatesOfNote=" + coordinatesOfNote +
+                ", wert=" + wert +
+                ", vorzeichen=" + vorzeichen +
+                ", anzeigenVorzeichen=" + anzeigenVorzeichen +
+                ", bezeichnung='" + bezeichnung + '\'' +
+                ", imageViewX=" + imageView.getX() +
+                ", imageViewY=" + imageView.getY() +
                 '}';
     }
 }
