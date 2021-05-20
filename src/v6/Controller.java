@@ -357,13 +357,28 @@ public class Controller {
         melody.setInstrument(Notenblatt.getInstrument());
         melody.setTempo((int) tempo.getValue());
 
-        melody.add("70w 71w 62g");
-        melody.add("Rw");
-        melody.add("70w");
+        int wert=0;
+        String bezeichnung = "";
 
-        for (Takt takt:Notenblatt.getTakte()) {
-            System.out.println(takt.toString());
+        /*melody.add("70w 71w 62g");
+        melody.add("Rw");
+        melody.add("70w");*/
+
+        for (Takt takt : Notenblatt.getTakte()) {
+            for (Element element : takt.getElements()) {
+                if (element.getClass() == Note.class) {
+                    wert = ((Note) element).getWert();
+                    bezeichnung = new String(String.valueOf(wert)) + "q";
+                    melody.add(bezeichnung);
+                }
+                else if (element.getClass() == Pause.class) {
+                    wert = ((Note) element).getWert();
+                    bezeichnung = "R" + "q";
+                    melody.add(bezeichnung);
+                }
+            }
         }
+
         PlayMelody playMelody = new PlayMelody(melody);
         Thread t = new Thread(playMelody,"AudioPlayback");
         t.start();
