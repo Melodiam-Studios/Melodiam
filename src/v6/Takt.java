@@ -320,7 +320,6 @@ public class Takt {
 
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
 
-        if (belegt == 1) return;
 
         System.out.println("_________________________________________________________");
         System.out.println(this.getPane().toString());
@@ -337,6 +336,7 @@ public class Takt {
             onRightClick(mouseEvent);
         else {
 
+            if (belegt == 1) return;
 
             ImageView imageView;
             ImageView vorzeichenView = null;
@@ -513,6 +513,7 @@ public class Takt {
 
             double distance = Math.sqrt(Math.pow(Math.abs(point2D.x - returnPoint.x), 2) + Math.pow(Math.abs(point2D.y - returnPoint.y), 2));
             if (distance == 0){
+                belegt -= 1.0/notenInTakt;
                 elements.remove(element);
                 // element.remove from list with notes usw.
                 pane.getChildren().remove(element.imageView);
