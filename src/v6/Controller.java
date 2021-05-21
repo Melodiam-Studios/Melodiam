@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import org.jfugue.pattern.Pattern;
 
 import java.util.ArrayList;
@@ -81,6 +82,12 @@ public class Controller {
 
     @FXML
     Label komponist;
+
+    @FXML
+    MenuItem miQuit;
+
+    @FXML
+    MenuItem miNew;
 
     private int row = 0;
     private int column = 0;
@@ -496,6 +503,21 @@ public class Controller {
                 Note n1 = (Note) element;
                 
             }
+        }
+    }
+
+    @FXML
+    public void shutDownMain(){
+        if ("miQuit".equals(miQuit.getId())){
+            mainInputPane.getScene().getWindow().hide();
+        }
+    }
+
+    @FXML
+    public void newWindow(){
+        if("miNew".equals(miNew.getId())){
+            shutDownMain();
+
         }
     }
 }
