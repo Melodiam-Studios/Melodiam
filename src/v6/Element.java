@@ -29,4 +29,11 @@ public abstract class Element {
     @FXML
     protected ImageView imageView = new ImageView();
 
+    /**
+     * Variable responsible for showing the Vorzeichen of the note.
+     * It gets set by the constructor-called function changeNote() when a new note is placed
+     */
+    @FXML
+    protected ImageView vorzeichenView = new ImageView();
+
 }

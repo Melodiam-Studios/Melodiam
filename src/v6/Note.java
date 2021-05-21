@@ -1,7 +1,6 @@
 package v6;
 
 import com.sun.javafx.geom.Point2D;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,12 +15,7 @@ public class Note extends Element {
     // fürs b -1, für keins 0, fürs hashtag 1
 
 
-    /**
-     * Variable responsible for showing the Vorzeichen of the note.
-     * It gets set by the constructor-called function {@link Note#changeNote(int)} when a new note is placed
-     */
-    @FXML
-    private ImageView vorzeichenView = new ImageView();
+
 
     /**
      * describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...

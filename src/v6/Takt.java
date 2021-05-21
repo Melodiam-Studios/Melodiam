@@ -2,7 +2,6 @@ package v6;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,8 +42,6 @@ public class Takt {
     int id;
 
     double belegt = 0;
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));      // load the fxml that is responsible for the main graphics
 
     /**
      * Main Pane on which the lines, Notes and Takte get placed
@@ -196,7 +193,7 @@ public class Takt {
 
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
 
-        double x = 0;
+        double x;
 
         switch (notenInT) {
             case 1:
@@ -253,7 +250,7 @@ public class Takt {
     }
 
     /**
-     * @param mouseEvent
+     * @param mouseEvent mouse coordinates
      */
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
 
@@ -338,7 +335,6 @@ public class Takt {
             if (belegt == 1) return;
 
             ImageView imageView;
-            ImageView vorzeichenView = null;
 
             if (notenInTakt % 5 == 0) {
                 // Pause
@@ -496,7 +492,7 @@ public class Takt {
         //p = objektFang(p, )
         double shortestDistance = 100;
         Point2D returnPoint = new Point2D();
-        ImageView img = new ImageView();
+
 
         for (Element element : elements) {
 
@@ -508,7 +504,6 @@ public class Takt {
             //System.out.println("Distance" + distance);
             if (distance <= shortestDistance) {
                 shortestDistance = distance;
-                img = element.imageView;
                 returnPoint = point2D;
                 //System.out.println("Shortest Distance: " + shortestDistance);
             }
@@ -525,6 +520,10 @@ public class Takt {
                 elements.remove(element);
                 // element.remove from list with notes usw.
                 pane.getChildren().remove(element.imageView);
+                try {
+                    pane.getChildren().remove(element.vorzeichenView);
+                }catch (Exception ignored){}
+
                 break;
             }
 
