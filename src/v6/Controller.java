@@ -89,8 +89,6 @@ public class Controller {
     private static int id = 0;
     public static int notenInTakt = 0;
     public static int vorzeichen = 2;
-    private Image imgTonleiter = null;
-    private ArrayList<ImageView> tonleterList = new ArrayList<>();
 
     //Takte werden hier gespeichert
     private ArrayList<Pane> storeLines = new ArrayList<>();
@@ -156,7 +154,6 @@ public class Controller {
         if (column < 0) {
             row--;
             column = 3;
-            tonleterList.remove(tonleterList.size()-1);
         }
 
         storeLines.remove(storeLines.size()-1);
@@ -190,11 +187,9 @@ public class Controller {
             Takt takt = new Takt(true, id);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
-            addTaktPictur(takt.getPane());
             Notenblatt.addTakt(takt);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
-            tonleterList.add(imageViewTonleiter);
         }else{
             Takt takt = new Takt(false, id);
             storeLines.add(takt.getPane());
@@ -203,7 +198,6 @@ public class Controller {
         }
         column++;
         id++;
-        addTonleiter();
     }
 
     //erkent Vorzeichen
@@ -417,96 +411,6 @@ public class Controller {
         t.start();
     }
 
-    //Tonleiter grafisch ändern nur am anfang und für Transponieren
-    public void addTonleiter(){
-        int i = 0;
-
-        for (Pane p: storeLines){
-            if(i%4 == 0){
-                //Richtiges Bild wählen
-                switch (Notenblatt.getTonleiter()){
-                    case 6:
-                        imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
-                        break;
-                    case 5:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
-                        break;
-                    case 4:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
-                        break;
-                    case 3:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
-                        break;
-                    case 2:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
-                        break;
-                    case 1:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
-                        break;
-                    case 0:
-                        imgTonleiter= null;
-                        break;
-                    case -1:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
-                        break;
-                    case -2:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
-                        break;
-                    case -3:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
-                        break;
-                    case -4:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
-                        break;
-                    case -5:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
-                        break;
-                    case -6:
-                        imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
-                        break;
-                }
-
-
-                ImageView imageViewTonleiter = new ImageView();
-                imageViewTonleiter = tonleterList.get(i/4);
-                imageViewTonleiter.setImage(imgTonleiter);
-                try{
-                    p.getChildren().add(imageViewTonleiter);
-                }catch (Exception e){
-                }
-
-                int tonleiter_size = 40;
-                imageViewTonleiter.setFitHeight(tonleiter_size * 1.705);
-                imageViewTonleiter.setFitWidth(tonleiter_size);
-                imageViewTonleiter.setY(35);
-                imageViewTonleiter.setX(20);
-            }
-            i++;
-        }
-    }
-
-    //Takte statisch nur am anfang setzen
-    public void addTaktPictur(Pane startTakt){
-
-        Image image = new Image(getClass().getResource("/resources/bilder_takte/44-Takt.PNG").toExternalForm());
-        ImageView imageView = new ImageView(image);
-
-        if (Notenblatt.getTaktart() == 44){
-            startTakt.getChildren().add(imageView);
-        }
-        int takt_size = 40;
-        imageView.setFitHeight(takt_size);
-        imageView.setFitWidth(takt_size / 1.705);
-        imageView.setY(35);
-
-        //change x
-
-        imageView.setX(30);
-
-
-
-    }
-
     //Titel angeben und Komponist
     public void addHeader(){
         String textTitel = Notenblatt.getDateiName();
@@ -555,10 +459,8 @@ public class Controller {
             takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
-            addTaktPictur(takt.getPane());
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
-            tonleterList.add(imageViewTonleiter);
         }else{
             takt = new Takt(false, id);
             takt.setElements(elements);
@@ -567,7 +469,6 @@ public class Controller {
         }
         column++;
         id++;
-        addTonleiter();
 
         for (Element element: elements) {
             if (element instanceof Note){

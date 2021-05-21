@@ -106,7 +106,6 @@ public class ControllerPreOptionWindow implements Initializable {
             controller.addFile();
             controller.addIntervalle();
             controller.addInstrumente();
-            controller.addTonleiter();
             controller.addHeader();
 
             for(int i = 0; i < Notenblatt.getStartTaktAnzahl(); i++){
