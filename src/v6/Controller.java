@@ -146,7 +146,7 @@ public class Controller {
         }
     }
 
-    //Pane aus storeLines löschen
+    //Pane aus storeLines und aus dem Notenblatt löschen
     private void remPane() {
         if (column >= 0) {
             column--;
@@ -420,19 +420,39 @@ public class Controller {
         komponist.setText(textKomponist);
     }
 
+    //Löscht alle Panes und erstellt neue mit den Takten vom Notenblatt
     public void erneuereAnsicht(){
-        for (int i=0; i<Notenblatt.getTakte().size();i++) {
-            remPane();
+
+        System.out.println(Notenblatt.getTakte().size());
+        for (int i=0; i<(Notenblatt.getTakte().size());i++) {
+            remPaneTran();
+            System.out.println("Takt wird gelöscht");
         }
 
         for (Takt takt: Notenblatt.getTakte()) {
-            addPaneTrans(takt.getElements());
+            System.out.println(takt.getElements());
+            System.out.println(takt.getId());
+            addPaneTrans(takt.getElements(), takt.getId());
+        }
+    }
+
+    //Pane aus storeLines löschen
+    private void remPaneTran() {
+        if (column >= 0) {
+            column--;
+        }
+        if (column < 0) {
+            row--;
+            column = 3;
         }
 
+        storeLines.remove(storeLines.size()-1);
+        drawPane(storeLines, mainInputPane);
+        id--;
     }
 
     //neues Pane in storeLines Speicheren
-    public void addPaneTrans(ArrayList<Element> elements) {
+    public void addPaneTrans(ArrayList<Element> elements, int idNeu) {
         if (column >= 4){
             row++;
             column = 0;
@@ -455,14 +475,14 @@ public class Controller {
         Takt takt;
 
         if (column == 0){
-            takt = new Takt(true, id);
+            takt = new Takt(true, idNeu);
             takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
         }else{
-            takt = new Takt(false, id);
+            takt = new Takt(false, idNeu);
             takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
