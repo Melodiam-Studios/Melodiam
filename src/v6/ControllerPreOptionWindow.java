@@ -2,6 +2,7 @@ package v6;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
@@ -112,12 +114,21 @@ public class ControllerPreOptionWindow implements Initializable {
                 controller.addPane();
             }
 
+            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent event) {
+                    controller.keyPresed(scene, event);
+                }
+            });
+
         }catch (Exception e){
             e.printStackTrace();
         }
         //close pre option Window
         Stage preOptionStage = (Stage) openMainWindow.getScene().getWindow();
         preOptionStage.close();
+
+
 
     }
 

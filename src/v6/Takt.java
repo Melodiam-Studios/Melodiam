@@ -24,6 +24,10 @@ public class Takt {
      */
     float line_length = 275;
     /**
+     * Variable responsible for setting the length of the first takt in a row
+     */
+    float first_line_length = 300;
+    /**
      * Variable responsible for setting the height of the takt
      */
     float height = 115;
@@ -110,6 +114,7 @@ public class Takt {
         lines.add(l5);
 
         int i = 35;     // offsetY
+        Line l6 = new Line();
 
         if (isFirstTakt) {        // places the Violinschluessel and resizes it, place Tonleiter, place Takt
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
@@ -132,7 +137,7 @@ public class Takt {
             imageView.setFitHeight(takt_size);
             imageView.setFitWidth(takt_size / 1.705);
             imageView.setY(35);
-            imageView.setX(30);
+            imageView.setX(75);
 
 
             //Tonleiter hinzufügen
@@ -183,26 +188,45 @@ public class Takt {
             imageViewTonleiter.setImage(imgTonleiter);
             pane.getChildren().add(imageViewTonleiter);
 
-            int tonleiter_size = 40;
-            imageViewTonleiter.setFitHeight(tonleiter_size * 1.705);
+            int tonleiter_size = 80;
+            imageViewTonleiter.setFitHeight(tonleiter_size*1.2);
             imageViewTonleiter.setFitWidth(tonleiter_size);
-            imageViewTonleiter.setY(20);
-            imageViewTonleiter.setX(20);
+
+            if(Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >=-6){
+                imageViewTonleiter.setY(8);
+                imageViewTonleiter.setX(12);
+            }else{
+                imageViewTonleiter.setY(8);
+                imageViewTonleiter.setX(12);
+            }
+
+            imageViewTonleiter.setY(8);
+            imageViewTonleiter.setX(12);
+
+            //line beim ersten takt in einer Zeile länger setzen
+            // lne at the right end (vertical)
+            l6.setStartX(first_line_length);
+            l6.setStartY(i);
+            l6.setEndX(first_line_length);
+            l6.setEndY(i + 40);
 
         }
+        else{
+            // lne at the right end (vertical)
+            l6.setStartX(line_length);
+            l6.setStartY(i);
+            l6.setEndX(line_length);
+            l6.setEndY(i + 40);
+        }
 
-        // lne at the right end (vertical)
-        Line l6 = new Line();
-        l6.setStartX(line_length);
-        l6.setStartY(i);
-        l6.setEndX(line_length);
-        l6.setEndY(i + 40);
+
 
         // lines that form the notengerüst (horizontal)
         for (Line l : lines) {
             l.setStartX(0);
             l.setStartY(i);
-            l.setEndX(line_length);
+            if(isFirstTakt) l.setEndX(first_line_length);
+            else l.setEndX(line_length);
             l.setEndY(i);
             i += 10;
             pane.getChildren().add(l);

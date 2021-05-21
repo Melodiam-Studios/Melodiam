@@ -85,6 +85,7 @@ public class Controller {
     private int row = 0;
     private int column = 0;
     private int lenghtPane = 275;
+    private int lenghtFirstsPane = 300;
     private int hightPane = 250;
     private static int id = 0;
     public static int notenInTakt = 0;
@@ -117,11 +118,11 @@ public class Controller {
 
     //Schaut welcher Key gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
     public void keyPresed(Scene scene, KeyEvent event){
-        if (event.getCode() == KeyCode.LEFT && storeLines.size() > 0){
+        if (event.getCode() == KeyCode.D && storeLines.size() > 0){
             remPane();
         }
 
-        if (event.getCode() == KeyCode.RIGHT){
+        if (event.getCode() == KeyCode.A){
             addPane();
         }
     }
@@ -176,7 +177,7 @@ public class Controller {
         mainInputPane.getRowConstraints().add(rowWith);
 
         if (column == 0 ){
-            ColumnConstraints columnWith = new ColumnConstraints(275);
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtFirstsPane);
             mainInputPane.getColumnConstraints().add(columnWith);
         }else {
             ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
