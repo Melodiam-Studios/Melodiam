@@ -4,7 +4,6 @@ import audio.PlayMelody;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -153,11 +152,11 @@ public class Controller {
     private void remPane() {
         if (column >= 0) {
             column--;
-            tonleterList.remove(tonleterList.size()-1);
         }
         if (column < 0) {
             row--;
             column = 3;
+            tonleterList.remove(tonleterList.size()-1);
         }
 
         storeLines.remove(storeLines.size()-1);
@@ -359,6 +358,8 @@ public class Controller {
             System.out.println(takt.toString());
         }
 
+        erneuereAnsicht();
+
     }
 
     private void playSong(){
@@ -513,5 +514,66 @@ public class Controller {
 
         titel.setText(textTitel);
         komponist.setText(textKomponist);
+    }
+
+    public void erneuereAnsicht(){
+        for (int i=0; i<Notenblatt.getTakte().size();i++) {
+            remPane();
+        }
+
+        for (Takt takt: Notenblatt.getTakte()) {
+            addPaneTrans(takt.getElements());
+        }
+
+    }
+
+    //neues Pane in storeLines Speicheren
+    public void addPaneTrans(ArrayList<Element> elements) {
+        if (column >= 4){
+            row++;
+            column = 0;
+        }
+
+        mainInputPane.addColumn(column);
+        mainInputPane.addRow(row);
+
+        RowConstraints rowWith = new RowConstraints(150);
+        mainInputPane.getRowConstraints().add(rowWith);
+
+        if (column == 0 ){
+            ColumnConstraints columnWith = new ColumnConstraints(275);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }else {
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
+            mainInputPane.getColumnConstraints().add(columnWith);
+        }
+
+        Takt takt;
+
+        if (column == 0){
+            takt = new Takt(true, id);
+            takt.setElements(elements);
+            storeLines.add(takt.getPane());
+            drawPane(storeLines, mainInputPane);
+            addTaktPictur(takt.getPane());
+            //Tonleiter ImageView hinzufügen
+            ImageView imageViewTonleiter = new ImageView();
+            tonleterList.add(imageViewTonleiter);
+        }else{
+            takt = new Takt(false, id);
+            takt.setElements(elements);
+            storeLines.add(takt.getPane());
+            drawPane(storeLines, mainInputPane);
+        }
+        column++;
+        id++;
+        addTonleiter();
+
+        for (Element element: elements) {
+            if (element instanceof Note){
+                Note n1 = (Note) element;
+                
+            }
+        }
     }
 }
