@@ -24,7 +24,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Parent root2 = FXMLLoader.load(getClass().getResource("preOptionWindowView.fxml"));
-        Scene scene2 = new Scene(root2 , 778, 610);
+        Scene scene2 = new Scene(root2 , 700, 444);
+
+        //root2.getStylesheets().add("v6/lightmode.css");
+        Image image = new Image("/resources/melodiam_testicon.png");
+        primaryStage.getIcons().add(image);
+
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene2);
         primaryStage.show();
     }

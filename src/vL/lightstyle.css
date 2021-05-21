@@ -22,3 +22,15 @@
 .root{
     -fx-background-color: white;
 }
+.play-button {
+    -fx-background-color: red;
+}
+.play-button:focused{
+    -fx-background-color: yellow;
+}
+.play-button:focused{
+    -fx-background-color: yellow;
+    -fx-border-color: yellow;
+    -fx-focus-color: yellow;
+    -fx-background-insets: -1, 0, 1, 1;
+}
