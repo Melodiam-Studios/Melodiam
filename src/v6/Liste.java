@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * In der Klasse Liste befindet sich die Liste arr[][] mit den ganzen möglichen Noten und eine dazugehörige statische Methode welche Noten vervollständigt.
  */
 public class Liste {
-    static int n = 0;
+    private static int n = 0;
+    private static int e = 0;
 
     /**
      * Beinhaltet alle möglichen Noten, mit den jeweiligen Werten, Positionen, Vorzeichen und Bezeichnungen.
@@ -84,34 +85,8 @@ public class Liste {
         {"78", "24", "1", "fis3"},
     };
 
-    public static ArrayList<Integer> positions = new ArrayList<>();/*
-    position.set()
-            {23, 2},
-            {22, 3},
-            {21, 4},
-            {20, 5},
-            {19, 6},
-            {18, 7},
-            {17, 8},
-            {16, 9},
-            {15, 10},
-            {14, 11},
-            {13, 12},
-            {12, 13},
-            {11, 14},
-            {10, 15},
-            {9, 16},
-            {8, 17},
-            {7, 18},
-            {6, 19},
-            {5, 20},
-            {4, 21},
-            {3, 22},
-            {2, 23},
-            {1, 24}
-    };
+    public static ArrayList<Integer> positions = new ArrayList<>();
 
-*/
     public static void createList(){
         positions.add(-10000000);
         positions.add(24);
@@ -152,6 +127,50 @@ public class Liste {
         //System.out.println("Real position: " + position);
 
         return position;
+    }
+
+    public static ArrayList<Integer> posAndCords = new ArrayList<>();
+
+    public static void setCords(){
+        posAndCords.add(-100000);
+        posAndCords.add(-100000);
+        posAndCords.add(110);
+        posAndCords.add(105);
+        posAndCords.add(100);
+        posAndCords.add(95);
+        posAndCords.add(90);
+        posAndCords.add(85);
+        posAndCords.add(80);
+        posAndCords.add(75);
+        posAndCords.add(70);
+        posAndCords.add(65);
+        posAndCords.add(60);
+        posAndCords.add(55);
+        posAndCords.add(50);
+        posAndCords.add(45);
+        posAndCords.add(40);
+        posAndCords.add(35);
+        posAndCords.add(30);
+        posAndCords.add(25);
+        posAndCords.add(20);
+        posAndCords.add(15);
+        posAndCords.add(10);
+        posAndCords.add(5);
+        posAndCords.add(0);
+    }
+
+    public static int posToCords(int position){
+        if( e == 0) {
+            setCords();
+            e++;
+        }
+        //System.out.println("Position counting from above: " + position);
+
+        int coords = posAndCords.get(position);
+
+        //System.out.println("Real position: " + position);
+
+        return coords;
     }
 
     /**
