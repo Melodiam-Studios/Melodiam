@@ -90,9 +90,9 @@ public class Takt {
     /**
      * When a new Takt element gets created it draws the lines where the notes get placed
      *
-     * @param needSchluessel for placing the Notenschlüssel --> needSchluessel == true --> Notenschluessel gets placed
+     * @param isFirstTakt for placing the Notenschlüssel, Takt, Tonleiter --> isFirstTakt == true --> Notenschluessel, Takt and Tonleiter gets placed
      */
-    public Takt(boolean needSchluessel, int id) {
+    public Takt(boolean isFirstTakt, int id) {
 
         this.id = id;
 
@@ -111,7 +111,7 @@ public class Takt {
 
         int i = 35;     // offsetY
 
-        if (needSchluessel) {        // places the Violinschluessel and resizes it
+        if (isFirstTakt) {        // places the Violinschluessel and resizes it, place Tonleiter, place Takt
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
             ImageView notenSchluessel = new ImageView(image);
             pane.getChildren().add(notenSchluessel);
@@ -120,6 +120,75 @@ public class Takt {
             notenSchluessel.setFitWidth(vio_size);
             notenSchluessel.setY(-15 + i);
             notenSchluessel.setX(-10);
+
+            //Takt PNG hinzufügen
+            Image imageTkat = new Image(getClass().getResource("/resources/bilder_takte/44-Takt.PNG").toExternalForm());
+            ImageView imageView = new ImageView(imageTkat);
+
+            if (Notenblatt.getTaktart() == 44){
+                pane.getChildren().add(imageView);
+            }
+            int takt_size = 40;
+            imageView.setFitHeight(takt_size);
+            imageView.setFitWidth(takt_size / 1.705);
+            imageView.setY(35);
+            imageView.setX(30);
+
+
+            //Tonleiter hinzufügen
+            Image imgTonleiter = null;
+            switch (Notenblatt.getTonleiter()){
+                case 6:
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
+                    break;
+                case 5:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
+                    break;
+                case 4:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
+                    break;
+                case 3:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
+                    break;
+                case 2:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
+                    break;
+                case 1:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
+                    break;
+                case 0:
+                    imgTonleiter= null;
+                    break;
+                case -1:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
+                    break;
+                case -2:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
+                    break;
+                case -3:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
+                    break;
+                case -4:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
+                    break;
+                case -5:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
+                    break;
+                case -6:
+                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
+                    break;
+            }
+
+            ImageView imageViewTonleiter = new ImageView();
+            imageViewTonleiter.setImage(imgTonleiter);
+            pane.getChildren().add(imageViewTonleiter);
+
+            int tonleiter_size = 40;
+            imageViewTonleiter.setFitHeight(tonleiter_size * 1.705);
+            imageViewTonleiter.setFitWidth(tonleiter_size);
+            imageViewTonleiter.setY(20);
+            imageViewTonleiter.setX(20);
+
         }
 
         // lne at the right end (vertical)

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -56,75 +57,127 @@
                <children>
                   <Button fx:id="GDur" mnemonicParsing="false" onAction="#buttonDurPressed">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/G-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="DDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="1">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/D-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="EDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/E-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="HDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/H-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="ADur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="2">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/A-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="FisDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/bilder_tonleiter/Fis-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="FDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.rowIndex="2">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/bilder_tonleiter/F-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="BDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/bilder_tonleiter/B-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="EsDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
+                      <graphic>
+                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../resources/bilder_tonleiter/Es-Dur.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
                   </Button>
                   <Button fx:id="AsDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.rowIndex="3">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/bilder_tonleiter/As-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="DesDur" alignment="CENTER" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
+                      <graphic>
+                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../resources/bilder_tonleiter/Des-Dur.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
                   </Button>
                   <Button fx:id="GesDur" mnemonicParsing="false" onAction="#buttonDurPressed" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/bilder_tonleiter/Ges-Dur.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                   <Button fx:id="CDur" mnemonicParsing="false" onAction="#buttonDurPressed" GridPane.columnIndex="3">
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
+                      <graphic>
+                          <ImageView fitHeight="42.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../resources/bilder_tonleiter/C-Dur.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
                   </Button>
                </children>
             </GridPane>
              <Label text="Takt Anzahl: " GridPane.rowIndex="6" />
              <Button fx:id="openMainWindow" mnemonicParsing="false" onAction="#newWindow" text="CreatFile" GridPane.rowIndex="7">
              </Button>
-            <Spinner fx:id="preAnzahlTakte" GridPane.columnIndex="1" GridPane.rowIndex="6" min="0" max="100" amountToStepBy="1" editable="true"/>
+            <Spinner fx:id="preAnzahlTakte" amountToStepBy="1" editable="true" max="100" min="0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </items>
