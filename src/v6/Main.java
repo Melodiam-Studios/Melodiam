@@ -30,8 +30,10 @@ public class Main extends Application {
         Image image = new Image("/resources/melodiam_testicon.png");
         primaryStage.getIcons().add(image);
 
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.setScene(scene2);
+        primaryStage.setMaxHeight(600);
+        primaryStage.setMaxWidth(800);
         primaryStage.show();
     }
 
