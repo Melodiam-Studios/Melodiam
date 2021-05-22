@@ -8,6 +8,7 @@ public class Pause extends Element {
     int pausenInTakt;
     int offsetY;
 
+    float xAchse;
 
     public Pause(int pausenInTakt) {
 
@@ -82,6 +83,14 @@ public class Pause extends Element {
 
     public int getOffsetY() {
         return offsetY;
+    }
+
+    public float getxAchse() {
+        return xAchse;
+    }
+
+    public void setxAchse(float xAchse) {
+        this.xAchse = xAchse;
     }
 
     @Override

@@ -440,8 +440,10 @@ public class Takt {
                 imageView.setY(imageView.getY() + 43);
                 System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 System.out.println(pause.toString());
+                pause.setxAchse(p.x);
                 elements.add(pause);
                 belegt += 1 / ((double) notenInTakt / 5);
+                pane.getChildren().add(imageView);
             } else {
                 //Note
                 placeNote(p);
@@ -467,11 +469,19 @@ public class Takt {
         imageView = note.getImageView();
         vorzeichenView = note.getVorzeichenView();
 
+        //System.out.println("vorzeichenView: ");
+        //System.out.println(vorzeichenView.getY() + p.y);
         vorzeichenView.setX(vorzeichenView.getX() + p.x);
         vorzeichenView.setY(vorzeichenView.getY() + p.y);
 
+        //System.out.println("yAchse:");
+        //System.out.println(imageView.getY() + p.y);
+
         imageView.setX(imageView.getX() + p.x);
         imageView.setY(imageView.getY() + p.y);
+
+        note.setxAchse(p.x);
+        note.setyAchse(p.y);
 
         //System.out.println("Position der Note: " + this.position);
         if (vorzeichen == 2) {
@@ -622,6 +632,50 @@ public class Takt {
 
         }
         //System.out.println(notesAsImages);
+    }
+
+    public void erneuereNoten (){
+
+        ImageView imageView;
+        ImageView vorzeichenView = null;
+
+        for (Element element:elements) {
+
+            if (element.getClass() == Pause.class) {
+                // Pause
+                //System.out.println("Pause");
+                imageView = ((Pause) element).getImageView();
+                imageView.setX(((Pause) element).getxAchse());
+                imageView.setY(imageView.getY());
+                //System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
+                //System.out.println(((Pause) element).toString());
+                pane.getChildren().add(imageView);
+            }
+            else if (element.getClass() == Note.class){
+                //Note
+                imageView = ((Note) element).getImageView();
+                vorzeichenView = ((Note) element).getVorzeichenView();
+
+                float xAchse = ((Note) element).getxAchse();
+                int yAchse = 120 - (5 * (((Note) element).getPosition()));
+
+                //System.out.println("Position: " + ((Note) element).getPosition() + "  yAchse: " + yAchse);
+                vorzeichenView.setX(vorzeichenView.getX() + xAchse);
+                vorzeichenView.setY(yAchse - 20);
+
+                //System.out.println("yAchse=" + yAchse + "   getY=" + imageView.getY());
+                //System.out.println(yAchse - (int)imageView.getY() - 5);
+                imageView.setX(xAchse);
+
+                if (yAchse >= 60) imageView.setY(yAchse - 30);
+                else imageView.setY(yAchse - 5);
+
+                //System.out.println("getY=" + imageView.getY());
+
+                pane.getChildren().add(imageView);
+                pane.getChildren().add(vorzeichenView);
+            }
+        }
     }
 
     public void setNotenInTakt(int notenInTakt) {

@@ -637,11 +637,15 @@ public class Controller {
             drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
+
+            takt.erneuereNoten();
         }else{
             takt = new Takt(false, idNeu);
             takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
+
+            takt.erneuereNoten();
         }
         column++;
         id++;
