@@ -12,11 +12,6 @@ import javafx.scene.image.ImageView;
 @SuppressWarnings("ConstantConditions")
 public class Note extends Element {
 
-    // fürs b -1, für keins 0, fürs hashtag 1
-
-
-
-
     /**
      * describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      */
