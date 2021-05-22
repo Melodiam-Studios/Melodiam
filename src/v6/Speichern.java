@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Speichern {
 
     public static void Abspeichern(String file) {
-        //Liste.werteAusfuellen();  //Muss man noch machen, aber wenn man es dazu lässt funktioniert das schreiben indie csv datei nicht mehr
+        Liste.werteAusfuellen();  //Muss man noch machen, aber wenn man es dazu lässt funktioniert das schreiben indie csv datei nicht mehr
 
         String dateiName = Notenblatt.getDateiName();
         int tonleiter = Notenblatt.getTonleiter();
@@ -30,21 +30,18 @@ public class Speichern {
 
             bw.write(dateiName);
             bw.newLine();
-            System.out.println("TONLEITER: " + tonleiter);
-            bw.write(tonleiter);    //!!
+            bw.write(String.valueOf(tonleiter));
             bw.newLine();
             bw.write(instrument);
             bw.newLine();
             bw.write(komponist);
             bw.newLine();
-            System.out.println("TAKTART: " + taktart);
             bw.write(String.valueOf(taktart));
             bw.newLine();
             bw.write(notenschluessel);
             bw.newLine();
-            for(int i=0;i<takte.size();i++)
-            {
-                bw.write(takte.get(i+1)+","+takte.get(i++));
+            for (Takt takt : takte) {
+                bw.write(String.valueOf(takt));
                 bw.newLine();
             }
             /*
