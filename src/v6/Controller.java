@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import org.jfugue.pattern.Pattern;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.*;
 import java.io.IOException;
@@ -685,11 +686,14 @@ public class Controller {
     }
 
     @FXML
-    public void SaveFile() throws IOException { //woas no net ob des geat
+    public void SaveFile() throws IOException {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Speichern unter");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV (.csv)", "csv");
+        fileChooser.addChoosableFileFilter(filter);
 
         int userSelection = fileChooser.showSaveDialog(parentFrame);
 

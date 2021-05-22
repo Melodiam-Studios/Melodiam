@@ -1,16 +1,14 @@
 package v6;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.List;
 
 public class Speichern {
 
     public static void Abspeichern(String file) {
-        Liste.werteAusfuellen();  //Muss man noch machen, aber wenn man es dazu lässt funktioniert das schreiben indie csv datei nicht mehr
+        Liste.werteAusfuellen();
 
         String dateiName = Notenblatt.getDateiName();
         int tonleiter = Notenblatt.getTonleiter();
@@ -42,14 +40,8 @@ public class Speichern {
             bw.newLine();
             for (Takt takt : takte) {
                 bw.write(String.valueOf(takt));
-                bw.newLine();
+                //bw.newLine();
             }
-            /*
-            fileWriter.append(dateiName + "\n");
-            fileWriter.append(instrument + "\n");
-            fileWriter.append(komponist + "\n");
-            fileWriter.append(notenschluessel + "\n");
-            */
 
             System.out.println("Written!");
             bw.close();
@@ -59,7 +51,25 @@ public class Speichern {
         }
     }
 
-    public static void Einlesen(){
+    public static void Einlesen(String file) {
+        System.out.println("IM EINLESEN!");
 
-    }
+        File file2 = new File(file);
+        System.out.println(file2);
+
+        List<List<String>> data = new ArrayList<>();
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file2));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                data.add(Arrays.asList(values));
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(data);
+        System.out.println("Read!");
+}
 }

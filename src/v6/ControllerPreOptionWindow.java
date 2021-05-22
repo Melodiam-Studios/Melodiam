@@ -14,11 +14,14 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
-import java.io.IOException;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.*;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -215,26 +218,26 @@ public class ControllerPreOptionWindow implements Initializable {
 
     @FXML
     public void buttonImportPressed(ActionEvent event) throws IOException {
-        String path = "C:\\bin";
+        JFrame parentFrame = new JFrame();
 
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")){
-            //Betriebssystem ist Windows-basiert
-            System.out.println("Windows");
-            Runtime.getRuntime().exec("explorer.exe /select, " + path);
-        }
-        else if (os.contains("osx")){
-            //Betriebssystem ist Apple OSX
-            System.out.println("Apple");
-            Runtime.getRuntime().exec("usr/bin/open " + path);
-        }
-        else if (os.contains("nix") || os.contains("aix") || os.contains("nux")){
-            //Betriebssystem ist Linux/Unix basiert
-            System.out.println("Linux");
-            Runtime.getRuntime().exec("open /Users/USER/ " + path);
-        }
-        else{
-            System.out.println("FEHLER: Nicht das richtige Betriebssystem!");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Öffnen");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV (.csv)", "csv");
+        fileChooser.setFileFilter(filter);
+        fileChooser.addChoosableFileFilter(filter);
+
+        int userSelection = fileChooser.showOpenDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            //System.out.println("Speicherort: " + fileToSave.getAbsolutePath());
+            String path = fileToSave.getAbsolutePath();
+            String fileName = path; //fileName ist der Name + .csv
+            //System.out.println("fileName: " + file);
+            File newFile = new File(fileName);
+            //BufferedReader reader = new BufferedReader(new FileReader(newFile));
+            Speichern.Einlesen(fileName);
         }
     }
 
@@ -262,11 +265,11 @@ public class ControllerPreOptionWindow implements Initializable {
 
         //set Notenschlüssel
         String notenSchl[] = {
-                "Violinschluessel"
+                "Violinschluessel"  //Wegen Speichern
                 //"Bassschglüssel",
                 //"C-Schlüssel"
         };
         notenSchluessel.setItems(FXCollections.observableArrayList(notenSchl));
-        notenSchluessel.getSelectionModel().select("Violinschlüssel");
+        notenSchluessel.getSelectionModel().select("Violinschluessel"); //Wegen Speichern
     }
 }
