@@ -200,10 +200,16 @@ public class Controller {
      */
     public static int vorzeichen = 2;
 
-    //Takte werden hier gespeichert
+    /**
+     * Stores all the Tacts that are alsow in the GridPane mainInputPane
+     */
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
-    //Takte werden der reihe nach dem GridPane hinzugefügt
+    /**
+     * all Tacts are added on the GridPane
+     * @param arr is the ArrayList where all Panes are stored in
+     * @param root is the GridPane where all the Panes get stored
+     */
     private void drawPane(ArrayList<Pane> arr, GridPane root) {
         int column = 0, row = 0;
 
@@ -219,13 +225,20 @@ public class Controller {
         }
     }
 
-    //Grid Pane hinzufügen
+
+    /**
+     * Adds GridPane on the main Window
+     */
     public void addFile(){
         mainInputPane = new GridPane();
         anchorP.getChildren().add(mainInputPane);
     }
 
-    //Schaut welcher Key gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
+    /**
+     * if a Key gets pressed this Method loks if it is D to delete a Pane on the GridPane and on the Arraylist, or A to add a Pane on the GridPan and on the ArrayList.
+     * @param scene
+     * @param event
+     */
     public void keyPresed(Scene scene, KeyEvent event){
         if (event.getCode() == KeyCode.D && storeLines.size() > 0){
             remPane();
@@ -236,7 +249,13 @@ public class Controller {
         }
     }
 
-    //Schaut welcher Button gedrückt worden ist und löscht oder fügt neue elemente dan hinzu
+    /**
+     * If button bAdd is onAction it adds a Pane.
+     * If button bRem is onAction it removes a Pane.
+     * If button bTrans is onAction it dose the transposition.
+     * If button bPlay is onAction it Plays the notes.
+     * @param event
+     */
     public void buttonPressd(ActionEvent event){
         Button btn = (Button) event.getSource();
         String id = btn.getId();
@@ -256,7 +275,10 @@ public class Controller {
         }
     }
 
-    //Pane aus storeLines und aus dem Notenblatt löschen
+    /**
+     * Removes the last Pane of storeLines and in Notenblatt.
+     * Alswo it draws all the Panes new with drawPane()
+     */
     private void remPane() {
         if (column >= 0) {
             column--;
@@ -272,7 +294,10 @@ public class Controller {
         id--;
     }
 
-    //neues Pane in storeLines Speicheren
+    /**
+     * Adds the last Pane of storeLines and in Notenblatt.
+     * Alswo it draws all the Panes new with drawPane()
+     */
     public void addPane() {
         if (column >= 4){
             row++;
@@ -298,8 +323,6 @@ public class Controller {
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
             Notenblatt.addTakt(takt);
-            //Tonleiter ImageView hinzufügen
-            ImageView imageViewTonleiter = new ImageView();
         }else{
             Takt takt = new Takt(false, id);
             storeLines.add(takt.getPane());
@@ -310,7 +333,10 @@ public class Controller {
         id++;
     }
 
-    //erkent Vorzeichen
+    /**
+     * If a VorzeichenButton is on Action this Method looks which one was pressed and sets the variable vorzeichen
+     * @param actionEvent
+     */
     public void onButtonVorzeichen(ActionEvent actionEvent){
         ToggleButton btn = (ToggleButton) actionEvent.getSource();
         String id = btn.getId();
@@ -342,12 +368,15 @@ public class Controller {
         }
     }
 
-    //erkennt Noten bzw Pasuen
+
+    /**
+     * If a Noten or Pause Button is on Action this Method looks which one was pressed and sets the variable notenInTakt
+     * @param actionEvent
+     */
     public void onButtonNoten(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
         String id = btn.getId();
 
-        //Noten und Bausen Buttons
         if(id.equals(ganzeNote.getId())){
             notenInTakt=1;
         }else if(id.equals(halbeNote.getId())){
@@ -371,6 +400,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Adds values to ChoiceBox intevalle
+     */
     public void addIntervalle(){
         String interv[] = {
                 "r. 8",
@@ -403,6 +435,9 @@ public class Controller {
         intervalle.getSelectionModel().select("r. 1");
     }
 
+    /**
+     * Adds values to ChoiceBox instrumente
+     */
     public void addInstrumente(){
         String instrum[] = {
                 "Piano",
@@ -413,6 +448,9 @@ public class Controller {
         instrumente.getSelectionModel().select(Notenblatt.getInstrument());
     }
 
+    /**
+     * If the instrument is Changed this Method transpositions the notes correctly
+     */
     private void changeInstrum(){
 
         String instrument = instrumente.getSelectionModel().getSelectedItem().toString();
@@ -440,6 +478,9 @@ public class Controller {
         Notenblatt.setInstrument(instrument);
     }
 
+    /**
+     * this Method is used tho transposition the notes correctly
+     */
     private void transponieren(){
 
         int intervall;
@@ -466,6 +507,9 @@ public class Controller {
 
     }
 
+    /**
+     * Plays the written notes
+     */
     private void playSong(){
 
         Liste.werteAusfuellen();
@@ -521,7 +565,9 @@ public class Controller {
         t.start();
     }
 
-    //Titel angeben und Komponist
+    /**
+     * Adds the  Titel and the composer on the main Window
+     */
     public void addHeader(){
         String textTitel = Notenblatt.getDateiName();
         String textKomponist = Notenblatt.getKomponist();
@@ -608,6 +654,9 @@ public class Controller {
         }
     }
 
+    /**
+     * If the Menu Item miQuit is onAction the main Window closes
+     */
     @FXML
     public void shutDownMain(){
         if ("miQuit".equals(miQuit.getId())){
@@ -615,6 +664,9 @@ public class Controller {
         }
     }
 
+    /**
+     * If the Menu Item miNew is on Action a new preOptionWidow opens
+     */
     @FXML
     public void newWindow(){
         if("miNew".equals(miNew.getId())){
