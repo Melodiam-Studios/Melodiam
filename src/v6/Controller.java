@@ -19,8 +19,7 @@ import org.jfugue.pattern.Pattern;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -690,14 +689,19 @@ public class Controller {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Specify a file to save");
-        fileChooser.setBackground(Color.red);
+        fileChooser.setDialogTitle("Speichern unter");
 
         int userSelection = fileChooser.showSaveDialog(parentFrame);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
-            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            //System.out.println("Speicherort: " + fileToSave.getAbsolutePath());
+            String path = fileToSave.getAbsolutePath();
+            String fileName = path + ".csv"; //fileName ist der Name + .csv
+            //System.out.println("fileName: " + file);
+            File newFile = new File(fileName);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+            Speichern.Abspeichern(fileName);
         }
     }
 }
