@@ -27,7 +27,7 @@
         <Menu mnemonicParsing="false" text="File">
             <MenuItem fx:id="miNew" mnemonicParsing="false" text="New"  onAction="#newWindow"/>
             <MenuItem mnemonicParsing="false" text="Import" />
-            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save" onAction="#SaveFile"/>
             <MenuItem fx:id="miQuit" mnemonicParsing="false" text="Quit" onAction="#shutDownMain"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">

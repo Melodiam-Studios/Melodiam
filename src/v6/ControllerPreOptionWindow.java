@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
+import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -178,6 +180,31 @@ public class ControllerPreOptionWindow implements Initializable {
             case "CDur":
                 Notenblatt.setTonleiter(0);
                 break;
+        }
+    }
+
+    @FXML
+    public void buttonImportPressed(ActionEvent event) throws IOException {
+        String path = "C:\\bin";
+
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")){
+            //Betriebssystem ist Windows-basiert
+            System.out.println("Windows");
+            Runtime.getRuntime().exec("explorer.exe /select, " + path);
+        }
+        else if (os.contains("osx")){
+            //Betriebssystem ist Apple OSX
+            System.out.println("Apple");
+            Runtime.getRuntime().exec("usr/bin/open " + path);
+        }
+        else if (os.contains("nix") || os.contains("aix") || os.contains("nux")){
+            //Betriebssystem ist Linux/Unix basiert
+            System.out.println("Linux");
+            Runtime.getRuntime().exec("open /Users/USER/ " + path);
+        }
+        else{
+            System.out.println("FEHLER: Nicht das richtige Betriebssystem!");
         }
     }
 

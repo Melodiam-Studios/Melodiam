@@ -25,7 +25,7 @@
                   <Image url="@../resources/melodiam_testicon.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Importiere Datei (.csv - Format)" />
+            <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" onAction="#buttonImportPressed" text="Importiere Datei (.csv - Format)" />
             <Label layoutX="51.0" layoutY="41.0" text="Melodiam">
                <font>
                   <Font name="System Bold" size="27.0" />
