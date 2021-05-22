@@ -22,18 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        Parent root2 = FXMLLoader.load(getClass().getResource("preOptionWindowView.fxml"));
-        Scene scene2 = new Scene(root2 , 660, 444);
-
-        //root2.getStylesheets().add("v6/lightmode.css");
-        Image image = new Image("/resources/melodiam_testicon.png");
-        primaryStage.getIcons().add(image);
-
-        primaryStage.setResizable(true);
-
-        primaryStage.setScene(scene2);
-        primaryStage.show();
+        CreatePreOptionWindow cPreOptionWindow = new CreatePreOptionWindow(primaryStage);
     }
 
     public static void main(String[] args) {

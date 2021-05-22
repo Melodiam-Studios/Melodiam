@@ -21,88 +21,183 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Controller {
 
+    /**
+     * GridPane responsible for storing the Panes Takt
+     */
     GridPane mainInputPane;
 
+    /**
+     * ImageView for the preview of the note
+     */
     @FXML ImageView previewImage = new ImageView();
     int offset = -15;
 
+    /**
+     * AnchorPane responsible for storing the Gridpane in the Scrollpane
+     */
     @FXML
     AnchorPane anchorP;
 
+    /**
+     * Button responsible to add Takt on the GridPane mainInputPane
+     */
     @FXML
     Button bAdd;
 
+    /**
+     * Button responsible to delete Takt on the GridPane mainInputPane
+     */
     @FXML
     Button bRem;
 
+    /**
+     * Button that is responsible for outputting the written notes musically
+     */
     @FXML
     Button bPlay;
 
+    /**
+     * Button responsible to select a whole note
+     */
     @FXML
     Button ganzeNote;
 
+    /**
+     * Button responsible to select a half note
+     */
     @FXML
     Button halbeNote;
 
+    /**
+     * Button responsible to select a quarter note
+     */
     @FXML
     Button viertelNote;
 
+    /**
+     * Button responsible to select a eight note
+     */
     @FXML
     Button achtelNote;
 
+    /**
+     * Button responsible to select a sixteenth note
+     */
     @FXML
     Button sechzehntelNote;
 
+    /**
+     * Button responsible to select a whole break
+     */
     @FXML
     Button ganzePause;
 
+    /**
+     * Button responsible to select a half break
+     */
     @FXML
     Button halbePause;
 
+    /**
+     * Button responsible to select a quarter break
+     */
     @FXML
     Button viertelPause;
 
+    /**
+     * Button responsible to select a eight break
+     */
     @FXML
     Button achtelPause;
 
+    /**
+     * Button responsible to select a sixteenth break
+     */
     @FXML
     Button sechzehntelPause;
 
+    /**
+     * ChoiceBox responsible for selecting the intevalle
+     */
     @FXML
     ChoiceBox intervalle;
 
+    /**
+     * ChoiceBox responsible for selecting the instrument
+     */
     @FXML
     ChoiceBox instrumente;
 
+    /**
+     * Spinner responsible for reading the the size of the tempo requested by the user
+     */
     @FXML
     Spinner tempo;
 
+    /**
+     * Button responsible for transposition
+     */
     @FXML
     Button bTrans;
 
+    /**
+     * Label responsible to show the Titel on the main Window
+     */
     @FXML
     Label titel;
 
+    /**
+     * Label responsible to show the composer on the main Window
+     */
     @FXML
     Label komponist;
 
+    /**
+     * Menu Item responsible to quite the main Window
+     */
     @FXML
     MenuItem miQuit;
 
+    /**
+     * Menu Item responsible to open a new Window
+     */
     @FXML
     MenuItem miNew;
 
+    /**
+     * Variable responsible to store the number of rows
+     */
     private int row = 0;
+    /**
+     * Variable responsible to store the number of columns
+     */
     private int column = 0;
+    /**
+     * Variable responsible to store the normal length of a Pane
+     */
     private int lenghtPane = 275;
+    /**
+     * Variable responsible to store the length of the first Pane in a row
+     */
     private int lenghtFirstsPane = 300;
+    /**
+     * Variable responsible to store the hight of a Pane
+     */
     private int hightPane = 250;
     private static int id = 0;
+    /**
+     * Variable responsible to store the values of the notes in a tact
+     */
     public static int notenInTakt = 0;
+    /**
+     * Variable responsible to store the value of the selected accidental
+     * b-vorzeichen (flat sign)  = -1, auflösungszeichen (natural sign) = 0, k-vorzeichen (negativ signs) = 1
+     */
     public static int vorzeichen = 2;
 
     //Takte werden hier gespeichert
@@ -523,6 +618,12 @@ public class Controller {
     @FXML
     public void newWindow(){
         if("miNew".equals(miNew.getId())){
+
+            try {
+                CreatePreOptionWindow cPoW = new CreatePreOptionWindow(new Stage());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             shutDownMain();
 
         }

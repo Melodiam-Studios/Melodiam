@@ -24,31 +24,58 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * This class is the controller of the PreoptionWindow.
+ * It controlls all the actions on the window and opens the Main Window if necessary.
+ */
 public class ControllerPreOptionWindow implements Initializable {
 
+    /**
+     * Button responsible for opening the main Window
+     */
     @FXML
     Button openMainWindow;
 
+    /**
+     * TextField responsible for reading the file name requested by the user
+     */
     @FXML
     TextField dateiName;
 
+    /**
+     * TextField responsible for reading the composer Name requested by the user
+     */
     @FXML
     TextField komponist;
 
+    /**
+     * ChoiceBox responsible for selecting the instrument
+     */
     @FXML
     ChoiceBox instrument;
 
+    /**
+     * ChoiceBox responsible for selecting the tact
+     */
     @FXML
     ChoiceBox taktart;
 
+    /**
+     * ChoiceBox responsible for selecting the clef
+     */
     @FXML
     ChoiceBox notenSchluessel;
 
+    /**
+     * Spinner respinsible for reading the number of tacts requested by the user
+     */
     @FXML
     Spinner preAnzahlTakte;
 
+    /**
+     * As soon as the corresponding button has been pressed this method opens the main Window with the set values.
+     */
     @FXML
-    //Opens the Main Window
     private void newWindow(){
 
         if (!dateiName.getText().isEmpty()){
@@ -134,6 +161,10 @@ public class ControllerPreOptionWindow implements Initializable {
 
     }
 
+    /**
+     * When the user selects a specific type of gamut (Tonleiter) this method stores it for the main Window in Notenblatt.java
+     * @param event which Dur-Button
+     */
     @FXML
     public void buttonDurPressed(ActionEvent event){
         Button durButton = (Button) event.getSource();
@@ -208,9 +239,14 @@ public class ControllerPreOptionWindow implements Initializable {
         }
     }
 
+    /**
+     * This methods starts when the Object of this class is created and has access to the FXML elements of the object.
+     * It stores values of The spinners so that they can get easily replaced.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //set Choiceboxes
         //set instruments
         String instrum[] = {
                 "Piano",
@@ -219,12 +255,13 @@ public class ControllerPreOptionWindow implements Initializable {
         instrument.setItems(FXCollections.observableArrayList(instrum));
         instrument.getSelectionModel().select("Piano");
 
-
+        //set Taktarten
         String taktA[] = {
                 "4/4"};
         taktart.setItems(FXCollections.observableArrayList(taktA));
         taktart.getSelectionModel().select("4/4");
 
+        //set Notenschlüssel
         String notenSchl[] = {
                 "Violinschlüssel"
                 //"Bassschglüssel",
