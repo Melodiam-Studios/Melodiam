@@ -38,7 +38,8 @@ public class Note extends Element {
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
-
+    private float xAchse;
+    private float yAchse;
 
     /**
      * Constructor for the note element.
@@ -292,6 +293,22 @@ public class Note extends Element {
 
     public void setVorzeichen(int vorzeichen) {
         this.vorzeichen = vorzeichen;
+    }
+
+    public float getxAchse() {
+        return xAchse;
+    }
+
+    public void setxAchse(float xAchse) {
+        this.xAchse = xAchse;
+    }
+
+    public float getyAchse() {
+        return yAchse;
+    }
+
+    public void setyAchse(float yAchse) {
+        this.yAchse = yAchse;
     }
 
     @Override

@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -263,7 +262,7 @@ public class ControllerPreOptionWindow implements Initializable {
 
         //set Notenschlüssel
         String notenSchl[] = {
-                "Violinschlüssel"
+                "Violinschluessel"
                 //"Bassschglüssel",
                 //"C-Schlüssel"
         };
