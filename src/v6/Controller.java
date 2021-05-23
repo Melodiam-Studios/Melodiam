@@ -6,10 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -19,8 +15,9 @@ import org.jfugue.pattern.Pattern;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -579,6 +576,7 @@ public class Controller {
     //Löscht alle Panes und erstellt neue mit den Takten vom Notenblatt
     public void erneuereAnsicht(){
 
+        /*
         System.out.println(Notenblatt.getTakte().size());
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
             remPaneTran();
@@ -590,6 +588,10 @@ public class Controller {
             System.out.println(takt.getId());
             addPaneTrans(takt.getElements(), takt.getId());
         }
+
+         */
+
+
     }
 
     //Pane aus storeLines löschen
@@ -616,7 +618,6 @@ public class Controller {
 
         mainInputPane.addColumn(column);
         mainInputPane.addRow(row);
-
         RowConstraints rowWith = new RowConstraints(150);
         mainInputPane.getRowConstraints().add(rowWith);
 

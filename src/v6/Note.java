@@ -31,7 +31,6 @@ public class Note extends Element {
      * The function {@link Note#changeNote(int)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
 
-    private Point2D coordinatesOfNote;
 
     private int wert;
     private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen  2 = Nicht definiert
@@ -40,6 +39,8 @@ public class Note extends Element {
 
     private float xAchse;
     private float yAchse;
+
+    private int diffPos;
 
     /**
      * Constructor for the note element.
@@ -92,7 +93,6 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
-                    imageView.setX(0);
                     notenOffsetY = 25;
                     imageView.setY(notenOffsetY);
                 }else {         // when position is bigger than 12 --> HalbeNoteUnten
@@ -101,9 +101,8 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
+                    imageView.setY(notenOffsetY);
                 }
-                // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-                if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
                 break;
             case 4:
                 // Viertel Note
@@ -112,15 +111,17 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
-                    imageView.setX(0);
                     notenOffsetY = 25;
                     imageView.setY(notenOffsetY);
+                    System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
                 }else {         // when position is bigger than 12 --> ViertelNoteUnten
                     img = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
                     notenOffsetY = 0;
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
+                    imageView.setY(0);
+                    System.out.println("Setting the ImageView x:? and y:0      x:" + imageView.getX() + " y:" + imageView.getY());
                 }
                 break;
             case 8:
@@ -130,7 +131,6 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
-                    imageView.setX(0);
                     notenOffsetY = 25;
                     imageView.setY(notenOffsetY);
                 }else {         // when position is bigger than 12 --> AchtelnoteUnten
@@ -139,16 +139,16 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
+                    imageView.setY(notenOffsetY);
                 }
                 break;
             case 16:
-                // Halbe Note
+                // Sechzehntel Note
                 if (position >= 13) {       // when position is smaller than 12 --> SechzehntelnoteOben
                     img = new Image(getClass().getResource("/resources/bilder_noten/SechzehntelnoteOben.png").toExternalForm());
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
-                    imageView.setX(0);
                     notenOffsetY = 25;
                     imageView.setY(notenOffsetY);
                 }else {         // when position is bigger than 12 --> SechzehntelnoteUnten
@@ -157,6 +157,7 @@ public class Note extends Element {
                     imageView.setImage(img);
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(19);
+                    imageView.setY(notenOffsetY);
                 }
                 break;
         }
@@ -164,8 +165,11 @@ public class Note extends Element {
         if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
 
         if (diffPos != 0){
-            imageView.setX(imageView.getX() + coordinatesOfNote.x);
-            imageView.setY(imageView.getX() + coordinatesOfNote.y);
+            System.out.println("Das Programm hat gesehen, dass die Note transponiert wurde");
+            System.out.println("Setze die Koordinaten der imageview X mit: " + imageView.getX() + " + " + coordinatesOfNote.x);
+            System.out.println("Setze die Koordinaten der imageview Y mit: " + imageView.getY() + " + " + coordinatesOfNote.y);
+            imageView.setX(coordinatesOfNote.x);
+            imageView.setY(imageView.getY() + coordinatesOfNote.y + diffPos * 5 * (-1));
         }
     }
 
@@ -234,10 +238,8 @@ public class Note extends Element {
         changeNote(0);
     }
 
-    public void setNote(int position, int vorzeichen){
-        int diffPos = this.position - position;
-        this.position = position;
-        this.vorzeichen = vorzeichen;
+    public void setGUI(){
+        System.out.println("The difference in positions is: " + diffPos);
         // calll the function that changes the view
         changeNote(diffPos);
     }
@@ -264,6 +266,8 @@ public class Note extends Element {
     }
 
     public void setAll(int wert, int position, int vorzeichen, int anzeigenVorzeichen, String bezeichnung) {
+
+        this.diffPos = position - this.position;
         this.wert = wert;
         this.position = position;
         this.vorzeichen = vorzeichen;

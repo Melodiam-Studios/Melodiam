@@ -129,44 +129,44 @@ public class Liste {
         return position;
     }
 
-    public static ArrayList<Integer> posAndCords = new ArrayList<>();
+    public static ArrayList<Double> posAndCords = new ArrayList<>();
 
     public static void setCords(){
-        posAndCords.add(-100000);
-        posAndCords.add(-100000);
-        posAndCords.add(110);
-        posAndCords.add(105);
-        posAndCords.add(100);
-        posAndCords.add(95);
-        posAndCords.add(90);
-        posAndCords.add(85);
-        posAndCords.add(80);
-        posAndCords.add(75);
-        posAndCords.add(70);
-        posAndCords.add(65);
-        posAndCords.add(60);
-        posAndCords.add(55);
-        posAndCords.add(50);
-        posAndCords.add(45);
-        posAndCords.add(40);
-        posAndCords.add(35);
-        posAndCords.add(30);
-        posAndCords.add(25);
-        posAndCords.add(20);
-        posAndCords.add(15);
-        posAndCords.add(10);
-        posAndCords.add(5);
-        posAndCords.add(0);
+        posAndCords.add(-100000.0);
+        posAndCords.add(-100000.0);
+        posAndCords.add(110.0);
+        posAndCords.add(105.0);
+        posAndCords.add(100.0);
+        posAndCords.add(95.0);
+        posAndCords.add(90.0);
+        posAndCords.add(85.0);
+        posAndCords.add(80.0);
+        posAndCords.add(75.0);
+        posAndCords.add(70.0);
+        posAndCords.add(65.0);
+        posAndCords.add(60.0);
+        posAndCords.add(55.0);
+        posAndCords.add(50.0);
+        posAndCords.add(45.0);
+        posAndCords.add(40.0);
+        posAndCords.add(35.0);
+        posAndCords.add(30.0);
+        posAndCords.add(25.0);
+        posAndCords.add(20.0);
+        posAndCords.add(15.0);
+        posAndCords.add(10.0);
+        posAndCords.add(5.0);
+        posAndCords.add(0.0);
     }
 
-    public static int posToCords(int position){
+    public static double posToCords(int position){
         if( e == 0) {
             setCords();
             e++;
         }
         //System.out.println("Position counting from above: " + position);
 
-        int coords = posAndCords.get(position);
+        double coords = posAndCords.get(position);
 
         //System.out.println("Real position: " + position);
 
@@ -202,6 +202,12 @@ public class Liste {
             }
         }
 
-        Transponieren.erneuereAnzeigen();
+        for (Takt takt : Notenblatt.getTakte()) {
+            for (Element element : takt.getElements()) {
+                if (element.getClass() == Note.class) {
+                    Transponieren.erneuereAnzeigen((Note) element);
+                }
+            }
+        }
     }
 }

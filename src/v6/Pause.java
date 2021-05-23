@@ -1,5 +1,6 @@
 package v6;
 
+import com.sun.javafx.geom.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -10,9 +11,10 @@ public class Pause extends Element {
 
     float xAchse;
 
-    public Pause(int pausenInTakt) {
+    public Pause(int pausenInTakt, Point2D coordinatesOfNote) {
 
         this.pausenInTakt = pausenInTakt;
+        this.coordinatesOfNote = coordinatesOfNote;
 
         changePause();
     }

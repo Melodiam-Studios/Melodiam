@@ -85,7 +85,7 @@ public class Takt {
     /**
      * Pause responsible for the preview of Pausen
      */
-    Pause previewPause = new Pause(notenInTakt);
+    Pause previewPause = new Pause(notenInTakt, new Point2D(0, 0));
     /**
      * offsets the element a little
      */
@@ -130,7 +130,7 @@ public class Takt {
             Image imageTkat = new Image(getClass().getResource("/resources/bilder_takte/44-Takt.PNG").toExternalForm());
             ImageView imageView = new ImageView(imageTkat);
 
-            if (Notenblatt.getTaktart() == 44){
+            if (Notenblatt.getTaktart() == 44) {
                 pane.getChildren().add(imageView);
             }
             int takt_size = 40;
@@ -142,45 +142,45 @@ public class Takt {
 
             //Tonleiter hinzufügen
             Image imgTonleiter = null;
-            switch (Notenblatt.getTonleiter()){
+            switch (Notenblatt.getTonleiter()) {
                 case 6:
                     imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
                     break;
                 case 5:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
                     break;
                 case 4:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
                     break;
                 case 3:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
                     break;
                 case 2:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
                     break;
                 case 1:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
                     break;
                 case 0:
-                    imgTonleiter= null;
+                    imgTonleiter = null;
                     break;
                 case -1:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
                     break;
                 case -2:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
                     break;
                 case -3:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
                     break;
                 case -4:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
                     break;
                 case -5:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
                     break;
                 case -6:
-                    imgTonleiter= new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
+                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
                     break;
             }
 
@@ -189,13 +189,13 @@ public class Takt {
             pane.getChildren().add(imageViewTonleiter);
 
             int tonleiter_size = 80;
-            imageViewTonleiter.setFitHeight(tonleiter_size*1.2);
+            imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
             imageViewTonleiter.setFitWidth(tonleiter_size);
 
-            if(Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >=-6){
+            if (Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >= -6) {
                 imageViewTonleiter.setY(8);
                 imageViewTonleiter.setX(12);
-            }else{
+            } else {
                 imageViewTonleiter.setY(8);
                 imageViewTonleiter.setX(12);
             }
@@ -210,8 +210,7 @@ public class Takt {
             l6.setEndX(first_line_length);
             l6.setEndY(i + 40);
 
-        }
-        else{
+        } else {
             // lne at the right end (vertical)
             l6.setStartX(line_length);
             l6.setStartY(i);
@@ -220,12 +219,11 @@ public class Takt {
         }
 
 
-
         // lines that form the notengerüst (horizontal)
         for (Line l : lines) {
             l.setStartX(0);
             l.setStartY(i);
-            if(isFirstTakt) l.setEndX(first_line_length);
+            if (isFirstTakt) l.setEndX(first_line_length);
             else l.setEndX(line_length);
             l.setEndY(i);
             i += 10;
@@ -433,7 +431,7 @@ public class Takt {
                 // Pause
                 System.out.println("Pause");
                 p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt / 5);
-                Pause pause = new Pause(notenInTakt);
+                Pause pause = new Pause(notenInTakt, p);
                 System.out.println("After: " + p);
                 imageView = pause.getImageView();
                 imageView.setX(p.x);
@@ -455,9 +453,9 @@ public class Takt {
         ImageView imageView;
         ImageView vorzeichenView = null;
 
-        System.out.println("Belegt: " + belegt);
+        //System.out.println("Belegt: " + belegt);
         p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt);
-        System.out.println("After: " + p);
+        //System.out.println("After: " + p);
         double temPointY = p.y;
         p.y += offsetY;
 
@@ -625,7 +623,8 @@ public class Takt {
                 pane.getChildren().remove(element.imageView);
                 try {
                     pane.getChildren().remove(element.vorzeichenView);
-                }catch (Exception ignored){}
+                } catch (Exception ignored) {
+                }
 
                 break;
             }
@@ -634,12 +633,20 @@ public class Takt {
         //System.out.println(notesAsImages);
     }
 
-    public void erneuereNoten (){
+    public void erneuereNoten() {
 
         ImageView imageView;
         ImageView vorzeichenView = null;
+        Element element;
 
-        for (Element element:elements) {
+        System.out.println(elements);
+        System.out.println("Elements size:" + elements.size());
+
+        for (int i = 0; i < elements.size(); i++) {
+
+            System.out.println("Entering for loop for the " + i + " time");
+
+            element = elements.get(i);
 
             if (element.getClass() == Pause.class) {
                 // Pause
@@ -650,9 +657,143 @@ public class Takt {
                 //System.out.println("Setting the pause at x: " + imageView.getX() + ", y: " + imageView.getY());
                 //System.out.println(((Pause) element).toString());
                 pane.getChildren().add(imageView);
-            }
-            else if (element.getClass() == Note.class){
+            } else if (element.getClass() == Note.class) {
                 //Note
+
+                Point2D p = ((Note) element).coordinatesOfNote;
+                System.out.println("Coordinates of Note: " + p);
+                p.y = (float) Liste.posToCords(((Note) element).getPosition());
+
+                System.out.println("Placing Note with point: " + p);
+                //placeNote(point2D);
+
+
+                System.out.println("Belegt: " + belegt);
+                p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt);
+                System.out.println("After: " + p);
+                double temPointY = p.y;
+                p.y += offsetY;
+
+                int position = (int) (temPointY / 5) + 1;
+
+                Note note = new Note(notenInTakt, position, vorzeichen, p);
+                belegt += (1 / (double) notenInTakt);
+
+                imageView = note.getImageView();
+                vorzeichenView = note.getVorzeichenView();
+
+                //System.out.println("vorzeichenView: ");
+                //System.out.println(vorzeichenView.getY() + p.y);
+                vorzeichenView.setX(vorzeichenView.getX() + p.x);
+                vorzeichenView.setY(vorzeichenView.getY() + p.y);
+
+                //System.out.println("yAchse:");
+                //System.out.println(imageView.getY() + p.y);
+
+                imageView.setX(imageView.getX() + p.x);
+                imageView.setY(imageView.getY() + p.y);
+
+                note.setxAchse(p.x);
+                note.setyAchse(p.y);
+
+                //System.out.println("Position der Note: " + this.position);
+                if (vorzeichen == 2) {
+                    vorzeichen = 0;
+
+                    switch (Notenblatt.getTonleiter()) {
+                        case -6:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            else if (position == 4) vorzeichen = -1;    //ges
+                            else if (position == 0) vorzeichen = -1;
+                            break;
+                        case -5:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            else if (position == 4) vorzeichen = -1;    //ges
+                            break;
+                        case -4:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            else if (position == 1) vorzeichen = -1;    //des
+                            break;
+                        case -3:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            else if (position == 5) vorzeichen = -1;    //as
+                            break;
+                        case -2:
+                            if (position == 6) vorzeichen = -1;         //b
+                            else if (position == 2) vorzeichen = -1;    //es
+                            break;
+                        case -1:
+                            if (position == 6) vorzeichen = -1;
+                            break;
+                        case 0:
+                            vorzeichen = 0;
+                            break;
+                        case 1:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            break;
+                        case 2:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            break;
+                        case 3:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            break;
+                        case 4:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            break;
+                        case 5:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            else if (position == 5) vorzeichen = 1;   //ais
+                            break;
+                        case 6:
+                            if (position == 3) vorzeichen = 1;        //fis
+                            else if (position == 0) vorzeichen = 1;   //cis
+                            else if (position == 4) vorzeichen = 1;   //gis
+                            else if (position == 1) vorzeichen = 1;   //dis
+                            else if (position == 5) vorzeichen = 1;   //ais
+                            else if (position == 2) vorzeichen = 1;   //eis
+                            break;
+                    }
+
+                    note.setVorzeichen(vorzeichen);
+                }
+
+
+                //Notenblatt.addNote(note);
+
+
+                try {
+                    //Pane pane = (Pane) mouseEvent.getSource();
+                    System.out.println("Adding this note: ");
+                    System.out.println(note);
+                    pane.getChildren().add(imageView);
+                    pane.getChildren().add(vorzeichenView);
+                } catch (Exception exception) {
+                    System.out.println("You exactly touched a line");
+                }
+
+                renewStaticTakt();
+
+            }
+
+                /*
                 imageView = ((Note) element).getImageView();
                 vorzeichenView = ((Note) element).getVorzeichenView();
 
@@ -674,7 +815,8 @@ public class Takt {
 
                 pane.getChildren().add(imageView);
                 pane.getChildren().add(vorzeichenView);
-            }
+
+                 */
         }
     }
 

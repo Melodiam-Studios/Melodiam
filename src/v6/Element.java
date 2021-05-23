@@ -1,5 +1,6 @@
 package v6;
 
+import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,5 +36,7 @@ public abstract class Element {
      */
     @FXML
     protected ImageView vorzeichenView = new ImageView();
+
+    protected Point2D coordinatesOfNote;
 
 }
