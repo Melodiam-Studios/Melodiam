@@ -28,7 +28,7 @@ public class Note extends Element {
     private int notenOffsetY;
     /**
      * Variable responsible for identification of vorzeichen.
-     * The function {@link Note#changeNote(int)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
 
 
@@ -47,7 +47,7 @@ public class Note extends Element {
      *
      * @param notenInTakt describes the type of note - for viertelNote --> 4 - for halbeNote --> 2 - ...
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
-     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(int)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
+     * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
     public Note(int notenInTakt, int position, int vorzeichen, Point2D coordinatesOfNote) {
 
@@ -57,14 +57,14 @@ public class Note extends Element {
         this.coordinatesOfNote = coordinatesOfNote;
 
         // adjust the view of the note based on the properties that were set before
-        changeNote(0);
+        changeNote(false);
     }
 
     /**
      * adjusts the view of the note based on the properties of the class {@link Note}
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
-    private void changeNote(int diffPos){
+    private void changeNote(boolean trans){
 
         //pane = Controller.get //
 
@@ -170,6 +170,10 @@ public class Note extends Element {
             System.out.println("Setze die Koordinaten der imageview Y mit: " + imageView.getY() + " + " + coordinatesOfNote.y);
             imageView.setX(coordinatesOfNote.x);
             imageView.setY(imageView.getY() + coordinatesOfNote.y + diffPos * 5 * (-1));
+            coordinatesOfNote.y += diffPos * 5 * (-1);
+        }else if (trans) {
+            imageView.setX(coordinatesOfNote.x);
+            imageView.setY(coordinatesOfNote.y);
         }
     }
 
@@ -235,13 +239,13 @@ public class Note extends Element {
         this.position = Liste.positionumsetzen(position);
         this.vorzeichen = vorzeichen;
         // calll the function that changes the view
-        changeNote(0);
+        changeNote(false);
     }
 
     public void setGUI(){
         System.out.println("The difference in positions is: " + diffPos);
         // calll the function that changes the view
-        changeNote(diffPos);
+        changeNote(true);
     }
 
     /**
