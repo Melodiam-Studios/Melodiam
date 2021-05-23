@@ -11,6 +11,7 @@
 }
 .toggle-button,
 .note-buttons{
+    -fx-background-color: lightgrey;
 }
 .toggle-button:focused,.button:focused{
     -fx-background-color: grey;
@@ -18,16 +19,20 @@
     -fx-focus-color: white;
     -fx-background-insets: -1, 0, 1, 1;
 }
-
-.root{
-
+.anchorP{
+    -fx-background-color: white;
 }
 .scroll-pane{
-    -fx-background-color: black;
+    -fx-background-color: white;
+}
+.logoimage{
+    -fx-background-color: white;
+
 }
 
 .sheet {
-    -fx-background-color: white;
+
+    -fx-text-fill: white;
 }
 
 .play-button {
