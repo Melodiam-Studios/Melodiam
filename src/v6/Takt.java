@@ -23,7 +23,7 @@ public class Takt {
     /**
      * DeadZone defines the amount of space that is free in the very first takt
      */
-    int deadZone = 50;
+    int deadZone = 80;
 
     /**
      * Variable responsible for setting the length of the takt
@@ -32,7 +32,7 @@ public class Takt {
     /**
      * Variable responsible for setting the length of the first takt in a row
      */
-    float first_line_length = 325;
+    float first_line_length = 355;
     /**
      * Variable responsible for setting the height of the takt
      */
