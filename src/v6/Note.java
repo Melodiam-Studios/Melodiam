@@ -165,7 +165,7 @@ public class Note extends Element {
         imageView.setY(notenOffsetY);
 
         // if there is a vorzeichen it gets set in the vorzeichenSetzen function
-        if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen();
+        if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen(trans);
 
         if (diffPos != 0){
             System.out.println("Das Programm hat gesehen, dass die Note transponiert wurde");
@@ -184,7 +184,7 @@ public class Note extends Element {
      * vorzeichenSetzen() is responsible for setting the view of the vorzeichen.
      * It sets different images for the different vorzeichen
      */
-    private void vorzeichenSetzen() {
+    private void vorzeichenSetzen(boolean trans) {
         /**
          * Every image of the different vorzeichen needs a little x adjustment.
          * With this variable the x offset gets defined
@@ -228,6 +228,12 @@ public class Note extends Element {
         // sets the y-offset of the image
         vorzeichenOffsetY = 10;
         vorzeichenView.setY(vorzeichenOffsetY);
+
+
+        if (trans) {
+            vorzeichenView.setY(imageView.getY() + vorzeichenOffsetY);
+            vorzeichenView.setX(imageView.getX() + vorzeichenOffsetX);
+        }
 
     }
 
