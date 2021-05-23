@@ -34,3 +34,11 @@
     -fx-focus-color: yellow;
     -fx-background-insets: -1, 0, 1, 1;
 }
+.hboxbutton{
+    -fx-border-color: grey;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 5;
+}
+.hboxbutton:hover{
+    -fx-border-color: black;
+}
