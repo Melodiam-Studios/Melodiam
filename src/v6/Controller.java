@@ -437,9 +437,13 @@ public class Controller {
      */
     public void addInstrumente(){
         String instrum[] = {
-                "Piano",
-                "Trumpet",
-                "French_Horn"};
+                "Piano",        // C
+                "Trumpet",      // B
+                "French_Horn",  // F
+                "Alto_Sax",     // Es
+                "Clarinet",     // B
+                "Flute"         // C
+        };
 
         instrumente.setItems(FXCollections.observableArrayList(instrum));
         instrumente.getSelectionModel().select(Notenblatt.getInstrument());
@@ -451,24 +455,53 @@ public class Controller {
     private void changeInstrum(){
 
         String instrument = instrumente.getSelectionModel().getSelectedItem().toString();
+        String vorInstrument = Notenblatt.getInstrument();
 
         System.out.println(instrument);
-        if (Notenblatt.getInstrument() == "Piano"){
+        if ((vorInstrument == "Piano") || (vorInstrument == "Flute") ){
             switch (instrument){
-                case "Trumpet": intervalle.getSelectionModel().select("gr. 2"); break;
+                case "Piano":
+                case "Flute":
+                    if (vorInstrument != instrument) intervalle.getSelectionModel().select("r. 1"); break;
+                case "Trumpet":
+                case "Clarinet":
+                    intervalle.getSelectionModel().select("gr. 2"); break;
                 case "French_Horn": intervalle.getSelectionModel().select("r. 5"); break;
+                case "Alto_Sax": intervalle.getSelectionModel().select("gr. 6"); break;
             }
         }
-        else if (Notenblatt.getInstrument() == "Trumpet"){
+        else if ((vorInstrument == "Trumpet") || (vorInstrument == "Clarinet")){
             switch (instrument){
-                case "Piano": intervalle.getSelectionModel().select("gr. 2 n.u."); break;
+                case "Trumpet":
+                case "Clarinet":
+                    if (vorInstrument != instrument) intervalle.getSelectionModel().select("r. 1"); break;
+                case "Piano":
+                case "Flute":
+                    intervalle.getSelectionModel().select("gr. 2 n.u."); break;
                 case "French_Horn": intervalle.getSelectionModel().select("r. 4"); break;
+                case "Alto_Sax": intervalle.getSelectionModel().select("r. 5"); break;
             }
         }
-        else if (Notenblatt.getInstrument() == "French_Horn"){
+        else if (vorInstrument == "French_Horn"){
             switch (instrument){
-                case "Piano": intervalle.getSelectionModel().select("r. 5 n.u."); break;
-                case "Trumpet": intervalle.getSelectionModel().select("r. 4 n.u."); break;
+                case "Piano":
+                case "Flute":
+                    intervalle.getSelectionModel().select("r. 5 n.u."); break;
+                case "Trumpet":
+                case "Clarinet":
+                    intervalle.getSelectionModel().select("r. 4 n.u."); break;
+                case "Alto_Sax": intervalle.getSelectionModel().select("gr. 2"); break;
+            }
+        }
+        else if (vorInstrument == "Alto_Sax"){
+            switch (instrument){
+                case "Piano":
+                case "Flute":
+                    intervalle.getSelectionModel().select("gr. 6 n.u."); break;
+                case "Trumpet":
+                case "Clarinet":
+                    intervalle.getSelectionModel().select("r. 5 n.u."); break;
+                case "French_Horn": intervalle.getSelectionModel().select("gr. 2 n.u."); break;
             }
         }
 
@@ -530,14 +563,25 @@ public class Controller {
         s = sechzehntel
          */
 
+        /*"Piano",        // C
+        "Trumpet",      // B
+        "French_Horn",  // F
+        "Alto_Sax",     // Es
+        "Clarinet",     // B
+        "Flute"         // C*/
+
         for (Takt takt : Notenblatt.getTakte()) {
             for (Element element : takt.getElements()) {
                 if (element.getClass() == Note.class) {
                     wert = ((Note) element).getWert();
                     switch (instrument){
                         case "Piano": break;
-                        case "Trumpet": wert = wert - 2; break;
+                        case "Flute": wert = wert + 12; break;
+                        case "Trumpet":
+                        case "Clarinet":
+                            wert = wert - 2; break;
                         case "French_Horn": wert = wert - 7; break;
+                        case "Alto_Sax": wert = wert - 9; break;
                     }
 
                     switch (((Note) element).getNotenInTakt()) {
