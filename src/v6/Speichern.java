@@ -1,13 +1,13 @@
 package v6;
 
 import java.io.*;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 public class Speichern {
-
-    public static void Abspeichern(String file) {
+    public static void Abspeichern(String filePath) {
         Liste.werteAusfuellen();
 
         String dateiName = Notenblatt.getDateiName();
@@ -20,10 +20,10 @@ public class Speichern {
 
         System.out.println(takte);
 
-        File file2 = new File(file);
+        File file = new File(filePath);
 
         try {
-            FileWriter fileWriter = new FileWriter(file2, true);
+            FileWriter fileWriter = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fileWriter);
 
             bw.write(dateiName);
@@ -51,19 +51,21 @@ public class Speichern {
         }
     }
 
-    public static void Einlesen(String file) {
+    public static void Einlesen(String filePath) {
         System.out.println("IM EINLESEN!");
 
-        File file2 = new File(file);
-        System.out.println(file2);
+        File file = new File(filePath);
+        System.out.println(file);
 
-        List<List<String>> data = new ArrayList<>();
+        ArrayList<String> data = new ArrayList<>();
+        BufferedReader br;
+
         try{
-            BufferedReader br = new BufferedReader(new FileReader(file2));
+            br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                data.add(Arrays.asList(values));
+                String[] values = line.split(";");
+                data.addAll(Arrays.asList(values));
             }
             br.close();
         } catch (IOException e) {
@@ -71,5 +73,16 @@ public class Speichern {
         }
         System.out.println(data);
         System.out.println("Read!");
-}
+
+        Notenblatt.setDateiName(String.valueOf(data.get(0)));
+        Notenblatt.setTonleiter(Integer.parseInt(data.get(1)));
+        Notenblatt.setInstrument(String.valueOf(data.get(2)));
+        Notenblatt.setKomponist(String.valueOf(data.get(3)));
+        Notenblatt.setTaktart(Double.parseDouble(data.get(4)));
+        Notenblatt.setNotenschluessel(String.valueOf(data.get(5)));
+        //Notenblatt.addTakt(String.valueOf(data.get(6)));
+
+        ArrayList<String> takte = new ArrayList<>(Collections.singleton((data.get(6))));
+        System.out.println(takte);
+    }
 }

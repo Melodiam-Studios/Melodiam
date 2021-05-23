@@ -1,5 +1,6 @@
 package v6;
 
+import com.sun.javafx.tk.Toolkit;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,10 +15,10 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
+import sun.awt.image.ToolkitImage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -221,6 +222,8 @@ public class ControllerPreOptionWindow implements Initializable {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
+        parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
+
         fileChooser.setDialogTitle("Öffnen");
         fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV (.csv)", "csv");

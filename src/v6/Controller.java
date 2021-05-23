@@ -689,6 +689,8 @@ public class Controller {
     public void SaveFile() throws IOException {
         JFrame parentFrame = new JFrame();
 
+        parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Speichern unter");
         fileChooser.setAcceptAllFileFilterUsed(false);

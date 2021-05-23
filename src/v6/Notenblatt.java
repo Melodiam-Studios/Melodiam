@@ -8,7 +8,7 @@ public class Notenblatt {
     private static String instrument = "Piano";
     private static String dateiName = "Default Datei";
     private static String komponist = "Default Komponist";
-    private static String notenschluessel = "Violinschlüssel";
+    private static String notenschluessel = "Violinschluessel";
     private static double taktart = 44;
     private static int startTaktAnzahl = 0;
 
