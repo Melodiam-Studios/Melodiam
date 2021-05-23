@@ -14,8 +14,7 @@ public class Speichern {
         int tonleiter = Notenblatt.getTonleiter();
         String instrument = Notenblatt.getInstrument();
         String komponist = Notenblatt.getKomponist();
-        double taktart = Notenblatt.getTaktart();
-        String notenschluessel = Notenblatt.getNotenschluessel();
+        int aktuelleTaktAnzahl = Notenblatt.getAktuelleTaktAnzahl();
         ArrayList<Takt> takte = Notenblatt.getTakte();
 
         System.out.println(takte);
@@ -34,9 +33,7 @@ public class Speichern {
             bw.newLine();
             bw.write(komponist);
             bw.newLine();
-            bw.write(String.valueOf(taktart));
-            bw.newLine();
-            bw.write(notenschluessel);
+            bw.write(String.valueOf(aktuelleTaktAnzahl));
             bw.newLine();
             int i = 0;
             for (Takt takt : takte) {
@@ -64,15 +61,6 @@ public class Speichern {
                     i++;
                 }
             }
-
-            /*
-            - Arraylist in der reihenfolge
-            - elements fu sem imageview x und y und vorzeichen new.x und y (to string)
-            - notenintakt/pausenintakt
-            - position
-
-            und alles in der reihenfolge
-             */
 
             System.out.println("Written!");
             bw.close();
@@ -109,8 +97,6 @@ public class Speichern {
         Notenblatt.setTonleiter(Integer.parseInt(data.get(1)));
         Notenblatt.setInstrument(String.valueOf(data.get(2)));
         Notenblatt.setKomponist(String.valueOf(data.get(3)));
-        Notenblatt.setTaktart(Double.parseDouble(data.get(4)));
-        Notenblatt.setNotenschluessel(String.valueOf(data.get(5)));
 
         System.out.println("DATA: -----> " + data.get(6));
 

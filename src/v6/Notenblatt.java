@@ -11,6 +11,7 @@ public class Notenblatt {
     private static String notenschluessel = "Violinschluessel";
     private static double taktart = 44;
     private static int startTaktAnzahl = 0;
+    private static int aktuelleTaktAnzahl = 0;
 
     //private static ArrayList<Note> allNotes = new ArrayList<>();
     private static ArrayList<Takt> takte = new ArrayList<>();
@@ -86,9 +87,10 @@ public class Notenblatt {
     public static void setStartTaktAnzahl(int startTaktAnzahl) {
         Notenblatt.startTaktAnzahl = startTaktAnzahl;
     }
-    public static int getStartTaktAnzahl() {
-        return startTaktAnzahl;
-    }
+    public static int getStartTaktAnzahl() { return startTaktAnzahl; }
+
+    public static void setAktuelleTaktAnzahl(int aktuelleTaktAnzahl) { Notenblatt.aktuelleTaktAnzahl = aktuelleTaktAnzahl; }
+    public static int getAktuelleTaktAnzahl() { return aktuelleTaktAnzahl; }
 
     @Override
     public String toString() {

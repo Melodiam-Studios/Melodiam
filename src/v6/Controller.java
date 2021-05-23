@@ -289,6 +289,10 @@ public class Controller {
         drawPane(storeLines, mainInputPane);
         Notenblatt.remTakt();
         id--;
+
+        int tmptaktanzahl =  Notenblatt.getAktuelleTaktAnzahl();
+        tmptaktanzahl--;
+        Notenblatt.setAktuelleTaktAnzahl(tmptaktanzahl);
     }
 
     /**
@@ -328,6 +332,10 @@ public class Controller {
         }
         column++;
         id++;
+
+        int tmptaktanzahl =  Notenblatt.getAktuelleTaktAnzahl();
+        tmptaktanzahl++;
+        Notenblatt.setAktuelleTaktAnzahl(tmptaktanzahl);
     }
 
     /**
