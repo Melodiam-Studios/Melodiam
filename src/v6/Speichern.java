@@ -38,10 +38,41 @@ public class Speichern {
             bw.newLine();
             bw.write(notenschluessel);
             bw.newLine();
+            int i = 0;
             for (Takt takt : takte) {
-                bw.write(String.valueOf(takt));
-                //bw.newLine();
+                for(Element element : takt.getElements()){
+                    bw.write(String.valueOf(element.imageView.getX()));
+                    bw.newLine();
+                    bw.write(String.valueOf(element.imageView.getY()));
+                    bw.newLine();
+                    bw.write(String.valueOf(element.vorzeichenView.getX()));
+                    bw.newLine();
+                    bw.write(String.valueOf(element.vorzeichenView.getY()));
+                    bw.newLine();
+                    if(element.getClass() == Note.class){
+                        bw.write(String.valueOf(((Note) element).getNotenInTakt()));
+                        bw.newLine();
+                        bw.write(String.valueOf(((Note) element).getPosition()));
+                        bw.newLine();
+                    }
+                    else if(element.getClass() == Pause.class){
+                        bw.write(String.valueOf(((Pause) element).getPausenInTakt()));
+                        bw.newLine();
+                    }
+                    //bw.newLine();
+                    //bw.newLine();
+                    i++;
+                }
             }
+
+            /*
+            - Arraylist in der reihenfolge
+            - elements fu sem imageview x und y und vorzeichen new.x und y (to string)
+            - notenintakt/pausenintakt
+            - position
+
+            und alles in der reihenfolge
+             */
 
             System.out.println("Written!");
             bw.close();
@@ -80,7 +111,8 @@ public class Speichern {
         Notenblatt.setKomponist(String.valueOf(data.get(3)));
         Notenblatt.setTaktart(Double.parseDouble(data.get(4)));
         Notenblatt.setNotenschluessel(String.valueOf(data.get(5)));
-        //Notenblatt.addTakt(String.valueOf(data.get(6)));
+
+        System.out.println("DATA: -----> " + data.get(6));
 
         ArrayList<String> takte = new ArrayList<>(Collections.singleton((data.get(6))));
         System.out.println(takte);
