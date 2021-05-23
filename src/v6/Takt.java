@@ -175,7 +175,7 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);   // set when Mouse is pressed
         pane.setOnMouseMoved(this::onMouseMoved);       // set when Mouse is moved
-        pane.setOnMouseExited(this::onMouseExited);       // set when Mouse exits
+        pane.setOnMouseExited(this::onMouseExited);     // set when Mouse exits
     }
 
 
@@ -487,10 +487,14 @@ public class Takt {
         note.setxAchse(p.x);
         note.setyAchse(p.y);
 
+        position = note.getPosition();
         //System.out.println("Position der Note: " + this.position);
         if (vorzeichen == 2) {
             vorzeichen = 0;
 
+            //System.out.println("Tonleiter: " + Notenblatt.getTonleiter() + " - " + position);
+            position = position % 7;
+            //System.out.println(position);
             switch (Notenblatt.getTonleiter()) {
                 case -6:
                     if (position == 6) vorzeichen = -1;         //b
