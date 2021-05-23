@@ -181,7 +181,7 @@ public class Controller {
     /**
      * Variable responsible to store the length of the first Pane in a row
      */
-    private int lenghtFirstsPane = 300;
+    private int lenghtFirstsPane = 355;
     /**
      * Variable responsible to store the hight of a Pane
      */
@@ -666,8 +666,23 @@ public class Controller {
         id--;
     }
 
+    public void createFromRead(){
+
+        for (int i=0; i<(Notenblatt.getTakte().size());i++) {
+            remPaneTran();
+            System.out.println("Takt wird gelöscht");
+        }
+
+        int numberOfTakte = 4;
+        //ArrayList<>
+
+        for (int i=1;i<=numberOfTakte; i++){
+            addPaneWithNotes(i);
+        }
+    }
+
     //neues Pane in storeLines Speicheren
-    public void addPaneTrans(ArrayList<Element> elements, int idNeu) {
+    public void addPaneWithNotes(int idNeu) {
         if (column >= 4){
             row++;
             column = 0;
@@ -690,7 +705,7 @@ public class Controller {
 
         if (column == 0){
             takt = new Takt(true, idNeu);
-            takt.setElements(elements);
+            //takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
@@ -699,7 +714,7 @@ public class Controller {
             takt.erneuereNoten();
         }else{
             takt = new Takt(false, idNeu);
-            takt.setElements(elements);
+            //takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
 
