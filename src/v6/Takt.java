@@ -19,6 +19,12 @@ import java.util.ArrayList;
  * @author Silas Demez
  */
 public class Takt {
+
+    /**
+     * DeadZone defines the amount of space that is free in the very first takt
+     */
+    int deadZone = 50;
+
     /**
      * Variable responsible for setting the length of the takt
      */
@@ -26,7 +32,7 @@ public class Takt {
     /**
      * Variable responsible for setting the length of the first takt in a row
      */
-    float first_line_length = 300;
+    float first_line_length = 325;
     /**
      * Variable responsible for setting the height of the takt
      */
@@ -55,11 +61,11 @@ public class Takt {
     ImageView imageViewTonleiter = new ImageView();
 
 
-    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));    // list has the possible positions for a sechzehntelNote in a Takt
-    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8));          // list has the possible positions for a achtelNote in a Takt
-    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4));         // list has the possible positions for a viertelNote in a Takt
-    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2));           // list has the possible positions for a halbeNote in a Takt
-    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1));           // list has the possible positions for a ganzeNote in a Takt
+    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16, false));    // list has the possible positions for a sechzehntelNote in a Takt
+    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8, false));          // list has the possible positions for a achtelNote in a Takt
+    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4, false));         // list has the possible positions for a viertelNote in a Takt
+    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2, false));           // list has the possible positions for a halbeNote in a Takt
+    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1, false));           // list has the possible positions for a ganzeNote in a Takt
 
     /**
      * List that contains the Noten and Pausen in the right order
@@ -119,6 +125,14 @@ public class Takt {
         Line l6 = new Line();
 
         if (isFirstTakt) {        // places the Violinschluessel and resizes it, place Tonleiter, place Takt
+
+            ganzePositions = fillList(1, true);
+            halbePositions = fillList(2, true);
+            viertelPositions = fillList(4, true);
+            achtelPositions = fillList(8, true);
+            sechzehntelPositions = fillList(16, true);
+
+
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
             ImageView notenSchluessel = new ImageView(image);
             pane.getChildren().add(notenSchluessel);
@@ -225,7 +239,10 @@ public class Takt {
         }
 
         imageViewTonleiter.setImage(imgTonleiter);
-        pane.getChildren().add(imageViewTonleiter);
+        try {
+            pane.getChildren().add(imageViewTonleiter);
+        }catch (Exception ignored){}
+
 
         int tonleiter_size = 80;
         imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
@@ -249,14 +266,28 @@ public class Takt {
      * @param notenInT type of Note or Pause
      * @return list with possible positions
      */
-    public ArrayList<Point2D> fillList(int notenInT) {
+    public ArrayList<Point2D> fillList(int notenInT, boolean isFirstTakt) {
+
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
-        notenInT += 1;
-        float zeilen = height / 23;
-        float spalten = line_length / (float) notenInT;
-        for (int i = 1; i < notenInT; i++) {
-            for (int e = 0; e < 23; e++) {
-                listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
+
+        if (isFirstTakt){
+
+            notenInT += 1;
+            float zeilen = height / 23;
+            float spalten = line_length / (float) notenInT;
+            for (int i = 1; i < notenInT; i++) {
+                for (int e = 0; e < 23; e++) {
+                    listsWithPossiblePositions.add(new Point2D(i * spalten + deadZone, e * zeilen));
+                }
+            }
+        }else {
+            notenInT += 1;
+            float zeilen = height / 23;
+            float spalten = line_length / (float) notenInT;
+            for (int i = 1; i < notenInT; i++) {
+                for (int e = 0; e < 23; e++) {
+                    listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
+                }
             }
         }
 
