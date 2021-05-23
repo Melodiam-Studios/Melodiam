@@ -509,10 +509,11 @@ public class Controller {
      */
     private void playSong(){
 
+        String instrument = Notenblatt.getInstrument();
         Liste.werteAusfuellen();
 
         Pattern melody = new Pattern();
-        melody.setInstrument(Notenblatt.getInstrument());
+        melody.setInstrument(instrument);
         melody.setTempo((int) tempo.getValue());
 
         int wert=0;
@@ -533,6 +534,12 @@ public class Controller {
             for (Element element : takt.getElements()) {
                 if (element.getClass() == Note.class) {
                     wert = ((Note) element).getWert();
+                    switch (instrument){
+                        case "Piano": break;
+                        case "Trumpet": wert = wert + 2; break;
+                        case "French_Horn": wert = wert + 7; break;
+                    }
+
                     switch (((Note) element).getNotenInTakt()) {
                         case 1: laenge="w"; break;
                         case 2: laenge="h"; break;
