@@ -515,8 +515,6 @@ public class Takt {
         imageView.setX(imageView.getX() + p.x);
         imageView.setY(imageView.getY() + p.y);
 
-        note.setxAchse(p.x);
-        note.setyAchse(p.y);
 
         position = note.getPosition();
         //System.out.println("Position der Note: " + this.position);
@@ -734,8 +732,6 @@ public class Takt {
                 imageView.setX(imageView.getX() + p.x);
                 imageView.setY(imageView.getY() + p.y);
 
-                note.setxAchse(p.x);
-                note.setyAchse(p.y);
 
                 //System.out.println("Position der Note: " + this.position);
                 if (vorzeichen == 2) {

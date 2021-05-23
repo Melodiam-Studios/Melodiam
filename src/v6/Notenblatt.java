@@ -92,6 +92,14 @@ public class Notenblatt {
     public static void setAktuelleTaktAnzahl(int aktuelleTaktAnzahl) { Notenblatt.aktuelleTaktAnzahl = aktuelleTaktAnzahl; }
     public static int getAktuelleTaktAnzahl() { return aktuelleTaktAnzahl; }
 
+    public static void clearElements(){
+        for (Takt takt: takte){
+            ArrayList<Element> elements = takt.getElements();
+            elements.clear();
+            takt.setElements(elements);
+        }
+    }
+
     @Override
     public String toString() {
         return "Noten: " + takte;

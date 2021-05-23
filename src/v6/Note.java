@@ -37,8 +37,6 @@ public class Note extends Element {
     private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
-    private float xAchse;
-    private float yAchse;
 
     private int diffPos;
 
@@ -303,20 +301,9 @@ public class Note extends Element {
         this.vorzeichen = vorzeichen;
     }
 
-    public float getxAchse() {
-        return xAchse;
-    }
-
-    public void setxAchse(float xAchse) {
-        this.xAchse = xAchse;
-    }
-
-    public float getyAchse() {
-        return yAchse;
-    }
-
-    public void setyAchse(float yAchse) {
-        this.yAchse = yAchse;
+    public void setImageViewCoords(Point2D point2D){
+        imageView.setX(point2D.x);
+        imageView.setY(point2D.y);
     }
 
     @Override

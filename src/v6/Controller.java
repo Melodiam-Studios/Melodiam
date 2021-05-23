@@ -1,6 +1,7 @@
 package v6;
 
 import audio.PlayMelody;
+import com.sun.javafx.geom.Point2D;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -641,22 +642,6 @@ public class Controller {
 
         takt.drawTonleiter();
 
-        /*
-        System.out.println(Notenblatt.getTakte().size());
-        for (int i=0; i<(Notenblatt.getTakte().size());i++) {
-            remPaneTran();
-            System.out.println("Takt wird gelöscht");
-        }
-
-        for (Takt takt: Notenblatt.getTakte()) {
-            System.out.println(takt.getElements());
-            System.out.println(takt.getId());
-            addPaneTrans(takt.getElements(), takt.getId());
-        }
-
-         */
-
-
     }
 
     //Pane aus storeLines löschen
@@ -672,6 +657,8 @@ public class Controller {
         storeLines.remove(storeLines.size()-1);
         drawPane(storeLines, mainInputPane);
         id--;
+
+        Notenblatt.clearElements();
     }
 
     public void createFromRead(){
@@ -682,15 +669,17 @@ public class Controller {
         }
 
         int numberOfTakte = 4;
-        //ArrayList<>
+        ArrayList<ReadElement> readElements = new ArrayList<>();
+        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
+        readElements.add(new ReadElement(4, 14, 120.0, 40.0, 115.0, 40.0 , 0));
 
         for (int i=1;i<=numberOfTakte; i++){
-            addPaneWithNotes(i);
+            addPaneWithNotes(readElements,i);
         }
     }
 
     //neues Pane in storeLines Speicheren
-    public void addPaneWithNotes(int idNeu) {
+    public void addPaneWithNotes(ArrayList<ReadElement> readElements, int idNeu) {
         if (column >= 4){
             row++;
             column = 0;
@@ -713,7 +702,16 @@ public class Controller {
 
         if (column == 0){
             takt = new Takt(true, idNeu);
-            //takt.setElements(elements);
+            for (ReadElement readElement:readElements) {
+                if (readElement.inTakt % 5 == 0){
+                    // Pause
+                }else{
+                    // Note
+                    Note note = new Note(readElement.inTakt, readElement.position, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                    note.setAnzeigenVorzeichen(0);
+                    note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                }
+            }
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
