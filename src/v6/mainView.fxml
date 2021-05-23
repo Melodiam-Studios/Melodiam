@@ -44,43 +44,64 @@
     <BorderPane prefHeight="200.0" prefWidth="200.0">
         <top>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1303.0" styleClass="h-box" BorderPane.alignment="CENTER">
-                <Button fx:id="bRem" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="103.0" text="Takt löschen">
-                    <HBox.margin>
+            <HBox alignment="CENTER" styleClass="hboxbutton">
+               <children>
+                      <Button fx:id="bRem" alignment="CENTER" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="103.0" text="Takt löschen">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                      <Button fx:id="bAdd" alignment="CENTER" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="103.0" text="Takt hinzufügen">
+                     <HBox.margin>
                         <Insets right="10.0" />
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="bAdd" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="103.0" text="Takt hinzufügen">
-                    <HBox.margin>
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" styleClass="hboxbutton">
+               <children>
+                      <ChoiceBox fx:id="instrumente" prefHeight="30.0" prefWidth="228.0">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                      <ChoiceBox fx:id="intervalle" prefHeight="30.0" prefWidth="200.0">
+                     <HBox.margin>
                         <Insets right="10.0" />
-                    </HBox.margin>
-                </Button>
-                <ChoiceBox fx:id="instrumente" prefHeight="30.0" prefWidth="228.0">
-                    <HBox.margin>
+                     </HBox.margin>
+                  </ChoiceBox>
+                      <Button fx:id="bTrans" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="45.0" text="OK">
+                     <HBox.margin>
                         <Insets right="10.0" />
-                    </HBox.margin>
-                </ChoiceBox>
-                <ChoiceBox fx:id="intervalle" prefHeight="30.0" prefWidth="200.0">
-                    <HBox.margin>
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" styleClass="hboxbutton">
+               <children>
+                      <Spinner fx:id="tempo" amountToStepBy="5" editable="true" initialValue="90" max="300" min="1" prefHeight="30.0" prefWidth="93.0">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Spinner>
+                      <Button fx:id="bPlay" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="35.0" styleClass="play-button">
+                          <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="9.0">
+                                  <Image url="/resources/bilder_noten/PlayButton.png" />
+                              </ImageView>
+                          </graphic>
+                     <HBox.margin>
                         <Insets right="10.0" />
-                    </HBox.margin>
-                </ChoiceBox>
-                <Button fx:id="bTrans" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="45.0" text="OK">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Button>
-                <Spinner fx:id="tempo" amountToStepBy="5" editable="true" initialValue="90" max="300" min="1" prefHeight="30.0" prefWidth="93.0">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Spinner>
-                <Button fx:id="bPlay" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="35.0" styleClass="play-button">
-                    <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="9.0">
-                            <Image url="/resources/bilder_noten/PlayButton.png" />
-                        </ImageView>
-                    </graphic>
-                </Button>
+                     </HBox.margin>
+                      </Button>
+               </children>
+            </HBox>
             </HBox>
         </top>
         <left>
