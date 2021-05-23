@@ -576,6 +576,12 @@ public class Controller {
     //Löscht alle Panes und erstellt neue mit den Takten vom Notenblatt
     public void erneuereAnsicht(){
 
+        ArrayList<Takt> takte =  Notenblatt.getTakte();
+
+        Takt takt = takte.get(0);
+
+        takt.drawTonleiter();
+
         /*
         System.out.println(Notenblatt.getTakte().size());
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
@@ -651,12 +657,6 @@ public class Controller {
         column++;
         id++;
 
-        for (Element element: elements) {
-            if (element instanceof Note){
-                Note n1 = (Note) element;
-                
-            }
-        }
     }
 
     /**

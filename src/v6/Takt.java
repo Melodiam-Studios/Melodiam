@@ -52,6 +52,8 @@ public class Takt {
      */
     Pane pane = new Pane();
 
+    ImageView imageViewTonleiter = new ImageView();
+
 
     ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));    // list has the possible positions for a sechzehntelNote in a Takt
     ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8));          // list has the possible positions for a achtelNote in a Takt
@@ -140,68 +142,7 @@ public class Takt {
             imageView.setX(75);
 
 
-            //Tonleiter hinzufügen
-            Image imgTonleiter = null;
-            switch (Notenblatt.getTonleiter()) {
-                case 6:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
-                    break;
-                case 5:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
-                    break;
-                case 4:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
-                    break;
-                case 3:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
-                    break;
-                case 2:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
-                    break;
-                case 1:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
-                    break;
-                case 0:
-                    imgTonleiter = null;
-                    break;
-                case -1:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
-                    break;
-                case -2:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
-                    break;
-                case -3:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
-                    break;
-                case -4:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
-                    break;
-                case -5:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
-                    break;
-                case -6:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
-                    break;
-            }
-
-            ImageView imageViewTonleiter = new ImageView();
-            imageViewTonleiter.setImage(imgTonleiter);
-            pane.getChildren().add(imageViewTonleiter);
-
-            int tonleiter_size = 80;
-            imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
-            imageViewTonleiter.setFitWidth(tonleiter_size);
-
-            if (Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >= -6) {
-                imageViewTonleiter.setY(8);
-                imageViewTonleiter.setX(12);
-            } else {
-                imageViewTonleiter.setY(8);
-                imageViewTonleiter.setX(12);
-            }
-
-            imageViewTonleiter.setY(8);
-            imageViewTonleiter.setX(12);
+            drawTonleiter();
 
             //line beim ersten takt in einer Zeile länger setzen
             // lne at the right end (vertical)
@@ -235,6 +176,71 @@ public class Takt {
         pane.setOnMousePressed(this::onMousePressed);   // set when Mouse is pressed
         pane.setOnMouseMoved(this::onMouseMoved);       // set when Mouse is moved
         pane.setOnMouseExited(this::onMouseExited);       // set when Mouse exits
+    }
+
+
+    public void drawTonleiter(){
+        //Tonleiter hinzufügen
+        Image imgTonleiter = null;
+        switch (Notenblatt.getTonleiter()) {
+            case 6:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
+                break;
+            case 5:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
+                break;
+            case 4:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
+                break;
+            case 3:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
+                break;
+            case 2:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
+                break;
+            case 1:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
+                break;
+            case 0:
+                imgTonleiter = null;
+                break;
+            case -1:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
+                break;
+            case -2:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
+                break;
+            case -3:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
+                break;
+            case -4:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
+                break;
+            case -5:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
+                break;
+            case -6:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
+                break;
+        }
+
+        imageViewTonleiter.setImage(imgTonleiter);
+        pane.getChildren().add(imageViewTonleiter);
+
+        int tonleiter_size = 80;
+        imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
+        imageViewTonleiter.setFitWidth(tonleiter_size);
+
+        if (Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >= -6) {
+            imageViewTonleiter.setY(8);
+            imageViewTonleiter.setX(12);
+        } else {
+            imageViewTonleiter.setY(8);
+            imageViewTonleiter.setX(12);
+        }
+
+        imageViewTonleiter.setY(8);
+        imageViewTonleiter.setX(12);
     }
 
     /**

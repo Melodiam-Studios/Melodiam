@@ -198,21 +198,12 @@ public class Note extends Element {
         img = null;
 
         // in the switch the image gets chosen
-        switch (vorzeichen) {
-            case -1:
-                // B-Vorzeichen
-                img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
-                break;
-            case 1:
-                // Kreuz-Vorzeichen
-                img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
-                break;
-            case 0:
-                // Auflösungs-Vorzeichen
-                img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
-                break;
-            case 2:
-                break;
+        if (vorzeichen == -1 && anzeigenVorzeichen == 1) {// B-Vorzeichen
+            img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
+        } else if (vorzeichen == 1 && anzeigenVorzeichen == 1) {// Kreuz-Vorzeichen
+            img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
+        } else if (anzeigenVorzeichen == 2 && vorzeichen == 0) {// Auflösungs-Vorzeichen
+            img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
         }
 
         // set the image to the ImageView
