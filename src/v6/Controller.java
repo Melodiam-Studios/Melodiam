@@ -536,8 +536,8 @@ public class Controller {
                     wert = ((Note) element).getWert();
                     switch (instrument){
                         case "Piano": break;
-                        case "Trumpet": wert = wert + 2; break;
-                        case "French_Horn": wert = wert + 7; break;
+                        case "Trumpet": wert = wert - 2; break;
+                        case "French_Horn": wert = wert - 7; break;
                     }
 
                     switch (((Note) element).getNotenInTakt()) {
