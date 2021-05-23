@@ -255,9 +255,13 @@ public class ControllerPreOptionWindow implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //set instruments
         String instrum[] = {
-                "Piano",
-                "Trumpet",
-                "French_Horn"};
+                "Piano",        // C
+                "Trumpet",      // B
+                "French_Horn",  // F
+                "Alto_Sax",     // Es
+                "Clarinet",     // B
+                "Flute"         // C
+        };
         instrument.setItems(FXCollections.observableArrayList(instrum));
         instrument.getSelectionModel().select("Piano");
 
