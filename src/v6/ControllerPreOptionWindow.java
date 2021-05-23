@@ -118,6 +118,7 @@ public class ControllerPreOptionWindow implements Initializable {
 
             JMetro jMetro=new JMetro(Style.LIGHT);
 
+
             Controller controller = loader.<Controller>getController();
 
             Image image = new Image("/resources/melodiam_testicon.png");
