@@ -460,7 +460,7 @@ public class Takt {
             onRightClick(mouseEvent);
         else {
 
-            if (belegt == 1) return;
+            if (belegt == 1 || p.x == -100000 && p.y == -100000) return;
 
             ImageView imageView;
 
