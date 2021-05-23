@@ -19,6 +19,12 @@ import java.util.ArrayList;
  * @author Silas Demez
  */
 public class Takt {
+
+    /**
+     * DeadZone defines the amount of space that is free in the very first takt
+     */
+    int deadZone = 80;
+
     /**
      * Variable responsible for setting the length of the takt
      */
@@ -26,7 +32,7 @@ public class Takt {
     /**
      * Variable responsible for setting the length of the first takt in a row
      */
-    float first_line_length = 300;
+    float first_line_length = 355;
     /**
      * Variable responsible for setting the height of the takt
      */
@@ -52,12 +58,14 @@ public class Takt {
      */
     Pane pane = new Pane();
 
+    ImageView imageViewTonleiter = new ImageView();
 
-    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16));    // list has the possible positions for a sechzehntelNote in a Takt
-    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8));          // list has the possible positions for a achtelNote in a Takt
-    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4));         // list has the possible positions for a viertelNote in a Takt
-    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2));           // list has the possible positions for a halbeNote in a Takt
-    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1));           // list has the possible positions for a ganzeNote in a Takt
+
+    ArrayList<Point2D> sechzehntelPositions = new ArrayList<>(fillList(16, false));    // list has the possible positions for a sechzehntelNote in a Takt
+    ArrayList<Point2D> achtelPositions = new ArrayList<>(fillList(8, false));          // list has the possible positions for a achtelNote in a Takt
+    ArrayList<Point2D> viertelPositions = new ArrayList<>(fillList(4, false));         // list has the possible positions for a viertelNote in a Takt
+    ArrayList<Point2D> halbePositions = new ArrayList<>(fillList(2, false));           // list has the possible positions for a halbeNote in a Takt
+    ArrayList<Point2D> ganzePositions = new ArrayList<>(fillList(1, false));           // list has the possible positions for a ganzeNote in a Takt
 
     /**
      * List that contains the Noten and Pausen in the right order
@@ -117,6 +125,14 @@ public class Takt {
         Line l6 = new Line();
 
         if (isFirstTakt) {        // places the Violinschluessel and resizes it, place Tonleiter, place Takt
+
+            ganzePositions = fillList(1, true);
+            halbePositions = fillList(2, true);
+            viertelPositions = fillList(4, true);
+            achtelPositions = fillList(8, true);
+            sechzehntelPositions = fillList(16, true);
+
+
             Image image = new Image(getClass().getResource("/resources/bilder_noten/Violinschluessel.png").toExternalForm());
             ImageView notenSchluessel = new ImageView(image);
             pane.getChildren().add(notenSchluessel);
@@ -140,68 +156,7 @@ public class Takt {
             imageView.setX(75);
 
 
-            //Tonleiter hinzufügen
-            Image imgTonleiter = null;
-            switch (Notenblatt.getTonleiter()) {
-                case 6:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
-                    break;
-                case 5:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
-                    break;
-                case 4:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
-                    break;
-                case 3:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
-                    break;
-                case 2:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
-                    break;
-                case 1:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
-                    break;
-                case 0:
-                    imgTonleiter = null;
-                    break;
-                case -1:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
-                    break;
-                case -2:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
-                    break;
-                case -3:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
-                    break;
-                case -4:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
-                    break;
-                case -5:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
-                    break;
-                case -6:
-                    imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
-                    break;
-            }
-
-            ImageView imageViewTonleiter = new ImageView();
-            imageViewTonleiter.setImage(imgTonleiter);
-            pane.getChildren().add(imageViewTonleiter);
-
-            int tonleiter_size = 80;
-            imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
-            imageViewTonleiter.setFitWidth(tonleiter_size);
-
-            if (Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >= -6) {
-                imageViewTonleiter.setY(8);
-                imageViewTonleiter.setX(12);
-            } else {
-                imageViewTonleiter.setY(8);
-                imageViewTonleiter.setX(12);
-            }
-
-            imageViewTonleiter.setY(8);
-            imageViewTonleiter.setX(12);
+            drawTonleiter();
 
             //line beim ersten takt in einer Zeile länger setzen
             // lne at the right end (vertical)
@@ -234,7 +189,75 @@ public class Takt {
 
         pane.setOnMousePressed(this::onMousePressed);   // set when Mouse is pressed
         pane.setOnMouseMoved(this::onMouseMoved);       // set when Mouse is moved
-        pane.setOnMouseExited(this::onMouseExited);       // set when Mouse exits
+        pane.setOnMouseExited(this::onMouseExited);     // set when Mouse exits
+    }
+
+
+    public void drawTonleiter(){
+        //Tonleiter hinzufügen
+        Image imgTonleiter = null;
+        switch (Notenblatt.getTonleiter()) {
+            case 6:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Fis-Dur.png").toExternalForm());
+                break;
+            case 5:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/H-Dur.png").toExternalForm());
+                break;
+            case 4:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/E-Dur.png").toExternalForm());
+                break;
+            case 3:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/A-Dur.png").toExternalForm());
+                break;
+            case 2:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/D-Dur.png").toExternalForm());
+                break;
+            case 1:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/G-Dur.png").toExternalForm());
+                break;
+            case 0:
+                imgTonleiter = null;
+                break;
+            case -1:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/F-Dur.png").toExternalForm());
+                break;
+            case -2:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/B-Dur.png").toExternalForm());
+                break;
+            case -3:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Es-Dur.png").toExternalForm());
+                break;
+            case -4:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/As-Dur.png").toExternalForm());
+                break;
+            case -5:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Des-Dur.png").toExternalForm());
+                break;
+            case -6:
+                imgTonleiter = new Image(getClass().getResource("/resources/bilder_tonleiter/Ges-Dur.png").toExternalForm());
+                break;
+        }
+
+        imageViewTonleiter.setImage(imgTonleiter);
+        try {
+            pane.getChildren().add(imageViewTonleiter);
+        }catch (Exception ignored){}
+
+
+        int tonleiter_size = 80;
+        imageViewTonleiter.setFitHeight(tonleiter_size * 1.2);
+        imageViewTonleiter.setFitWidth(tonleiter_size);
+
+        if (Notenblatt.getTonleiter() < 0 && Notenblatt.getTonleiter() >= -6) {
+            imageViewTonleiter.setY(8);
+            imageViewTonleiter.setX(12);
+        } else {
+            imageViewTonleiter.setY(8);
+            imageViewTonleiter.setX(12);
+        }
+
+        imageViewTonleiter.setY(8);
+        imageViewTonleiter.setX(12);
     }
 
     /**
@@ -243,14 +266,28 @@ public class Takt {
      * @param notenInT type of Note or Pause
      * @return list with possible positions
      */
-    public ArrayList<Point2D> fillList(int notenInT) {
+    public ArrayList<Point2D> fillList(int notenInT, boolean isFirstTakt) {
+
         ArrayList<Point2D> listsWithPossiblePositions = new ArrayList<>();
-        notenInT += 1;
-        float zeilen = height / 23;
-        float spalten = line_length / (float) notenInT;
-        for (int i = 1; i < notenInT; i++) {
-            for (int e = 0; e < 23; e++) {
-                listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
+
+        if (isFirstTakt){
+
+            notenInT += 1;
+            float zeilen = height / 23;
+            float spalten = line_length / (float) notenInT;
+            for (int i = 1; i < notenInT; i++) {
+                for (int e = 0; e < 23; e++) {
+                    listsWithPossiblePositions.add(new Point2D(i * spalten + deadZone, e * zeilen));
+                }
+            }
+        }else {
+            notenInT += 1;
+            float zeilen = height / 23;
+            float spalten = line_length / (float) notenInT;
+            for (int i = 1; i < notenInT; i++) {
+                for (int e = 0; e < 23; e++) {
+                    listsWithPossiblePositions.add(new Point2D(i * spalten, e * zeilen));
+                }
             }
         }
 
@@ -481,10 +518,14 @@ public class Takt {
         note.setxAchse(p.x);
         note.setyAchse(p.y);
 
+        position = note.getPosition();
         //System.out.println("Position der Note: " + this.position);
         if (vorzeichen == 2) {
             vorzeichen = 0;
 
+            //System.out.println("Tonleiter: " + Notenblatt.getTonleiter() + " - " + position);
+            position = position % 7;
+            //System.out.println(position);
             switch (Notenblatt.getTonleiter()) {
                 case -6:
                     if (position == 6) vorzeichen = -1;         //b
