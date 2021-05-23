@@ -352,7 +352,7 @@ public class Takt {
 
 
         double shortestDistance = 100;
-        Point2D returnPoint = new Point2D();
+        Point2D returnPoint = new Point2D(-100000, -100000);
 
 
         // wenn eine Note platziert geteilt durch 4 bei viertelnote
