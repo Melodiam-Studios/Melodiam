@@ -83,7 +83,7 @@ public class Speichern {
         }
     }
 
-    public void Einlesen(String filePath, ControllerMainWindow controller) throws IOException {
+    public void Einlesen(String filePath, ControllerMainWindow controller) {
         System.out.println("IM EINLESEN!");
 
         File file = new File(filePath);
