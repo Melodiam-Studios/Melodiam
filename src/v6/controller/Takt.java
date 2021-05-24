@@ -904,6 +904,17 @@ public class Takt {
         renewStaticTakt();
     }
 
+    public boolean getIfTaktonLeftFull(){
+        if (id == 0) return true;
+
+        ArrayList<Takt> takte = Notenblatt.getTakte();
+        Takt t = takte.get(id-1);
+        if (t.belegt == 1) return true;
+
+        return false;
+
+    }
+
     public void setNotenInTakt(int notenInTakt) {
         this.notenInTakt = notenInTakt;
     }
