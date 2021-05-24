@@ -34,7 +34,7 @@ public class Note extends Element {
 
 
     private int wert;
-    private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen  2 = Nicht definiert
+    private int vorzeichen = 0;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen  2 = Auflösezeichen (am Anfang)
     private int anzeigenVorzeichen = 1; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
@@ -207,9 +207,8 @@ public class Note extends Element {
             img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
         } else if (vorzeichen == 1 && anzeigenVorzeichen == 1) {// Kreuz-Vorzeichen
             img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
-        } else if (vorzeichen == 0) {// Auflösungs-Vorzeichen
+        } else if ((vorzeichen == 2) || (vorzeichen == 0 && anzeigenVorzeichen == 2)) {// Auflösungs-Vorzeichen
             img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
-            anzeigenVorzeichen = 2;
         }
 
         // set the image to the ImageView

@@ -49,7 +49,8 @@ public class Takt {
      * B.Vorzeichen --> 0
      * kein Vorzeichen --> -1
      */
-    int vorzeichen = 3;
+    int vorzeichen = 0;
+
     int id;
 
     double belegt = 0;
@@ -505,6 +506,7 @@ public class Takt {
     private void placeNote(Point2D p) {
         ImageView imageView;
         ImageView vorzeichenView = null;
+        int anzeigenVorzeichen = 1;
 
         //System.out.println("Belegt: " + belegt);
         p = objektFang(new Point2D(p.x - 10, p.y), notenInTakt);
@@ -534,12 +536,11 @@ public class Takt {
 
         position = note.getPosition();
         //System.out.println("Position der Note: " + this.position);
-        if (vorzeichen == 2) {
-            vorzeichen = 0;
+        //System.out.println("Tonleiter: " + Notenblatt.getTonleiter() + " - " + position);
+        position = position % 7;
+        //System.out.println(position);
 
-            //System.out.println("Tonleiter: " + Notenblatt.getTonleiter() + " - " + position);
-            position = position % 7;
-            //System.out.println(position);
+        if (vorzeichen == 0) {
             switch (Notenblatt.getTonleiter()) {
                 case -6:
                     if (position == 6) vorzeichen = -1;         //b
@@ -613,6 +614,81 @@ public class Takt {
             }
 
             note.setVorzeichen(vorzeichen);
+        }
+        else if (vorzeichen == 2){
+            switch (Notenblatt.getTonleiter()) {
+                case -6:
+                    if (position == 6) anzeigenVorzeichen = 2;         //b
+                    else if (position == 2) anzeigenVorzeichen = 2;    //es
+                    else if (position == 5) anzeigenVorzeichen = 2;    //as
+                    else if (position == 1) anzeigenVorzeichen = 2;    //des
+                    else if (position == 4) anzeigenVorzeichen = 2;    //ges
+                    else if (position == 0) anzeigenVorzeichen = 2;
+                    break;
+                case -5:
+                    if (position == 6) anzeigenVorzeichen = 2;         //b
+                    else if (position == 2) anzeigenVorzeichen = 2;    //es
+                    else if (position == 5) anzeigenVorzeichen = 2;    //as
+                    else if (position == 1) anzeigenVorzeichen = 2;    //des
+                    else if (position == 4) anzeigenVorzeichen = 2;    //ges
+                    break;
+                case -4:
+                    if (position == 6) anzeigenVorzeichen = 2;         //b
+                    else if (position == 2) anzeigenVorzeichen = 2;    //es
+                    else if (position == 5) anzeigenVorzeichen = 2;    //as
+                    else if (position == 1) anzeigenVorzeichen = 2;    //des
+                    break;
+                case -3:
+                    if (position == 6) anzeigenVorzeichen = 2;         //b
+                    else if (position == 2) anzeigenVorzeichen = 2;    //es
+                    else if (position == 5) anzeigenVorzeichen = 2;    //as
+                    break;
+                case -2:
+                    if (position == 6) anzeigenVorzeichen = 2;         //b
+                    else if (position == 2) anzeigenVorzeichen = 2;    //es
+                    break;
+                case -1:
+                    if (position == 6) anzeigenVorzeichen = 2;
+                    break;
+                case 0:
+                    anzeigenVorzeichen = 1;
+                    break;
+                case 1:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    break;
+                case 2:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    else if (position == 0) anzeigenVorzeichen = 2;   //cis
+                    break;
+                case 3:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    else if (position == 0) anzeigenVorzeichen = 2;   //cis
+                    else if (position == 4) anzeigenVorzeichen = 2;   //gis
+                    break;
+                case 4:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    else if (position == 0) anzeigenVorzeichen = 2;   //cis
+                    else if (position == 4) anzeigenVorzeichen = 2;   //gis
+                    else if (position == 1) anzeigenVorzeichen = 2;   //dis
+                    break;
+                case 5:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    else if (position == 0) anzeigenVorzeichen = 2;   //cis
+                    else if (position == 4) anzeigenVorzeichen = 2;   //gis
+                    else if (position == 1) anzeigenVorzeichen = 2;   //dis
+                    else if (position == 5) anzeigenVorzeichen = 2;   //ais
+                    break;
+                case 6:
+                    if (position == 3) anzeigenVorzeichen = 2;        //fis
+                    else if (position == 0) anzeigenVorzeichen = 2;   //cis
+                    else if (position == 4) anzeigenVorzeichen = 2;   //gis
+                    else if (position == 1) anzeigenVorzeichen = 2;   //dis
+                    else if (position == 5) anzeigenVorzeichen = 2;   //ais
+                    else if (position == 2) anzeigenVorzeichen = 2;   //eis
+                    break;
+            }
+            note.setVorzeichen(0);
+            note.setAnzeigenVorzeichen(anzeigenVorzeichen);
         }
         //System.out.println(note.toString());
 

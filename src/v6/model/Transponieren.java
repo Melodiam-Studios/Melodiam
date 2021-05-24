@@ -257,70 +257,70 @@ public class Transponieren {
         } else if (vorzeichen == 0) {
             switch (tonleiter) {
                 case 6:
-                    if (wert == 5) anzeigen = 0;        //f
-                    else if (wert == 0) anzeigen = 0;   //c
-                    else if (wert == 7) anzeigen = 0;   //g
-                    else if (wert == 2) anzeigen = 0;   //d
-                    else if (wert == 9) anzeigen = 0;   //a
-                    else if (wert == 4) anzeigen = 0;   //e
+                    if (wert == 5) anzeigen = 2;        //f
+                    else if (wert == 0) anzeigen = 2;   //c
+                    else if (wert == 7) anzeigen = 2;   //g
+                    else if (wert == 2) anzeigen = 2;   //d
+                    else if (wert == 9) anzeigen = 2;   //a
+                    else if (wert == 4) anzeigen = 2;   //e
                     break;
                 case 5:
-                    if (wert == 5) anzeigen = 0;        //f
-                    else if (wert == 0) anzeigen = 0;   //c
-                    else if (wert == 7) anzeigen = 0;   //g
-                    else if (wert == 2) anzeigen = 0;   //d
-                    else if (wert == 9) anzeigen = 0;   //a
+                    if (wert == 5) anzeigen = 2;        //f
+                    else if (wert == 0) anzeigen = 2;   //c
+                    else if (wert == 7) anzeigen = 2;   //g
+                    else if (wert == 2) anzeigen = 2;   //d
+                    else if (wert == 9) anzeigen = 2;   //a
                     break;
                 case 4:
-                    if (wert == 5) anzeigen = 0;        //f
-                    else if (wert == 0) anzeigen = 0;   //c
-                    else if (wert == 7) anzeigen = 0;   //g
-                    else if (wert == 2) anzeigen = 0;   //d
+                    if (wert == 5) anzeigen = 2;        //f
+                    else if (wert == 0) anzeigen = 2;   //c
+                    else if (wert == 7) anzeigen = 2;   //g
+                    else if (wert == 2) anzeigen = 2;   //d
                     break;
                 case 3:
-                    if (wert == 5) anzeigen = 0;        //f
-                    else if (wert == 0) anzeigen = 0;   //c
-                    else if (wert == 7) anzeigen = 0;   //g
+                    if (wert == 5) anzeigen = 2;        //f
+                    else if (wert == 0) anzeigen = 2;   //c
+                    else if (wert == 7) anzeigen = 2;   //g
                     break;
                 case 2:
-                    if (wert == 5) anzeigen = 0;        //f
-                    else if (wert == 0) anzeigen = 0;   //c
+                    if (wert == 5) anzeigen = 2;        //f
+                    else if (wert == 0) anzeigen = 2;   //c
                     break;
                 case 1:
-                    if (wert == 5) anzeigen = 0;        //f
+                    if (wert == 5) anzeigen = 2;        //f
                     break;
                 case -1:
-                    if (wert == 11) anzeigen = 0;       //h
+                    if (wert == 11) anzeigen = 2;       //h
                     break;
                 case -2:
-                    if (wert == 11) anzeigen = 0;       //h
-                    else if (wert == 4) anzeigen = 0;   //e
+                    if (wert == 11) anzeigen = 2;       //h
+                    else if (wert == 4) anzeigen = 2;   //e
                     break;
                 case -3:
-                    if (wert == 11) anzeigen = 0;       //h
-                    else if (wert == 4) anzeigen = 0;   //e
-                    else if (wert == 9) anzeigen = 0;   //a
+                    if (wert == 11) anzeigen = 2;       //h
+                    else if (wert == 4) anzeigen = 2;   //e
+                    else if (wert == 9) anzeigen = 2;   //a
                     break;
                 case -4:
-                    if (wert == 11) anzeigen = 0;       //h
-                    else if (wert == 4) anzeigen = 0;   //e
-                    else if (wert == 9) anzeigen = 0;   //a
-                    else if (wert == 2) anzeigen = 0;   //d
+                    if (wert == 11) anzeigen = 2;       //h
+                    else if (wert == 4) anzeigen = 2;   //e
+                    else if (wert == 9) anzeigen = 2;   //a
+                    else if (wert == 2) anzeigen = 2;   //d
                     break;
                 case -5:
-                    if (wert == 11) anzeigen = 0;       //h
-                    else if (wert == 4) anzeigen = 0;   //e
-                    else if (wert == 9) anzeigen = 0;   //a
-                    else if (wert == 2) anzeigen = 0;   //d
-                    else if (wert == 7) anzeigen = 0;   //g
+                    if (wert == 11) anzeigen = 2;       //h
+                    else if (wert == 4) anzeigen = 2;   //e
+                    else if (wert == 9) anzeigen = 2;   //a
+                    else if (wert == 2) anzeigen = 2;   //d
+                    else if (wert == 7) anzeigen = 2;   //g
                     break;
                 case -6:
-                    if (wert == 11) anzeigen = 0;       //h
-                    else if (wert == 4) anzeigen = 0;   //e
-                    else if (wert == 9) anzeigen = 0;   //a
-                    else if (wert == 2) anzeigen = 0;   //d
-                    else if (wert == 7) anzeigen = 0;   //g
-                    else if (wert == 0) anzeigen = 0;   //c
+                    if (wert == 11) anzeigen = 2;       //h
+                    else if (wert == 4) anzeigen = 2;   //e
+                    else if (wert == 9) anzeigen = 2;   //a
+                    else if (wert == 2) anzeigen = 2;   //d
+                    else if (wert == 7) anzeigen = 2;   //g
+                    else if (wert == 0) anzeigen = 2;   //c
                     break;
 
             }

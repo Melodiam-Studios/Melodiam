@@ -205,7 +205,7 @@ public class ControllerMainWindow {
      * Variable responsible to store the value of the selected accidental
      * b-vorzeichen (flat sign)  = -1, auflösungszeichen (natural sign) = 0, k-vorzeichen (negativ signs) = 1
      */
-    public static int vorzeichen = 2;
+    public static int vorzeichen = 0;
 
     /**
      * Stores all the Tacts that are also in the GridPane mainInputPane
@@ -367,7 +367,7 @@ public class ControllerMainWindow {
             if (vorzeichen == 2 || vorzeichen == 1 || vorzeichen == 0){
                 vorzeichen = -1;
             }else{
-                vorzeichen = 2;
+                vorzeichen = 0;
             }
 
         }
@@ -376,15 +376,15 @@ public class ControllerMainWindow {
             if (vorzeichen == 2 || vorzeichen == -1 || vorzeichen == 0){
                 vorzeichen = 1;
             }else{
-                vorzeichen = 2;
+                vorzeichen = 0;
             }
         }
         //Auflösezeichen
         else if (id.equals("aVorzeichen")){
-            if (vorzeichen == 2 || vorzeichen == 1 || vorzeichen == -1){
-                vorzeichen = 0;
-            }else{
+            if (vorzeichen == 0 || vorzeichen == 1 || vorzeichen == -1){
                 vorzeichen = 2;
+            }else{
+                vorzeichen = 0;
             }
         }
     }
