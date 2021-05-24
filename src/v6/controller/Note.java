@@ -35,7 +35,7 @@ public class Note extends Element {
 
     private int wert;
     private int vorzeichen = 2;         // -1 = b Vorzeichen, 0 = Kein Vorzeichen, 1 = Kreuzvorzeichen  2 = Nicht definiert
-    private int anzeigenVorzeichen; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
+    private int anzeigenVorzeichen = 1; // 0 = nicht anzeigen, 1 = Vorzeichen anzeigen, 2 = Auflösezeichen anzeigen
     private String bezeichnung;
 
 
@@ -65,6 +65,8 @@ public class Note extends Element {
      * sets the different images for the notes and also sets the images when there is a vorzeichen
      */
     private void changeNote(boolean trans){
+
+        System.out.println("Vorzeichen: " + vorzeichen);
 
         //pane = ControllerMainWindow.get //
 
@@ -113,7 +115,7 @@ public class Note extends Element {
                     imageView.setFitWidth(11);
                     notenOffsetY = 25;
 
-                    System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
+                    //System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
                 }else {         // when position is bigger than 12 --> ViertelNoteUnten
                     img = new Image(getClass().getResource("/resources/bilder_noten/ViertelnoteUnten.png").toExternalForm());
                     notenOffsetY = 0;
@@ -121,7 +123,7 @@ public class Note extends Element {
                     imageView.setFitHeight(34);
                     imageView.setFitWidth(11);
 
-                    System.out.println("Setting the ImageView x:? and y:0      x:" + imageView.getX() + " y:" + imageView.getY());
+                    //System.out.println("Setting the ImageView x:? and y:0      x:" + imageView.getX() + " y:" + imageView.getY());
                 }
                 break;
             case 8:
@@ -163,7 +165,7 @@ public class Note extends Element {
         }
 
         imageView.setY(notenOffsetY);
-        System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
+        //System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
 
         // if there is a vorzeichen it gets set in the vorzeichenSetzen function
         if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen(trans);
@@ -186,6 +188,8 @@ public class Note extends Element {
      * It sets different images for the different vorzeichen
      */
     private void vorzeichenSetzen(boolean trans) {
+
+        System.out.println("Going into the vorzeichensetzen function");
         /**
          * Every image of the different vorzeichen needs a little x adjustment.
          * With this variable the x offset gets defined
