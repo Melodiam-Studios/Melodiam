@@ -675,8 +675,8 @@ public class ControllerMainWindow {
         Notenblatt.clearElements();
 
         int numberOfTakte = 1;
-        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0, 0));
-        readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0,0));
+        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
+        readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0));
 
         for (int i=1;i<=numberOfTakte; i++){
             addPaneWithNotes(readElements,i);
