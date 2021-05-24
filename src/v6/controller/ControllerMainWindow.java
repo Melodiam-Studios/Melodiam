@@ -688,10 +688,7 @@ public class ControllerMainWindow {
         id--;
     }
 
-    public void createFromRead(){
-
-        ArrayList<ReadElement> readElements = new ArrayList<>();
-
+    public void createFromRead(ArrayList<ReadElement> readElements){
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
             remPane();
             System.out.println("Takt wird gelöscht");
@@ -699,9 +696,9 @@ public class ControllerMainWindow {
 
         Notenblatt.clearElements();
 
-        int numberOfTakte = 1;
-        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
-        readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0));
+        int numberOfTakte = Notenblatt.getAktuelleTaktAnzahl();
+        //readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
+        //readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0));
 
         for (int i=1;i<=numberOfTakte; i++){
             addPaneWithNotes(readElements,i);

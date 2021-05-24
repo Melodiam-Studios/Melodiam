@@ -73,7 +73,7 @@ public class Pause extends Element {
                 imageView.setY(offsetY);
                 break;
             case 80:
-                // Halbe Note
+                // Sechzehntelpause
                 img = new Image(getClass().getResource("/resources/bilder_noten/Sechzehntelpause.png").toExternalForm());
                 imageView.setImage(img);
                 imageView.setFitHeight(20);
