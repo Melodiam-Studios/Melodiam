@@ -1,12 +1,23 @@
-package v6;
+package v6.controller;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * For each element of Pause a new Image of the pause gets placed in the GUI.
+ * The properties of the Pause then can help the program to detect the type of pause
+ */
 public class Pause extends Element {
 
+    /**
+     * describes the type of pause - for viertelPause --> 4 - for halbePause --> 2 - ...
+     */
     int pausenInTakt;
+    /**
+     * Every image of the different pauses needs to be adjusted in its y coordinate.
+     * With this variable the y offset gets defined
+     */
     int offsetY;
 
     float xAchse;
@@ -19,6 +30,9 @@ public class Pause extends Element {
         changePause();
     }
 
+    /**
+     * sets the different images for the pauses
+     */
     public void changePause(){
 
         switch (pausenInTakt) {

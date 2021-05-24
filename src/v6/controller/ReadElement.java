@@ -1,4 +1,4 @@
-package v6;
+package v6.controller;
 
 public class ReadElement {
 

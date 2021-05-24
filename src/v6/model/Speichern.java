@@ -1,7 +1,11 @@
-package v6;
+package v6.model;
+
+import v6.controller.Element;
+import v6.controller.Note;
+import v6.controller.Pause;
+import v6.controller.Takt;
 
 import java.io.*;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

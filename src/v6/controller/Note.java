@@ -1,8 +1,9 @@
-package v6;
+package v6.controller;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import v6.model.Liste;
 
 /**
  * For each element of Note a new Image of the note gets placed in the GUI.
@@ -65,7 +66,7 @@ public class Note extends Element {
      */
     private void changeNote(boolean trans){
 
-        //pane = Controller.get //
+        //pane = ControllerMainWindow.get //
 
         /*
         switch that distinguished between the different types of notes

@@ -1,4 +1,8 @@
-package v6;
+package v6.model;
+
+import v6.controller.Element;
+import v6.controller.Note;
+import v6.controller.Takt;
 
 /**
  * In der Klasse Transponieren kann man die übergebenen Noten und die dazugehörige Tonleiter transponieren lassen.

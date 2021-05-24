@@ -165,7 +165,7 @@ public class Takt {
     }
 
     /**
-     * @return return the Takt GUI to the Controller or the Note
+     * @return return the Takt GUI to the ControllerMainWindow or the Note
      */
     public Pane getPane() {
         return pane;

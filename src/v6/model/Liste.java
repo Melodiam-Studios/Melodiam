@@ -1,4 +1,8 @@
-package v6;
+package v6.model;
+
+import v6.controller.Element;
+import v6.controller.Note;
+import v6.controller.Takt;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
-package v6;
+package v6.controller;
 
-import com.sun.javafx.tk.Toolkit;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +17,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
-import sun.awt.image.ToolkitImage;
+import v6.model.Notenblatt;
+import v6.model.Speichern;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -111,7 +111,7 @@ public class ControllerPreOptionWindow implements Initializable {
         Notenblatt.setNotenschluessel(tmpNotenschluessel);
 
         try{
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("mainView.fxml")));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/v6/view/mainView.fxml")));
             Parent root = loader.load();
 
             Stage primaryStage = new Stage();
@@ -119,7 +119,7 @@ public class ControllerPreOptionWindow implements Initializable {
             JMetro jMetro=new JMetro(Style.LIGHT);
 
 
-            Controller controller = loader.<Controller>getController();
+            ControllerMainWindow controller = loader.<ControllerMainWindow>getController();
 
             Image image = new Image("/resources/melodiam_testicon.png");
             primaryStage.getIcons().add(image);
@@ -132,7 +132,7 @@ public class ControllerPreOptionWindow implements Initializable {
             //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
             //Open main Window
 
-            root.getStylesheets().add("v6/lightmode.css");
+            root.getStylesheets().add("v6/view/lightmode.css");
             primaryStage.setTitle("Melodiam v6");
             primaryStage.setScene(jMetro.getScene());
             primaryStage.setMaximized(true);

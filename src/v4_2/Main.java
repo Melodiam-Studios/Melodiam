@@ -26,7 +26,7 @@ public class Main extends Application {
         Button b1 = new Button("Add");
         Button b2 = new Button("Remove");
         //Pane element = new Pane();
-        //Controller controller =
+        //ControllerMainWindow controller =
         new Controller();
 
         root.add(b1, 0, 0);

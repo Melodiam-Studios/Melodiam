@@ -1,4 +1,4 @@
-package v6;
+package v6.controller;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import v6.model.Liste;
+import v6.model.Notenblatt;
 
 import java.util.ArrayList;
 
@@ -296,7 +298,7 @@ public class Takt {
     }
 
     /**
-     * @return return the Takt GUI to the Controller or the Note
+     * @return return the Takt GUI to the ControllerMainWindow or the Note
      */
     public Pane getPane() {
         return pane;
@@ -385,8 +387,8 @@ public class Takt {
 
         if (belegt == 1) return;
 
-        notenInTakt = Controller.notenInTakt;
-        vorzeichen = Controller.vorzeichen;
+        notenInTakt = ControllerMainWindow.notenInTakt;
+        vorzeichen = ControllerMainWindow.vorzeichen;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
@@ -448,7 +450,7 @@ public class Takt {
 
         System.out.println("_________________________________________________________");
         System.out.println(this.getPane().toString());
-        vorzeichen = Controller.vorzeichen;
+        vorzeichen = ControllerMainWindow.vorzeichen;
 
         System.out.println("NotenInTakt: " + notenInTakt);
 

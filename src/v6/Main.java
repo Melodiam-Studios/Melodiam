@@ -1,21 +1,11 @@
 package v6;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
-
-import java.util.Objects;
+import v6.controller.CreatePreOptionWindow;
 
 
 public class Main extends Application {
-
 
     private int row = 0;
     private int column = 0;

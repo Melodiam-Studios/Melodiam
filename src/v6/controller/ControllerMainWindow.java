@@ -1,4 +1,4 @@
-package v6;
+package v6.controller;
 
 import audio.PlayMelody;
 import com.sun.javafx.geom.Point2D;
@@ -13,6 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.jfugue.pattern.Pattern;
+import v6.model.Liste;
+import v6.model.Notenblatt;
+import v6.model.Speichern;
+import v6.model.Transponieren;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,7 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Controller {
+public class ControllerMainWindow {
 
     /**
      * GridPane responsible for storing the Panes Takt

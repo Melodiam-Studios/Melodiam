@@ -1,4 +1,4 @@
-package v6;
+package v6.controller;
 
 import com.sun.javafx.geom.Point2D;
 import javafx.fxml.FXML;
@@ -28,14 +28,14 @@ public abstract class Element {
      * ImageView to display the Note/Pause
      */
     @FXML
-    protected ImageView imageView = new ImageView();
+    public ImageView imageView = new ImageView();
 
     /**
      * Variable responsible for showing the Vorzeichen of the note.
      * It gets set by the constructor-called function changeNote() when a new note is placed
      */
     @FXML
-    protected ImageView vorzeichenView = new ImageView();
+    public ImageView vorzeichenView = new ImageView();
 
     protected Point2D coordinatesOfNote;
 
