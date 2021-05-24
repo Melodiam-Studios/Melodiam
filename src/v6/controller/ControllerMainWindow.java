@@ -735,11 +735,16 @@ public class ControllerMainWindow {
             for (ReadElement readElement:readElements) {
                 if (readElement.inTakt % 5 == 0){
                     // Pause
+                    System.out.println("Placing a Pause");
+                    Pause pause = new Pause(readElement.inTakt, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                    pause.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                    takt.erneuerePausen(pause);
+
                 }else{
                     // Note
                     System.out.println("Placing a note");
                     Note note = new Note(readElement.inTakt, readElement.position,false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    note.setAnzeigenVorzeichen(0);
+                    note.setAnzeigenVorzeichen(1);
                     note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                     takt.erneuereNoten(note);
                 }
@@ -754,10 +759,11 @@ public class ControllerMainWindow {
             for (ReadElement readElement:readElements) {
                 if (readElement.inTakt % 5 == 0){
                     // Pause
+
                 }else{
                     // Note
                     Note note = new Note(readElement.inTakt, readElement.position, false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    note.setAnzeigenVorzeichen(0);
+                    note.setAnzeigenVorzeichen(1);
                     note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                     takt.erneuereNoten(note);
                 }
