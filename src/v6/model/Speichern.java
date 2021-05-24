@@ -125,6 +125,9 @@ public class Speichern {
 
         ArrayList<Integer> welcheLinie = new ArrayList<>();
 
+        boolean increased = true;
+        boolean alreadydidntincreased = false;
+
         for(int i = 0; i< data.size(); i++){
             if(data.get(i).contains("---")){
                 welcheLinie.add(i);
@@ -134,6 +137,7 @@ public class Speichern {
         }
 
         while(v <= data.size()){
+            increased = true;
             int inTakt = Integer.parseInt(data.get(x));
             int position = Integer.parseInt(data.get(y));
             double imageViewX = Double.parseDouble(data.get(z));
@@ -147,7 +151,9 @@ public class Speichern {
             System.out.println("AUSGABE IN EINLESEN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
 
             for (Integer i : welcheLinie){
-                if(i == x){
+                if(i == z){
+                    increased = false;
+                    alreadydidntincreased = true;
                     System.out.println("In IF");
                     arrayListElements.add(readElements);
                     readElements.clear();
@@ -159,7 +165,7 @@ public class Speichern {
             z = z + 7;
             u = u + 7;
             v = v + 7;
-            if(v> data.size()){break;}
+            if(v > data.size()){break;}
         }
         System.out.println(readElements);
 
