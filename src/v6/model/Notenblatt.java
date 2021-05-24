@@ -96,11 +96,7 @@ public class Notenblatt {
     public static int getAktuelleTaktAnzahl() { return aktuelleTaktAnzahl; }
 
     public static void clearElements(){
-        for (Takt takt: takte){
-            ArrayList<Element> elements = takt.getElements();
-            elements.clear();
-            takt.setElements(elements);
-        }
+        takte.clear();
     }
 
     @Override

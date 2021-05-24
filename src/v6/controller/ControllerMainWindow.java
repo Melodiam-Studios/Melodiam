@@ -208,7 +208,7 @@ public class ControllerMainWindow {
     public static int vorzeichen = 2;
 
     /**
-     * Stores all the Tacts that are alsow in the GridPane mainInputPane
+     * Stores all the Tacts that are also in the GridPane mainInputPane
      */
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
