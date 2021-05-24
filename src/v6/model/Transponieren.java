@@ -180,6 +180,7 @@ public class Transponieren {
         vorzeichen = note.getVorzeichen();
         anzeigen = 1;
 
+        // Kontrolle ob Kreuzvorzeichen bereits bei der Tonleiter vorkommt
         if ((vorzeichen == 1) && (tonleiter > 0)) {
             switch (tonleiter) {
                 case 1:
@@ -216,7 +217,9 @@ public class Transponieren {
                     else if (wert == 5) anzeigen = 0;   //eis
                     break;
             }
-        } else if ((vorzeichen == -1) && (tonleiter < 0)) {
+        }
+        // Kontrolle ob b-Vorzeichen bereits bei der Tonleiter vorkommt
+        else if ((vorzeichen == -1) && (tonleiter < 0)) {
             switch (tonleiter) {
                 case -1:
                     if (wert == 10) anzeigen = 0;       //b
@@ -254,7 +257,9 @@ public class Transponieren {
                 default:
                     break;
             }
-        } else if (vorzeichen == 0) {
+        }
+        // Kontrolle ob Auflösezeichen angezeigt werden muss
+        else if (vorzeichen == 0) {
             switch (tonleiter) {
                 case 6:
                     if (wert == 5) anzeigen = 2;        //f

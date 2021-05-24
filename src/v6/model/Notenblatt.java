@@ -5,6 +5,10 @@ import v6.controller.Takt;
 
 import java.util.ArrayList;
 
+/**
+ * In der Klasse Notenblatt werden alle relevanten Informationen statisch gespeichert und bei Änderungen immer aktualisiert.
+ * Enthaltene Inforationen: Aktuelle Tonleiter, Instrument, Dateiname, Komponist, Notenschl
+ */
 public class Notenblatt {
 
     private static int tonleiter = 0;

@@ -540,6 +540,7 @@ public class Takt {
         position = position % 7;
         //System.out.println(position);
 
+        // Kontrolle ob Vorzeichen der Tonleiter beachtet werden muss
         if (vorzeichen == 0) {
             switch (Notenblatt.getTonleiter()) {
                 case -6:
@@ -548,7 +549,7 @@ public class Takt {
                     else if (position == 5) vorzeichen = -1;    //as
                     else if (position == 1) vorzeichen = -1;    //des
                     else if (position == 4) vorzeichen = -1;    //ges
-                    else if (position == 0) vorzeichen = -1;
+                    else if (position == 0) vorzeichen = -1;    //ces
                     break;
                 case -5:
                     if (position == 6) vorzeichen = -1;         //b
@@ -615,6 +616,8 @@ public class Takt {
 
             note.setVorzeichen(vorzeichen);
         }
+
+        // Wenn Auflösezeichen ausgewählt wurde
         else if (vorzeichen == 2){
             switch (Notenblatt.getTonleiter()) {
                 case -6:
@@ -835,10 +838,10 @@ public class Takt {
 
         System.out.println("Imageview x:" + imageView.getX() + "Imageview y:" + imageView.getY());
 
-
         //System.out.println("Position der Note: " + this.position);
-        if (vorzeichen == 2) {
-            vorzeichen = 0;
+
+        // Wenn kein Vorzeichen ausgewählt wurde
+        if (vorzeichen == 0) {
 
             switch (Notenblatt.getTonleiter()) {
                 case -6:
