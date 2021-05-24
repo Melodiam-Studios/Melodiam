@@ -638,9 +638,7 @@ public class ControllerMainWindow {
      * Plays the written notes
      */
     private void playSong(){
-        if (playMelody != null) {
-            return;
-        }
+        playMelody=null;    //to change incase of pause-resume update...
         String instrument = Notenblatt.getInstrument();
         Liste.werteAusfuellen();
 
@@ -648,7 +646,7 @@ public class ControllerMainWindow {
         melody.setInstrument(instrument);
         melody.setTempo((int) tempo.getValue());
 
-        int wert=0;
+        int wert = 0;
         String bezeichnung = "", laenge = "";
 
         /*Noten: mit Wert und Länge, z.B. "64q"
@@ -673,33 +671,60 @@ public class ControllerMainWindow {
             for (Element element : takt.getElements()) {
                 if (element.getClass() == Note.class) {
                     wert = ((Note) element).getWert();
-                    switch (instrument){
-                        case "Piano": break;
-                        case "Flute": wert = wert + 12; break;
+                    switch (instrument) {
+                        case "Piano":
+                            break;
+                        case "Flute":
+                            wert = wert + 12;
+                            break;
                         case "Trumpet":
                         case "Clarinet":
-                            wert = wert - 2; break;
-                        case "French_Horn": wert = wert - 7; break;
-                        case "Alto_Sax": wert = wert - 9; break;
+                            wert = wert - 2;
+                            break;
+                        case "French_Horn":
+                            wert = wert - 7;
+                            break;
+                        case "Alto_Sax":
+                            wert = wert - 9;
+                            break;
                     }
 
                     switch (((Note) element).getNotenInTakt()) {
-                        case 1: laenge="w"; break;
-                        case 2: laenge="h"; break;
-                        case 4: laenge="q"; break;
-                        case 8: laenge="i"; break;
-                        case 16: laenge="s"; break;
+                        case 1:
+                            laenge = "w";
+                            break;
+                        case 2:
+                            laenge = "h";
+                            break;
+                        case 4:
+                            laenge = "q";
+                            break;
+                        case 8:
+                            laenge = "i";
+                            break;
+                        case 16:
+                            laenge = "s";
+                            break;
                     }
                     bezeichnung = String.valueOf(wert) + laenge;
                     melody.add(bezeichnung);
-                }
-                else if (element.getClass() == Pause.class) {
+                } else if (element.getClass() == Pause.class) {
                     switch (((Pause) element).getPausenInTakt()) {
-                        case 5: laenge="w"; break;
-                        case 10: laenge="h"; break;
-                        case 20: laenge="q"; break;
-                        case 40: laenge="i"; break;
-                        case 80: laenge="s"; break;
+                        case 5:
+                            laenge = "w";
+                            break;
+                        case 10:
+                            laenge = "h";
+                            break;
+                        case 20:
+                            laenge = "q";
+                            break;
+                        case 40:
+                            laenge = "i";
+                            break;
+                        case 80:
+                            laenge = "s";
+                            break;
                     }
                     bezeichnung = "R" + laenge;
                     melody.add(bezeichnung);
@@ -708,7 +733,7 @@ public class ControllerMainWindow {
         }
 
         playMelody = new PlayMelody(melody);
-        t = new Thread(playMelody,"AudioPlayback");
+        t = new Thread(playMelody, "AudioPlayback");
         t.setDaemon(true);
         t.start();
 

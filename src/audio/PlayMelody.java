@@ -19,8 +19,11 @@ public class PlayMelody implements Runnable{
     public void run() {
         while(!Thread.currentThread().isInterrupted()) {
             try {
-                if(player.getManagedPlayer().isPaused())
+                if(player.getManagedPlayer().isPaused()){
+                    player.getManagedPlayer().resume();
                     throw new Exception();
+                }
+
                 System.out.println("Melody has started playing!");
                 player.play(melody);
 
