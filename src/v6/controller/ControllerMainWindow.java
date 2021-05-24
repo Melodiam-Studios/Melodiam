@@ -700,8 +700,11 @@ public class ControllerMainWindow {
         Notenblatt.clearElements();
 
         int numberOfTakte = Notenblatt.getAktuelleTaktAnzahl();
+        System.out.println("NUMBEROFTAKTE: " + numberOfTakte);
         //readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
         //readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0));
+
+        addFile();
 
         for (int i=1;i<=numberOfTakte; i++){
             addPaneWithNotes(readElements,i);
@@ -715,6 +718,8 @@ public class ControllerMainWindow {
             column = 0;
         }
 
+        System.out.println("TEST: " + column);
+        System.out.println("TEST2: " + mainInputPane);
         mainInputPane.addColumn(column);
         mainInputPane.addRow(row);
         RowConstraints rowWith = new RowConstraints(150);
@@ -735,17 +740,20 @@ public class ControllerMainWindow {
             for (ReadElement readElement:readElements) {
                 if (readElement.inTakt % 5 == 0){
                     // Pause
+                    System.out.println("Placing a Pause");
+                    Pause pause = new Pause(readElement.inTakt, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                    pause.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                    takt.erneuerePausen(pause);
+
                 }else{
                     // Note
                     System.out.println("Placing a note");
                     Note note = new Note(readElement.inTakt, readElement.position,false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    note.setAnzeigenVorzeichen(0);
+                    note.setAnzeigenVorzeichen(1);
                     note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                     takt.erneuereNoten(note);
                 }
             }
-            storeLines.add(takt.getPane());
-            drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
 
@@ -754,19 +762,19 @@ public class ControllerMainWindow {
             for (ReadElement readElement:readElements) {
                 if (readElement.inTakt % 5 == 0){
                     // Pause
+
                 }else{
                     // Note
                     Note note = new Note(readElement.inTakt, readElement.position, false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    note.setAnzeigenVorzeichen(0);
+                    note.setAnzeigenVorzeichen(1);
                     note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                     takt.erneuereNoten(note);
                 }
             }
             //takt.setElements(elements);
-            storeLines.add(takt.getPane());
-            drawPane(storeLines, mainInputPane);
-
         }
+        storeLines.add(takt.getPane());
+        drawPane(storeLines, mainInputPane);
         column++;
         id++;
 

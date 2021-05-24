@@ -109,6 +109,12 @@ public class Pause extends Element {
         this.xAchse = xAchse;
     }
 
+    public void setImageViewCoords(Point2D point2D){
+        imageView.setX(point2D.x);
+        imageView.setY(point2D.y);
+        System.out.println("Setting the coords of the imageview to x:" + imageView.getX() + " and y:" + imageView.getY());
+    }
+
     @Override
     public String toString() {
         return "Pause{" +

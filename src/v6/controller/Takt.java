@@ -703,10 +703,7 @@ public class Takt {
 
         ImageView imageView;
         ImageView vorzeichenView = null;
-        Element element;
 
-        System.out.println(elements);
-        System.out.println("Elements size:" + elements.size());
 
 
 /*
@@ -842,7 +839,7 @@ public class Takt {
             note.setVorzeichen(vorzeichen);
         }
 
-
+        elements.add(note);
         //Notenblatt.addNote(note);
 
 
@@ -884,6 +881,38 @@ public class Takt {
                 pane.getChildren().add(vorzeichenView);
 
                  */
+    }
+
+    public void erneuerePausen(Pause pause){
+        ImageView imageView;
+
+        belegt += (1 / (double) notenInTakt);
+
+        imageView = pause.getImageView();
+
+        elements.add(pause);
+
+        try {
+            //Pane pane = (Pane) mouseEvent.getSource();
+            System.out.println("Adding this pause: ");
+            System.out.println(pause);
+            pane.getChildren().add(imageView);
+        } catch (Exception exception) {
+            System.out.println("You exactly touched a line");
+        }
+
+        renewStaticTakt();
+    }
+
+    public boolean getIfTaktonLeftFull(){
+        if (id == 0) return true;
+
+        ArrayList<Takt> takte = Notenblatt.getTakte();
+        Takt t = takte.get(id-1);
+        if (t.belegt == 1) return true;
+
+        return false;
+
     }
 
     public void setNotenInTakt(int notenInTakt) {
