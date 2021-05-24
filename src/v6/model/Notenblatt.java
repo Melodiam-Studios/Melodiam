@@ -40,7 +40,7 @@ public class Notenblatt {
         takte.add(takt);
     }
     public static void remTakt() {
-        takte.remove(takte.size() - 1);
+        takte.remove(takte.size()-1);
     }
 
     /*public static void addNote (Note note){
