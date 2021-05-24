@@ -734,25 +734,45 @@ public class ControllerMainWindow {
         }
 
         Takt takt;
+        int notenbereich = (idNeu + 1) * 16;
+        int notenwerte = 0;
+        int tmpNotenWert = 0;
 
         if (column == 0){
             takt = new Takt(true, idNeu);
             for (ReadElement readElement:readElements) {
-                if (readElement.inTakt % 5 == 0){
-                    // Pause
-                    System.out.println("Placing a Pause");
-                    Pause pause = new Pause(readElement.inTakt, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    pause.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
-                    takt.erneuerePausen(pause);
-
-                }else{
-                    // Note
-                    System.out.println("Placing a note");
-                    Note note = new Note(readElement.inTakt, readElement.position,false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
-                    note.setAnzeigenVorzeichen(1);
-                    note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
-                    takt.erneuereNoten(note);
+                for(int i = 0; i<idNeu;){
+                    if(readElement.inTakt>16){
+                        tmpNotenWert = tmpNotenWert + readElement.inTakt/5;
+                    }
+                    else{
+                        tmpNotenWert = tmpNotenWert + readElement.inTakt;
+                    }
+                    if(tmpNotenWert>16){
+                        i++;
+                    }
                 }
+                notenwerte = notenwerte + readElement.inTakt;
+                System.out.println("readElement.inTakt: " + readElement.inTakt);
+                if(notenwerte >= notenbereich && notenwerte < notenbereich + 16){
+                    System.out.println("notenwerte/notenbereich" + notenwerte + "    " + notenbereich);
+                    if (readElement.inTakt % 5 == 0){
+                        // Pause
+                        Pause pause = new Pause(readElement.inTakt, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                        pause.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                        takt.erneuerePausen(pause);
+                        System.out.println("Placing a Pause" + pause);
+
+                    }else{
+                        // Note
+                        Note note = new Note(readElement.inTakt, readElement.position,false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                        note.setAnzeigenVorzeichen(1);
+                        note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                        takt.erneuereNoten(note);
+                        System.out.println("Placing a note" + note);
+                    }
+                }
+
             }
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();

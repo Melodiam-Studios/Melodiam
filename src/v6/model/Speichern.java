@@ -83,7 +83,7 @@ public class Speichern {
         }
     }
 
-    public void Einlesen(String filePath) throws IOException {
+    public void Einlesen(String filePath, ControllerMainWindow controller) throws IOException {
         System.out.println("IM EINLESEN!");
 
         File file = new File(filePath);
@@ -139,7 +139,7 @@ public class Speichern {
 
             ReadElement readElement = new ReadElement(inTakt, position, imageViewX, imageViewY, vorzeichenViewX, vorzeichenViewY, vorzeichen);
             readElements.add(readElement);
-            //System.out.println("AUSGABE IN EINLESENNNNNNNNNNNNNNN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
+            System.out.println("AUSGABE IN EINLESENNNNNNNNNNNNNNN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
 
             x = x + 7;
             y = y + 7;
@@ -151,9 +151,8 @@ public class Speichern {
 
         System.out.println(readElements);
 
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/v6/view/mainView.fxml")));
-        Parent root = loader.load();
-        ControllerMainWindow controller = loader.<ControllerMainWindow>getController();
+        ControllerMainWindow controllerMainWindow = controller;
+        System.out.println("CONTROLLER IN EINLESEN: " + controllerMainWindow);
         controller.createFromRead(readElements);
     }
 }

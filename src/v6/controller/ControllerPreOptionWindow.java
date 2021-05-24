@@ -85,6 +85,9 @@ public class ControllerPreOptionWindow implements Initializable {
     /**
      * As soon as the corresponding button has been pressed this method opens the main Window with the set values.
      */
+
+    private ControllerMainWindow controller;
+
     @FXML
     private void newWindow(){
 
@@ -139,8 +142,8 @@ public class ControllerPreOptionWindow implements Initializable {
 
             JMetro jMetro=new JMetro(style);
 
-
-            ControllerMainWindow controller = loader.<ControllerMainWindow>getController();
+            controller = loader.<ControllerMainWindow>getController();
+            System.out.println("CONTROLLER IN NEWWINDOW " + controller);
 
             Image image = new Image("/resources/melodiam_testicon.png");
             primaryStage.getIcons().add(image);
@@ -262,10 +265,10 @@ public class ControllerPreOptionWindow implements Initializable {
             //System.out.println("fileName: " + file);
             File newFile = new File(fileName);
             //BufferedReader reader = new BufferedReader(new FileReader(newFile));
+            newWindow();
             Speichern speichern = new Speichern();
-            speichern.Einlesen(fileName);
+            speichern.Einlesen(fileName, controller);
         }
-        newWindow();
     }
 
     /**
