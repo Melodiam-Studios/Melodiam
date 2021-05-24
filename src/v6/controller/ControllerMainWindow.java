@@ -3,11 +3,15 @@ package v6.controller;
 import audio.PlayMelody;
 import com.sun.javafx.geom.Point2D;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.print.PrinterJob;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -18,6 +22,7 @@ import v6.model.Notenblatt;
 import v6.model.Speichern;
 import v6.model.Transponieren;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.BufferedWriter;
@@ -177,6 +182,75 @@ public class ControllerMainWindow {
     MenuItem miNew;
 
     /**
+     * If the Menu Item miQuit is onAction the main Window closes
+     */
+    @FXML
+    public void shutDownMain(){
+        mainInputPane.getScene().getWindow().hide();
+    }
+
+    /**
+     * If the Menu Item miNew is on Action a new preOptionWidow opens
+     */
+    @FXML
+    public void newWindow(){
+        try {
+            CreatePreOptionWindow cPoW = new CreatePreOptionWindow(new Stage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        shutDownMain();
+    }
+
+    @FXML
+    public void SaveFile() throws IOException {
+        JFrame parentFrame = new JFrame();
+
+        parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Speichern unter");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV (.csv)", "csv");
+        fileChooser.addChoosableFileFilter(filter);
+
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            //System.out.println("Speicherort: " + fileToSave.getAbsolutePath());
+            String path = fileToSave.getAbsolutePath();
+            String fileName = path + ".csv"; //fileName ist der Name + .csv
+            //System.out.println("fileName: " + file);
+            File newFile = new File(fileName);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+            Speichern.Abspeichern(fileName);
+        }
+    }
+
+    @FXML
+    public void printPNG(){
+        WritableImage image = anchorP.getParent().getParent().getParent().getParent().snapshot(new SnapshotParameters(), null);
+
+        File file = new File(Notenblatt.getDateiName() + ".png");
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException e){
+            System.out.println("IO Exeption");
+        }
+        System.out.println("Finishd");
+
+        /*PrinterJob job = PrinterJob.createPrinterJob();
+        if(job != null){
+            job.showPrintDialog(anchorP.getScene().getWindow());
+            System.out.println(anchorP.getParent().getParent().getParent().getParent());
+            job.printPage(anchorP.getParent().getParent().getParent().getParent());
+            job.endJob();
+        }*/
+    }
+
+    /**
      * Variable responsible to store the number of rows
      */
     private int row = 0;
@@ -301,7 +375,6 @@ public class ControllerMainWindow {
             column = 3;
         }
 
-        storeLines.remove(storeLines.size()-1);
         drawPane(storeLines, mainInputPane);
         Notenblatt.remTakt();
         id--;
@@ -694,6 +767,7 @@ public class ControllerMainWindow {
     public void createFromRead(ArrayList<ArrayList<ReadElement>> listofElements){
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
             remPane();
+            storeLines.remove(storeLines.size()-1);
             System.out.println("Takt wird gelöscht");
         }
 
@@ -775,6 +849,7 @@ public class ControllerMainWindow {
                 }
 
             }
+            Notenblatt.addTakt(takt);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
 
@@ -792,6 +867,7 @@ public class ControllerMainWindow {
                     takt.erneuereNoten(note);
                 }
             }
+            Notenblatt.addTakt(takt);
             //takt.setElements(elements);
         }
         storeLines.add(takt.getPane());
@@ -801,56 +877,4 @@ public class ControllerMainWindow {
 
     }
 
-    /**
-     * If the Menu Item miQuit is onAction the main Window closes
-     */
-    @FXML
-    public void shutDownMain(){
-        if ("miQuit".equals(miQuit.getId())){
-            mainInputPane.getScene().getWindow().hide();
-        }
-    }
-
-    /**
-     * If the Menu Item miNew is on Action a new preOptionWidow opens
-     */
-    @FXML
-    public void newWindow(){
-        if("miNew".equals(miNew.getId())){
-
-            try {
-                CreatePreOptionWindow cPoW = new CreatePreOptionWindow(new Stage());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            shutDownMain();
-
-        }
-    }
-
-    @FXML
-    public void SaveFile() throws IOException {
-        JFrame parentFrame = new JFrame();
-
-        parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
-
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Speichern unter");
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV (.csv)", "csv");
-        fileChooser.addChoosableFileFilter(filter);
-
-        int userSelection = fileChooser.showSaveDialog(parentFrame);
-
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            //System.out.println("Speicherort: " + fileToSave.getAbsolutePath());
-            String path = fileToSave.getAbsolutePath();
-            String fileName = path + ".csv"; //fileName ist der Name + .csv
-            //System.out.println("fileName: " + file);
-            File newFile = new File(fileName);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
-            Speichern.Abspeichern(fileName);
-        }
-    }
 }

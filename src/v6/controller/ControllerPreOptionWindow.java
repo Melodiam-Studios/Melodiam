@@ -79,6 +79,7 @@ public class ControllerPreOptionWindow implements Initializable {
     /**
      * Spinner respinsible for reading the number of tacts requested by the user
      */
+
     @FXML
     Spinner preAnzahlTakte;
 
@@ -86,7 +87,7 @@ public class ControllerPreOptionWindow implements Initializable {
      * As soon as the corresponding button has been pressed this method opens the main Window with the set values.
      */
 
-    private ControllerMainWindow controller;
+    ControllerMainWindow controller;
 
     @FXML
     private void newWindow(){
@@ -184,9 +185,6 @@ public class ControllerPreOptionWindow implements Initializable {
         //close pre option Window
         Stage preOptionStage = (Stage) openMainWindow.getScene().getWindow();
         preOptionStage.close();
-
-
-
     }
 
     /**

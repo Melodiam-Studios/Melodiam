@@ -300,6 +300,10 @@ public class Note extends Element {
         this.anzeigenVorzeichen = anzeigenVorzeichen;
     }
 
+    public int getAnzeigenVorzeichen() {
+        return anzeigenVorzeichen;
+    }
+
     public int getNotenInTakt() {
         return notenInTakt;
     }
