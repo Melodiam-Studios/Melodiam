@@ -19,8 +19,11 @@ public class PlayMelody implements Runnable{
     public void run() {
         while(!Thread.currentThread().isInterrupted()) {
             try {
+                if(player.getManagedPlayer().isPaused())
+                    throw new Exception();
                 System.out.println("Melody has started playing!");
                 player.play(melody);
+
                 //System.out.println(player.getManagedPlayer().isFinished());
 
                 throw new Exception(); //stops when Melody is finished
@@ -35,6 +38,7 @@ public class PlayMelody implements Runnable{
     public void pauseMelody(){
         System.out.println("Melody paused!");
         player.getManagedPlayer().pause();
+
     }
     public void resumeMelody(){
         System.out.println("Melody resumed!");

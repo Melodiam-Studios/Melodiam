@@ -213,6 +213,7 @@ public class ControllerMainWindow {
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
     PlayMelody playMelody=null;
+    Thread t=null;
 
 
     /**
@@ -634,9 +635,10 @@ public class ControllerMainWindow {
         }
 
         playMelody = new PlayMelody(melody);
-        Thread t = new Thread(playMelody,"AudioPlayback");
+        t = new Thread(playMelody,"AudioPlayback");
         t.setDaemon(true);
         t.start();
+
     }
 
     /**
@@ -648,6 +650,7 @@ public class ControllerMainWindow {
             return;
         }
         playMelody.pauseMelody();
+        playMelody.run();
         playMelody=null;
     }
 
