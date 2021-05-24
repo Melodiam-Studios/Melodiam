@@ -22,15 +22,17 @@
          <children>
             <ImageView fitHeight="174.0" fitWidth="184.0" layoutX="28.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/melodiam_testicon.png" />
+                  <Image url="/resources/melodiam_testicon.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" onAction="#buttonImportPressed" text="Importiere Datei (.csv - Format)" />
+            <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false" onAction="#buttonImportPressed" prefHeight="25.0" prefWidth="200.0" text="Importiere Datei (.csv - Format)" />
             <Label layoutX="51.0" layoutY="41.0" text="Melodiam">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Label>
+            <Label layoutX="14.0" layoutY="371.0" prefHeight="26.0" prefWidth="41.0" text="Theme:" />
+            <ChoiceBox fx:id="chooseTheme" layoutX="66.0" layoutY="372.0" prefHeight="25.0" prefWidth="139.0" />
          </children>
       </Pane>
    </left>

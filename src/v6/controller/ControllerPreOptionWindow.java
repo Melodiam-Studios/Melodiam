@@ -1,17 +1,17 @@
 package v6.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -38,6 +38,13 @@ public class ControllerPreOptionWindow implements Initializable {
      */
     @FXML
     Button openMainWindow;
+
+    /**
+     * toggling the lighttheme
+     */
+
+    @FXML
+    ChoiceBox chooseTheme;
 
     /**
      * TextField responsible for reading the file name requested by the user
@@ -81,6 +88,9 @@ public class ControllerPreOptionWindow implements Initializable {
     @FXML
     private void newWindow(){
 
+        Style style=Style.LIGHT;
+        String cssfile="v6/view/lightmode.css";
+
         if (!dateiName.getText().isEmpty()){
             System.out.println(dateiName.getText());
             String tmpDateiName = dateiName.getText();
@@ -92,12 +102,23 @@ public class ControllerPreOptionWindow implements Initializable {
             Notenblatt.setKomponist(tmpKomponist);
         }
 
+
+
+
         int tmpTaktAnzahl = (int) preAnzahlTakte.getValue();
         System.out.println(tmpTaktAnzahl);
         Notenblatt.setStartTaktAnzahl(tmpTaktAnzahl);
 
         String tmpInstrument = instrument.getSelectionModel().getSelectedItem().toString();
         Notenblatt.setInstrument(tmpInstrument);
+
+
+        if(chooseTheme.getSelectionModel().getSelectedItem().toString().equals("Light")){
+
+        }else if(chooseTheme.getSelectionModel().getSelectedItem().toString().equals("Dark")){
+            style=Style.DARK;
+            cssfile="v6/view/darkmode.css";
+        }
 
 
 
@@ -116,7 +137,7 @@ public class ControllerPreOptionWindow implements Initializable {
 
             Stage primaryStage = new Stage();
 
-            JMetro jMetro=new JMetro(Style.LIGHT);
+            JMetro jMetro=new JMetro(style);
 
 
             ControllerMainWindow controller = loader.<ControllerMainWindow>getController();
@@ -132,7 +153,7 @@ public class ControllerPreOptionWindow implements Initializable {
             //root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
             //Open main Window
 
-            root.getStylesheets().add("v6/view/lightmode.css");
+            root.getStylesheets().add(cssfile);
             primaryStage.setTitle("Melodiam v6");
             primaryStage.setScene(jMetro.getScene());
             primaryStage.setMaximized(true);
@@ -254,6 +275,15 @@ public class ControllerPreOptionWindow implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set Themes
+        String themes[]={
+                "Light",
+                "Dark"
+                //more?
+        };
+        chooseTheme.setItems(FXCollections.observableArrayList(themes));
+        chooseTheme.getSelectionModel().select("Light");
+
         //set instruments
         String instrum[] = {
                 "Piano",        // C
