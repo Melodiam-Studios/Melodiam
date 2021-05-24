@@ -381,6 +381,7 @@ public class Takt {
     }
 
     /**
+     * Function that detects mouse move on Takt
      * @param mouseEvent mouse coordinates
      */
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
@@ -445,8 +446,12 @@ public class Takt {
         //previewImage.setImage(image);
     }
 
+    /**
+     * Function that places Note or Pause on Takt if the first mouse button is pressed.
+     * It also deletes the Note or Pause if the second mouse button is pressed.
+     * @param mouseEvent mouse coordinates
+     */
     public void onMousePressed(javafx.scene.input.MouseEvent mouseEvent) {
-
 
         System.out.println("_________________________________________________________");
         System.out.println(this.getPane().toString());
@@ -489,7 +494,7 @@ public class Takt {
         }
     }
 
-    public void placeNote(Point2D p) {
+    private void placeNote(Point2D p) {
         ImageView imageView;
         ImageView vorzeichenView = null;
 
@@ -619,12 +624,19 @@ public class Takt {
 
     }
 
-    //Preview löschen wenn man aus dem Takt geht
+    /**
+     * Deletes the Preview of Note or Takt when mouse goes out of the Pane
+     * @param mouseEvent
+     */
     private void onMouseExited(javafx.scene.input.MouseEvent mouseEvent) {
         previewVorzeichenView.setImage(null);
         previewImageView.setImage(null);
     }
 
+    /**
+     * Deletes the Note/Pause the user is on with the mouse when he right clicks.
+     * @param mouseEvent
+     */
     public void onRightClick(javafx.scene.input.MouseEvent mouseEvent) {
         System.out.println("Right Click");
 
@@ -675,6 +687,10 @@ public class Takt {
         //System.out.println(notesAsImages);
     }
 
+    /**
+     * Funktion renews all Noten after Transponieren.
+     * @param note element that gets changed
+     */
     public void erneuereNoten(Note note) {
 
         ImageView imageView;
