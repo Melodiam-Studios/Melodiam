@@ -240,7 +240,7 @@
             </SplitPane>
         </bottom>
       <center>
-         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox-dark" BorderPane.alignment="CENTER">
             <children>
                <Label fx:id="titel" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="1100.0" styleClass="sheet" text="Titel">
                   <font>
@@ -258,8 +258,8 @@
                      <Insets right="10.0" />
                   </padding>
                </Label>
-                  <ScrollPane prefHeight="759.0" prefWidth="1267.0">
-                      <AnchorPane fx:id="anchorP" minHeight="0.0" minWidth="0.0" prefHeight="1360.0" prefWidth="840.0" styleClass="anchorP" />
+                  <ScrollPane prefHeight="759.0" prefWidth="1267.0" styleClass="scrollpane_dark">
+                      <AnchorPane fx:id="anchorP" minHeight="0.0" minWidth="0.0" prefHeight="1360.0" prefWidth="1205.0" styleClass="anchorP" />
                   </ScrollPane>
             </children>
          </VBox>

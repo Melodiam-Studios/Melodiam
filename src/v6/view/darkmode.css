@@ -24,6 +24,7 @@
 }
 .scroll-pane{
     -fx-background-color: white;
+    -fx-border-color: white;
 }
 .logoimage{
     -fx-background-color: white;
@@ -49,4 +50,7 @@
 }
 .slider{
 
+}
+.scrollpane_dark{
+    -fx-background-color: white;
 }
