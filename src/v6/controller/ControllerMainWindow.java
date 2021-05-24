@@ -700,8 +700,11 @@ public class ControllerMainWindow {
         Notenblatt.clearElements();
 
         int numberOfTakte = Notenblatt.getAktuelleTaktAnzahl();
+        System.out.println("NUMBEROFTAKTE: " + numberOfTakte);
         //readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
         //readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0));
+
+        addFile();
 
         for (int i=1;i<=numberOfTakte; i++){
             addPaneWithNotes(readElements,i);
@@ -715,6 +718,8 @@ public class ControllerMainWindow {
             column = 0;
         }
 
+        System.out.println("TEST: " + column);
+        System.out.println("TEST2: " + mainInputPane);
         mainInputPane.addColumn(column);
         mainInputPane.addRow(row);
         RowConstraints rowWith = new RowConstraints(150);
@@ -749,8 +754,6 @@ public class ControllerMainWindow {
                     takt.erneuereNoten(note);
                 }
             }
-            storeLines.add(takt.getPane());
-            drawPane(storeLines, mainInputPane);
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
 
@@ -769,10 +772,9 @@ public class ControllerMainWindow {
                 }
             }
             //takt.setElements(elements);
-            storeLines.add(takt.getPane());
-            drawPane(storeLines, mainInputPane);
-
         }
+        storeLines.add(takt.getPane());
+        drawPane(storeLines, mainInputPane);
         column++;
         id++;
 

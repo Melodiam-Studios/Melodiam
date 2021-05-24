@@ -244,6 +244,7 @@ public class ControllerPreOptionWindow implements Initializable {
             Speichern speichern = new Speichern();
             speichern.Einlesen(fileName);
         }
+        newWindow();
     }
 
     /**
