@@ -657,21 +657,22 @@ public class Controller {
         storeLines.remove(storeLines.size()-1);
         drawPane(storeLines, mainInputPane);
         id--;
-
-        Notenblatt.clearElements();
     }
 
     public void createFromRead(){
 
+        ArrayList<ReadElement> readElements = new ArrayList<>();
+
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
-            remPaneTran();
+            remPane();
             System.out.println("Takt wird gelöscht");
         }
 
-        int numberOfTakte = 4;
-        ArrayList<ReadElement> readElements = new ArrayList<>();
-        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0));
-        readElements.add(new ReadElement(4, 14, 120.0, 40.0, 115.0, 40.0 , 0));
+        Notenblatt.clearElements();
+
+        int numberOfTakte = 1;
+        readElements.add(new ReadElement(4, 14, 55.0, 40.0, 50.0, 40.0, 0, 0));
+        readElements.add(new ReadElement(4, 13, 120.0, 40.0, 115.0, 40.0 , 0,0));
 
         for (int i=1;i<=numberOfTakte; i++){
             addPaneWithNotes(readElements,i);
@@ -691,7 +692,7 @@ public class Controller {
         mainInputPane.getRowConstraints().add(rowWith);
 
         if (column == 0 ){
-            ColumnConstraints columnWith = new ColumnConstraints(275);
+            ColumnConstraints columnWith = new ColumnConstraints(lenghtFirstsPane);
             mainInputPane.getColumnConstraints().add(columnWith);
         }else {
             ColumnConstraints columnWith = new ColumnConstraints(lenghtPane);
@@ -707,9 +708,11 @@ public class Controller {
                     // Pause
                 }else{
                     // Note
-                    Note note = new Note(readElement.inTakt, readElement.position, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                    System.out.println("Placing a note");
+                    Note note = new Note(readElement.inTakt, readElement.position,false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
                     note.setAnzeigenVorzeichen(0);
                     note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                    takt.erneuereNoten(note);
                 }
             }
             storeLines.add(takt.getPane());
@@ -717,14 +720,23 @@ public class Controller {
             //Tonleiter ImageView hinzufügen
             ImageView imageViewTonleiter = new ImageView();
 
-            takt.erneuereNoten();
         }else{
             takt = new Takt(false, idNeu);
+            for (ReadElement readElement:readElements) {
+                if (readElement.inTakt % 5 == 0){
+                    // Pause
+                }else{
+                    // Note
+                    Note note = new Note(readElement.inTakt, readElement.position, false, 0, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
+                    note.setAnzeigenVorzeichen(0);
+                    note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
+                    takt.erneuereNoten(note);
+                }
+            }
             //takt.setElements(elements);
             storeLines.add(takt.getPane());
             drawPane(storeLines, mainInputPane);
 
-            takt.erneuereNoten();
         }
         column++;
         id++;

@@ -1,7 +1,7 @@
 package v6;
 
 import org.junit.jupiter.api.Test;
-import v6.Model.Liste;
+//import v6.Model.Liste;
 
 import static org.junit.jupiter.api.Assertions.*;
 

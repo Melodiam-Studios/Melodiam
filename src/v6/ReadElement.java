@@ -18,11 +18,14 @@ public class ReadElement {
 
     protected int vorzeichen;
 
-    public ReadElement(int inTakt, int position, double imageViewX, double imageViewY, double vorzeichenViewX, double vorzeichenViewY, int tonLeiter) {
+    public ReadElement(int inTakt, int position, double imageViewX, double imageViewY, double vorzeichenViewX, double vorzeichenViewY, int tonLeiter, int vorzeichen) {
         this.inTakt = inTakt;
         this.position = position;
         this.imageViewX = imageViewX;
         this.imageViewY = imageViewY;
+        this.vorzeichenViewX = vorzeichenViewX;
+        this.vorzeichenViewY = vorzeichenViewY;
         this.tonLeiter = tonLeiter;
+        this.vorzeichen = vorzeichen;
     }
 }

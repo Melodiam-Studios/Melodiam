@@ -121,8 +121,10 @@ public class Liste {
             n++;
         }
         //System.out.println("Position counting from above: " + position);
+        try {
+            position = positions.get(position);
+        }catch (Exception ignored){}
 
-        position = positions.get(position);
 
         //System.out.println("Real position: " + position);
 

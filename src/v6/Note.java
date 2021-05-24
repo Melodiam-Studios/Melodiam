@@ -47,10 +47,11 @@ public class Note extends Element {
      * @param position describes the vertical position - 23 possible positions --> based on the position the tone of the note can be determined
      * @param vorzeichen Variable responsible for identification of vorzeichen.The function {@link Note#changeNote(boolean)}} gets the vorzeichen from this variable and tells the program wich vorzeichen is chosen
      */
-    public Note(int notenInTakt, int position, int vorzeichen, Point2D coordinatesOfNote) {
+    public Note(int notenInTakt, int position, boolean positionUmsetzen, int vorzeichen, Point2D coordinatesOfNote) {
 
         this.notenInTakt = notenInTakt;
-        this.position = Liste.positionumsetzen(position);
+        if (positionUmsetzen)   this.position = Liste.positionumsetzen(position);
+        else this.position = position;
         this.vorzeichen =  vorzeichen;
         this.coordinatesOfNote = coordinatesOfNote;
 
@@ -161,6 +162,7 @@ public class Note extends Element {
         }
 
         imageView.setY(notenOffsetY);
+        System.out.println("Setting the ImageView x:? and y:25      x:" + imageView.getX() + " y:" + imageView.getY());
 
         // if there is a vorzeichen it gets set in the vorzeichenSetzen function
         if (vorzeichen > (-2) && vorzeichen <= 2) vorzeichenSetzen(trans);
@@ -304,6 +306,7 @@ public class Note extends Element {
     public void setImageViewCoords(Point2D point2D){
         imageView.setX(point2D.x);
         imageView.setY(point2D.y);
+        System.out.println("Setting the coords of the imageview to x:" + imageView.getX() + " and y:" + imageView.getY());
     }
 
     @Override
