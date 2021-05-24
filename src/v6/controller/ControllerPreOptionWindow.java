@@ -245,7 +245,8 @@ public class ControllerPreOptionWindow implements Initializable {
         JFrame parentFrame = new JFrame();
 
         JFileChooser fileChooser = new JFileChooser();
-        parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
+        //parentFrame.setIconImage((new ImageIcon("C:\\Users\\Alex Hofer\\Documents\\GitHub\\Melodiam\\src\\resources\\melodiam_testicon.png").getImage()));
+
 
         fileChooser.setDialogTitle("Öffnen");
         fileChooser.setAcceptAllFileFilterUsed(false);

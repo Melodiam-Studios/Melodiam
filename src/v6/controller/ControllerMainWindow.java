@@ -25,6 +25,7 @@ import v6.model.Transponieren;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -375,6 +376,7 @@ public class ControllerMainWindow {
             column = 3;
         }
 
+        storeLines.remove(storeLines.size()-1);
         drawPane(storeLines, mainInputPane);
         Notenblatt.remTakt();
         id--;
