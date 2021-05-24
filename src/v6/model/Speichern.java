@@ -1,14 +1,17 @@
 package v6.model;
 
-import v6.controller.Element;
-import v6.controller.Note;
-import v6.controller.Pause;
-import v6.controller.Takt;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import v6.controller.*;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Speichern {
     public static void Abspeichern(String filePath) {
@@ -55,9 +58,15 @@ public class Speichern {
                         bw.newLine();
                         bw.write(String.valueOf(((Note) element).getPosition()));
                         bw.newLine();
+                        bw.write(String.valueOf(((Note) element).getVorzeichen()));
+                        bw.newLine();
                     }
                     else if(element.getClass() == Pause.class){
                         bw.write(String.valueOf(((Pause) element).getPausenInTakt()));
+                        bw.newLine();
+                        bw.write("-10");    //-10 bei position von pause --> weil es keines dort gibt
+                        bw.newLine();
+                        bw.write("-10");    //-10 bei vozeichen von pause --> weil es keines dort gibt
                         bw.newLine();
                     }
                     //bw.newLine();
@@ -74,7 +83,7 @@ public class Speichern {
         }
     }
 
-    public static void Einlesen(String filePath) {
+    public void Einlesen(String filePath) throws IOException {
         System.out.println("IM EINLESEN!");
 
         File file = new File(filePath);
@@ -97,14 +106,54 @@ public class Speichern {
         System.out.println(data);
         System.out.println("Read!");
 
+        Path path = Paths.get(filePath);
+        long lines = 0;
+        try {
+            lines = Files.lines(path).count();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<ReadElement> readElements = new ArrayList<>();
+
         Notenblatt.setDateiName(String.valueOf(data.get(0)));
         Notenblatt.setTonleiter(Integer.parseInt(data.get(1)));
         Notenblatt.setInstrument(String.valueOf(data.get(2)));
         Notenblatt.setKomponist(String.valueOf(data.get(3)));
+        Notenblatt.setAktuelleTaktAnzahl(Integer.parseInt(data.get(4)));
 
-        System.out.println("DATA: -----> " + data.get(6));
+        int x = 9;
+        int y = 10;
+        int z = 5;
+        int u = 7;
+        int v = 11;
 
-        ArrayList<String> takte = new ArrayList<>(Collections.singleton((data.get(6))));
-        System.out.println(takte);
+        while(v <= lines){
+            int inTakt = Integer.parseInt(data.get(x));
+            int position = Integer.parseInt(data.get(y));
+            double imageViewX = Double.parseDouble(data.get(z));
+            double imageViewY = Double.parseDouble(data.get(z+1));
+            double vorzeichenViewX = Double.parseDouble(data.get(u));
+            double vorzeichenViewY = Double.parseDouble(data.get(u+1));
+            int vorzeichen = Integer.parseInt(data.get(v));
+
+            ReadElement readElement = new ReadElement(inTakt, position, imageViewX, imageViewY, vorzeichenViewX, vorzeichenViewY, vorzeichen);
+            readElements.add(readElement);
+            //System.out.println("AUSGABE IN EINLESENNNNNNNNNNNNNNN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
+
+            x = x + 7;
+            y = y + 7;
+            z = z + 7;
+            u = u + 7;
+            v = v + 7;
+            if(x>lines){break;}
+        }
+
+        System.out.println(readElements);
+
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/v6/view/mainView.fxml")));
+        Parent root = loader.load();
+        ControllerMainWindow controller = loader.<ControllerMainWindow>getController();
+        controller.createFromRead(readElements);
     }
 }

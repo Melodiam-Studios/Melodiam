@@ -241,7 +241,8 @@ public class ControllerPreOptionWindow implements Initializable {
             //System.out.println("fileName: " + file);
             File newFile = new File(fileName);
             //BufferedReader reader = new BufferedReader(new FileReader(newFile));
-            Speichern.Einlesen(fileName);
+            Speichern speichern = new Speichern();
+            speichern.Einlesen(fileName);
         }
     }
 
