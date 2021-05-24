@@ -691,7 +691,7 @@ public class ControllerMainWindow {
         id--;
     }
 
-    public void createFromRead(ArrayList<ReadElement> readElements){
+    public void createFromRead(ArrayList<ArrayList<ReadElement>> listofElements){
         for (int i=0; i<(Notenblatt.getTakte().size());i++) {
             remPane();
             System.out.println("Takt wird gelöscht");
@@ -707,7 +707,7 @@ public class ControllerMainWindow {
         addFile();
 
         for (int i=1;i<=numberOfTakte; i++){
-            addPaneWithNotes(readElements,i);
+            addPaneWithNotes(listofElements.get(i-1), i);
         }
     }
 
