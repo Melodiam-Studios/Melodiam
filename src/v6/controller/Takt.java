@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
-import v6.model.Liste;
 import v6.model.Notenblatt;
 
 import java.util.ArrayList;
@@ -386,10 +385,19 @@ public class Takt {
      */
     public void onMouseMoved(javafx.scene.input.MouseEvent mouseEvent) {
 
-        if (belegt == 1) return;
 
         notenInTakt = ControllerMainWindow.notenInTakt;
         vorzeichen = ControllerMainWindow.vorzeichen;
+
+        /*
+        System.out.println("Belegt:" + belegt);
+        System.out.println("NotenInTakt:" + notenInTakt);
+        System.out.println("1/notenInTakt:" + (1.0/notenInTakt));
+        System.out.println("Belegt + 1/notenInTakt: " + belegt + (1.0/notenInTakt));
+
+
+         */
+        if (belegt + 1.0/notenInTakt > 1) return;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
@@ -468,7 +476,7 @@ public class Takt {
             onRightClick(mouseEvent);
         else {
 
-            if (belegt == 1 || p.x == -100000 && p.y == -100000) return;
+            if (belegt + 1.0/notenInTakt > 1 || p.x == -100000 && p.y == -100000) return;
 
             ImageView imageView;
 
