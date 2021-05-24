@@ -62,7 +62,12 @@ public class ControllerMainWindow {
      */
     @FXML
     Button bPlay;
+    /**
+     * Responsible for stopping song!
+     */
 
+    @FXML
+    Button bStop;
     /**
      * Button responsible to select a whole note
      */
@@ -207,6 +212,9 @@ public class ControllerMainWindow {
      */
     private ArrayList<Pane> storeLines = new ArrayList<>();
 
+    PlayMelody playMelody=null;
+
+
     /**
      * all Tacts are added on the GridPane
      * @param arr is the ArrayList where all Panes are stored in
@@ -274,6 +282,8 @@ public class ControllerMainWindow {
         }
         else if (id.equals(bPlay.getId())){
             playSong();
+        }else if(id.equals(bStop.getId())){
+            stopSong();
         }
     }
 
@@ -554,7 +564,9 @@ public class ControllerMainWindow {
      * Plays the written notes
      */
     private void playSong(){
-
+        if (playMelody != null) {
+            return;
+        }
         String instrument = Notenblatt.getInstrument();
         Liste.werteAusfuellen();
 
@@ -621,9 +633,22 @@ public class ControllerMainWindow {
             }
         }
 
-        PlayMelody playMelody = new PlayMelody(melody);
+        playMelody = new PlayMelody(melody);
         Thread t = new Thread(playMelody,"AudioPlayback");
+        t.setDaemon(true);
         t.start();
+    }
+
+    /**
+     * Pauses the melody and sets to null
+     */
+    public void stopSong(){
+        if(playMelody ==null){
+            System.out.println("Not playing song!");
+            return;
+        }
+        playMelody.pauseMelody();
+        playMelody=null;
     }
 
     /**

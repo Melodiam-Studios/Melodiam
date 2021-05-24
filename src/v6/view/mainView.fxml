@@ -100,6 +100,18 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                       </Button>
+                  <Button fx:id="bStop" mnemonicParsing="false" onAction="#buttonPressd" prefHeight="30.0" prefWidth="35.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="9.0">
+                           <image>
+                              <Image url="/resources/bilder_noten/PlayButton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
             </HBox>
