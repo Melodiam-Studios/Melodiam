@@ -107,7 +107,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="9.0">
                            <image>
-                              <Image url="/resources/bilder_noten/PlayButton.png" />
+                              <Image url="/resources/other/stopButton.png" />
                            </image>
                         </ImageView>
                      </graphic>
