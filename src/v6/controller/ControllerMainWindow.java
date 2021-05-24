@@ -734,7 +734,7 @@ public class ControllerMainWindow {
         }
 
         Takt takt;
-        int notenbereich = (idNeu + 1) * 16;
+        int notenbereich = idNeu * 16;  //16
         int notenwerte = 0;
         int tmpNotenWert = 0;
 
@@ -753,7 +753,8 @@ public class ControllerMainWindow {
                     }
                 }
                 notenwerte = notenwerte + readElement.inTakt;
-                System.out.println("readElement.inTakt: " + readElement.inTakt);
+                System.out.println("ELEMENTS: " + readElement);
+                System.out.println("notenwerte/notenbereich" + notenwerte + "    " + notenbereich);
                 if(notenwerte >= notenbereich && notenwerte < notenbereich + 16){
                     System.out.println("notenwerte/notenbereich" + notenwerte + "    " + notenbereich);
                     if (readElement.inTakt % 5 == 0){
@@ -761,7 +762,7 @@ public class ControllerMainWindow {
                         Pause pause = new Pause(readElement.inTakt, takt.objektFang(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY), readElement.inTakt));
                         pause.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                         takt.erneuerePausen(pause);
-                        System.out.println("Placing a Pause" + pause);
+                        System.out.println("Placing a Pause" + pause.getImageView().getParent());
 
                     }else{
                         // Note
@@ -769,7 +770,7 @@ public class ControllerMainWindow {
                         note.setAnzeigenVorzeichen(1);
                         note.setImageViewCoords(new Point2D((float) readElement.imageViewX, (float) readElement.imageViewY));
                         takt.erneuereNoten(note);
-                        System.out.println("Placing a note" + note);
+                        System.out.println("Placing a Note" + note.getImageView().getParent());
                     }
                 }
 

@@ -1,17 +1,10 @@
 package v6.model;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import v6.controller.*;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Objects;
 
 public class Speichern {
     public static void Abspeichern(String filePath) {
@@ -69,10 +62,10 @@ public class Speichern {
                         bw.write("-10");    //-10 bei vozeichen von pause --> weil es keines dort gibt
                         bw.newLine();
                     }
-                    //bw.newLine();
-                    //bw.newLine();
                     i++;
                 }
+                bw.write("---");
+                bw.newLine();
             }
 
             System.out.println("Written!");
@@ -105,7 +98,7 @@ public class Speichern {
         }
         System.out.println(data);
         System.out.println("Read!");
-
+/*
         Path path = Paths.get(filePath);
         long lines = 0;
         try {
@@ -113,7 +106,7 @@ public class Speichern {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
         ArrayList<ReadElement> readElements = new ArrayList<>();
 
         Notenblatt.setDateiName(String.valueOf(data.get(0)));
@@ -128,7 +121,19 @@ public class Speichern {
         int u = 7;
         int v = 11;
 
-        while(v <= lines){
+        ArrayList<ArrayList<ReadElement>> arrayListElements = new ArrayList<>();
+
+        ArrayList<Integer> welcheLinie = new ArrayList<>();
+
+        for(int i = 0; i< data.size(); i++){
+            if(data.get(i).contains("---")){
+                welcheLinie.add(i);
+                System.out.println("removing@index" + i);
+                data.remove(i);
+            }
+        }
+
+        while(v <= data.size()){
             int inTakt = Integer.parseInt(data.get(x));
             int position = Integer.parseInt(data.get(y));
             double imageViewX = Double.parseDouble(data.get(z));
@@ -139,20 +144,28 @@ public class Speichern {
 
             ReadElement readElement = new ReadElement(inTakt, position, imageViewX, imageViewY, vorzeichenViewX, vorzeichenViewY, vorzeichen);
             readElements.add(readElement);
-            System.out.println("AUSGABE IN EINLESENNNNNNNNNNNNNNN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
+            System.out.println("AUSGABE IN EINLESEN: " + inTakt + "; " + position + "; " + imageViewX + "; " + imageViewY + "; " + vorzeichenViewX + "; " + vorzeichenViewY + "; " + vorzeichen);
+
+            for (Integer i : welcheLinie){
+                if(i == x){
+                    System.out.println("In IF");
+                    arrayListElements.add(readElements);
+                    readElements.clear();
+                }
+            }
 
             x = x + 7;
             y = y + 7;
             z = z + 7;
             u = u + 7;
             v = v + 7;
-            if(x>lines){break;}
+            if(v> data.size()){break;}
         }
-
         System.out.println(readElements);
 
         ControllerMainWindow controllerMainWindow = controller;
         System.out.println("CONTROLLER IN EINLESEN: " + controllerMainWindow);
-        controller.createFromRead(readElements);
+        System.out.println("arrayListElements: " + arrayListElements);
+        controller.createFromRead(arrayListElements);
     }
 }
