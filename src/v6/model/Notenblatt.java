@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 /**
  * In der Klasse Notenblatt werden alle relevanten Informationen statisch gespeichert und bei Änderungen immer aktualisiert.
- * Enthaltene Inforationen: Aktuelle Tonleiter, Instrument, Dateiname, Komponist, Notenschl
+ * Enthaltene Inforationen: Aktuelle Tonleiter (z.B. C-Dur), Instrument, Dateiname, Komponist, Notenschluessel (z.B. Violinschluessel),
+ * Taktart (z.B. 4/4) und die ArrayList mit den ganzen Takten (in welche dann die ganzen Noten und Pausen gespeichert sind)
  */
 public class Notenblatt {
 
