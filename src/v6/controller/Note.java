@@ -207,8 +207,9 @@ public class Note extends Element {
             img = new Image(getClass().getResource("/resources/bilder_noten/b-vorzeichen.png").toExternalForm());
         } else if (vorzeichen == 1 && anzeigenVorzeichen == 1) {// Kreuz-Vorzeichen
             img = new Image(getClass().getResource("/resources/bilder_noten/Kreuzvorzeichen.png").toExternalForm());
-        } else if (anzeigenVorzeichen == 2 && vorzeichen == 0) {// Auflösungs-Vorzeichen
+        } else if (vorzeichen == 0) {// Auflösungs-Vorzeichen
             img = new Image(getClass().getResource("/resources/bilder_noten/Auflösungszeichen.png").toExternalForm());
+            anzeigenVorzeichen = 2;
         }
 
         // set the image to the ImageView
