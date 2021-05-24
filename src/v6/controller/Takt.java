@@ -399,6 +399,7 @@ public class Takt {
 
          */
         if (belegt + 1.0/notenInTakt > 1) return;
+        if (!getIfTaktOnLeftFull()) return;
 
         Point2D p = new Point2D();
         p.x = (float) mouseEvent.getX();
@@ -478,6 +479,7 @@ public class Takt {
         else {
 
             if (belegt + 1.0/notenInTakt > 1 || p.x == -100000 && p.y == -100000) return;
+            if (!getIfTaktOnLeftFull()) return;
 
             ImageView imageView;
 
@@ -731,8 +733,10 @@ public class Takt {
         p.x = (float) mouseEvent.getX();
         p.y = (float) mouseEvent.getY();
 
+
+        p.x = 300;
         //p = objektFang(p, )
-        double shortestDistance = 100;
+        double shortestDistance = 400;
         Point2D returnPoint = new Point2D();
 
 
@@ -983,7 +987,7 @@ public class Takt {
         renewStaticTakt();
     }
 
-    public boolean getIfTaktonLeftFull(){
+    public boolean getIfTaktOnLeftFull(){
         if (id == 0) return true;
 
         ArrayList<Takt> takte = Notenblatt.getTakte();
