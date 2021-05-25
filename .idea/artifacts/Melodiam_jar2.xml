@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Melodiam:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Melodiam_jar2</output-path>
+    <root id="archive" name="Melodiam.jar">
+      <element id="module-output" name="Melodiam" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jmetro-8.6.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/jfugue-5.0.9.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$USER_HOME$/Downloads/javafx-sdk-11.0.2/bin" />
+    </root>
+  </artifact>
+</component>

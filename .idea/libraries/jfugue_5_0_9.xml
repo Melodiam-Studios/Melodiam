@@ -1,8 +1,7 @@
 <component name="libraryTable">
   <library name="jfugue-5.0.9">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/jfugue-5.0.9.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../jfugue-5.0.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jfugue-5.0.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
