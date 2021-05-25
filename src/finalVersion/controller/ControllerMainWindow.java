@@ -227,16 +227,30 @@ public class ControllerMainWindow {
 
     @FXML
     public void printPNG(){
-        WritableImage image = anchorP.getParent().getParent().getParent().getParent().snapshot(new SnapshotParameters(), null);
+        JFrame parentFrame = new JFrame();
 
-        File file = new File(Notenblatt.getDateiName() + ".png");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Speichern unter");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG (.png)", "png");
+        fileChooser.addChoosableFileFilter(filter);
 
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-        } catch (IOException e){
-            System.out.println("IO Exeption");
-        }
-        System.out.println("Finishd");
+        int userSelection = fileChooser.showSaveDialog(parentFrame);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            WritableImage image = anchorP.getParent().getParent().getParent().getParent().snapshot(new SnapshotParameters(), null);
+            File fileToSave = fileChooser.getSelectedFile();
+            String path = fileToSave.getAbsolutePath();
+            String fileName = path + ".png"; //fileName ist der Name + .png
+            //System.out.println("fileName: " + file);
+            File file = new File(fileName);
+
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+            } catch (IOException e){
+                System.out.println("IO Exeption");
+            }
+            System.out.println("Finishd");
 
         /*PrinterJob job = PrinterJob.createPrinterJob();
         if(job != null){
@@ -245,6 +259,18 @@ public class ControllerMainWindow {
             job.printPage(anchorP.getParent().getParent().getParent().getParent());
             job.endJob();
         }*/
+
+            /*
+            File fileToSave = fileChooser.getSelectedFile();
+            //System.out.println("Speicherort: " + fileToSave.getAbsolutePath());
+            String path = fileToSave.getAbsolutePath();
+            String fileName = path + ".csv"; //fileName ist der Name + .csv
+            //System.out.println("fileName: " + file);
+            File newFile = new File(fileName);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
+            Speichern.Abspeichern(fileName);
+            */
+        }
     }
 
     /**
