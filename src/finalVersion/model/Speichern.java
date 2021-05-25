@@ -1,6 +1,6 @@
-package v6.model;
+package finalVersion.model;
 
-import v6.controller.*;
+import finalVersion.controller.*;
 
 import java.io.*;
 import java.util.ArrayList;
