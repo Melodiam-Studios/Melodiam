@@ -27,6 +27,7 @@
         <Menu mnemonicParsing="false" text="File">
             <MenuItem fx:id="miNew" mnemonicParsing="false" onAction="#newWindow" text="New" />
             <MenuItem mnemonicParsing="false" onAction="#SaveFile" text="Save" />
+            <MenuItem mnemonicParsing="false" onAction="#printPNG" text="Save as PNG" />
             <MenuItem fx:id="miQuit" mnemonicParsing="false" onAction="#shutDownMain" text="Quit" />
         </Menu>
     </MenuBar>

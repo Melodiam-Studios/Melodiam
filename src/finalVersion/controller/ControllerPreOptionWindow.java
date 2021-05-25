@@ -90,7 +90,7 @@ public class ControllerPreOptionWindow implements Initializable {
     private void newWindow(){
 
         Style style=Style.LIGHT;
-        String cssfile="v6/view/lightmode.css";
+        String cssfile="finalVersion/view/lightmode.css";
 
         if (!dateiName.getText().isEmpty()){
             System.out.println(dateiName.getText());
@@ -118,7 +118,7 @@ public class ControllerPreOptionWindow implements Initializable {
 
         }else if(chooseTheme.getSelectionModel().getSelectedItem().toString().equals("Dark")){
             style=Style.DARK;
-            cssfile="v6/view/darkmode.css";
+            cssfile="finalVersion/view/darkmode.css";
         }
 
 
@@ -133,7 +133,7 @@ public class ControllerPreOptionWindow implements Initializable {
         Notenblatt.setNotenschluessel(tmpNotenschluessel);
 
         try{
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/v6/view/mainView.fxml")));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/finalVersion/view/mainView.fxml")));
             Parent root = loader.load();
 
             Stage primaryStage = new Stage();
@@ -155,7 +155,7 @@ public class ControllerPreOptionWindow implements Initializable {
             //Open main Window
 
             root.getStylesheets().add(cssfile);
-            primaryStage.setTitle("Melodiam v6");
+            primaryStage.setTitle("Melodiam");
             primaryStage.setScene(jMetro.getScene());
             primaryStage.setMaximized(true);
             primaryStage.show();

@@ -21,7 +21,7 @@ public class CreatePreOptionWindow {
      */
     public CreatePreOptionWindow(Stage primaryStage) throws IOException {
 
-        Parent root2 = FXMLLoader.load(getClass().getResource("/v6/view/preOptionWindowView.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("/finalVersion/view/preOptionWindowView.fxml"));
         Scene scene2 = new Scene(root2 , 660, 444);
 
         //root2.getStylesheets().add("v6/lightmode.css");
