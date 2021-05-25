@@ -24,4 +24,5 @@ Die Optionen in der Mitte sind fürs transponieren zuständig. Hier kann man das
 
 ## Ausführen
 
-Um das Ganze auszuführen, muss man im moment noch in intellij
+Um das Ganze auszuführen, muss man im moment noch in intellij nachschauen, ob die zwei libraries, welche sich im Ordner lib befinden hinzugefügt wurden.
+Dann kann man im package finalVersion die Main Klasse ausführen.
